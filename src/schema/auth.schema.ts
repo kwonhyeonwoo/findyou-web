@@ -7,9 +7,10 @@ export const authCommonSchema = z.object({
 
 export const registerSchema = authCommonSchema.extend({
     type: z.enum(['helper', 'client']),
+    verify: z.string().min(6, "인증번호는 6글자 입니다.").max(6, "인증번호는 6글자 입니다."),
     division: z.enum(['kakao', 'naver', 'email']),
     region: z.string(),
-    nickName: z.string().min(3, '닉네임은 2자 이상이어야 합니다.').max(6, '닉네임은 최대 10자 입니다.'),
+    nickName: z.string().min(3, '닉네임은 3자 이상이어야 합니다.').max(6, '닉네임은 최대 10자 입니다.'),
     phone: z.string().min(11, '전화번호는 11자 이상이어야 합니다.').max(11, '전화번호는 11자 이하이어야 합니다.'),
     name: z.string().min(2, '이름은 2자 이상이어야 합니다.').max(10, '이름은 최대 10자 입니다.'),
     confirmPassword: z.string().min(8, '비밀번호는 8자 이상이어야 합니다.').max(16, "비밀번호는 최대 16자 입니다."),
