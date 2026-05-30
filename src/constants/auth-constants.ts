@@ -8,7 +8,7 @@ interface InputItem {
   name: keyof ReigsterType; // 💡 RHF와 연동할 고유 키값
   label: string;
   placeholder: string;
-  maxLnegth?: number;
+  maxLength?: number;
   minLength?: number;
   type: string;
   activeText?: string;
@@ -53,6 +53,8 @@ export const getBasicInputs = ({
     {
       name: "confirmPassword",
       label: "비밀번호 확인",
+      minLength: 8,
+      maxLength: 16,
       placeholder: "비밀번호 재입력",
       type: "password",
     },
@@ -60,6 +62,8 @@ export const getBasicInputs = ({
       name: "name",
       label: "이름",
       placeholder: "실명 입력",
+      minLength:2,
+      maxLength:6,
       type: "text",
     },
     {
@@ -67,6 +71,8 @@ export const getBasicInputs = ({
       label: "휴대폰 번호",
       placeholder: "-없이 숫자만 입력",
       type: "text",
+      maxLength:11,
+      minLength:11,
       activeText: "인증 받기",
       onActive: onPhoneVerifyRequest,
     },
@@ -74,6 +80,8 @@ export const getBasicInputs = ({
       name: "verify",
       label: "인증번호",
       placeholder: "인증번호 입력",
+      minLength:6,
+      maxLength:6,
       type: 'text',
       activeText: "인증하기",
       onActive: onPhoneVerifyConfirm,
@@ -86,6 +94,8 @@ export const getAddInputs = ({ onAddress }: { onAddress: () => void; }): InputIt
     name: "nickName",
     placeholder: "닉네임 입력",
     type: "text",
+    minLength:3,
+    maxLength:6,
   },
   {
     label: "활동지역",

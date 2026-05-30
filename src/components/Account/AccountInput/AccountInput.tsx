@@ -9,6 +9,8 @@ interface Props {
   placeholder: string;
   type: string;
   activeText?: string;
+  maxLength?:number;
+  minLength?:number;
   register: UseFormRegister<ReigsterType>;
   onActive?: () => void;
 }
@@ -18,9 +20,11 @@ export default function AccountInput({
   label,
   placeholder,
   type,
-  register,
   activeText,
+  maxLength,
+  minLength,
   onActive,
+  register,
 }: Props) {
   return (
     <div>
@@ -29,6 +33,8 @@ export default function AccountInput({
         <input
           className="flex-1 border-b border-b-[#6B7280] px-3 py-[10px]"
           type={type}
+          maxLength={maxLength}
+          minLength={minLength}
           placeholder={placeholder}
           {...register(name)}
         />
