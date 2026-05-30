@@ -13,6 +13,14 @@ interface InputItem {
   type: string;
   activeText?: string;
   onActive?: () => void;
+};
+
+interface LoginInput{
+  name:string;
+  type:string;
+  placeholder:string;
+  minLength?:number;
+  maxLength?:number
 }
 
 interface GetBasicInputsArgs {
@@ -116,4 +124,19 @@ export const CHECK_TYPE_LIST: { text: string; type: "helper" | "client" }[] = [
     text: "의뢰인(도움요청)",
     type: "client",
   },
+];
+
+export const LOGIN_INPUTS:LoginInput[]=[
+  {
+      name:"email",
+      type:"email",
+      placeholder:"이메일"
+  },
+  {
+    name:"password",
+    type:"password",
+    placeholder:"비밀번호",
+    minLength:8,
+    maxLength:16,
+  }
 ]
