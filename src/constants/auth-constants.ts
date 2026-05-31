@@ -1,39 +1,17 @@
-import { ReigsterType } from "@/schema/auth.schema";
+import { IAccountInput, IGetBasicInputArgs, ITerms } from "@/interfaces/auth.interface";
 
-interface TermsItem {
-  name: keyof ReigsterType;
-  text: string;
-}
-interface InputItem {
-  name: keyof ReigsterType; // 💡 RHF와 연동할 고유 키값
-  label: string;
-  placeholder: string;
-  maxLength?: number;
-  minLength?: number;
-  type: string;
-  activeText?: string;
-  onActive?: () => void;
-}
-
-interface GetBasicInputsArgs {
-  onEmailCheck: () => void;
-  onPhoneVerifyRequest: () => void;
-  onPhoneVerifyConfirm: () => void;
-}
-export const TERMS_LIST: TermsItem[] = [
+export const TERMS_LIST: ITerms[] = [
   { name: "agreeUsage", text: "[필수] FINDYOU 이용약관 동의" },
   { name: "agreePrivacy", text: "[필수] 개인정보 수집 및 이용 동의" },
   { name: "agreeMarketingMandatory", text: "[필수] 마케팅 활용 동의" },
   { name: "agreeMarketingOptional", text: "[선택] 마케팅 활용 동의" },
 ];
 
-
-
 export const getBasicInputs = ({
   onEmailCheck,
   onPhoneVerifyRequest,
   onPhoneVerifyConfirm,
-}: GetBasicInputsArgs): InputItem[] => [
+}: IGetBasicInputArgs): IAccountInput[] => [
     {
       name: "email",
       label: "이메일",
@@ -62,8 +40,8 @@ export const getBasicInputs = ({
       name: "name",
       label: "이름",
       placeholder: "실명 입력",
-      minLength:2,
-      maxLength:6,
+      minLength: 2,
+      maxLength: 6,
       type: "text",
     },
     {
@@ -71,8 +49,8 @@ export const getBasicInputs = ({
       label: "휴대폰 번호",
       placeholder: "-없이 숫자만 입력",
       type: "text",
-      maxLength:11,
-      minLength:11,
+      maxLength: 11,
+      minLength: 11,
       activeText: "인증 받기",
       onActive: onPhoneVerifyRequest,
     },
@@ -80,22 +58,22 @@ export const getBasicInputs = ({
       name: "verify",
       label: "인증번호",
       placeholder: "인증번호 입력",
-      minLength:6,
-      maxLength:6,
+      minLength: 6,
+      maxLength: 6,
       type: 'text',
       activeText: "인증하기",
       onActive: onPhoneVerifyConfirm,
     },
   ];
 
-export const getAddInputs = ({ onAddress }: { onAddress: () => void; }): InputItem[] => [
+export const getAddInputs = ({ onAddress }: { onAddress: () => void; }): IAccountInput[] => [
   {
     label: "닉네임",
     name: "nickName",
     placeholder: "닉네임 입력",
     type: "text",
-    minLength:3,
-    maxLength:6,
+    minLength: 3,
+    maxLength: 6,
   },
   {
     label: "활동지역",
