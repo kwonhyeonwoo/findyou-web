@@ -1,3 +1,4 @@
+import { IAccountInput, IGetBasicInputArgs } from "@/interfaces/auth.interface";
 import { ReigsterType } from "@/schema/auth.schema";
 
 interface TermsItem {
@@ -116,7 +117,7 @@ export const CHECK_TYPE_LIST: { text: string; type: "helper" | "client" }[] = [
   },
 ];
 
-export const LOGIN_INPUTS:LoginInput[]=[
+export const LOGIN_INPUTS:{name:string,type:string,placeholder:string,minLength?:number,maxLength?:number}[]=[
   {
       name:"email",
       type:"email",
