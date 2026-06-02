@@ -1,6 +1,26 @@
-import { IAccountInput, IGetBasicInputArgs, ITerms } from "@/interfaces/auth.interface";
+import { ReigsterType } from "@/schema/auth.schema";
 
-export const TERMS_LIST: ITerms[] = [
+interface TermsItem {
+  name: keyof ReigsterType;
+  text: string;
+}
+interface InputItem {
+  name: keyof ReigsterType; // 💡 RHF와 연동할 고유 키값
+  label: string;
+  placeholder: string;
+  maxLength?: number;
+  minLength?: number;
+  type: string;
+  activeText?: string;
+  onActive?: () => void;
+}
+
+interface GetBasicInputsArgs {
+  onEmailCheck: () => void;
+  onPhoneVerifyRequest: () => void;
+  onPhoneVerifyConfirm: () => void;
+}
+export const TERMS_LIST: TermsItem[] = [
   { name: "agreeUsage", text: "[필수] FINDYOU 이용약관 동의" },
   { name: "agreePrivacy", text: "[필수] 개인정보 수집 및 이용 동의" },
   { name: "agreeMarketingMandatory", text: "[필수] 마케팅 활용 동의" },
@@ -94,4 +114,19 @@ export const CHECK_TYPE_LIST: { text: string; type: "helper" | "client" }[] = [
     text: "의뢰인(도움요청)",
     type: "client",
   },
+];
+
+export const LOGIN_INPUTS:LoginInput[]=[
+  {
+      name:"email",
+      type:"email",
+      placeholder:"이메일"
+  },
+  {
+    name:"password",
+    type:"password",
+    placeholder:"비밀번호",
+    minLength:8,
+    maxLength:16,
+  }
 ]
