@@ -11,6 +11,7 @@ export const useUserStore = create<UserState>((set) => ({
     user: {
         id: null,
         email: null,
+        type: null,
     },
     setUser: (user: IMeResponse) => set({ user }),
     clearUser: () => set({ user: { id: null, email: null } as IMeResponse }),

@@ -39,6 +39,7 @@ export interface ISignupRequest {
 export interface IMeResponse {
     id: string | null;
     email: string | null;
+    type: "helper" | "client" | null;
 }
 
 export interface ISigninRequest {
