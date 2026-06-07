@@ -20,7 +20,7 @@ export default function AccountTemplate() {
         <NaverSocial />
       </div>
 
-      <AuthDivider/>
+      <AuthDivider />
       <AccountForm />
     </section>
   );

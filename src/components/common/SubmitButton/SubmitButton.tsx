@@ -1,9 +1,12 @@
+import Loading from "../Loading/Loading";
+
 interface Props {
   text: string;
+  isPending: boolean;
   isDisabled: boolean;
 }
 
-export default function SubmitButton({ text, isDisabled }: Props) {
+export default function SubmitButton({ text, isPending, isDisabled }: Props) {
   console.log("isdisabled", isDisabled);
   return (
     <button
@@ -15,7 +18,7 @@ export default function SubmitButton({ text, isDisabled }: Props) {
           : "cursor-pointer bg-black text-white hover:bg-gray-800 active:bg-gray-900"
       }`}
     >
-      {text}
+      {isPending ? <Loading /> : text}
     </button>
   );
 }

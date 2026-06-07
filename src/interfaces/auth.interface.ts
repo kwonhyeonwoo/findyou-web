@@ -20,3 +20,32 @@ export interface IGetBasicInputArgs {
     onPhoneVerifyRequest: () => void;
     onPhoneVerifyConfirm: () => void;
 }
+
+export interface ISignupRequest {
+    email: string;
+    password: string;
+    name: string;
+    type: 'helper' | 'client';
+    phone: string;
+    division: string; // kakao, naver, email
+    region: string;
+    nickName: string;
+    agreeUsage: boolean;
+    agreePrivacy: boolean;
+    agreeMarketingMandatory: boolean;
+    agreeMarketingOptional: boolean;
+}
+
+export interface IMeResponse {
+    id: string | null;
+    email: string | null;
+}
+
+export interface ISigninRequest {
+    email: string;
+    password: string;
+}
+
+export interface ISigninResponse {
+    id: string;
+}

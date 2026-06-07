@@ -1,3 +1,4 @@
+import MainAuthProvider from "@/components/MainAuthProvider/MainAuthProvider";
 import React from "react";
 
 export default function MainLayout({
@@ -6,8 +7,10 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="w-full max-w-[420px] min-h-screen mx-auto bg-white shadow-xl flex flex-col">
-      {children}
-    </main>
+    <MainAuthProvider>
+      <main className="mx-auto flex min-h-screen w-full max-w-[420px] flex-col bg-white shadow-xl">
+        {children}
+      </main>
+    </MainAuthProvider>
   );
 }

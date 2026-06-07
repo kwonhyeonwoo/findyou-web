@@ -14,11 +14,13 @@ export default function AccountForm() {
     basicInputs,
     addInputs,
     type,
+    isPending,
     isValid,
     onSubmit,
     register,
     handleChangeType,
   } = useAccountForm();
+  console.log("isPending", isPending);
   return (
     <FormProvider {...methods}>
       <form className="mt-10" onSubmit={methods.handleSubmit(onSubmit)}>
@@ -55,7 +57,11 @@ export default function AccountForm() {
         </div>
         {/* 약관동의 */}
         <Terms />
-        <SubmitButton text="회원가입" isDisabled={!isValid} />
+        <SubmitButton
+          text="회원가입"
+          isDisabled={!isValid}
+          isPending={isPending}
+        />
       </form>
     </FormProvider>
   );

@@ -7,7 +7,7 @@ export const authCommonSchema = z.object({
 
 export const registerSchema = authCommonSchema.extend({
     type: z.enum(['helper', 'client']),
-    verify: z.string().min(6, "인증번호는 6글자 입니다.").max(6, "인증번호는 6글자 입니다."),
+    verify: z.string().min(6, "인증번호는 6글자 입니다.").max(6, "인증번호는 6글자 입니다.").optional(),
     division: z.enum(['kakao', 'naver', 'email']),
     region: z.string(),
     nickName: z.string().min(3, '닉네임은 3자 이상이어야 합니다.').max(6, '닉네임은 최대 6자 입니다.'),
@@ -21,8 +21,8 @@ export const registerSchema = authCommonSchema.extend({
     agreeMarketingOptional: z.boolean(),
 })
     .refine((data) => {
-        if (data.division === 'kakao' || data.division === 'naver') {
-            return true;
+        if (data.division === 'email' && (!data.verify || data.verify.trim() === '')) {
+            return false;
         }
         return data.password === data.confirmPassword;
     }, {

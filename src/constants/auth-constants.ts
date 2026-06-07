@@ -117,17 +117,17 @@ export const CHECK_TYPE_LIST: { text: string; type: "helper" | "client" }[] = [
   },
 ];
 
-export const LOGIN_INPUTS:{name:string,type:string,placeholder:string,minLength?:number,maxLength?:number}[]=[
+export const LOGIN_INPUTS: { name: string, type: string, placeholder: string, minLength?: number, maxLength?: number }[] = [
   {
-      name:"email",
-      type:"email",
-      placeholder:"이메일"
+    name: "email",
+    type: "email",
+    placeholder: "이메일"
   },
   {
-    name:"password",
-    type:"password",
-    placeholder:"비밀번호",
-    minLength:8,
-    maxLength:16,
+    name: "password",
+    type: "password",
+    placeholder: "비밀번호",
+    minLength: 8,
+    maxLength: 16,
   }
 ]

@@ -1,6 +1,7 @@
 'use client'
 
 import { getAddInputs, getBasicInputs } from "@/constants/auth-constants";
+import { useSignupMutation } from "@/hooks/quires/auth/useSignupMutaion";
 import { registerSchema, ReigsterType } from "@/schema/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -19,10 +20,24 @@ export const useAccountForm = () => {
     },
   });
   const { watch, setValue, register, formState: { isValid } } = methods;
+  const { mutate, isPending } = useSignupMutation();
   const type = watch("type");
 
   const onSubmit = (data: ReigsterType) => {
-    console.log('data', data)
+    mutate({
+      email: data.email,
+      type: data.type,
+      password: data.password,
+      name: data.name,
+      phone: data.phone,
+      division: data.division,
+      region: data.region,
+      nickName: data.nickName,
+      agreeUsage: data.agreeUsage,
+      agreePrivacy: data.agreePrivacy,
+      agreeMarketingMandatory: data.agreeMarketingMandatory,
+      agreeMarketingOptional: data.agreeMarketingOptional,
+    })
   }
   const handleChangeType = ({ type }: { type: "helper" | "client" }) => {
     setValue("type", type, { shouldValidate: true });
@@ -56,6 +71,7 @@ export const useAccountForm = () => {
     basicInputs,
     addInputs,
     isValid,
+    isPending,
     onSubmit,
     register,
     handleChangeType
