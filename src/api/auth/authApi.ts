@@ -18,7 +18,6 @@ export const authApi = {
         if (!result) {
             return result as IMeResponse;
         }
-        console.log('result', result);
         return result as IMeResponse;
     }
 }
