@@ -2,42 +2,50 @@ export const HOME_CATEGORIES =[
     {
         text:"배달",
         type:"delivery",
-        bgColor:"#FFEDD5"
+        bgColor:"bg-[#FFEDD5]",
+        img:"delivery"
     },
     {
         text:"장보기",
         type:"shopping",
-        bgColor:"#DBEAFE"
+        bgColor:"bg-[#DBEAFE]",
+        img:"shopping"
     },
     {
         text:"청소",
         type:"cleaning",
-        bgColor:"#F3E8FF"
+        bgColor:"bg-[#F3E8FF]",
+        img:"cleaning"
     },
     {
         text:"수리",
         type:"repair",
-        bgColor:"#FEE2E2"
+        bgColor:"bg-[#FEE2E2]",
+        img:"repair"
     },
     {
         text:"역할대행",
         type:"proxy",
-        bgColor:"#E0E7FF"
+        bgColor:"bg-[#E0E7FF]",
+        img:"proxy"
     },
     {
         text:"반려동물",
         type:"pet",
-        bgColor:"#FEF3C7"
+        bgColor:"bg-[#FEF3C7]",
+        img:"pet"
     },
     {
         text:"세차",
         type:"car-wash",
-        bgColor:"#CFFAFE"
+        bgColor:"bg-[#CFFAFE]",
+        img:"car-wash"
     },
     {
         text:"기타",
         type:"etc",
-        bgColor:"#E2E8F0"
+        bgColor:"bg-[#E2E8F0]",
+        img:"etc"
     }
 ]
 
