@@ -1,9 +1,7 @@
-import HomeSearch from "@/components/home/HomeSearch/HomeSearch";
+import HomeTemplate from "@/components/template/home/HomeTemplate";
 
 export default function Home() {
   return (
-    <div className="box-border px-5 py-5">
-      <HomeSearch />
-    </div>
+      <HomeTemplate/>
   );
 }

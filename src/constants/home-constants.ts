@@ -1,0 +1,44 @@
+export const HOME_CATEGORIES =[
+    {
+        text:"배달",
+        type:"delivery",
+        bgColor:"#FFEDD5"
+    },
+    {
+        text:"장보기",
+        type:"shopping",
+        bgColor:"#DBEAFE"
+    },
+    {
+        text:"청소",
+        type:"cleaning",
+        bgColor:"#F3E8FF"
+    },
+    {
+        text:"수리",
+        type:"repair",
+        bgColor:"#FEE2E2"
+    },
+    {
+        text:"역할대행",
+        type:"proxy",
+        bgColor:"#E0E7FF"
+    },
+    {
+        text:"반려동물",
+        type:"pet",
+        bgColor:"#FEF3C7"
+    },
+    {
+        text:"세차",
+        type:"car-wash",
+        bgColor:"#CFFAFE"
+    },
+    {
+        text:"기타",
+        type:"etc",
+        bgColor:"#E2E8F0"
+    }
+]
+
+// 배달, 장보기 , 청소 , 수리 , 역할대행, 반려동물, 세차, 기타
