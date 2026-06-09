@@ -1,11 +1,10 @@
-import { ErrandCategory, ErrandRegisterType } from '@/schema/errand.schema';
-import { UseFormRegister } from 'react-hook-form';
+import { ErrandCategory } from "@/schema/errand.schema";
 
-interface Props{
-  text:string;
-  type:ErrandCategory;
-  isActive:boolean;
-  onCurrCategory:(type:ErrandCategory)=>void;
+interface Props {
+  text: string;
+  type: ErrandCategory;
+  isActive: boolean;
+  onCurrCategory: (type: ErrandCategory) => void;
 }
 
 export default function ErrandWriteCategory({
@@ -13,19 +12,16 @@ export default function ErrandWriteCategory({
   type,
   isActive,
   onCurrCategory,
-}:Props) {
+}: Props) {
   return (
-    <button 
-      onClick={()=>onCurrCategory(type)}
-      type='button'
-      className={`py-2 px-4  rounded-full border text-[14px] text-[#464554] border-[#C7C4D7] flex items-center justify-center
-        ${isActive
-          ?"bg-[#2A14B4]/10 border border-[#2A14B4] text-[#2A14B4]"
-          :""
-        } 
-        `}
+    <button
+      onClick={() => onCurrCategory(type)}
+      type="button"
+      className={`flex items-center justify-center rounded-full border border-[#C7C4D7] px-4 py-2 text-[14px] text-[#464554] ${
+        isActive ? "border border-[#2A14B4] bg-[#2A14B4]/10 text-[#2A14B4]" : ""
+      } `}
     >
       {text}
     </button>
-  )
+  );
 }
