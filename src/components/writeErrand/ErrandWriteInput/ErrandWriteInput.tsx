@@ -22,7 +22,6 @@ export default function ErrandWriteInput({
   register,
   onChange,
 }: Props) {
-  console.log("vvvv", value);
   return (
     <div className="flex flex-col justify-center gap-2">
       <label className="text-[12px] text-[#464554]">{label}</label>

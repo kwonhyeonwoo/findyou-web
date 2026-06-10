@@ -12,7 +12,7 @@ import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
 import { formattedPrice } from "@/lib/lib";
 import { useEffect } from "react";
 
-export default function WriteErrand() {
+export default function WriteErrandTemplate() {
   const {
     register,
     handleSubmit,

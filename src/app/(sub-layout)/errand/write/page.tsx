@@ -1,5 +1,5 @@
-import WriteErrand from "@/components/template/WriteErrand/WriteErrand";
+import WriteErrandTemplate from "@/components/template/WriteErrand/WriteErrandTemplate";
 
 export default function Page() {
-  return <WriteErrand />;
+  return <WriteErrandTemplate />;
 }
