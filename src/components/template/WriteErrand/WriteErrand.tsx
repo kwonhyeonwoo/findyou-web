@@ -9,6 +9,8 @@ import ErrandTextarea from "@/components/writeErrand/ErrandTextarea/ErrandTextar
 import ImageUpload from "@/components/writeErrand/ImageUpload/ImageUpload";
 import OpenTalk from "@/components/writeErrand/OpenTalk/OpenTalk";
 import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
+import { formattedPrice } from "@/lib/lib";
+import { useEffect } from "react";
 
 export default function WriteErrand() {
   const {
@@ -17,13 +19,17 @@ export default function WriteErrand() {
     useWatch,
     handleCurrCategory,
     handleWriteSubmit,
+    handlePriceChange,
     control,
-    watch,
   } = useWriteForm();
   const currCategory = useWatch({ control, name: "category" });
   const textLength = useWatch({ control, name: "description" });
+  const price = useWatch({ control, name: "price" });
   return (
-    <form className="mt-6 flex flex-col gap-4">
+    <form
+      className="mt-6 flex flex-col gap-4"
+      onSubmit={handleSubmit(handleWriteSubmit)}
+    >
       {/* 카테고리 선택 */}
       <div className="flex flex-col gap-2">
         <p className="text-[12px] text-[#464554]">카테고리 선택</p>
@@ -58,8 +64,9 @@ export default function WriteErrand() {
         label="가격"
         placeholder="가격을 입력해주세요."
         name="price"
-        value={watch("price")}
         register={register}
+        value={formattedPrice(price)}
+        onChange={handlePriceChange}
       />
       <ErrandTextarea
         register={register}
