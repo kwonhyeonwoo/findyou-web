@@ -52,7 +52,7 @@ const baseRequest = async (url: string, options: RequestInit): Promise<Response>
     }
 
     // 401 외의 다른 에러(500, 404 등) 처리
-    if (!response.ok) throw new Error(`HTTP 에러! 상태코드: ${response.status}`);
+    if (!response.ok) throw new Error(`HTTP 에러! 상태코드: ${response}`);
     return response;
 };
 

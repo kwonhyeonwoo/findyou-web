@@ -1,4 +1,3 @@
-"use client";
 import AccountLabel from "../AccountLabel/AccountLabel";
 import TypeCheckBox from "../TypeCheckBox/TypeCheckBox";
 import AccountInput from "../AccountInput/AccountInput";
@@ -7,6 +6,7 @@ import { FormProvider } from "react-hook-form";
 import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
 import { useAccountForm } from "./hooks/useAccountForms";
 import { CHECK_TYPE_LIST } from "@/constants/auth-constants";
+import { DaumPostcodeEmbed } from "react-daum-postcode";
 
 export default function AccountForm() {
   const {
@@ -16,11 +16,11 @@ export default function AccountForm() {
     type,
     isPending,
     isValid,
+    errors,
     onSubmit,
     register,
     handleChangeType,
   } = useAccountForm();
-  console.log("isPending", isPending);
   return (
     <FormProvider {...methods}>
       <form className="mt-10" onSubmit={methods.handleSubmit(onSubmit)}>
@@ -44,7 +44,12 @@ export default function AccountForm() {
         <div className="mt-[32px] flex flex-col gap-6">
           <p className="text-[18px] text-[#0B1C30]">기본정보</p>
           {basicInputs.map((item) => (
-            <AccountInput register={register} key={item.label} {...item} />
+            <AccountInput
+              register={register}
+              error={errors[item.name]}
+              key={item.label}
+              {...item}
+            />
           ))}
         </div>
 
@@ -63,6 +68,7 @@ export default function AccountForm() {
           isPending={isPending}
         />
       </form>
+      <DaumPostcodeEmbed onComplete={(data) => console.log("addreses", data)} />
     </FormProvider>
   );
 }

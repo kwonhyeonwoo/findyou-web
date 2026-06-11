@@ -1,4 +1,5 @@
 import { ReigsterType } from "@/schema/auth.schema";
+import { IResponse } from "./response.interface";
 
 export interface IAccountInput {
     name: keyof ReigsterType;
@@ -47,6 +48,6 @@ export interface ISigninRequest {
     password: string;
 }
 
-export interface ISigninResponse {
+export interface ISigninResponse extends IResponse {
     id: string;
 }
