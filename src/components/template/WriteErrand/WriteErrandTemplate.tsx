@@ -1,5 +1,4 @@
 "use client";
-
 import ErrandWriteCategory from "@/components/writeErrand/ErrandWriteCategory/ErrandWriteCategory";
 import { WRITE_CATEGORY } from "@/constants/write-constants";
 import { useWriteForm } from "./hooks/useWriteForm";
@@ -10,17 +9,17 @@ import ImageUpload from "@/components/writeErrand/ImageUpload/ImageUpload";
 import OpenTalk from "@/components/writeErrand/OpenTalk/OpenTalk";
 import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
 import { formattedPrice } from "@/lib/lib";
-import { useEffect } from "react";
 
 export default function WriteErrandTemplate() {
   const {
+    control,
     register,
     handleSubmit,
     useWatch,
+    setValue,
     handleCurrCategory,
     handleWriteSubmit,
     handlePriceChange,
-    control,
   } = useWriteForm();
   const currCategory = useWatch({ control, name: "category" });
   const textLength = useWatch({ control, name: "description" });
@@ -72,8 +71,13 @@ export default function WriteErrandTemplate() {
         register={register}
         textLength={textLength?.length || 0}
       />
-      <ImageUpload />
-      <OpenTalk />
+      <ImageUpload setValue={setValue}/>
+      <ErrandWriteInput
+        label="카카오톡 오픈채팅 링크 (선택)"
+        placeholder="카카오톡 오픈채팅 링크 (선택)"
+        name="openLink"
+        register={register}
+      />
       <div className="pt-6 pb-10">
         <SubmitButton
           text="심부름 등록하기"

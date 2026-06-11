@@ -7,7 +7,6 @@ interface Props {
 }
 
 export default function SubmitButton({ text, isPending, isDisabled }: Props) {
-  console.log("isdisabled", isDisabled);
   return (
     <button
       disabled={isDisabled}

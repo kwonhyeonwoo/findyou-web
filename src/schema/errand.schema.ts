@@ -16,7 +16,7 @@ export const errandRegisterSchema = z.object({
   description: z.string().min(5, '내용은 최소 5자 이상 입니다.').max(200, "제목은 최대 200자 입니다."),
   price: z.string(),
   images: z
-    .array(z.instanceof(File)) // 1. any 대신 실제 브라우저 File 객체만 허용!
+    .array(z.instanceof(File)) 
     .min(1, "최소 1장 이상의 이미지를 등록해 주세요.") // 2. 없으면 에러 뱉음 (필수화)
     .max(5, "이미지는 최대 5장까지만 등록 가능합니다."),
   openLink: z.string(),

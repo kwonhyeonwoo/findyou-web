@@ -1,6 +1,10 @@
+import { ErrandRegisterType } from "@/schema/errand.schema";
 import { useState } from "react"
+import {  UseFormSetValue } from "react-hook-form";
 
-export const useImgUpload = () => {
+export const useImgUpload = ({setValue}:{
+    setValue:UseFormSetValue<ErrandRegisterType>
+}) => {
     const [imgFiles, setImgFiles] = useState<File[]>([]);
     const [previewImage, setPreviewImage] = useState<string[]>([]);
 
@@ -12,9 +16,10 @@ export const useImgUpload = () => {
         const fileArray = Array.from(files);
         const newPreviewUrls = fileArray.map((file) => URL.createObjectURL(file));
 
-        setImgFiles((prev) => [...prev, ...fileArray]);
+        const updatedFiles = [...imgFiles, ...fileArray];
+        setImgFiles(updatedFiles);
         setPreviewImage((prev) => [...prev, ...newPreviewUrls]);
-
+        setValue('images', updatedFiles);
     }
     return {
         imgFiles,

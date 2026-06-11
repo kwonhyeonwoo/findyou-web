@@ -1,13 +1,24 @@
+import { useWriteErrandMutation } from "@/hooks/quires/errand/useWriteErrandMutation";
 import { ErrandCategory, errandRegisterSchema, ErrandRegisterType } from "@/schema/errand.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useWatch } from "react-hook-form";
 
 export const useWriteForm = () => {
-    const { register, handleSubmit, control, setValue, watch, formState: { errors } } = useForm<ErrandRegisterType>({
+    const { 
+        control, 
+        formState: { errors }, 
+        register, 
+        handleSubmit, 
+        setValue, 
+        watch, 
+    } = useForm<ErrandRegisterType>({
         resolver: zodResolver(errandRegisterSchema),
     });
+    const {mutate} = useWriteErrandMutation();
     const handleWriteSubmit = (data: ErrandRegisterType) => {
-        console.log('write submit', data);
+        console.log('submit data',data)
+        mutate(data);
+        
     }
     const handleCurrCategory = (type: ErrandCategory) => {
         setValue('category', type)
