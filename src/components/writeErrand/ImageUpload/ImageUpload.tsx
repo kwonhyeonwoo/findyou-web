@@ -1,8 +1,14 @@
 import Image from "next/image";
 import { useImgUpload } from "./hooks/useImgUpload";
+import { UseFormSetValue } from "react-hook-form";
+import { ErrandRegisterType } from "@/schema/errand.schema";
 
-export default function ImageUpload() {
-  const { handleImaChange, imgFiles, previewImage } = useImgUpload();
+interface Props{
+  setValue:UseFormSetValue<ErrandRegisterType>;
+}
+
+export default function ImageUpload({setValue}:Props) {
+  const { handleImaChange, imgFiles, previewImage } = useImgUpload({setValue});
   return (
     <div className="flex flex-col justify-center gap-2">
       <div className="flex items-center justify-between">
@@ -17,7 +23,6 @@ export default function ImageUpload() {
           id="image"
           className="hidden"
           onChange={handleImaChange}
-          //   {...register("images")}
         />
         <label
           htmlFor="image"
