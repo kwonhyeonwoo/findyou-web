@@ -1,4 +1,4 @@
-import { UseFormRegister } from "react-hook-form";
+import { FieldError, UseFormRegister } from "react-hook-form";
 import AccountLabel from "../AccountLabel/AccountLabel";
 import VerificationButton from "@/components/common/VerificationButton/VerificationButton";
 import { ReigsterType } from "@/schema/auth.schema";
@@ -9,8 +9,9 @@ interface Props {
   placeholder: string;
   type: string;
   activeText?: string;
-  maxLength?:number;
-  minLength?:number;
+  maxLength?: number;
+  minLength?: number;
+  error?: FieldError;
   register: UseFormRegister<ReigsterType>;
   onActive?: () => void;
 }
@@ -23,12 +24,13 @@ export default function AccountInput({
   activeText,
   maxLength,
   minLength,
+  error,
   onActive,
   register,
 }: Props) {
   return (
     <div>
-      <AccountLabel label={label} />
+      <AccountLabel label={label} error={error?.message} />
       <div className="flex items-center gap-2">
         <input
           className="flex-1 border-b border-b-[#6B7280] px-3 py-[10px]"

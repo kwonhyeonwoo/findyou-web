@@ -1,3 +1,4 @@
+"use client";
 import AccountForm from "../Account/AccountForm/AccountForm";
 import AuthDivider from "../AuthDivider/AuthDivider";
 import KaKaoSocial from "../common/KaKaoSocial/KaKaoSocial";

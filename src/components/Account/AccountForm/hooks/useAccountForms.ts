@@ -1,6 +1,7 @@
 'use client'
 
 import { getAddInputs, getBasicInputs } from "@/constants/auth-constants";
+import { useEmailCheckMutation } from "@/hooks/quires/auth/useEmailCheckMutation";
 import { useSignupMutation } from "@/hooks/quires/auth/useSignupMutaion";
 import { registerSchema, ReigsterType } from "@/schema/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,9 +20,11 @@ export const useAccountForm = () => {
       agreeMarketingOptional: false,
     },
   });
-  const { watch, setValue, register, formState: { isValid } } = methods;
+  const { watch, setValue, register, formState: { errors, isValid } } = methods;
   const { mutate, isPending } = useSignupMutation();
+  const { mutate: emailCheck } = useEmailCheckMutation();
   const type = watch("type");
+  const email = watch("email");
 
   const onSubmit = (data: ReigsterType) => {
     mutate({
@@ -43,7 +46,7 @@ export const useAccountForm = () => {
     setValue("type", type, { shouldValidate: true });
   }
   const handleEmailCheck = () => {
-    console.log("이메일 중복 확인 API 호출!");
+    emailCheck(email)
   };
 
   const handlePhoneVerifyRequest = () => {
@@ -71,6 +74,7 @@ export const useAccountForm = () => {
     basicInputs,
     addInputs,
     isValid,
+    errors,
     isPending,
     onSubmit,
     register,
