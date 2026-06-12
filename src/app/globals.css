@@ -137,3 +137,21 @@ input{
     @apply font-sans;
   }
 }
+[data-type="success"] {
+  background-color: #84f2c9 !important;/* bg-emerald-600 */
+  color: #ffffff !important;            /* 글자색 흰색 */
+  border-color: transparent !important; /* 연한 테두리 제거 */
+}
+[data-type="success"] [data-icon] {
+  color: #ffffff !important;            /* 아이콘도 흰색 고정 */
+}
+
+/* 🔴 에러(error) 토스트 뜨면 무조건 찐한 빨간색으로 덮어쓰기 */
+[data-type="error"] {
+  background-color: #dc2626 !important; /* bg-red-600 */
+  color: #ffffff !important;            /* 글자색 흰색 */
+  border-color: transparent !important; /* 연한 테두리 제거 */
+}
+[data-type="error"] [data-icon] {
+  color: #ffffff !important;            /* 아이콘도 흰색 고정 */
+}

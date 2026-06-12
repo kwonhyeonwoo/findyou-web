@@ -1,5 +1,3 @@
-"use client";
-
 import { useFormContext } from "react-hook-form";
 import { ReigsterType } from "@/schema/auth.schema";
 import { TERMS_LIST } from "@/constants/auth-constants";
@@ -21,7 +19,7 @@ export const useTerms = () => {
 
   const handleAllAgreeClick = () => {
     const nextValue = !isAllChecked;
-    
+
     TERMS_LIST.forEach((item) => {
       setValue(item.name, nextValue, { shouldValidate: true });
     });

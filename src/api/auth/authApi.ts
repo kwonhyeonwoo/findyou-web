@@ -8,8 +8,8 @@ export const authApi = {
             const response = await client.post<IResponse>("/auth/signup", data);
             if (!response) throw new Error('회원가입 실패');
             return response;
-        } catch (error) {
-            console.log('error', error);
+        } catch (error: any) {
+            console.log('api error', error.message);
             throw error;
         }
     },

@@ -1,5 +1,5 @@
 import { authApi } from "@/api/auth/authApi";
-import { AUTH_KEYS } from "@/api/auth/authKeys";
+import { USER_KEYS } from "@/api/user/userKeys";
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -10,12 +10,13 @@ export const useSignupMutation = () => {
     const mutation = useMutation({
         mutationFn: authApi.signup,
         onSuccess: (data) => {
-            queryClient.invalidateQueries({ queryKey: AUTH_KEYS.all });
+            queryClient.invalidateQueries({ queryKey: USER_KEYS.all });
             toast.success(data.message);
             navigate.push('/login')
         },
-        onError: (error) => {
-            console.log('account error', error)
+        onError: (error: any) => {
+            console.log('account error', error.message)
+            toast.error(error.message)
         }
     })
     return mutation;

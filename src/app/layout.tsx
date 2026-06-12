@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css"; // 💡 폴더 깊이가 달라졌으니 경로 확인!
 import Providers from "./providers";
-import { Toaster } from "sonner";
 import Script from "next/script";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({
@@ -25,7 +25,7 @@ export default function MainLayout({
     >
       <body className="flex min-h-full flex-col bg-gray-100 text-gray-900">
         <Providers>
-        <Script
+          <Script
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=61b7f2dfd33a2a2488631c2308b8ee38&libraries=services"
             strategy="beforeInteractive" // 👈 페이지가 상호작용하기 전에 미리 로드하라는 옵션
           />

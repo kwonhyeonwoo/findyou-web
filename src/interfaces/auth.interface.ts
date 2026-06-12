@@ -29,7 +29,9 @@ export interface ISignupRequest {
     type: 'helper' | 'client';
     phone: string;
     division: string; // kakao, naver, email
-    region: string;
+    address: string;
+    lat: number; // 위도
+    lng: number; // 경도
     nickName: string;
     agreeUsage: boolean;
     agreePrivacy: boolean;

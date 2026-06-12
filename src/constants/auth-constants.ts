@@ -98,7 +98,7 @@ export const getAddInputs = ({ onAddress }: { onAddress: () => void; }): IAccoun
   },
   {
     label: "활동지역",
-    name: "region",
+    name: "address",
     placeholder: "동 단위 검색 (예: 역삼동)",
     type: "text",
     activeText: "주소검색",
