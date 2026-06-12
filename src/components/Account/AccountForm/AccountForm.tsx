@@ -7,6 +7,8 @@ import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
 import { useAccountForm } from "./hooks/useAccountForms";
 import { CHECK_TYPE_LIST } from "@/constants/auth-constants";
 import { DaumPostcodeEmbed } from "react-daum-postcode";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 export default function AccountForm() {
   const {
@@ -17,6 +19,10 @@ export default function AccountForm() {
     isPending,
     isValid,
     errors,
+    isOpen,
+    handleLocation,
+    setIsOpen,
+    handleComplete,
     onSubmit,
     register,
     handleChangeType,
@@ -68,7 +74,31 @@ export default function AccountForm() {
           isPending={isPending}
         />
       </form>
-      <DaumPostcodeEmbed onComplete={(data) => console.log("addreses", data)} />
+      {/* <DaumPostcodeEmbed onComplete={(data) => console.log("addreses", data)} /> */}
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        {/* 모달을 열어줄 버튼 트리거 */}
+        <DialogTrigger asChild>
+          <Button variant="outline">주소 검색</Button>
+        </DialogTrigger>
+
+        {/* 모달 본문 (max-w 설정을 통해 주소창 크기에 맞게 조절) */}
+        <DialogContent className="max-w-[500px] p-6">
+          <DialogHeader>
+            <DialogTitle>주소 검색</DialogTitle>
+          </DialogHeader>
+          <button onClick={handleLocation}>
+              현재위치 설정
+          </button>
+          <div className="w-full h-[450px] overflow-hidden rounded-md border mt-2">
+            {/* 다음 주소 검색 임베드 컴포넌트 */}
+            
+            <DaumPostcodeEmbed 
+              onComplete={handleComplete} 
+              style={{ height: "100%" }}
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </FormProvider>
   );
 }
