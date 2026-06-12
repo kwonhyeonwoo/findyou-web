@@ -8,7 +8,9 @@ export interface IAccountInput {
     maxLength?: number;
     minLength?: number;
     type: string;
+    readOnly?:boolean;
     activeText?: string;
+    value?:string;
     onActive?: () => void;
 }
 

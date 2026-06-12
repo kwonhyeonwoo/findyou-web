@@ -87,7 +87,7 @@ export const getBasicInputs = ({
     },
   ];
 
-export const getAddInputs = ({ onAddress }: { onAddress: () => void; }): IAccountInput[] => [
+export const getAddInputs = ({ onAddress ,value}: { onAddress: () => void;value?:string}): IAccountInput[] => [
   {
     label: "닉네임",
     name: "nickName",
@@ -102,6 +102,8 @@ export const getAddInputs = ({ onAddress }: { onAddress: () => void; }): IAccoun
     placeholder: "동 단위 검색 (예: 역삼동)",
     type: "text",
     activeText: "주소검색",
+    readOnly:true,
+    value,
     onActive: onAddress,
   },
 ]

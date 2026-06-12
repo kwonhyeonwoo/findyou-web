@@ -14,14 +14,13 @@ export const useLoginHooks = () => {
         }
     })
     const onSubmit = (data: ISigninRequest) => {
-        console.log('login data', data)
         mutate(data);
     }
     return {
-        onSubmit,
         isPending,
+        isValid,
+        onSubmit,
         register,
         handleSubmit,
-        isValid
     }
 }

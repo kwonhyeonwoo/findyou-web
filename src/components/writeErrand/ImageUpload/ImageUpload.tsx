@@ -8,7 +8,7 @@ interface Props{
 }
 
 export default function ImageUpload({setValue}:Props) {
-  const { handleImaChange, imgFiles, previewImage } = useImgUpload({setValue});
+  const { handleImaChange,handleRemove, imgFiles, previewImage } = useImgUpload({setValue});
   return (
     <div className="flex flex-col justify-center gap-2">
       <div className="flex items-center justify-between">
@@ -36,15 +36,24 @@ export default function ImageUpload({setValue}:Props) {
           />
         </label>
         <div className="flex items-center gap-2">
-          {previewImage.map((url, index) => (
-            <Image
-              key={index}
-              className="h-20 w-20 shrink-0 rounded-[8px] border border-[#C7C4D7] object-cover"
-              src={url}
-              alt="image-upload"
-              width={100}
-              height={100}
-            />
+          {previewImage.map((url,idx) => (
+            <div className="relative" key={url} >
+               <Image
+                  className="h-20 w-20 shrink-0 rounded-[8px] border border-[#C7C4D7] object-cover"
+                  src={url}
+                  alt="image-upload"
+                  width={100}
+                  height={100}
+                />
+                <button onClick={()=>handleRemove(idx)} className="absolute top-1 right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                  <Image
+                    src={'/common/cancel.svg'}
+                    alt="image-upload"
+                    width={24}
+                    height={24}
+                  />
+                </button >
+            </div>
           ))}
         </div>
       </div>

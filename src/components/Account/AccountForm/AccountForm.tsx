@@ -6,8 +6,8 @@ import { FormProvider } from "react-hook-form";
 import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
 import { useAccountForm } from "./hooks/useAccountForms";
 import { CHECK_TYPE_LIST } from "@/constants/auth-constants";
-import { useSearchAddress } from "./hooks/useSearchAddress";
 import SearchAddress from "@/components/common/SearchAddress/SearchAddress";
+import { useSearchAddress } from "@/hooks/useSearchAddress";
 
 export default function AccountForm() {
   const {

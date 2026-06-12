@@ -28,7 +28,6 @@ export const useAccountForm = () => {
   const type = watch("type");
   const email = watch("email");
   const onSubmit = (data: ReigsterType) => {
-    console.log('submit data', data)
     mutate({
       email: data.email,
       type: data.type,
@@ -70,7 +69,7 @@ export const useAccountForm = () => {
     onPhoneVerifyConfirm: handlePhoneVerifyConfirm,
   });
 
-  const addInputs = getAddInputs({ onAddress: handleAddressIsOpen })
+  const addInputs = getAddInputs({ onAddress: handleAddressIsOpen,value:watch('address') })
 
   return {
     type,

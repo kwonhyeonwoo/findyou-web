@@ -1,16 +1,15 @@
-import { ReigsterType } from "@/schema/auth.schema";
 import { Address } from "react-daum-postcode";
-import { UseFormSetValue } from "react-hook-form";
+import { Path, FieldValues, UseFormSetValue, PathValue } from "react-hook-form";
 import { toast } from "sonner";
 
-interface Props {
-    setValue: UseFormSetValue<ReigsterType>;
+interface Props<T extends FieldValues> {
+    setValue: UseFormSetValue<T>;
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+  }
 
-export const useSearchAddress = ({ setValue, setIsOpen }: Props) => {
+export const useSearchAddress = <T extends FieldValues>({ setValue, setIsOpen }: Props<T>) => {
     const handleComplete = (data: Address) => {
-        setValue('address', data.address);
+        setValue('address' as Path<T>, data.address as PathValue<T, Path<T>>);
         setIsOpen(false);
     }
 
@@ -30,7 +29,7 @@ export const useSearchAddress = ({ setValue, setIsOpen }: Props) => {
             const data = await res.json();
             if (data && data.documents && data.documents.length > 0) {
                 const addressData = data.documents[0].address; // 지번 주소 정보
-                setValue('address', addressData.address_name);
+                setValue('address' as Path<T>, addressData.address_name);
             } else {
                 console.log("해당 좌표에 매칭되는 행정구역 주소가 없습니다.");
             }
@@ -46,8 +45,8 @@ export const useSearchAddress = ({ setValue, setIsOpen }: Props) => {
                 (position) => {
                     const currentLat = position.coords.latitude;
                     const currentLng = position.coords.longitude;
-                    setValue('lat', currentLat);
-                    setValue('lng', currentLng);
+                    setValue('lat' as Path<T>, currentLat as PathValue<T,Path<T>>);
+                    setValue('lng'  as Path<T>, currentLng as PathValue<T,Path<T>>);
                     fetchAddress(currentLat, currentLng);
                     setIsOpen(false);
                 },

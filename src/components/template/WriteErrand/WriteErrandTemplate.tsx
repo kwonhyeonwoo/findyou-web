@@ -9,10 +9,17 @@ import ImageUpload from "@/components/writeErrand/ImageUpload/ImageUpload";
 import OpenTalk from "@/components/writeErrand/OpenTalk/OpenTalk";
 import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
 import { formattedPrice } from "@/lib/lib";
+import { useSearchAddress } from "@/hooks/useSearchAddress";
+import SearchAddress from "@/components/common/SearchAddress/SearchAddress";
 
 export default function WriteErrandTemplate() {
   const {
     control,
+    isOpen,
+    isValid,
+    isPending,
+    handleIsOpen,
+    setIsOpen,
     register,
     handleSubmit,
     useWatch,
@@ -21,9 +28,11 @@ export default function WriteErrandTemplate() {
     handleWriteSubmit,
     handlePriceChange,
   } = useWriteForm();
+  const {handleComplete,handleLocation} = useSearchAddress({setValue,setIsOpen})
   const currCategory = useWatch({ control, name: "category" });
   const textLength = useWatch({ control, name: "description" });
   const price = useWatch({ control, name: "price" });
+  const address = useWatch({control, name:"address"})
   return (
     <form
       className="mt-6 flex flex-col gap-4"
@@ -57,7 +66,7 @@ export default function WriteErrandTemplate() {
       </div>
 
       {/* 주소 */}
-      <AddressInput register={register} />
+      <AddressInput value={address} register={register} handleIsOpen={handleIsOpen}/>
       {/* 가격 */}
       <ErrandWriteInput
         label="가격"
@@ -74,17 +83,23 @@ export default function WriteErrandTemplate() {
       <ImageUpload setValue={setValue}/>
       <ErrandWriteInput
         label="카카오톡 오픈채팅 링크 (선택)"
-        placeholder="카카오톡 오픈채팅 링크 (선택)"
+        placeholder="카카오톡 오픈채팅 링크"
         name="openLink"
         register={register}
       />
       <div className="pt-6 pb-10">
         <SubmitButton
           text="심부름 등록하기"
-          isPending={false}
-          isDisabled={false}
+          isPending={isPending}
+          isDisabled={!isValid}
         />
       </div>
+      <SearchAddress
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        handleLocation={handleLocation}
+        handleComplete={handleComplete}
+      />
     </form>
   );
 }

@@ -5,7 +5,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import Image from "next/image";
-import React from "react";
 import { Address, DaumPostcodeEmbed } from "react-daum-postcode";
 
 interface Props {
@@ -23,9 +22,6 @@ export default function SearchAddress({
 }: Props) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      {/* 모달을 열어줄 버튼 트리거 */}
-
-      {/* 모달 본문 (max-w 설정을 통해 주소창 크기에 맞게 조절) */}
       <DialogContent className="max-w-[600px] p-6">
         <DialogHeader>
           <DialogTitle>주소 검색</DialogTitle>
@@ -38,7 +34,6 @@ export default function SearchAddress({
           <p>현재위치 설정</p>
         </button>
         <div className="mt-2 h-[500px] w-full overflow-hidden rounded-md border">
-          {/* 다음 주소 검색 임베드 컴포넌트 */}
           <DaumPostcodeEmbed
             onComplete={handleComplete}
             style={{ height: "100%" }}

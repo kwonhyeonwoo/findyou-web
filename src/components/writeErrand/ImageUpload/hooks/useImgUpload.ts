@@ -21,9 +21,16 @@ export const useImgUpload = ({setValue}:{
         setPreviewImage((prev) => [...prev, ...newPreviewUrls]);
         setValue('images', updatedFiles);
     }
+    const handleRemove = (index: number)=>{
+        URL.revokeObjectURL(previewImage[index]);
+
+        setPreviewImage((prev) => prev.filter((_, i) => i !== index));
+        setImgFiles((prev) => prev.filter((_, i) => i !== index));
+    }
     return {
         imgFiles,
         previewImage,
+        handleRemove,
         handleImaChange,
     }
 }
