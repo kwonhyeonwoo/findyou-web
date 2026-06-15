@@ -72,25 +72,29 @@ export default function HomeTemplate() {
             ))}
         </div>
 
-        {/* 지금 바로 도움가능 한 헬퍼 */}
-        <div className="flex flex-col gap-4">
-            <h2 className="text-[20px] font-bold">지금 바로 도움 가능한 <span className="text-[#2A14B4]">헬퍼들</span></h2>
-            <div className="flex items-center gap-4">
-                {helperDb.map((item)=>(
-                    <HelperCard key={item.id} {...item}/>
-                ))}
-            </div>
+      {/* 지금 바로 도움가능 한 헬퍼 */}
+      <div className="flex flex-col gap-4">
+        <h2 className="text-[20px] font-bold">
+          지금 바로 도움 가능한 <span className="text-[#2A14B4]">헬퍼들</span>
+        </h2>
+        <div className="flex items-center gap-4">
+          {helperDb.map((item) => (
+            <HelperCard key={item.id} {...item} />
+          ))}
         </div>
+      </div>
 
-        {/* 베스트 헬퍼들 */}
-        <div className="flex flex-col gap-4 mt-6 mb-6">
-        <h2 className="text-[20px] font-bold">이달의 베스트 헬퍼<span className="text-[#2A14B4]"> 랭킹</span></h2>
-            <div className="rounded-[16px] border border-[#EEEEEE] flex flex-col ">
-                {bestHelper.slice(0,3).map((item,idx)=>(
-                    <BestHelper key={idx} {...item}/>
-                ))}
-            </div>
+      {/* 베스트 헬퍼들 */}
+      <div className="mt-6 mb-6 flex flex-col gap-4">
+        <h2 className="text-[20px] font-bold">
+          이달의 베스트 헬퍼<span className="text-[#2A14B4]"> 랭킹</span>
+        </h2>
+        <div className="flex flex-col rounded-[16px] border border-[#EEEEEE]">
+          {bestHelper.slice(0, 3).map((item, idx) => (
+            <BestHelper key={idx} {...item} />
+          ))}
         </div>
+      </div>
     </div>
-  )
+  );
 }
