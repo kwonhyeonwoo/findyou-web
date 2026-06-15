@@ -1,5 +1,6 @@
-export const ERRAND_KEYS ={
-    errand:['errand'] as const,
-    lists:(id:string)=>[...ERRAND_KEYS.errand,id],
-    detail:(id:string)=>[...ERRAND_KEYS.errand, id, 'detail'],
-}
+export const ERRAND_KEYS = {
+    all: ['errand'] as const,
+    lists: () => [...ERRAND_KEYS.all, 'list'] as const,
+    
+    detail: (id: string) => [...ERRAND_KEYS.all, 'detail', id] as const,
+  };

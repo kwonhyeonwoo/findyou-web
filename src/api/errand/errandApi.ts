@@ -1,6 +1,7 @@
 import { ErrandRegisterType } from "@/schema/errand.schema";
 import { client } from "../client/clientApi";
 import { IResponse } from "@/interfaces/response.interface";
+import { ErrandResponse } from "@/interfaces/errand.interface";
 
 export const errandApi = {
     write: async (data: ErrandRegisterType):Promise<IResponse> => {
@@ -30,5 +31,12 @@ export const errandApi = {
         
         console.log('response', response);
         return response;
-    }
+    },
+    lists: async (limit?:string): Promise<ErrandResponse[]> => {
+        const response = await client.get<ErrandResponse[]>(
+            `/errand?${limit ? `limit=${limit}` : ""}`
+        );
+        console.log('response',response)
+        return response;
+    },
 }

@@ -1,4 +1,5 @@
-import { ErrandStatus } from '@/interfaces/errand.interface';
+import { ErrandResponse, ErrandStatus } from '@/interfaces/errand.interface';
+import { formatRelativeTime } from '@/lib/lib';
 import React from 'react'
 
 interface Props{
@@ -14,15 +15,15 @@ export default function LiveErrandCard({
     title,
     price,
     address,
-    time
-}:Props) {
+    createdAt
+}:ErrandResponse) {
     const bottomArr=[
         {
             text:address,
             img:"address"
         },
         {
-            text:time,
+            text:formatRelativeTime(String(createdAt)),
             img:"time"
         }
     ]
@@ -39,7 +40,7 @@ export default function LiveErrandCard({
             {bottomArr.map(({text,img})=>(
                 <div className="flex gap-1 items-center">
                     <img src={`/home/${img}.svg`} alt={img} />
-                    <p className="text-[12px]">{text}</p>
+                    <p className="text-[12px]">{String(text)}</p>
                 </div>
             ))}
         </div>

@@ -5,28 +5,13 @@ import HelperCard from '@/components/home/HelperCard/HelperCard';
 import HomeCategories from '@/components/home/HomeCategories/HomeCategories';
 import HomeSearch from '@/components/home/HomeSearch/HomeSearch';
 import LiveErrandCard from '@/components/home/LiveErrandCard/LiveErrandCard';
+import { useErrandListsQuery } from '@/hooks/quires/errand/useErrandListsQuery';
 import { ILiveErrand } from '@/interfaces/errand.interface';
 import { IBestHeleper, IHelperCardType } from '@/interfaces/helper.interface';
 import Link from 'next/link';
 
-export default function HomeTemplate() {
-    const testDB:ILiveErrand[] =[
-        {
-            status:"matching",
-            title:"편의점에서 종량제 봉투 20L 구매해주세요",
-            price:"12,000원",
-            address:"효목동",
-            time:"10분전",
-        },
-        {
-            status:"matching",
-            title:"편의점에서 종량제 봉투 20L 구매해주세요",
-            price:"12,000원",
-            address:"효목동",
-            time:"10분전",
-        }
-    ]
-
+export default function HomeTemplate() {    
+    const {data:liveErrand} = useErrandListsQuery("3");
     const helperDb:IHelperCardType[] = [
         {
             name:"김민수",
@@ -80,10 +65,10 @@ export default function HomeTemplate() {
         <div className="flex flex-col gap-3 mt-6 mb-8">
             <div className="flex justify-between items-center">
                 <h2 className="text-[20px] font-medium">실시간 심부름</h2>
-                <Link href={""} className="text-[#777586]">전체보기</Link>
+                <Link href={"/errand/list"} className="text-[#777586]">전체보기</Link>
             </div>
-            {testDB.map((item,idx)=>(
-                <LiveErrandCard key={idx} {...item}/>
+            {liveErrand?.map((item)=>(
+                <LiveErrandCard key={item.id} {...item}/>
             ))}
         </div>
 
