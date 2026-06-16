@@ -10,6 +10,7 @@ export interface UserResponse{
     lat: number; // 위도
     lng: number; // 경도
     nickName: string;
+    profile?:string;
 }
 
 export type UserType = "client" | 'helper' | null;

@@ -40,4 +40,10 @@ export const errandApi = {
         console.log('response',response)
         return response;
     },
+    getErrand:async(id:string):Promise<ErrandResponse>=>{
+            const response = await client.get<ErrandResponse>(`/errand/${id}`);
+            console.log('response',response);
+            return response;
+        
+    }
 }
