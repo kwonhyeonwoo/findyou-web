@@ -10,6 +10,7 @@ export const errandApi = {
         formData.append('title', data.title);
         formData.append('category', data.category);
         formData.append('address', data.address);
+        formData.append('address_dong', data.address_dong);
         formData.append('price', String(data.price)); 
         formData.append('openLink', data.openLink);
         formData.append('description', data.description);
@@ -34,7 +35,7 @@ export const errandApi = {
     },
     lists: async (limit?:string): Promise<ErrandResponse[]> => {
         const response = await client.get<ErrandResponse[]>(
-            `/errand?${limit ? `limit=${limit}` : ""}`
+            `/errand${limit ? `?limit=${limit}` : ""}`
         );
         console.log('response',response)
         return response;

@@ -13,6 +13,7 @@ export interface ILiveErrand {
 
 export interface ErrandResponse{
     address:string
+    address_dong:string
     category: ErrandCategory
     createdAt:Date;
     description: string;

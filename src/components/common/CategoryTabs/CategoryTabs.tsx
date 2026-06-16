@@ -1,18 +1,17 @@
-import { ErrandCategory } from "@/schema/errand.schema";
 
-interface Props {
+interface Props<T> {
   text: string;
-  type: ErrandCategory;
+  type: T;
   isActive: boolean;
-  onCurrCategory: (type: ErrandCategory) => void;
+  onCurrCategory: (type: T) => void;
 }
 
-export default function ErrandWriteCategory({
+export default function CategoryTabs<T>({
   text,
   type,
   isActive,
   onCurrCategory,
-}: Props) {
+}: Props<T>) {
   return (
     <button
       onClick={() => onCurrCategory(type)}

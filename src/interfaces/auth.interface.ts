@@ -1,5 +1,6 @@
 import { ReigsterType } from "@/schema/auth.schema";
 import { IResponse } from "./response.interface";
+import { UserType } from "./user.interface";
 
 export interface IAccountInput {
     name: keyof ReigsterType;
@@ -30,6 +31,7 @@ export interface ISignupRequest {
     name: string;
     type: 'helper' | 'client';
     phone: string;
+    address_dong:string;
     division: string; // kakao, naver, email
     address: string;
     lat: number; // 위도
@@ -42,11 +44,14 @@ export interface ISignupRequest {
 }
 
 export interface IMeResponse {
-    id: string | null;
+    userId: string | null;
     email: string | null;
-    type: "helper" | "client" | null;
+    type: UserType;
 }
-
+export interface IAuthMeRawResponse {
+    ok: boolean;
+    user: IMeResponse;
+}
 export interface ISigninRequest {
     email: string;
     password: string;

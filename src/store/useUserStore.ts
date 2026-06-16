@@ -9,12 +9,12 @@ interface UserState {
 
 export const useUserStore = create<UserState>((set) => ({
     user: {
-        id: null,
+        userId: null,
         email: null,
         type: null,
     },
     setUser: (user: IMeResponse) => set({ user }),
-    clearUser: () => set({ user: { id: null, email: null } as IMeResponse }),
+    clearUser: () => set({ user: { userId: null, email: null } as IMeResponse }),
 }))
 
 export const useSetUser = () => {
@@ -25,4 +25,9 @@ export const useSetUser = () => {
 export const useClearUser = () => {
     const clearUser = useUserStore((state) => state.clearUser);
     return clearUser;
+}
+
+export const useUser = ()=>{
+    const user = useUserStore((state)=>state.user);
+    return user;
 }

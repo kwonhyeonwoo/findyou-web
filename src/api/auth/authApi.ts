@@ -1,4 +1,4 @@
-import { IMeResponse, ISigninRequest, ISigninResponse, ISignupRequest } from "@/interfaces/auth.interface";
+import { IAuthMeRawResponse, IMeResponse, ISigninRequest, ISigninResponse, ISignupRequest } from "@/interfaces/auth.interface";
 import { client } from "../client/clientApi";
 import { IResponse } from "@/interfaces/response.interface";
 
@@ -19,11 +19,12 @@ export const authApi = {
         return response;
     },
     me: async (): Promise<IMeResponse> => {
-        const result = await client.get('/auth/me');
-        if (!result) {
-            return result as IMeResponse;
+        const response = await client.get<IAuthMeRawResponse>('/auth/me');
+        
+        if (!response) {
+            return response as unknown as IMeResponse;
         }
-        console.log('result', result);
-        return result as IMeResponse;
+        
+        return response.user; 
     }
 }

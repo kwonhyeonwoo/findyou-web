@@ -36,6 +36,7 @@ export const useAccountForm = () => {
       phone: data.phone,
       division: data.division,
       address: data.address,
+      address_dong:data.address_dong,
       lat: data.lat,
       lng: data.lng,
       nickName: data.nickName,

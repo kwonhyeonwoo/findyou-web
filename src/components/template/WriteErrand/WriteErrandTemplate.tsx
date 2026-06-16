@@ -1,16 +1,15 @@
 "use client";
-import ErrandWriteCategory from "@/components/writeErrand/ErrandWriteCategory/ErrandWriteCategory";
-import { WRITE_CATEGORY } from "@/constants/write-constants";
 import { useWriteForm } from "./hooks/useWriteForm";
 import ErrandWriteInput from "@/components/writeErrand/ErrandWriteInput/ErrandWriteInput";
 import AddressInput from "@/components/writeErrand/AddressInput/AddressInput";
 import ErrandTextarea from "@/components/writeErrand/ErrandTextarea/ErrandTextarea";
 import ImageUpload from "@/components/writeErrand/ImageUpload/ImageUpload";
-import OpenTalk from "@/components/writeErrand/OpenTalk/OpenTalk";
 import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
 import { formattedPrice } from "@/lib/lib";
 import { useSearchAddress } from "@/hooks/useSearchAddress";
 import SearchAddress from "@/components/common/SearchAddress/SearchAddress";
+import { CATEGORY_TABS } from "@/constants/common.-constants";
+import CategoryTabs from "@/components/common/CategoryTabs/CategoryTabs";
 
 export default function WriteErrandTemplate() {
   const {
@@ -42,8 +41,8 @@ export default function WriteErrandTemplate() {
       <div className="flex flex-col gap-2">
         <p className="text-[12px] text-[#464554]">카테고리 선택</p>
         <div className="flex flex-wrap gap-2">
-          {WRITE_CATEGORY.map((item) => (
-            <ErrandWriteCategory
+          {CATEGORY_TABS.map((item) => (
+            <CategoryTabs
               key={item.type}
               {...item}
               isActive={item.type === currCategory}

@@ -1,5 +1,7 @@
 'use client'
 
+import { ErrandCategory } from "@/schema/errand.schema";
+
 export const formattedPrice = (price: string) => {
     if (!price) return "";
     return `${price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원`;
@@ -43,3 +45,17 @@ export function formatRelativeTime(dateString: string): string {
     const diffInYears = Math.floor(diffInDays / 365);
     return `${diffInYears}년 전`;
   }
+
+  const CATEGORY_MAP: Record<ErrandCategory , string> = {
+    delivery: "배달",
+    shopping: "장보기",
+    cleaning: "청소",
+    repair: "수리",
+    proxy: "역할대행",
+    pet: "반려동물",
+    "car-wash": "세차",
+    etc: "기타",
+  };
+export function fillterCategory(category:ErrandCategory){
+  return CATEGORY_MAP[category] ?? "기타";
+}

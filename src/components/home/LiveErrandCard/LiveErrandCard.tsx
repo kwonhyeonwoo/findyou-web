@@ -1,25 +1,16 @@
-import { ErrandResponse, ErrandStatus } from '@/interfaces/errand.interface';
+import { ErrandResponse } from '@/interfaces/errand.interface';
 import { formatRelativeTime } from '@/lib/lib';
-import React from 'react'
-
-interface Props{
-    status: ErrandStatus;
-    title:string;
-    price:string;
-    address:string;
-    time:string;
-}
 
 export default function LiveErrandCard({
     status,
     title,
     price,
-    address,
+    address_dong,
     createdAt
 }:ErrandResponse) {
     const bottomArr=[
         {
-            text:address,
+            text:address_dong,
             img:"address"
         },
         {

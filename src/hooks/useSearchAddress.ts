@@ -9,6 +9,7 @@ interface Props<T extends FieldValues> {
 
 export const useSearchAddress = <T extends FieldValues>({ setValue, setIsOpen }: Props<T>) => {
     const handleComplete = (data: Address) => {
+        setValue('address_dong' as Path<T>,data.bname as PathValue<T,Path<T>>);
         setValue('address' as Path<T>, data.address as PathValue<T, Path<T>>);
         setIsOpen(false);
     }
@@ -27,9 +28,11 @@ export const useSearchAddress = <T extends FieldValues>({ setValue, setIsOpen }:
                 }
             );
             const data = await res.json();
+            console.log('현재주소 데이타로',data.documents[0].address.region_3depth_name)
             if (data && data.documents && data.documents.length > 0) {
                 const addressData = data.documents[0].address; // 지번 주소 정보
                 setValue('address' as Path<T>, addressData.address_name);
+                setValue('address_dong' as Path<T>, addressData.region_3depth_name);
             } else {
                 console.log("해당 좌표에 매칭되는 행정구역 주소가 없습니다.");
             }

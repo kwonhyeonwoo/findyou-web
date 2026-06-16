@@ -1,5 +1,7 @@
+import { UserType } from "@/interfaces/user.interface";
+
 interface Props {
-  type: "helper" | "client" | null;
+  type:UserType;
   onToggleBtn: () => void;
 }
 
