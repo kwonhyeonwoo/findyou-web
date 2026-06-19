@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 
 export const useLoginHooks = () => {
     const { mutate, isPending } = useSigninMutation();
-    const { register, handleSubmit, formState: { isValid } } = useForm<AuthCommonSchema>({
+    const { register, handleSubmit, formState: { isValid },watch } = useForm<AuthCommonSchema>({
         resolver: zodResolver(authCommonSchema),
         defaultValues: {
             email: "",
@@ -16,6 +16,7 @@ export const useLoginHooks = () => {
     const onSubmit = (data: ISigninRequest) => {
         mutate(data);
     }
+    console.log('warch',watch('email'))
     return {
         isPending,
         isValid,

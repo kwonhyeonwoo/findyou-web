@@ -9,10 +9,16 @@ import AddressCard from "@/components/Errand/AddressCard";
 import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
 
 export default function ErrandDetailTemplate() {
-    const {data,handleKaKaoOpenLink} = useErrandDetail();
+    const {
+        data,
+        uid,
+        isPending,
+        handleKaKaoOpenLink} = useErrandDetail();
     if(!data) return ;
+    console.log('uid',uid);
+    console.log('user.id',data?.user?.id)
   return (
-    <div className="flex flex-col gap-6 items-center  min-h-screen">
+    <div className="flex flex-col gap-6 items-center  min-h-screen ">
         {/* 이미지 */}
         {data.images.length > 0 && (
             <div className="w-full h-120">
@@ -79,7 +85,12 @@ export default function ErrandDetailTemplate() {
             <AddressCard address={data.address}/>
         </div>
         <div className="w-full py-4 justify-center items-center flex  mt-auto border-t border-t-[#C7C4D7]   ">
-            <SubmitButton text="심부름 신청" isPending={false} bgColor="bg-[#2A14B4]" isDisabled={false}/>
+            <SubmitButton 
+                text="심부름 신청" 
+                isPending={isPending}
+                bgColor="bg-[#2A14B4]" 
+                isDisabled={data?.user?.id === uid ? true : false}
+            />
         </div>
     </div>
   )

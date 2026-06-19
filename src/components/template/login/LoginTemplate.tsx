@@ -13,7 +13,7 @@ export default function LoginTemplate() {
   const { onSubmit, isPending, handleSubmit, register, isValid } =
     useLoginHooks();
   return (
-    <section className="flex flex-col items-center">
+    <section className="flex flex-col items-center  px-4">
       {/* title box */}
       <div className="flex flex-col items-center gap-2">
         <h2 className="text-[32px] font-bold">로그인</h2>
