@@ -59,3 +59,24 @@ export function formatRelativeTime(dateString: string): string {
 export function fillterCategory(category:ErrandCategory){
   return CATEGORY_MAP[category] ?? "기타";
 }
+
+export const STATUS_STYLES = {
+  matching: {
+    bg: 'bg-[#E7F5E8]',
+    text: 'text-[#2E7D32]',
+  },
+  in_progress: {
+    bg: 'bg-[#E4DFFF]',
+    text: 'text-[#382ABF]',
+  },
+  completed: {
+    bg: 'bg-[#E3E2E2]',
+    text: 'text-[#464554]',
+  },
+};
+
+export const STATUS_FILLTER ={
+  completed:"완료",
+  matching:"모집중",
+  in_progress:"대기중"
+}

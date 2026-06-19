@@ -1,5 +1,5 @@
 import { ErrandStatus } from '@/interfaces/errand.interface';
-import { fillterCategory, formatRelativeTime } from '@/lib/lib';
+import { fillterCategory, formatRelativeTime, STATUS_FILLTER, STATUS_STYLES } from '@/lib/lib';
 import { ErrandCategory } from '@/schema/errand.schema';
 import Image from 'next/image';
 import React from 'react'
@@ -36,21 +36,7 @@ export default function ErrandCard({
             category,
         }
     ]
-    const STATUS_STYLES = {
-        matching: {
-          bg: 'bg-[#E7F5E8]',
-          text: 'text-[#2E7D32]',
-        },
-        in_progress: {
-          bg: 'bg-[#E4DFFF]',
-          text: 'text-[#382ABF]',
-        },
-        completed: {
-          bg: 'bg-[#E3E2E2]',
-          text: 'text-[#464554]',
-        },
-      };
-      const currentStyle = STATUS_STYLES[status] || STATUS_STYLES.matching;
+     const currentStyle = STATUS_STYLES[status] || STATUS_STYLES.matching;
   return (
     <div 
         onClick={()=>onRouter(id)}
@@ -60,11 +46,7 @@ export default function ErrandCard({
             <div
                 className={`px-3 py-1 text-[12px] rounded-full ${currentStyle.bg} ${currentStyle.text}`}
             >
-                {
-                    status === "completed" ? "완료" :
-                    status === "matching" ? "모집중" :
-                    status === "in_progress" && "대기중"
-                }
+                {STATUS_FILLTER[status]}
             </div>
             <div className="flex items-center gap-1">
                 <Image
