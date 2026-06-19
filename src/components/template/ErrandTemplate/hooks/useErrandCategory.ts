@@ -1,15 +1,23 @@
 import { ErrandCategory } from "@/schema/errand.schema";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback } from "react";
 
-export const useErrandCategory = ()=>{
-    const [currentCategory, setCurrentCategory] = useState<ErrandCategory | "all">("all");
+export const useErrandCategory = () => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
 
-    const onCurrentCategory = (type:ErrandCategory | "all") =>{
-        setCurrentCategory(type);
-    };
+    const onCurrentCategory = useCallback(
+        (type: ErrandCategory | "all") => {
+            const params = new URLSearchParams(searchParams.toString());
 
-    return{
-        currentCategory,
+            params.set('category', type);
+            router.push(`/errand?${params.toString()}`);
+        },
+        [searchParams, router],
+    );
+
+    return {
+        currentCategory: (searchParams.get('category') as ErrandCategory) || "all",
         onCurrentCategory
-    }
-}
+    };
+};

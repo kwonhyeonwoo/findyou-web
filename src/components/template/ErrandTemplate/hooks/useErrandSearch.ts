@@ -1,34 +1,44 @@
 import { CATEGORY_TABS } from "@/constants/common.-constants";
 import { ErrandCategory } from "@/schema/errand.schema";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import React from "react";
 
-export const useErrandSearch = ()=>{
+export const useErrandSearch = () => {
     const router = useRouter();
-    const [keyword, setKeyword] = useState<string>("");
-    const onKeywordChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
-        if(keyword.trim() === "") return ;
-        const value = e.target.value;
-        setKeyword(value);
+    const searchParams = useSearchParams();
+
+    const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.nativeEvent.isComposing) return;
+
+        if (e.key === 'Enter') {
+            const value = e.currentTarget.value;
+
+            const params = new URLSearchParams(searchParams.toString());
+
+            if (value.trim()) {
+                params.set('keyword', value);
+            } else {
+                params.delete('keyword');
+            }
+
+            router.push(`/errand?${params.toString()}`);
+        }
     };
-    
-    const onKeywordSubmit = () =>{
-        router.push(`/errand?keyword=${keyword}`)
-    }
-    const listTabs:{
-        type: ErrandCategory | "all",
-        text:string
-    }[] =[
-        {
-            type:"all",
-            text:"전체",
-        },
-        ...CATEGORY_TABS,
-    ]
-    return{
-        keyword,
+
+    const listTabs: {
+        type: ErrandCategory | "all";
+        text: string;
+    }[] = [
+            {
+                type: "all",
+                text: "전체",
+            },
+            ...CATEGORY_TABS,
+        ];
+
+    return {
+        keyword: searchParams.get('keyword') || "",
         listTabs,
-        onKeywordSubmit,
-        onKeywordChange
-    }
-}
+        handleKeydown,
+    };
+};
