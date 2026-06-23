@@ -27,14 +27,17 @@ export default function WriteErrandTemplate() {
     handleWriteSubmit,
     handlePriceChange,
   } = useWriteForm();
-  const {handleComplete,handleLocation} = useSearchAddress({setValue,setIsOpen})
+  const { handleComplete, handleLocation } = useSearchAddress({
+    setValue,
+    setIsOpen,
+  });
   const currCategory = useWatch({ control, name: "category" });
   const textLength = useWatch({ control, name: "description" });
   const price = useWatch({ control, name: "price" });
-  const address = useWatch({control, name:"address"})
+  const address = useWatch({ control, name: "address" });
   return (
     <form
-      className="mt-6 flex flex-col gap-4"
+      className="mt-6 flex flex-col gap-4 pb-20"
       onSubmit={handleSubmit(handleWriteSubmit)}
     >
       {/* 카테고리 선택 */}
@@ -65,7 +68,11 @@ export default function WriteErrandTemplate() {
       </div>
 
       {/* 주소 */}
-      <AddressInput value={address} register={register} handleIsOpen={handleIsOpen}/>
+      <AddressInput
+        value={address}
+        register={register}
+        handleIsOpen={handleIsOpen}
+      />
       {/* 가격 */}
       <ErrandWriteInput
         label="가격"
@@ -79,7 +86,7 @@ export default function WriteErrandTemplate() {
         register={register}
         textLength={textLength?.length || 0}
       />
-      <ImageUpload setValue={setValue}/>
+      <ImageUpload setValue={setValue} />
       <ErrandWriteInput
         label="카카오톡 오픈채팅 링크 (선택)"
         placeholder="카카오톡 오픈채팅 링크"

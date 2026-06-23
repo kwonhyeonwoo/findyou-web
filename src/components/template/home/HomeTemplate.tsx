@@ -11,7 +11,7 @@ import { IBestHeleper, IHelperCardType } from '@/interfaces/helper.interface';
 import Link from 'next/link';
 
 export default function HomeTemplate() {    
-    const {data:liveErrand} = useErrandListsQuery("3");
+    const {data:liveErrand} = useErrandListsQuery({limit:"3"});
     const helperDb:IHelperCardType[] = [
         {
             name:"김민수",

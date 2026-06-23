@@ -1,4 +1,3 @@
-
 interface Props<T> {
   text: string;
   type: T;
