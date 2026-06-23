@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { getAddInputs, getBasicInputs } from "@/constants/auth-constants";
 import { useEmailCheckMutation } from "@/hooks/quires/auth/useEmailCheckMutation";
@@ -13,8 +13,7 @@ export const useAccountForm = () => {
     mode: "onChange",
     resolver: zodResolver(registerSchema),
     defaultValues: {
-      type: "helper",
-      division: 'email',
+      division: "email",
       agreeUsage: false,
       agreePrivacy: false,
       agreeMarketingMandatory: false,
@@ -22,21 +21,23 @@ export const useAccountForm = () => {
     },
   });
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { watch, setValue, register, formState: { errors, isValid } } = methods;
+  const {
+    watch,
+    register,
+    formState: { errors, isValid },
+  } = methods;
   const { mutate, isPending } = useSignupMutation();
   const { mutate: emailCheck } = useEmailCheckMutation();
-  const type = watch("type");
   const email = watch("email");
   const onSubmit = (data: ReigsterType) => {
     mutate({
       email: data.email,
-      type: data.type,
       password: data.password,
       name: data.name,
       phone: data.phone,
       division: data.division,
       address: data.address,
-      address_dong:data.address_dong,
+      address_dong: data.address_dong,
       lat: data.lat,
       lng: data.lng,
       nickName: data.nickName,
@@ -44,13 +45,10 @@ export const useAccountForm = () => {
       agreePrivacy: data.agreePrivacy,
       agreeMarketingMandatory: data.agreeMarketingMandatory,
       agreeMarketingOptional: data.agreeMarketingOptional,
-    })
-  }
-  const handleChangeType = ({ type }: { type: "helper" | "client" }) => {
-    setValue("type", type, { shouldValidate: true });
-  }
+    });
+  };
   const handleEmailCheck = () => {
-    emailCheck(email)
+    emailCheck(email);
   };
 
   const handlePhoneVerifyRequest = () => {
@@ -63,17 +61,19 @@ export const useAccountForm = () => {
 
   const handleAddressIsOpen = () => {
     setIsOpen((prev) => !prev);
-  }
+  };
   const basicInputs = getBasicInputs({
     onEmailCheck: handleEmailCheck,
     onPhoneVerifyRequest: handlePhoneVerifyRequest,
     onPhoneVerifyConfirm: handlePhoneVerifyConfirm,
   });
 
-  const addInputs = getAddInputs({ onAddress: handleAddressIsOpen,value:watch('address') })
+  const addInputs = getAddInputs({
+    onAddress: handleAddressIsOpen,
+    value: watch("address"),
+  });
 
   return {
-    type,
     methods,
     basicInputs,
     addInputs,
@@ -84,6 +84,5 @@ export const useAccountForm = () => {
     setIsOpen,
     onSubmit,
     register,
-    handleChangeType
-  }
-}
+  };
+};

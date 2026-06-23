@@ -11,8 +11,7 @@ interface Props {
   activeText?: string;
   maxLength?: number;
   minLength?: number;
-  readOnly?:boolean;
-  value?:string;
+  readOnly?: boolean;
   error?: FieldError;
   register: UseFormRegister<ReigsterType>;
   onActive?: () => void;
@@ -23,7 +22,6 @@ export default function AccountInput({
   label,
   placeholder,
   type,
-  value,
   activeText,
   maxLength,
   minLength,
@@ -37,16 +35,12 @@ export default function AccountInput({
       <AccountLabel label={label} error={error?.message} />
       <div className="flex items-center gap-2">
         <input
-          className={`
-            flex-1 border-b border-b-[#6B7280] px-3 py-[10px]
-            ${readOnly ? "cursor-pointer bg-gray-100" : ""}  
-          `}
+          className={`flex-1 border-b border-b-[#6B7280] px-3 py-[10px] ${readOnly ? "cursor-pointer bg-gray-100" : ""} `}
           type={type}
           maxLength={maxLength}
           minLength={minLength}
           placeholder={placeholder}
-          readOnly={readOnly }
-          value={value}
+          readOnly={readOnly}
           {...register(name)}
         />
         {onActive && (
