@@ -10,7 +10,8 @@ import PaginationButton from "@/components/ErrandDetail/PaginationButton/Paginat
 import DotIndicator from "@/components/common/DotIndicator/DotIndicator";
 
 export default function ErrandDetailTemplate() {
-  const { data, uid, isPending, handleKaKaoOpenLink } = useErrandDetail();
+  const { data, uid, isPending, handleKaKaoOpenLink, handleSubmit } =
+    useErrandDetail();
   const { currentIndex, goToSlide, handleSlide } = useSliderImg(
     data?.images || [],
   );
@@ -80,24 +81,21 @@ export default function ErrandDetailTemplate() {
       </div>
 
       {/* content */}
-      <div className="w-full">
-        <ErrandContent
-          category={data.category}
-          status={data.status}
-          title={data.title}
-          price={data.price}
-          description={data.description}
-        />
-      </div>
+      <ErrandContent
+        category={data.category}
+        status={data.status}
+        title={data.title}
+        price={data.price}
+        description={data.description}
+      />
 
       {/* 카톡 오픈링크, 주소 */}
-      <div className="flex w-full flex-col gap-6">
-        <AddressCard address={data.address} />
-      </div>
+      <AddressCard address={data.address} />
       <div className="mt-auto flex w-full items-center justify-center border-t border-t-[#C7C4D7] py-4">
         <SubmitButton
           text="심부름 신청"
           isPending={isPending}
+          Active={handleSubmit}
           bgColor="bg-[#2A14B4]"
           isDisabled={data?.user?.id === uid ? true : false}
         />

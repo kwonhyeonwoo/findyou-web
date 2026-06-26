@@ -20,7 +20,7 @@ export default function ErrandContent({
 }: Props) {
   const statusStyle = STATUS_STYLES[status] || STATUS_STYLES.matching;
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex w-full flex-col gap-6">
       {/* 카테고리 및 상태 */}
       <div className="flex w-full gap-2">
         <div
