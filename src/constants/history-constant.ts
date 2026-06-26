@@ -1,5 +1,5 @@
 export const HISTORY_TAB: {
-  type: "request" | "backup";
+  type: "request" | "application";
   text: string;
   link: string;
 }[] = [
@@ -9,8 +9,8 @@ export const HISTORY_TAB: {
     link: "/history/request",
   },
   {
-    type: "backup",
+    type: "application",
     text: "지원내역",
-    link: "/history/backup",
+    link: "/history/application",
   },
 ];

@@ -1,5 +1,5 @@
 "use client";
-import ErrandCard from "@/components/Errand/ErrandCard";
+import ErrandCard from "@/components/common/ErrandCard/ErrandCard";
 import { useGetMyErrandsQuery } from "@/hooks/quires/errand/useGetMyErrandsQuery";
 import { useErrandCardRouter } from "@/hooks/useErrandCardRouter";
 
