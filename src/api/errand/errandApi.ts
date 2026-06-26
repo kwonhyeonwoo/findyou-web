@@ -6,7 +6,6 @@ import { ErrandResponse } from "@/interfaces/errand.interface";
 export const errandApi = {
     write: async (data: ErrandRegisterType): Promise<IResponse> => {
         const formData = new FormData();
-
         formData.append('title', data.title);
         formData.append('category', data.category);
         formData.append('address', data.address);
@@ -57,5 +56,10 @@ export const errandApi = {
         console.log('response', response);
         return response;
 
+    },
+
+    getMyErrand: async (): Promise<ErrandResponse[]> => {
+        const response = await client.get<ErrandResponse[]>('/errand/my');
+        return response;
     }
-}
+}   

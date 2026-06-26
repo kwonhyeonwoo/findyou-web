@@ -1,10 +1,18 @@
 "use client";
-import { useErrandListsQuery } from "@/hooks/quires/errand/useErrandListsQuery";
+import ErrandCard from "@/components/Errand/ErrandCard";
+import { useGetMyErrandsQuery } from "@/hooks/quires/errand/useGetMyErrandsQuery";
+import { useErrandCardRouter } from "@/hooks/useErrandCardRouter";
 
 function RequestTemplate() {
-  const { data } = useErrandListsQuery({});
-  console.log("data", data);
-  return <div></div>;
+  const { data } = useGetMyErrandsQuery();
+  const { handleRouter } = useErrandCardRouter();
+  return (
+    <div className="mt-6 flex flex-col gap-4 pb-10">
+      {data?.map((item) => (
+        <ErrandCard key={item.id} {...item} onRouter={handleRouter} />
+      ))}
+    </div>
+  );
 }
 
 export default RequestTemplate;
