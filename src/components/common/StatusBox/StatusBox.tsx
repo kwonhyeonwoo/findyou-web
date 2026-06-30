@@ -1,7 +1,8 @@
+import { ErrandStatus } from "@/interfaces/errand.interface";
 import { ErrandApplicationStatus } from "@/interfaces/errand_application.interface";
 
 interface Props {
-  status: ErrandApplicationStatus;
+  status: ErrandApplicationStatus | ErrandStatus;
 }
 
 function StatusBox({ status }: Props) {
@@ -10,6 +11,9 @@ function StatusBox({ status }: Props) {
     ACCEPTED: "수락",
     REJECTED: "거절",
     COMPLETED: "완료",
+    matching: "모집중",
+    in_progress: "진행중",
+    completed: "완료",
   };
 
   const STATUS_STYPE = {
@@ -17,6 +21,9 @@ function StatusBox({ status }: Props) {
     ACCEPTED: "bg-[#4028D4]",
     REJECTED: "bg-[#F2F4F6]",
     COMPLETED: "bg-[#F2F4F6]",
+    matching: "bg-[#4028D4]",
+    in_progress: "bg-[#0D9488]",
+    completed: "bg-[#F2F4F6]",
   };
   return (
     <div
