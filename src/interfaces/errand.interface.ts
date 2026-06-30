@@ -1,5 +1,6 @@
 import { ErrandCategory } from "@/schema/errand.schema";
 import { UserResponse } from "./user.interface";
+import { ErrandApplicationStatus } from "./errand_application.interface";
 
 export type ErrandStatus = "matching" | "in_progress" | "completed";
 // matching: 모집중, in_progress: 진행중, completed: 완료
@@ -29,6 +30,6 @@ export interface ErrandResponse {
   user?: UserResponse;
   applications: {
     id: string;
-    status: "PENDING" | "ACCEPTED" | "REJECTED";
+    status: ErrandApplicationStatus
   }[];
 }

@@ -2,9 +2,10 @@ import { ErrandStatus } from "@/interfaces/errand.interface";
 import CustomHistoryHeader from "./components/CustomHistoryHeader";
 import CustomHistoryBody from "./components/CustomHistoryBody";
 import { ErrandApplicationStatus } from "@/interfaces/errand_application.interface";
-import SubmitButton from "../SubmitButton/SubmitButton";
+import HistoryButton from "./components/HistoryButton";
 
 interface Props {
+  id: string;
   images?: string[];
   title: string;
   address_dong: string;
@@ -13,10 +14,11 @@ interface Props {
   applicatoins?: {
     id: string;
     status: ErrandApplicationStatus;
-  };
+  }[];
   status: ErrandStatus;
-  appliedStatus: ErrandApplicationStatus;
+  appliedStatus?: ErrandApplicationStatus;
   createdAt: Date;
+  Active: (id: string) => void;
 }
 
 function CustomHistoryCard({
@@ -29,6 +31,8 @@ function CustomHistoryCard({
   btnText,
   appliedStatus,
   createdAt,
+  id,
+  Active,
 }: Props) {
   return (
     <div className="flex w-full flex-col justify-center gap-3 rounded-[12px] border border-[#E3E2E2] p-4">
@@ -40,14 +44,9 @@ function CustomHistoryCard({
         createdAt={createdAt}
         price={price}
         applyStatus={appliedStatus}
+        appliedCount={applicatoins?.length}
       />
-      <SubmitButton
-        text={btnText}
-        isPending={false}
-        isDisabled={false}
-        bgColor="bg-[#F2F4F6]"
-        textColor="text-[#4E5968]"
-      />
+      <HistoryButton text={btnText} id={id} Active={Active} />
     </div>
   );
 }

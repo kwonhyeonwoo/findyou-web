@@ -1,7 +1,8 @@
+import StatusBox from "@/components/common/StatusBox/StatusBox";
 import { ErrandApplicationStatus } from "@/interfaces/errand_application.interface";
 import { formatRelativeTime } from "@/lib/lib";
 import Image from "next/image";
-import StatusBox from "../../StatusBox/StatusBox";
+import AvatarStack from "./AvatarStack";
 
 interface Props {
   image?: string | undefined;
@@ -51,6 +52,11 @@ function CustomHistoryBody({
           <p className="text-[13px] text-[#464554]">
             {formatRelativeTime(String(createdAt))}
           </p>
+          {appliedCount && appliedCount > 0 ? (
+            <AvatarStack appliedCount={appliedCount} />
+          ) : (
+            <div className="text-[12px] text-[#464554]">지원자 없음</div>
+          )}
         </div>
         {/* 가격, 상태 */}
         <div className="flex items-center gap-1">
