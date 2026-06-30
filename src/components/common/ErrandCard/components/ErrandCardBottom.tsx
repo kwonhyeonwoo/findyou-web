@@ -1,8 +1,5 @@
 interface Props {
-  applications: {
-    id: string;
-    status: "PENDING" | "ACCEPTED" | "REJECTED";
-  }[];
+  applications: string[];
   price: string;
 }
 

@@ -14,10 +14,7 @@ interface Props {
   price: string;
   images?: string[];
   createdAt: Date;
-  applications: {
-    id: string;
-    status: "PENDING" | "ACCEPTED" | "REJECTED";
-  }[];
+  applications: string[];
   onRouter: (id: string) => void;
 }
 
