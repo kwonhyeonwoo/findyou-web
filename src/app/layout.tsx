@@ -23,7 +23,7 @@ export default function MainLayout({
       lang="ko"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-gray-100 text-gray-900">
+      <body className="flex min-h-full flex-col text-gray-900">
         <Providers>
           <Script
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=61b7f2dfd33a2a2488631c2308b8ee38&libraries=services"

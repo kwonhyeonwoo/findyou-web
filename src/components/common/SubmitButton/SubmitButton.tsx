@@ -5,6 +5,7 @@ interface Props {
   isPending: boolean;
   isDisabled: boolean;
   bgColor?: string;
+  textColor?: string;
   Active?: () => void;
 }
 
@@ -13,6 +14,7 @@ export default function SubmitButton({
   bgColor,
   isPending,
   isDisabled,
+  textColor,
   Active,
 }: Props) {
   return (
@@ -23,7 +25,7 @@ export default function SubmitButton({
       className={`w-full rounded-[12px] py-4 font-bold transition-colors duration-200 ${
         isDisabled
           ? "cursor-not-allowed bg-[#F2F4F6] text-[#B0B8C1]"
-          : `cursor-pointer ${bgColor ? bgColor : "bg-black"} text-white active:bg-gray-900`
+          : `cursor-pointer ${bgColor ? bgColor : "bg-black"} ${textColor ? textColor : "text-white}"} active:bg-gray-900`
       }`}
     >
       {isPending ? <Loading /> : text}

@@ -4,12 +4,11 @@ import { useErrandSearch } from "./hooks/useErrandSearch";
 import CategoryTabs from "@/components/common/CategoryTabs/CategoryTabs";
 import { useErrandCategory } from "./hooks/useErrandCategory";
 import { useErrandListsQuery } from "@/hooks/quires/errand/useErrandListsQuery";
-import ErrandCard from "@/components/Errand/ErrandCard";
-import { useErrandRouter } from "./hooks/useErrandRouter";
+import { useErrandCardRouter } from "@/hooks/useErrandCardRouter";
 
 export default function ErrandTemplate() {
+  const { handleRouter } = useErrandCardRouter();
   const { listTabs, keyword, handleKeydown } = useErrandSearch();
-  const { handleRouter } = useErrandRouter();
   const { currentCategory, onCurrentCategory } = useErrandCategory();
   const { data } = useErrandListsQuery({ keyword, category: currentCategory });
 
@@ -28,9 +27,9 @@ export default function ErrandTemplate() {
         ))}
       </div>
       <div className="no-scrollbar flex max-h-220 flex-col gap-4 overflow-y-auto pb-20">
-        {data?.map((item) => (
+        {/* {data?.map((item) => (
           <ErrandCard {...item} key={item.id} onRouter={handleRouter} />
-        ))}
+        ))} */}
       </div>
     </div>
   );

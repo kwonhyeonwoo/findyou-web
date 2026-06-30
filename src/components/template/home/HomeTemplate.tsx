@@ -1,76 +1,77 @@
-'use client'
-import Advertisement from '@/components/home/Advertisement/Advertisement';
-import BestHelper from '@/components/home/BestHelper/BestHelper';
-import HelperCard from '@/components/home/HelperCard/HelperCard';
-import HomeCategories from '@/components/home/HomeCategories/HomeCategories';
-import HomeSearch from '@/components/home/HomeSearch/HomeSearch';
-import LiveErrandCard from '@/components/home/LiveErrandCard/LiveErrandCard';
-import { useErrandListsQuery } from '@/hooks/quires/errand/useErrandListsQuery';
-import { ILiveErrand } from '@/interfaces/errand.interface';
-import { IBestHeleper, IHelperCardType } from '@/interfaces/helper.interface';
-import Link from 'next/link';
+"use client";
+import Advertisement from "@/components/home/Advertisement/Advertisement";
+import BestHelper from "@/components/home/BestHelper/BestHelper";
+import HelperCard from "@/components/home/HelperCard/HelperCard";
+import HomeCategories from "@/components/home/HomeCategories/HomeCategories";
+import HomeSearch from "@/components/home/HomeSearch/HomeSearch";
+import LiveErrandCard from "@/components/home/LiveErrandCard/LiveErrandCard";
+import { useErrandListsQuery } from "@/hooks/quires/errand/useErrandListsQuery";
+import { IBestHeleper, IHelperCardType } from "@/interfaces/helper.interface";
+import Link from "next/link";
 
-export default function HomeTemplate() {    
-    const {data:liveErrand} = useErrandListsQuery({limit:"3"});
-    const helperDb:IHelperCardType[] = [
-        {
-            name:"김민수",
-            rating:"3.4",
-            profile:"",
-            category:"조립/설치",
-            id:"1"
-        },
-        {
-            name:"김민수",
-            rating:"3.4",
-            profile:"",
-            category:"조립/설치",
-            id:"2"
-        },
-        {
-            name:"김민수",
-            rating:"3.4",
-            profile:"",
-            category:"조립/설치",
-            id:"3"
-        },
-    ]
+export default function HomeTemplate() {
+  const { data: liveErrand } = useErrandListsQuery({ limit: "3" });
+  const helperDb: IHelperCardType[] = [
+    {
+      name: "김민수",
+      rating: "3.4",
+      profile: "",
+      category: "조립/설치",
+      id: "1",
+    },
+    {
+      name: "김민수",
+      rating: "3.4",
+      profile: "",
+      category: "조립/설치",
+      id: "2",
+    },
+    {
+      name: "김민수",
+      rating: "3.4",
+      profile: "",
+      category: "조립/설치",
+      id: "3",
+    },
+  ];
 
-    const bestHelper:IBestHeleper[]=[
-        {
-            name:"김지훈",
-            level:"배테랑",
-            category:"배달전문",
-            success:"122"
-        },
-        {
-            name:"김지훈",
-            level:"배테랑",
-            category:"배달전문",
-            success:"122"
-        },
-        {
-            name:"김지훈",
-            level:"배테랑",
-            category:"배달전문",
-            success:"122"
-        }
-    ]
+  const bestHelper: IBestHeleper[] = [
+    {
+      name: "김지훈",
+      level: "배테랑",
+      category: "배달전문",
+      success: "122",
+    },
+    {
+      name: "김지훈",
+      level: "배테랑",
+      category: "배달전문",
+      success: "122",
+    },
+    {
+      name: "김지훈",
+      level: "배테랑",
+      category: "배달전문",
+      success: "122",
+    },
+  ];
   return (
     <div className="box-border px-5 py-5">
-        <HomeSearch />
-        <Advertisement/>
-        <HomeCategories/>
-        {/* 실시간 심부름 리스트 */}
-        <div className="flex flex-col gap-3 mt-6 mb-8">
-            <div className="flex justify-between items-center">
-                <h2 className="text-[20px] font-medium">실시간 심부름</h2>
-                <Link href={"/errand/list"} className="text-[#777586]">전체보기</Link>
-            </div>
-            {liveErrand?.map((item)=>(
-                <LiveErrandCard key={item.id} {...item}/>
-            ))}
+      <HomeSearch />
+      <Advertisement />
+      <HomeCategories />
+      {/* 실시간 심부름 리스트 */}
+      <div className="mt-6 mb-8 flex flex-col gap-3">
+        <div className="flex items-center justify-between">
+          <h2 className="text-[20px] font-medium">실시간 심부름</h2>
+          <Link href={"/errand/list"} className="text-[#777586]">
+            전체보기
+          </Link>
         </div>
+        {liveErrand?.map((item) => (
+          <LiveErrandCard key={item.id} {...item} />
+        ))}
+      </div>
 
       {/* 지금 바로 도움가능 한 헬퍼 */}
       <div className="flex flex-col gap-4">
