@@ -4,11 +4,11 @@ import { useErrandSearch } from "./hooks/useErrandSearch";
 import CategoryTabs from "@/components/common/CategoryTabs/CategoryTabs";
 import { useErrandCategory } from "./hooks/useErrandCategory";
 import { useErrandListsQuery } from "@/hooks/quires/errand/useErrandListsQuery";
-import { useErrandCardRouter } from "@/hooks/useErrandCardRouter";
+import { useRequestTemplate } from "@/hooks/useRequestTemplate";
 import ErrandList from "@/components/Errand/ErrandList/ErrandList";
 
 export default function ErrandTemplate() {
-  const { handleRouter } = useErrandCardRouter();
+  const { handleRouter } = useRequestTemplate();
   const { listTabs, keyword, handleKeydown } = useErrandSearch();
   const { currentCategory, onCurrentCategory } = useErrandCategory();
   const { data } = useErrandListsQuery({ keyword, category: currentCategory });

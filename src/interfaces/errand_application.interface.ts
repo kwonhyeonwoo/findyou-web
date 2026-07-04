@@ -10,9 +10,16 @@ export type ErrandApplicationStatus =
 export interface ErrandApplicationResponse {
   id: string;
 
+  message: string;
+
   helper: UserResponse;
 
   errand: ErrandResponse;
 
   status: ErrandApplicationStatus;
+}
+
+export interface ErrandApplicationStatusRequest {
+  id: string;
+  status: "ACCEPTED" | "REJECTED";
 }

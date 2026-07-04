@@ -5,7 +5,7 @@ interface Props {
 function AvatarStack({ appliedCount }: Props) {
   return (
     <div className="flex items-center">
-      <div className="mr-2 flex -space-x-2">
+      <div className="mr-1 flex -space-x-2">
         {Array.from({ length: Math.min(appliedCount, 3) }).map((_, i) => (
           <div
             key={i}

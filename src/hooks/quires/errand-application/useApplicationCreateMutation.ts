@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 export const useApplicationCreateMutation = () => {
-  const navigate = useRouter();
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -13,6 +13,7 @@ export const useApplicationCreateMutation = () => {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ERRAND_APPLICAION_KEYS.all });
       toast.success(data.message);
+      router.push('/history/application')
     },
     onError: (error) => {
       toast.error(error.message);

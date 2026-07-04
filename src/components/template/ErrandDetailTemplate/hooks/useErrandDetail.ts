@@ -1,26 +1,38 @@
 import { useApplicationCreateMutation } from "@/hooks/quires/errand-application/useApplicationCreateMutation";
 import { useErrandDetailQuery } from "@/hooks/quires/errand/useErrandDetailMutation";
 import { useUser } from "@/store/useUserStore";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
+import { useState } from "react";
 
 export const useErrandDetail = () => {
-  const router = useRouter();
   const user = useUser();
   const { id } = useParams();
   const { mutate } = useApplicationCreateMutation();
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [message, setMessage] = useState<string>("")
   const { data, isPending } = useErrandDetailQuery(String(id));
-  const handleKaKaoOpenLink = (link: string) => {
-    router.push(link);
-  };
+
+  const handleIsOpen = () => {
+    setIsOpen((prev) => !prev);
+  }
 
   const handleSubmit = () => {
-    if (id) mutate(id as string);
+    if (id) {
+      mutate({ message, errandId: id as string })
+    };
   };
+  const handleChangeMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = e.target;
+    setMessage(value);
+  }
   return {
     data,
     uid: user.userId,
     isPending,
+    isOpen,
+    message,
+    handleChangeMessage,
+    handleIsOpen,
     handleSubmit,
-    handleKaKaoOpenLink,
   };
 };
