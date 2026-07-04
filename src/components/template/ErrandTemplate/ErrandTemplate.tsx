@@ -6,9 +6,10 @@ import { useErrandCategory } from "./hooks/useErrandCategory";
 import { useErrandListsQuery } from "@/hooks/quires/errand/useErrandListsQuery";
 import { useRequestTemplate } from "@/hooks/useRequestTemplate";
 import ErrandList from "@/components/Errand/ErrandList/ErrandList";
+import { useErrandTemplate } from "./hooks/useErrandTemplate";
 
 export default function ErrandTemplate() {
-  const { handleRouter } = useRequestTemplate();
+  const { handleRouter } = useErrandTemplate();
   const { listTabs, keyword, handleKeydown } = useErrandSearch();
   const { currentCategory, onCurrentCategory } = useErrandCategory();
   const { data } = useErrandListsQuery({ keyword, category: currentCategory });

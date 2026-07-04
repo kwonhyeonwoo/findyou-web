@@ -60,6 +60,7 @@ export const errandApi = {
 
   getMyErrand: async (): Promise<ErrandResponse[]> => {
     const response = await client.get<ErrandResponse[]>("/errand/my");
+    console.log("response", response);
     return response;
   },
 };

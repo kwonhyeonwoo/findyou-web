@@ -3,24 +3,38 @@ import { ErrandApplicationResponse } from "@/interfaces/errand_application.inter
 import { client } from "../client/clientApi";
 
 export const errandApplicationApi = {
-  create: async ({ message, errandId }: { message: string, errandId: string }): Promise<IResponse> => {
+  create: async ({
+    message,
+    errandId,
+  }: {
+    message: string;
+    errandId: string;
+  }): Promise<IResponse> => {
     const response = await client.post<IResponse>(
       `/errand-application/${errandId}`,
-      { message }
+      { message },
     );
     return response;
   },
 
-
   getMyApplications: async (): Promise<ErrandApplicationResponse[]> => {
-    const response = await client.get<ErrandApplicationResponse[]>('/errand-application/my');
+    const response = await client.get<ErrandApplicationResponse[]>(
+      "/errand-application/my",
+    );
     return response;
   },
 
-  postStatus: async (
-    { id, status }:
-      { id: string, status: "ACCEPTED" | "REJECTED" }) => {
-    const response = await client.post<IResponse>(`/errand-application/${id}/status`, { status })
+  postStatus: async ({
+    id,
+    status,
+  }: {
+    id: string;
+    status: "ACCEPTED" | "REJECTED";
+  }) => {
+    const response = await client.post<IResponse>(
+      `/errand-application/${id}/status`,
+      { status },
+    );
     return response;
-  }
+  },
 };

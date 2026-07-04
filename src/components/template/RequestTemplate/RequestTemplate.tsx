@@ -6,6 +6,7 @@ import ApplicantCard from "@/components/History/ApplicantCard/ApplicantCard";
 function RequestTemplate() {
   const { data, isOpen, currentIdx, handleRouter, handleApplicationStatus } =
     useRequestTemplate();
+  console.log("req", data);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {data?.map((item, idx) => (
