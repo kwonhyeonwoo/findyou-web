@@ -16,7 +16,6 @@ interface Props {
   btnText: string;
   applications?: ErrandApplicationResponse[];
   status: ErrandStatus;
-  appliedStatus?: ErrandApplicationStatus;
   createdAt: Date;
   Active: (idx: number) => void;
 }
@@ -29,7 +28,6 @@ function CustomHistoryCard({
   status,
   applications,
   btnText,
-  appliedStatus,
   createdAt,
   idx,
   Active,
@@ -40,11 +38,11 @@ function CustomHistoryCard({
       <CustomHistoryBody
         image={images?.[0]}
         title={title}
+        status={status}
         address_dong={address_dong}
         createdAt={createdAt}
         price={price}
-        applyStatus={appliedStatus}
-        appliedCount={applications?.length}
+        applications={applications}
       />
       <HistoryButton text={btnText} idx={idx} Active={Active} />
     </div>
