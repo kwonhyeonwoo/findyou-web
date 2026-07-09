@@ -23,8 +23,6 @@ export const errandApi = {
       });
     }
 
-    console.log("FormData 구성 완료, 요청을 보냅니다.");
-
     // ✨ [수정] 2번째 인자에는 오직 'formData' 객체만 딱 넘겨줍니다!
     // 만약 추가적인 헤더나 설정이 필요하다면 3번째 인자(options)로 넘깁니다.
     const response = await client.post<IResponse>("/errand", formData);
@@ -54,13 +52,17 @@ export const errandApi = {
   },
   getErrand: async (id: string): Promise<ErrandResponse> => {
     const response = await client.get<ErrandResponse>(`/errand/${id}`);
-    console.log("response", response);
     return response;
   },
 
   getMyErrand: async (): Promise<ErrandResponse[]> => {
     const response = await client.get<ErrandResponse[]>("/errand/my");
     console.log("response", response);
+    return response;
+  },
+
+  postComplete: async (id: string): Promise<IResponse> => {
+    const response = await client.post<IResponse>(`/errand/${id}/complete`);
     return response;
   },
 };

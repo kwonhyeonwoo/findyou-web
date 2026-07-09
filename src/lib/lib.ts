@@ -1,6 +1,8 @@
 "use client";
 
 import { ErrandCategory } from "@/schema/errand.schema";
+import { getRevalidateReason } from "next/dist/server/instrumentation/utils";
+import { Exo_2 } from "next/font/google";
 
 export const formattedPrice = (price: string) => {
   if (!price) return "";
@@ -81,4 +83,26 @@ export const STATUS_FILLTER = {
   completed: "완료",
   matching: "모집중",
   in_progress: "대기중",
+};
+export const formatDate = (isoString: Date) => {
+  if (!isoString) return ""; // 빈 값이 들어올 경우 예외 처리
+
+  const date = new Date(isoString);
+
+  const year = date.getFullYear();
+  // 월과 일은 1자리 수일 경우 앞에 '0'을 붙여줌 (예: 7 -> 07)
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
+export const formatDateTime = (isoString: Date) => {
+  if (!isoString) return "";
+  const date = new Date(isoString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  return `${year}.${month}.${day} ${hours}:${minutes}`;
 };

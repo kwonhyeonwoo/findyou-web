@@ -1,5 +1,5 @@
-import React from "react";
+import HelperProfileTemplate from "@/components/template/HelperProfileTemplate/HelperProfileTemplate";
 
 export default function page() {
-  return <div>page</div>;
+  return <HelperProfileTemplate />;
 }

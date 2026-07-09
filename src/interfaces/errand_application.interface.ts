@@ -17,6 +17,8 @@ export interface ErrandApplicationResponse {
   errand: ErrandResponse;
 
   status: ErrandApplicationStatus;
+
+  updatedAt: Date;
 }
 
 export interface ErrandApplicationStatusRequest {

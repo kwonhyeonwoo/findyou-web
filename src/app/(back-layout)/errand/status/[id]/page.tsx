@@ -1,7 +1,8 @@
+import ErrandStatusTemplate from "@/components/template/ErrandStatusTemplate/ErrandStatusTemplate";
 import React from "react";
 
 function Page() {
-  return <div>page</div>;
+  return <ErrandStatusTemplate />;
 }
 
 export default Page;
