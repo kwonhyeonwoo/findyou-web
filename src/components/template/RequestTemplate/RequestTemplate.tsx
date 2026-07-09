@@ -4,9 +4,8 @@ import { useRequestTemplate } from "@/hooks/useRequestTemplate";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
 import ApplicantCard from "@/components/History/ApplicantCard/ApplicantCard";
 function RequestTemplate() {
-  const { data, isOpen, currentIdx, handleRouter, handleApplicationStatus } =
+  const { data, isOpen, currentIdx, handleActive, handleApplicationStatus } =
     useRequestTemplate();
-  console.log("req", data);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {data?.map((item, idx) => (
@@ -15,11 +14,17 @@ function RequestTemplate() {
           {...item}
           idx={idx}
           applications={item?.applications}
-          btnText="지원자 목록"
-          Active={handleRouter}
+          btnText={
+            item.status === "matching"
+              ? "지원자 목록"
+              : item.status === "in_progress"
+                ? "진행 상황"
+                : "완료 내역"
+          }
+          Active={() => handleActive(idx, item)}
         />
       ))}
-      <Drawer open={isOpen} onOpenChange={() => handleRouter(null)}>
+      <Drawer open={isOpen} onOpenChange={() => handleActive(null)}>
         <DrawerContent className="m-auto max-w-120 gap-4 p-4">
           {data?.[currentIdx ?? 0]?.applications?.map((item) => (
             <ApplicantCard

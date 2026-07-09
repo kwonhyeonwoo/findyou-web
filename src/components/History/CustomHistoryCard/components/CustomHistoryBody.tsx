@@ -7,7 +7,6 @@ import { formatRelativeTime } from "@/lib/lib";
 import Image from "next/image";
 import AvatarStack from "./AvatarStack";
 import { ErrandStatus } from "@/interfaces/errand.interface";
-import { Divide } from "lucide-react";
 
 interface Props {
   image?: string | undefined;
@@ -60,10 +59,8 @@ function CustomHistoryBody({
           <p className="text-[13px] text-[#464554]">
             {formatRelativeTime(String(createdAt))}
           </p>
-          {status === "matching" ? (
-            <AvatarStack count={applications?.length ?? 0} />
-          ) : (
-            ""
+          {applications && status === "matching" && (
+            <AvatarStack count={applications?.length} />
           )}
         </div>
         {/* 가격, 상태 */}

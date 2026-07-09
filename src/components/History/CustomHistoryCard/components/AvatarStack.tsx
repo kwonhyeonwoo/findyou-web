@@ -3,7 +3,6 @@ interface Props {
 }
 
 function AvatarStack({ count }: Props) {
-  console.log("first", count);
   return (
     <div className="flex items-center">
       <div className="mr-1 flex -space-x-2">
