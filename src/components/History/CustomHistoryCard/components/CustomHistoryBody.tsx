@@ -1,8 +1,12 @@
 import StatusBox from "@/components/common/StatusBox/StatusBox";
-import { ErrandApplicationStatus } from "@/interfaces/errand_application.interface";
+import {
+  ErrandApplicationResponse,
+  ErrandApplicationStatus,
+} from "@/interfaces/errand_application.interface";
 import { formatRelativeTime } from "@/lib/lib";
 import Image from "next/image";
 import AvatarStack from "./AvatarStack";
+import { ErrandStatus } from "@/interfaces/errand.interface";
 
 interface Props {
   image?: string | undefined;
@@ -10,7 +14,8 @@ interface Props {
   address_dong: string;
   createdAt: Date;
   price: string;
-  appliedCount?: number;
+  status: ErrandStatus;
+  applications?: ErrandApplicationResponse[];
   applyStatus?: ErrandApplicationStatus;
 }
 
@@ -20,9 +25,11 @@ function CustomHistoryBody({
   address_dong,
   createdAt,
   price,
-  appliedCount,
+  applications,
+  status,
   applyStatus,
 }: Props) {
+  console.log("helper name", applications?.[0]?.helper?.name);
   return (
     <div className="flex gap-2">
       {image && (
@@ -52,10 +59,8 @@ function CustomHistoryBody({
           <p className="text-[13px] text-[#464554]">
             {formatRelativeTime(String(createdAt))}
           </p>
-          {appliedCount && appliedCount > 0 ? (
-            <AvatarStack appliedCount={appliedCount} />
-          ) : (
-            <div className="text-[12px] text-[#464554]">지원자 없음</div>
+          {applications && status === "matching" && (
+            <AvatarStack count={applications?.length} />
           )}
         </div>
         {/* 가격, 상태 */}

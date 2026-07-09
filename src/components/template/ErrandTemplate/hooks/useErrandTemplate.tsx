@@ -1,13 +1,10 @@
 import { useRouter } from "next/navigation";
-import { useGetMyErrandsQuery } from "./quires/errand/useGetMyErrandsQuery";
 
-export const useErrandCardRouter = () => {
+export const useErrandTemplate = () => {
   const router = useRouter();
-  const { data } = useGetMyErrandsQuery();
 
   const handleRouter = (id: string) => router.push(`/errand/${id}`);
   return {
-    data,
     handleRouter,
   };
 };

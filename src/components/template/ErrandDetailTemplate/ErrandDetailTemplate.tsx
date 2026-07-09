@@ -8,10 +8,27 @@ import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
 import { useSliderImg } from "./hooks/useSliderImg";
 import PaginationButton from "@/components/ErrandDetail/PaginationButton/PaginationButton";
 import DotIndicator from "@/components/common/DotIndicator/DotIndicator";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import ErrandMessageModal from "@/components/ErrandDetail/ErrandMessageModal/ErrandMessageModal";
 
 export default function ErrandDetailTemplate() {
-  const { data, uid, isPending, handleKaKaoOpenLink, handleSubmit } =
-    useErrandDetail();
+  const {
+    data,
+    uid,
+    isPending,
+    isOpen,
+    message,
+    handleSubmit,
+    handleIsOpen,
+    handleChangeMessage,
+  } = useErrandDetail();
   const { currentIndex, goToSlide, handleSlide } = useSliderImg(
     data?.images || [],
   );
@@ -95,11 +112,18 @@ export default function ErrandDetailTemplate() {
         <SubmitButton
           text="심부름 신청"
           isPending={isPending}
-          Active={handleSubmit}
+          Active={handleIsOpen}
           bgColor="bg-[#2A14B4]"
           isDisabled={data?.user?.id === uid ? true : false}
         />
       </div>
+      <ErrandMessageModal
+        isOpen={isOpen}
+        message={message}
+        handleIsOpen={handleIsOpen}
+        handleChangeMessage={handleChangeMessage}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 }
