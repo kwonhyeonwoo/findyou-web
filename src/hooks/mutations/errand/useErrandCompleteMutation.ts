@@ -14,5 +14,8 @@ export const useErrandCompleteMutation = (id: string) => {
       queryClient.invalidateQueries({ queryKey: ERRAND_KEYS.detail(id) });
       router.push(`/helper/review`);
     },
+    onError: (error) => {
+      toast.error(error.message);
+    },
   });
 };
