@@ -5,10 +5,27 @@ import ErrandHelperKaKao from "@/components/ErrandStatus/ErrandHelperKaKao";
 import ErrandStatusInfo from "@/components/ErrandStatus/ErrandStatusInfo";
 import ErrandStatusTitle from "@/components/ErrandStatus/ErrandStatusTitle";
 import { useErrandStatus } from "./hooks/useErrandStatus";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 const ErrandStatusTemplate = () => {
-  const { data, handleComplete, handleKaKaoOpenLink, handleProfileDetail } =
-    useErrandStatus();
+  const {
+    data,
+    isCompleteOpen,
+    setIsCompleteOpen,
+    handleComplete,
+    handleOpenCompleteModal,
+    handleKaKaoOpenLink,
+    handleProfileDetail,
+  } = useErrandStatus();
   if (!data) return;
   return (
     <div className="flex flex-col gap-6">
@@ -39,8 +56,27 @@ const ErrandStatusTemplate = () => {
         isDisabled={false}
         bgColor="bg-[#2A14B4]"
         isPending={false}
-        Active={handleComplete}
+        Active={handleOpenCompleteModal}
       />
+
+      <AlertDialog open={isCompleteOpen} onOpenChange={setIsCompleteOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>심부름을 완료하시겠습니까?</AlertDialogTitle>
+            <AlertDialogDescription>
+              이 작업은 되돌릴 수 없습니다. 수행자가 심부름을 완벽히 마쳤는지
+              확인해 주세요.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+
+          <AlertDialogFooter className="flex gap-2 sm:justify-center sm:space-x-0">
+            <AlertDialogCancel className="h-10 flex-1">취소</AlertDialogCancel>
+            <AlertDialogAction onClick={handleComplete} className="h-10 flex-1">
+              완료하기
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

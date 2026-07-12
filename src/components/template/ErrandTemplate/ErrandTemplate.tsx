@@ -4,7 +4,6 @@ import { useErrandSearch } from "./hooks/useErrandSearch";
 import CategoryTabs from "@/components/common/CategoryTabs/CategoryTabs";
 import { useErrandCategory } from "./hooks/useErrandCategory";
 import { useErrandListsQuery } from "@/hooks/quires/errand/useErrandListsQuery";
-import { useRequestTemplate } from "@/hooks/useRequestTemplate";
 import ErrandList from "@/components/Errand/ErrandList/ErrandList";
 import { useErrandTemplate } from "./hooks/useErrandTemplate";
 

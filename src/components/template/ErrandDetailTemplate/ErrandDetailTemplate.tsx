@@ -8,14 +8,6 @@ import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
 import { useSliderImg } from "./hooks/useSliderImg";
 import PaginationButton from "@/components/ErrandDetail/PaginationButton/PaginationButton";
 import DotIndicator from "@/components/common/DotIndicator/DotIndicator";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import ErrandMessageModal from "@/components/ErrandDetail/ErrandMessageModal/ErrandMessageModal";
 
 export default function ErrandDetailTemplate() {
