@@ -27,7 +27,7 @@ export const useClearUser = () => {
     return clearUser;
 }
 
-export const useUser = ()=>{
-    const user = useUserStore((state)=>state.user);
+export const useUser = () => {
+    const user = useUserStore((state) => state.user);
     return user;
 }
