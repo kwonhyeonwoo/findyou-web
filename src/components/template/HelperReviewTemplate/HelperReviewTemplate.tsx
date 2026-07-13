@@ -17,10 +17,11 @@ function HelperReviewTemplate() {
     handleReviewChange,
     handleHoverLeave,
     handleHoverRating,
+    handleReviewSubmit,
     handleRatingClicked,
   } = useHelperReview();
   return (
-    <div className="flex-col border">
+    <div className="h-full flex-col">
       <div className="flex-col border-b border-b-[#F2F2F2] pb-10">
         <div className="mt-8 flex flex-col items-center gap-2">
           <p className="text-[20px] font-bold text-[#111827]">
@@ -50,7 +51,7 @@ function HelperReviewTemplate() {
       <div className="mt-auto h-full border-t border-t-[#F2F2F2] pt-6">
         <SubmitButton
           text="후기등록"
-          Active={() => {}}
+          Active={handleReviewSubmit}
           isPending={false}
           isDisabled={false}
           bgColor="bg-[#2A14B4]"

@@ -1,18 +1,18 @@
 export const HELPER_REVIEW_TAGS = [
     {
-        id: 1,
+        type: "PUNCTUAL",
         name: "친절해요",
     },
     {
-        id: 2,
+        type: "KIND",
         name: "응답이빨라요",
     },
     {
-        id: 3,
+        type: "FAST",
         name: "시간을잘지켜요",
     },
     {
-        id: 4,
+        type: "GOOD_COMM",
         name: "신뢰도가있어요"
     }
 ];

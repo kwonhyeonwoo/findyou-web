@@ -13,18 +13,18 @@ function ReviewTagSelector({ selectedTags, onTagClick }: Props) {
       <div className="flex flex-col gap-4">
         {HELPER_REVIEW_TAGS.map((item) => (
           <button
-            onClick={() => onTagClick(item.name)}
-            key={item.id}
+            onClick={() => onTagClick(item.type)}
+            key={item.type}
             className="flex items-center gap-2"
           >
             <div
               className={`flex h-6 w-6 items-center justify-center rounded-full ${
-                selectedTags.includes(item.name)
+                selectedTags.includes(item.type)
                   ? "bg-black"
                   : "border border-[#E5E7EB] bg-white"
               }`}
             >
-              {selectedTags.includes(item.name) && (
+              {selectedTags.includes(item.type) && (
                 <Image
                   src="/icon/check-icon.svg"
                   alt={"check-icon"}
