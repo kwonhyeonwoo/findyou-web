@@ -1,21 +1,22 @@
 import { useWriteErrandMutation } from "@/hooks/quires/errand/useWriteErrandMutation";
+import { parsePrice } from "@/lib/lib";
 import { ErrandCategory, errandRegisterSchema, ErrandRegisterType } from "@/schema/errand.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 
 export const useWriteForm = () => {
-    const { 
-        control, 
-        formState: { errors , isValid}, 
-        register, 
-        handleSubmit, 
-        setValue, 
-        watch, 
+    const {
+        control,
+        formState: { errors, isValid },
+        register,
+        handleSubmit,
+        setValue,
+        watch,
     } = useForm<ErrandRegisterType>({
         resolver: zodResolver(errandRegisterSchema),
     });
-    const {mutate, isPending} = useWriteErrandMutation();
+    const { mutate, isPending } = useWriteErrandMutation();
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const handleWriteSubmit = (data: ErrandRegisterType) => {
         mutate(data);
@@ -29,7 +30,7 @@ export const useWriteForm = () => {
         setValue("price", rawValue);
     };
 
-    const handleIsOpen = ()=> setIsOpen(true);
+    const handleIsOpen = () => setIsOpen(true);
     return {
         control,
         isOpen,

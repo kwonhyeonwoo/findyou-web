@@ -1,12 +1,12 @@
 import { useReviewCreateMutation } from "@/hooks/mutations/review/useReviewCreateMutation";
+import { ReviewTag } from "@/interfaces/review.interface";
 import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 
 export const useHelperReview = () => {
   const [rating, setRating] = useState<number>(0);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedTags, setSelectedTags] = useState<ReviewTag[]>([]);
   const [review, setReview] = useState<string>("");
-  console.log('review', review);
   const [hoverRating, setHoverRating] = useState<number>(0);
   const searchParams = useSearchParams();
   const nickName = searchParams.get("nickName");
@@ -14,7 +14,7 @@ export const useHelperReview = () => {
   const { mutate } = useReviewCreateMutation();
 
 
-  const handleTagClick = (tag: string) => {
+  const handleTagClick = (tag: ReviewTag) => {
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((item) => item !== tag) : [...prev, tag],
     );
@@ -31,7 +31,8 @@ export const useHelperReview = () => {
   }
 
   const handleReviewSubmit = () => {
-    mutate({ data: { rating, tags: selectedTags, review }, errandId: String(id) });
+    console.log('selected', selectedTags)
+    mutate({ data: { rating, tags: selectedTags, content: review }, errandId: String(id) });
   }
   return {
     rating,

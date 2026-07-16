@@ -1,9 +1,10 @@
 import { HELPER_REVIEW_TAGS } from "@/constants/helper-review.constant";
+import { ReviewTag } from "@/interfaces/review.interface";
 import Image from "next/image";
 
 interface Props {
   selectedTags: string[];
-  onTagClick: (tag: string) => void;
+  onTagClick: (tag: ReviewTag) => void;
 }
 
 function ReviewTagSelector({ selectedTags, onTagClick }: Props) {

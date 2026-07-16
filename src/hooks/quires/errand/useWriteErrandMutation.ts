@@ -4,14 +4,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-export const useWriteErrandMutation = ()=>{
+export const useWriteErrandMutation = () => {
     const queryClient = useQueryClient();
     const router = useRouter();
     return useMutation({
-        mutationFn:errandApi.write,
-        onSuccess:(data)=>{
+        mutationFn: errandApi.write,
+        onSuccess: (data) => {
             queryClient.invalidateQueries({
-                queryKey:ERRAND_KEYS.errand,
+                queryKey: ERRAND_KEYS.lists(),
             })
             toast.success(data.message)
             router.push('/errand')

@@ -51,14 +51,14 @@ export function formatRelativeTime(dateString: string): string {
 }
 
 const CATEGORY_MAP: Record<ErrandCategory, string> = {
-  delivery: "배달",
-  shopping: "장보기",
-  cleaning: "청소",
-  repair: "수리",
-  proxy: "역할대행",
-  pet: "반려동물",
-  "car-wash": "세차",
-  etc: "기타",
+  DELIVERY: "배달",
+  SHOPPING: "장보기",
+  CLEANING: "청소",
+  REPAIR: "수리",
+  PROXY: "역할대행",
+  PET: "반려동물",
+  CAR_WASH: "세차",
+  ETC: "기타",
 };
 export function fillterCategory(category: ErrandCategory) {
   return CATEGORY_MAP[category] ?? "기타";
@@ -105,4 +105,8 @@ export const formatDateTime = (isoString: Date) => {
   const hours = String(date.getHours()).padStart(2, "0");
   const minutes = String(date.getMinutes()).padStart(2, "0");
   return `${year}.${month}.${day} ${hours}:${minutes}`;
+};
+
+export const parsePrice = (value: string) => {
+  return Number(value.replace(/[^\d]/g, ''));   // 숫자 아닌 건 다 제거
 };
