@@ -27,6 +27,7 @@ const ErrandStatusTemplate = () => {
     handleProfileDetail,
   } = useErrandStatus();
   if (!data) return;
+  console.log("data", data.applications);
   return (
     <div className="flex flex-col gap-6">
       <ErrandStatusTitle

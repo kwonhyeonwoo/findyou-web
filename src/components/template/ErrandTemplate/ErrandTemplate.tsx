@@ -22,7 +22,11 @@ export default function ErrandTemplate() {
             key={item.type}
             text={item.text}
             type={item.type}
-            isActive={currentCategory === item.type}
+            isActive={
+              item.type === "all"
+                ? !currentCategory
+                : currentCategory === item.type
+            }
             onCurrCategory={onCurrentCategory}
           />
         ))}

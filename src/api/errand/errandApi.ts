@@ -2,15 +2,17 @@ import { ErrandCategory, ErrandRegisterType } from "@/schema/errand.schema";
 import { client } from "../client/clientApi";
 import { IResponse } from "@/interfaces/response.interface";
 import { ErrandResponse } from "@/interfaces/errand.interface";
+import { parsePrice } from "@/lib/lib";
 
 export const errandApi = {
   write: async (data: ErrandRegisterType): Promise<IResponse> => {
+    console.log('price', typeof data.price)
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("category", data.category);
     formData.append("address", data.address);
     formData.append("address_dong", data.address_dong);
-    formData.append("price", String(data.price));
+    formData.append("price", String(parsePrice(data.price)));
     formData.append("openLink", data.openLink);
     formData.append("description", data.description);
     formData.append("lat", String(data.lat));
@@ -36,7 +38,7 @@ export const errandApi = {
     keyword,
   }: {
     limit?: string;
-    category?: ErrandCategory | "all";
+    category?: ErrandCategory;
     keyword?: string;
   }): Promise<ErrandResponse[]> => {
     const searchParams = new URLSearchParams();
@@ -46,8 +48,8 @@ export const errandApi = {
 
     const queryString = searchParams.toString();
     const requestUrl = `/errand${queryString ? `?${queryString}` : ""}`;
+    console.log('requestUrl', requestUrl)
     const response = await client.get<ErrandResponse[]>(requestUrl);
-    console.log("response", response);
     return response;
   },
   getErrand: async (id: string): Promise<ErrandResponse> => {

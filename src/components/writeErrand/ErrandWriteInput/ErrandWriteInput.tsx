@@ -8,7 +8,7 @@ interface Props {
   maxLength?: number;
   name: keyof ErrandRegisterType;
   value?: string;
-  readonly?:boolean;
+  readonly?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   register: UseFormRegister<ErrandRegisterType>;
 }

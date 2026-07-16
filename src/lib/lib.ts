@@ -51,38 +51,38 @@ export function formatRelativeTime(dateString: string): string {
 }
 
 const CATEGORY_MAP: Record<ErrandCategory, string> = {
-  delivery: "배달",
-  shopping: "장보기",
-  cleaning: "청소",
-  repair: "수리",
-  proxy: "역할대행",
-  pet: "반려동물",
-  "car-wash": "세차",
-  etc: "기타",
+  DELIVERY: "배달",
+  SHOPPING: "장보기",
+  CLEANING: "청소",
+  REPAIR: "수리",
+  PROXY: "역할대행",
+  PET: "반려동물",
+  CAR_WASH: "세차",
+  ETC: "기타",
 };
 export function fillterCategory(category: ErrandCategory) {
   return CATEGORY_MAP[category] ?? "기타";
 }
 
 export const STATUS_STYLES = {
-  matching: {
+  MATCHING: {
     bg: "bg-[#E7F5E8]",
     text: "text-[#2E7D32]",
   },
-  in_progress: {
+  IN_PROGRESS: {
     bg: "bg-[#E4DFFF]",
     text: "text-[#382ABF]",
   },
-  completed: {
+  COMPLETED: {
     bg: "bg-[#E3E2E2]",
     text: "text-[#464554]",
   },
 };
 
 export const STATUS_FILLTER = {
-  completed: "완료",
-  matching: "모집중",
-  in_progress: "대기중",
+  COMPLETED: "완료",
+  MATCHING: "모집중",
+  IN_PROGRESS: "대기중",
 };
 export const formatDate = (isoString: Date) => {
   if (!isoString) return ""; // 빈 값이 들어올 경우 예외 처리
@@ -105,4 +105,8 @@ export const formatDateTime = (isoString: Date) => {
   const hours = String(date.getHours()).padStart(2, "0");
   const minutes = String(date.getMinutes()).padStart(2, "0");
   return `${year}.${month}.${day} ${hours}:${minutes}`;
+};
+
+export const parsePrice = (value: string) => {
+  return Number(value.replace(/[^\d]/g, "")); // 숫자 아닌 건 다 제거
 };

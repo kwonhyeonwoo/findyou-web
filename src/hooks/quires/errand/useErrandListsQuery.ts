@@ -9,7 +9,7 @@ export const useErrandListsQuery = ({
   keyword,
 }: {
   limit?: string;
-  category?: ErrandCategory | "all";
+  category?: ErrandCategory;
   keyword?: string;
 }) => {
   return useQuery({
