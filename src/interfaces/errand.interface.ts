@@ -2,7 +2,7 @@ import { ErrandCategory } from "@/schema/errand.schema";
 import { UserResponse } from "./user.interface";
 import { ErrandApplicationResponse } from "./errand_application.interface";
 
-export type ErrandStatus = "matching" | "in_progress" | "completed";
+export type ErrandStatus = "MATCHING" | "IN_PROGRESS" | "COMPLETED";
 // matching: 모집중, in_progress: 진행중, completed: 완료
 
 export interface ILiveErrand {
@@ -28,5 +28,5 @@ export interface ErrandResponse {
   status: ErrandStatus;
   title: string;
   user: UserResponse;
-  applications: ErrandApplicationResponse[]
+  applications: ErrandApplicationResponse[];
 }

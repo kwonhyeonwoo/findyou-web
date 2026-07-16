@@ -65,24 +65,24 @@ export function fillterCategory(category: ErrandCategory) {
 }
 
 export const STATUS_STYLES = {
-  matching: {
+  MATCHING: {
     bg: "bg-[#E7F5E8]",
     text: "text-[#2E7D32]",
   },
-  in_progress: {
+  IN_PROGRESS: {
     bg: "bg-[#E4DFFF]",
     text: "text-[#382ABF]",
   },
-  completed: {
+  COMPLETED: {
     bg: "bg-[#E3E2E2]",
     text: "text-[#464554]",
   },
 };
 
 export const STATUS_FILLTER = {
-  completed: "완료",
-  matching: "모집중",
-  in_progress: "대기중",
+  COMPLETED: "완료",
+  MATCHING: "모집중",
+  IN_PROGRESS: "대기중",
 };
 export const formatDate = (isoString: Date) => {
   if (!isoString) return ""; // 빈 값이 들어올 경우 예외 처리
@@ -108,5 +108,5 @@ export const formatDateTime = (isoString: Date) => {
 };
 
 export const parsePrice = (value: string) => {
-  return Number(value.replace(/[^\d]/g, ''));   // 숫자 아닌 건 다 제거
+  return Number(value.replace(/[^\d]/g, "")); // 숫자 아닌 건 다 제거
 };

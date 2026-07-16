@@ -16,11 +16,9 @@ export default function CategoryTabs<T>({
       onClick={() => onCurrCategory(type)}
       type="button"
       className={`flex items-center justify-center rounded-full border px-4 py-2 text-[14px] ${
-        isActive || type === "all"
+        isActive
           ? "border-none bg-black font-bold text-white"
-          : isActive
-            ? "border-[#C7C4D7] text-[#464554]"
-            : "border-[#C7C4D7] text-[#464554]"
+          : "border-[#C7C4D7] text-[#464554]"
       }`}
     >
       {text}
