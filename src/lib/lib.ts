@@ -1,8 +1,5 @@
 "use client";
-
 import { ErrandCategory } from "@/schema/errand.schema";
-import { getRevalidateReason } from "next/dist/server/instrumentation/utils";
-import { Exo_2 } from "next/font/google";
 
 export const formattedPrice = (price: string) => {
   if (!price) return "";
@@ -109,4 +106,9 @@ export const formatDateTime = (isoString: Date) => {
 
 export const parsePrice = (value: string) => {
   return Number(value.replace(/[^\d]/g, "")); // 숫자 아닌 건 다 제거
+};
+
+export const formatPriceNumber = (price: number) => {
+  if (!price) return "";
+  return `${String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원`;
 };

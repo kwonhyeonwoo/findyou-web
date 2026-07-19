@@ -1,3 +1,4 @@
+import { formatPriceNumber } from "@/lib/lib";
 import Deadline from "../Deadline/Deadline";
 
 interface Props {
@@ -12,7 +13,9 @@ export default function ErrandContent({ title, price, description }: Props) {
       {/* 제목 , 가격*/}
       <div className="border-b border-b-[#C7C4D7] pb-3">
         <h2 className="text-[24px] text-[#1B1C1C]">{title}</h2>
-        <p className="text-[24px] font-bold text-[#170083]">{price}</p>
+        <p className="text-[24px] font-bold text-[#170083]">
+          {formatPriceNumber(Number(price))}
+        </p>
       </div>
       {/* 내용 */}
       <div className="flex flex-col gap-8 pt-3">
