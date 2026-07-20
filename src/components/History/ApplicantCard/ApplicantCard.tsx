@@ -27,7 +27,7 @@ function ApplicantCard({
       isDisabled: false,
       bgColor: "bg-gray-100",
       textColor: "text-gray-600",
-      Active: () => handleApplicationStatus(id, "REJECTED"),
+      onClick: () => handleApplicationStatus(id, "REJECTED"),
     },
     {
       text: "수락",
@@ -35,7 +35,7 @@ function ApplicantCard({
       isDisabled: false,
       bgColor: "bg-black",
       textColor: "text-white",
-      Active: () => handleApplicationStatus(id, "ACCEPTED"),
+      onClick: () => handleApplicationStatus(id, "ACCEPTED"),
     },
   ];
   return (
@@ -92,7 +92,7 @@ function ApplicantCard({
               isDisabled={item.isDisabled}
               bgColor={item.bgColor}
               textColor={item.textColor}
-              Active={item.Active}
+              onClick={item.onClick}
             />
           ))}
         </div>

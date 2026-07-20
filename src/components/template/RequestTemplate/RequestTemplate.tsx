@@ -22,7 +22,7 @@ function RequestTemplate() {
                 ? "진행 상황"
                 : "완료 내역"
           }
-          Active={() => handleActive(idx, item)}
+          onClick={() => handleActive(idx, item)}
         />
       ))}
       <Drawer open={isOpen} onOpenChange={() => handleActive(null)}>

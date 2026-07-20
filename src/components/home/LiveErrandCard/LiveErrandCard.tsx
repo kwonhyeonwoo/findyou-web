@@ -1,5 +1,5 @@
-import { ErrandResponse } from "@/interfaces/errand.interface";
-import { formatRelativeTime } from "@/lib/lib";
+import { ErrandResponse, ErrandStatus } from '@/interfaces/errand.interface';
+import { formatPriceNumber, formatRelativeTime } from '@/lib/lib';
 
 export default function LiveErrandCard({
   status,
@@ -11,24 +11,26 @@ export default function LiveErrandCard({
   const bottomArr = [
     {
       text: address_dong,
-      img: "address",
+      img: 'address',
     },
     {
       text: formatRelativeTime(String(createdAt)),
-      img: "time",
+      img: 'time',
     },
   ];
   return (
     <div className="flex w-full flex-col justify-center gap-2 rounded-[12px] border border-[#EEEEEE] px-4 py-4">
       <div className="flex items-center justify-between">
-        <div className="rounded-[8px] bg-[#F0EEFF] px-2 py-[2px] text-[10px] text-[#2A14B4]">
-          {status === "matching"
-            ? "모집중"
-            : status === "in_progress"
-              ? "진행중"
-              : "완료"}
+        <div className="rounded-[8px] bg-teal-light px-2 py-[2px] text-[10px] text-teal-primary">
+          {status === ErrandStatus.MATCHING
+            ? '모집중'
+            : status === ErrandStatus.IN_PROGRESS
+              ? '진행중'
+              : '완료'}
         </div>
-        <p className="text-[18px] font-bold">{price}</p>
+        <p className="text-[18px] font-bold">
+          {formatPriceNumber(Number(price))}
+        </p>
       </div>
       <p>{title}</p>
       <div className="flex items-center gap-3">
