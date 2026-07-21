@@ -1,8 +1,8 @@
 interface Props<T> {
   text: string;
-  type: T | "all";
+  type: T ;
   isActive: boolean;
-  onCurrCategory: (type: T | "all") => void;
+  onCurrCategory: (type: T ) => void;
 }
 
 export default function CategoryTabs<T>({

@@ -1,5 +1,5 @@
-import { ErrandRegisterType } from "@/schema/errand.schema";
-import { UseFormRegister } from "react-hook-form";
+import { ErrandRegisterType } from '@/schema/errand.schema';
+import { UseFormRegister } from 'react-hook-form';
 
 interface Props {
   label: string;
@@ -37,7 +37,7 @@ export default function ErrandWriteInput({
         {...(onChange && { onChange })}
         placeholder={placeholder}
         className={`w-full flex-1 rounded-[8px] border border-[#C7C4D7] px-4 py-3 ${
-          readonly ? "cursor-pointer bg-gray-50" : "" // 읽기전용일 때 마우스 커서 스타일 스타일링
+          readonly ? 'cursor-pointer bg-gray-50' : '' // 읽기전용일 때 마우스 커서 스타일 스타일링
         }`}
       />
     </div>
