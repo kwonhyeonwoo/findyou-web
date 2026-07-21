@@ -3,9 +3,9 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import Image from "next/image";
-import { Address, DaumPostcodeEmbed } from "react-daum-postcode";
+} from '@/components/ui/dialog';
+import Image from 'next/image';
+import { Address, DaumPostcodeEmbed } from 'react-daum-postcode';
 
 interface Props {
   isOpen: boolean;
@@ -28,7 +28,7 @@ export default function SearchAddress({
         </DialogHeader>
         <button
           onClick={handleLocation}
-          className="flex w-full items-center gap-2 rounded-[12px] bg-[#2A14B4] p-3 text-white"
+          className="flex w-full items-center gap-2 rounded-[12px] bg-teal-primary p-3 text-white"
         >
           <Image src="/address/gps.svg" width={22} height={22} alt="gps" />
           <p>현재위치 설정</p>
@@ -36,7 +36,7 @@ export default function SearchAddress({
         <div className="mt-2 h-[500px] w-full overflow-hidden rounded-md border">
           <DaumPostcodeEmbed
             onComplete={handleComplete}
-            style={{ height: "100%" }}
+            style={{ height: '100%' }}
           />
         </div>
       </DialogContent>

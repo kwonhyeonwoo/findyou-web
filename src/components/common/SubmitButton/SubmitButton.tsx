@@ -6,7 +6,7 @@ interface Props {
   isDisabled: boolean;
   bgColor?: string;
   textColor?: string;
-  Active?: () => void;
+  onClick?: () => void;
 }
 
 export default function SubmitButton({
@@ -15,11 +15,11 @@ export default function SubmitButton({
   isPending,
   isDisabled,
   textColor,
-  Active,
+  onClick,
 }: Props) {
   return (
     <button
-      onClick={Active && Active}
+      onClick={onClick}
       disabled={isDisabled}
       type="submit"
       className={`w-full rounded-[12px] py-4 font-bold transition-colors duration-200 ${

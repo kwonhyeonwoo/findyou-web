@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import StarRating from "@/components/HelperReview/StarRating";
-import { useHelperReview } from "./hooks/useHelperReview";
-import ReviewTagSelector from "@/components/HelperReview/ReviewTagSelector";
-import HelperReviewTextarea from "@/components/HelperReview/HelperReviewTextarea";
-import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
+import StarRating from '@/components/HelperReview/StarRating';
+import { useHelperReview } from './hooks/useHelperReview';
+import ReviewTagSelector from '@/components/HelperReview/ReviewTagSelector';
+import HelperReviewTextarea from '@/components/HelperReview/HelperReviewTextarea';
+import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
 
 function HelperReviewTemplate() {
   const {
@@ -51,10 +51,10 @@ function HelperReviewTemplate() {
       <div className="mt-auto h-full border-t border-t-[#F2F2F2] pt-6">
         <SubmitButton
           text="후기등록"
-          Active={handleReviewSubmit}
+          onClick={handleReviewSubmit}
           isPending={false}
           isDisabled={false}
-          bgColor="bg-[#2A14B4]"
+          bgColor="bg-teal-primary"
         />
       </div>
     </div>

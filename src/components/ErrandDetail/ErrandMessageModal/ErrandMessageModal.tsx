@@ -4,7 +4,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 
 interface Props {
   isOpen: boolean;
@@ -37,7 +37,7 @@ function ErrandMessageModal({
               value={message}
               onChange={handleChangeMessage}
               maxLength={100}
-              className="h-40 w-full resize-none rounded-[8px] p-2 focus-visible:ring-[#2A14B4]"
+              className="h-40 w-full resize-none rounded-[8px] p-2 focus-visible:ring-teal-primary"
             />
             <span className="absolute right-2 bottom-2 text-[12px] text-[#8B95A1]">
               {message?.length || 0} / 100
@@ -55,7 +55,7 @@ function ErrandMessageModal({
           <button
             onClick={handleSubmit}
             // disabled={isPending || !message?.trim()}
-            className="rounded-[8px] bg-[#2A14B4] px-4 py-2 text-[14px] font-medium text-white disabled:opacity-50"
+            className="rounded-[8px] bg-teal-primary px-4 py-2 text-[14px] font-medium text-white disabled:opacity-50"
           >
             지원완료
           </button>

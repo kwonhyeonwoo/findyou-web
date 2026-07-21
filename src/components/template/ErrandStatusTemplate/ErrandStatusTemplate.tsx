@@ -1,10 +1,10 @@
-"use client";
-import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
-import ErrandHelper from "@/components/ErrandStatus/ErrandHelper";
-import ErrandHelperKaKao from "@/components/ErrandStatus/ErrandHelperKaKao";
-import ErrandStatusInfo from "@/components/ErrandStatus/ErrandStatusInfo";
-import ErrandStatusTitle from "@/components/ErrandStatus/ErrandStatusTitle";
-import { useErrandStatus } from "./hooks/useErrandStatus";
+'use client';
+import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
+import ErrandHelper from '@/components/ErrandStatus/ErrandHelper';
+import ErrandHelperKaKao from '@/components/ErrandStatus/ErrandHelperKaKao';
+import ErrandStatusInfo from '@/components/ErrandStatus/ErrandStatusInfo';
+import ErrandStatusTitle from '@/components/ErrandStatus/ErrandStatusTitle';
+import { useErrandStatus } from './hooks/useErrandStatus';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,7 +14,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+} from '@/components/ui/alert-dialog';
 
 const ErrandStatusTemplate = () => {
   const {
@@ -26,8 +26,7 @@ const ErrandStatusTemplate = () => {
     handleKaKaoOpenLink,
     handleProfileDetail,
   } = useErrandStatus();
-  if (!data) return;
-  console.log("data", data.applications);
+  if (!data) return null;
   return (
     <div className="flex flex-col gap-6">
       <ErrandStatusTitle
@@ -55,9 +54,9 @@ const ErrandStatusTemplate = () => {
       <SubmitButton
         text="심부름 완료"
         isDisabled={false}
-        bgColor="bg-[#2A14B4]"
+        bgColor="bg-teal-primary"
         isPending={false}
-        Active={handleOpenCompleteModal}
+        onClick={handleOpenCompleteModal}
       />
 
       <AlertDialog open={isCompleteOpen} onOpenChange={setIsCompleteOpen}>

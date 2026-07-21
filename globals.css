@@ -1,0 +1,9 @@
+/* globals.css */
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #0aa39a;
+  --color-primary-light: #e6f7f4;
+  --color-primary-border: #d7f0ec;
+  --color-background: #f3f4f6;
+}

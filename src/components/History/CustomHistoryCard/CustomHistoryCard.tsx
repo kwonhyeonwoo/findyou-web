@@ -1,8 +1,8 @@
-import { ErrandStatus } from "@/interfaces/errand.interface";
-import CustomHistoryHeader from "./components/CustomHistoryHeader";
-import CustomHistoryBody from "./components/CustomHistoryBody";
-import { ErrandApplicationResponse } from "@/interfaces/errand_application.interface";
-import HistoryButton from "./components/HistoryButton";
+import { ErrandStatus } from '@/interfaces/errand.interface';
+import CustomHistoryHeader from './components/CustomHistoryHeader';
+import CustomHistoryBody from './components/CustomHistoryBody';
+import { ErrandApplicationResponse } from '@/interfaces/errand_application.interface';
+import HistoryButton from './components/HistoryButton';
 
 interface Props {
   idx: number;
@@ -14,7 +14,7 @@ interface Props {
   applications?: ErrandApplicationResponse[];
   status: ErrandStatus;
   createdAt: Date;
-  Active: () => void;
+  onClick: () => void;
 }
 
 function CustomHistoryCard({
@@ -27,7 +27,7 @@ function CustomHistoryCard({
   btnText,
   createdAt,
   idx,
-  Active,
+  onClick,
 }: Props) {
   return (
     <div className="flex w-full flex-col justify-center gap-3 rounded-[12px] border border-[#E3E2E2] p-4">
@@ -41,7 +41,7 @@ function CustomHistoryCard({
         price={price}
         applications={applications}
       />
-      <HistoryButton text={btnText} idx={idx} Active={Active} />
+      <HistoryButton text={btnText} idx={idx} onClick={onClick} />
     </div>
   );
 }

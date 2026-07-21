@@ -12,7 +12,7 @@ function ApplicationTemplate() {
           {...item.errand}
           key={item.id}
           appliedStatus={item.status}
-          Active={handleActive}
+          onClick={handleActive}
           btnText="심부름 상세"
         />
       ))}

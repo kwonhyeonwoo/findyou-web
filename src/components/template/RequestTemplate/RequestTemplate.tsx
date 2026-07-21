@@ -3,6 +3,7 @@ import CustomHistoryCard from "@/components/History/CustomHistoryCard/CustomHist
 import { useRequestTemplate } from "@/hooks/useRequestTemplate";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
 import ApplicantCard from "@/components/History/ApplicantCard/ApplicantCard";
+import { ErrandStatus } from "@/interfaces/errand.interface";
 function RequestTemplate() {
   const { data, isOpen, currentIdx, handleActive, handleApplicationStatus } =
     useRequestTemplate();
@@ -15,13 +16,13 @@ function RequestTemplate() {
           idx={idx}
           applications={item?.applications}
           btnText={
-            item.status === "matching"
+            item.status === ErrandStatus.MATCHING
               ? "지원자 목록"
-              : item.status === "in_progress"
+              : item.status === ErrandStatus.IN_PROGRESS
                 ? "진행 상황"
                 : "완료 내역"
           }
-          Active={() => handleActive(idx, item)}
+          onClick={() => handleActive(idx, item)}
         />
       ))}
       <Drawer open={isOpen} onOpenChange={() => handleActive(null)}>

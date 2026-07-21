@@ -1,13 +1,13 @@
-"use client";
-import { useErrandDetail } from "./hooks/useErrandDetail";
-import ErrandContent from "@/components/ErrandDetail/ErrandContent/ErrandContent";
-import AddressCard from "@/components/Errand/AddressCard";
-import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
-import { useSliderImg } from "./hooks/useSliderImg";
-import ErrandMessageModal from "@/components/ErrandDetail/ErrandMessageModal/ErrandMessageModal";
-import ErrandImage from "@/components/ErrandDetail/ErrandImage/ErrandImage";
-import ErrandDetailProfile from "@/components/ErrandDetail/ErrandDetailProfile/ErrandDetailProfile";
-import ErrandCategoryStatus from "@/components/ErrandDetail/ErrandCategoryStatus/ErrandCategoryStatus";
+'use client';
+import { useErrandDetail } from './hooks/useErrandDetail';
+import ErrandContent from '@/components/ErrandDetail/ErrandContent/ErrandContent';
+import AddressCard from '@/components/Errand/AddressCard';
+import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
+import { useSliderImg } from './hooks/useSliderImg';
+import ErrandMessageModal from '@/components/ErrandDetail/ErrandMessageModal/ErrandMessageModal';
+import ErrandImage from '@/components/ErrandDetail/ErrandImage/ErrandImage';
+import ErrandDetailProfile from '@/components/ErrandDetail/ErrandDetailProfile/ErrandDetailProfile';
+import ErrandCategoryStatus from '@/components/ErrandDetail/ErrandCategoryStatus/ErrandCategoryStatus';
 
 export default function ErrandDetailTemplate() {
   const {
@@ -23,7 +23,7 @@ export default function ErrandDetailTemplate() {
   const { currentIndex, goToSlide, handleSlide } = useSliderImg(
     data?.images || [],
   );
-  if (!data) return;
+  if (!data) return null;
   return (
     <div className="flex min-h-screen flex-col items-center gap-6 pb-20">
       {/* 이미지 */}
@@ -57,8 +57,8 @@ export default function ErrandDetailTemplate() {
         <SubmitButton
           text="심부름 신청"
           isPending={isPending}
-          Active={handleIsOpen}
-          bgColor="bg-[#2A14B4]"
+          onClick={handleIsOpen}
+          bgColor="bg-teal-primary"
           isDisabled={data?.user?.id === uid ? true : false}
         />
       </div>

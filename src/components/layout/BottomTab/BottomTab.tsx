@@ -1,7 +1,7 @@
-"use client";
-import { BOTTOM_TAB } from "@/constants/bottom-tab.constants";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+'use client';
+import { BOTTOM_TAB } from '@/constants/bottom-tab.constants';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function BottomTab() {
   const pathname = usePathname();
@@ -17,11 +17,14 @@ export default function BottomTab() {
               className="flex flex-col items-center gap-1"
             >
               <img
-                src={`/bottom-tab/${icon}${isActive ? "_active" : ""}.svg`}
+                src={`/bottom-tab/${icon}${isActive ? '_active' : ''}.svg`}
                 alt={icon}
+                width={18}
+                height={18}
+                className="transition-all duration-300 ease-out"
               />
               <p
-                className={`text-[14px] font-bold text-[${isActive ? "#2A14B4" : "#464554"}]`}
+                className={`text-[14px] font-bold ${isActive ? 'text-teal-primary' : 'text-[#464554]'} `}
               >
                 {text}
               </p>

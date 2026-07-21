@@ -1,8 +1,8 @@
-"use client";
-import { HISTORY_TAB } from "@/constants/history-constant";
-import Link from "next/link";
-import { useHistoryTab } from "./hooks/useHistoryTab";
-import { useParams, usePathname } from "next/navigation";
+'use client';
+import { HISTORY_TAB } from '@/constants/history-constant';
+import Link from 'next/link';
+import { useHistoryTab } from './hooks/useHistoryTab';
+import { useParams, usePathname } from 'next/navigation';
 
 function HistoryTab() {
   const { pathname } = useHistoryTab();
@@ -11,7 +11,7 @@ function HistoryTab() {
       {HISTORY_TAB.map(({ type, text, link }) => (
         <Link
           href={link}
-          className={`flex flex-1 items-center justify-center p-4 ${pathname.slice(9) === type && "border-b-2 border-b-[#2A14B4]"} `}
+          className={`flex flex-1 items-center justify-center p-4 ${pathname.slice(9) === type && 'border-b-2 border-b-teal-primary'} `}
           key={type}
         >
           <p className="text-[18px] font-medium">{text}</p>

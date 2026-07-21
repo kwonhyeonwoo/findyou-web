@@ -3,7 +3,7 @@ import {
   ErrandApplicationResponse,
   ErrandApplicationStatus,
 } from "@/interfaces/errand_application.interface";
-import { formatRelativeTime } from "@/lib/lib";
+import { formatPriceNumber, formatRelativeTime } from "@/lib/lib";
 import Image from "next/image";
 import AvatarStack from "./AvatarStack";
 import { ErrandStatus } from "@/interfaces/errand.interface";
@@ -29,7 +29,6 @@ function CustomHistoryBody({
   status,
   applyStatus,
 }: Props) {
-  console.log("helper name", applications?.[0]?.helper?.name);
   return (
     <div className="flex gap-2">
       {image && (
@@ -59,13 +58,13 @@ function CustomHistoryBody({
           <p className="text-[13px] text-[#464554]">
             {formatRelativeTime(String(createdAt))}
           </p>
-          {applications && status === "matching" && (
+          {applications && status === ErrandStatus.MATCHING && (
             <AvatarStack count={applications?.length} />
           )}
         </div>
         {/* 가격, 상태 */}
         <div className="flex items-center gap-1">
-          <p className="font-bold">{price}</p>
+          <p className="font-bold">{formatPriceNumber(Number(price))}</p>
           {applyStatus && <StatusBox status={applyStatus} />}
         </div>
       </div>
