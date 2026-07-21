@@ -51,6 +51,7 @@
   --color-teal-primary: var(--color-teal-primary);
   --color-teal-light: var(--color-teal-light);
   --color-teal-border: var(--color-teal-border);
+  --color-basic-border: var(--color-basic-border);
 }
 button {
   cursor: pointer;
@@ -100,6 +101,7 @@ input {
   --color-teal-primary: #0aa39a;
   --color-teal-light: #e6f7f4;
   --color-teal-border: #d7f0ec;
+  --color-basic-border: #c7c4d7;
 }
 
 .dark {
