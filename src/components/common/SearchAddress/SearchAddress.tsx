@@ -28,7 +28,7 @@ export default function SearchAddress({
         </DialogHeader>
         <button
           onClick={handleLocation}
-          className="flex w-full items-center gap-2 rounded-[12px] bg-teal-primary p-3 text-white"
+          className="bg-teal-primary flex w-full items-center gap-2 rounded-[12px] p-3 text-white"
         >
           <Image src="/address/gps.svg" width={22} height={22} alt="gps" />
           <p>현재위치 설정</p>

@@ -19,14 +19,14 @@ export const useSearchAddress = <T extends FieldValues>({
 
   const fetchAddress = async (lat: number, lng: number) => {
     try {
-      const KAKAO_REST_KEY = 'ce65c42e8c262ea24a6920571629055d'; // 💡 실제로는 .env에 넣는걸 추천!
+      // const KAKAO_REST_KEY = 'ce65c42e8c262ea24a6920571629055d';
 
       // 카카오 API는 x가 경도(lng), y가 위도(lat)입니다. 순서 주의!
       const res = await fetch(
         `https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${lng}&y=${lat}`,
         {
           headers: {
-            Authorization: `KakaoAK ${KAKAO_REST_KEY}`,
+            Authorization: `KakaoAK ${process.env.NEXT_PUBLIC_KAKAO_REST_KEY}`,
           },
         },
       );

@@ -1,11 +1,11 @@
-import { ErrandCategory } from "@/schema/errand.schema";
-import { UserResponse } from "./user.interface";
-import { ErrandApplicationResponse } from "./errand_application.interface";
+import { ErrandCategory } from '@/schema/errand.schema';
+import { UserResponse } from './user.interface';
+import { ErrandApplicationResponse } from './errand_application.interface';
 
 export enum ErrandStatus {
-  MATCHING = "MATCHING",
-  IN_PROGRESS = "IN_PROGRESS",
-  COMPLETED = "COMPLETED"
+  MATCHING = 'MATCHING',
+  IN_PROGRESS = 'IN_PROGRESS',
+  COMPLETED = 'COMPLETED',
 }
 // matching: 모집중, in_progress: 진행중, completed: 완료
 
@@ -32,5 +32,6 @@ export interface ErrandResponse {
   status: ErrandStatus;
   title: string;
   user: UserResponse;
+  deadlineTime: Date;
   applications: ErrandApplicationResponse[];
 }

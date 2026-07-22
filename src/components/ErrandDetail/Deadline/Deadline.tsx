@@ -1,8 +1,9 @@
-import Image from "next/image";
-import React from "react";
+import { formatMeridiemTime } from '@/lib/lib';
+import Image from 'next/image';
+import React from 'react';
 
 interface Props {
-  deadline: string;
+  deadline: Date;
 }
 export default function Deadline({ deadline }: Props) {
   return (
@@ -13,7 +14,7 @@ export default function Deadline({ deadline }: Props) {
         width={15}
         height={15}
       />
-      <p className="text-[14px]">마감시간: {deadline}</p>
+      <p className="text-[14px]">마감시간: {formatMeridiemTime(deadline)}</p>
     </div>
   );
 }
