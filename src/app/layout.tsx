@@ -26,9 +26,10 @@ export default function MainLayout({
       <body className="flex min-h-full flex-col text-gray-900">
         <Providers>
           <Script
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=61b7f2dfd33a2a2488631c2308b8ee38&libraries=services"
+            src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&libraries=services,clusterer`}
             strategy="beforeInteractive"
           />
+
           {children}
           <Toaster
             toastOptions={{

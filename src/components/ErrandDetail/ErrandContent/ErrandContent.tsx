@@ -1,13 +1,19 @@
-import { formatPriceNumber } from "@/lib/lib";
-import Deadline from "../Deadline/Deadline";
+import { formatPriceNumber } from '@/lib/lib';
+import Deadline from '../Deadline/Deadline';
 
 interface Props {
   title: string;
   price: string;
   description: string;
+  deadlineTime: Date;
 }
 
-export default function ErrandContent({ title, price, description }: Props) {
+export default function ErrandContent({
+  title,
+  price,
+  description,
+  deadlineTime,
+}: Props) {
   return (
     <div className="flex w-full flex-col gap-6">
       {/* 제목 , 가격*/}
@@ -19,7 +25,7 @@ export default function ErrandContent({ title, price, description }: Props) {
       </div>
       {/* 내용 */}
       <div className="flex flex-col gap-8 pt-3">
-        <Deadline deadline="오후 8시까지" />
+        <Deadline deadline={deadlineTime} />
         <div>
           <span className="text-[12px] text-[#777586]">상세내용</span>
           <div className="pt-3 leading-normal whitespace-pre-wrap text-[#1B1C1C]">
