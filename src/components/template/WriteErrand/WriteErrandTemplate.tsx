@@ -24,7 +24,6 @@ export default function WriteErrandTemplate() {
     handleSubmit,
     useWatch,
     setValue,
-    handleCurrCategory,
     handleWriteSubmit,
     handlePriceChange,
   } = useWriteForm();
@@ -43,20 +42,7 @@ export default function WriteErrandTemplate() {
       onSubmit={handleSubmit(handleWriteSubmit)}
     >
       {/* 카테고리 선택 */}
-      <div className="flex flex-col gap-2">
-        <p className="text-[12px] text-[#464554]">카테고리 선택</p>
-        <div className="flex flex-wrap gap-2">
-          {CATEGORY_TABS.map((item) => (
-            <CategoryTabs
-              key={item.type}
-              {...item}
-              isActive={item.type === currCategory}
-              onCurrCategory={handleCurrCategory}
-            />
-          ))}
-        </div>
-      </div>
-
+      <CategoryTabs currCategory={currCategory} setValue={setValue} />
       {/* 제목 */}
       <ErrandWriteInput
         label="제목"

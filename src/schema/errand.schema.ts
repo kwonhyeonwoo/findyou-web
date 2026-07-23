@@ -1,14 +1,6 @@
+import { ERRAND_CATEGORIES } from '@/interfaces/category.enum';
 import { z } from 'zod';
-export const ERRAND_CATEGORIES = [
-  'DELIVERY',
-  'SHOPPING',
-  'CLEANING',
-  'REPAIR',
-  'PROXY',
-  'PET',
-  'CAR_WASH',
-  'ETC',
-] as const;
+
 export const errandRegisterSchema = z.object({
   category: z.enum(ERRAND_CATEGORIES),
   title: z

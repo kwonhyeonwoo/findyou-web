@@ -1,7 +1,6 @@
 import { useWriteErrandMutation } from '@/hooks/quires/errand/useWriteErrandMutation';
-import { parsePrice } from '@/lib/lib';
+import { ERRAND_CATEGORIES } from '@/interfaces/category.enum';
 import {
-  ErrandCategory,
   errandRegisterSchema,
   ErrandRegisterType,
 } from '@/schema/errand.schema';
@@ -23,11 +22,7 @@ export const useWriteForm = () => {
   const { mutate, isPending } = useWriteErrandMutation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleWriteSubmit = (data: ErrandRegisterType) => {
-    console.log('data', typeof data.deadlineTime);
     mutate(data);
-  };
-  const handleCurrCategory = (type: ErrandCategory) => {
-    setValue('category', type);
   };
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +41,6 @@ export const useWriteForm = () => {
     useWatch,
     register,
     handleSubmit,
-    handleCurrCategory,
     handleWriteSubmit,
     setValue,
     watch,

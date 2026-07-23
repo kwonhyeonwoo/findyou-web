@@ -18,13 +18,13 @@ export default function FloatingActionBtn() {
     >
       <div className="relative w-14">
         {isOpen && (
-          <div className="absolute border  border-priamry-border rounded-2xl rounded-2x bottom-full right-0 mb-3 flex flex-col items-end w-max">
+          <div className="border-priamry-border rounded-2x absolute right-0 bottom-full mb-3 flex w-max flex-col items-end rounded-2xl border">
             <Link
               href={'/errand/write'}
-              className="flex items-center gap-2  rounded-2xl bg-popover px-4 py-2 w-39 text-sm text-popover-foreground "
+              className="bg-popover text-popover-foreground flex w-39 items-center gap-2 rounded-2xl px-4 py-2 text-sm"
               onClick={handleFloatingBtnClick}
             >
-              <div className="w-10 h-10 flex justify-center items-center  rounded-full bg-teal-light">
+              <div className="bg-teal-light flex h-10 w-10 items-center justify-center rounded-full">
                 <Image
                   src="/floating/helper.svg"
                   alt="plus"
@@ -36,11 +36,11 @@ export default function FloatingActionBtn() {
             </Link>
 
             <Link
-              href={'/account'}
-              className="flex items-center rounded-2xl gap-2 w-39  bg-popover px-4 py-2 text-sm text-popover-foreground "
+              href={'/helper/write'}
+              className="bg-popover text-popover-foreground flex w-39 items-center gap-2 rounded-2xl px-4 py-2 text-sm"
               onClick={handleFloatingBtnClick}
             >
-              <div className="w-10 h-10 flex justify-center items-center  rounded-full bg-teal-light">
+              <div className="bg-teal-light flex h-10 w-10 items-center justify-center rounded-full">
                 <Image
                   src="/floating/errand.svg"
                   alt="plus"
@@ -57,7 +57,7 @@ export default function FloatingActionBtn() {
           type="button"
           aria-label="actions"
           onClick={handleFloatingBtnClick}
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-teal-primary shadow-lg"
+          className="bg-teal-primary flex h-14 w-14 items-center justify-center rounded-full shadow-lg"
         >
           <Image src="/icon/plus.svg" alt="plus" width={18} height={18} />
         </button>
