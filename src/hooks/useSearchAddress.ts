@@ -19,8 +19,6 @@ export const useSearchAddress = <T extends FieldValues>({
 
   const fetchAddress = async (lat: number, lng: number) => {
     try {
-      // const KAKAO_REST_KEY = 'ce65c42e8c262ea24a6920571629055d';
-
       // 카카오 API는 x가 경도(lng), y가 위도(lat)입니다. 순서 주의!
       const res = await fetch(
         `https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${lng}&y=${lat}`,
@@ -31,10 +29,6 @@ export const useSearchAddress = <T extends FieldValues>({
         },
       );
       const data = await res.json();
-      console.log(
-        '현재주소 데이타로',
-        data.documents[0].address.region_3depth_name,
-      );
       if (data && data.documents && data.documents.length > 0) {
         const addressData = data.documents[0].address; // 지번 주소 정보
         setValue('address' as Path<T>, addressData.address_name);
@@ -44,7 +38,6 @@ export const useSearchAddress = <T extends FieldValues>({
       }
     } catch (error) {
       toast.error('주소를 가져오는 중 오류가 발생했습니다.');
-      console.log('error', error);
     }
   };
 

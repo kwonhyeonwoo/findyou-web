@@ -1,21 +1,24 @@
-import { UseFormRegister } from 'react-hook-form';
-import { ErrandRegisterType } from '@/schema/errand.schema';
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 import ErrandWriteInput from '../ErrandWriteInput/ErrandWriteInput';
 
-interface Props {
+interface Props<T extends FieldValues> {
   value: string;
-  register: UseFormRegister<ErrandRegisterType>;
+  register: UseFormRegister<T>;
   handleIsOpen: () => void;
 }
 
-export default function AddressInput({ value, register, handleIsOpen }: Props) {
+export default function AddressInput<T extends FieldValues>({
+  value,
+  register,
+  handleIsOpen,
+}: Props<T>) {
   return (
     <div className="flex gap-2">
       <div className="w-full">
         <ErrandWriteInput
           label="주소"
           placeholder="주소를 입력해주세요"
-          name="address"
+          name={'address' as Path<T>}
           value={value}
           readonly={true}
           register={register}
