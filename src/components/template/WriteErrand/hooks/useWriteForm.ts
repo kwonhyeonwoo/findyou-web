@@ -1,5 +1,4 @@
 import { useWriteErrandMutation } from '@/hooks/quires/errand/useWriteErrandMutation';
-import { ERRAND_CATEGORIES } from '@/interfaces/category.enum';
 import {
   errandRegisterSchema,
   ErrandRegisterType,
@@ -25,10 +24,6 @@ export const useWriteForm = () => {
     mutate(data);
   };
 
-  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const rawValue = e.target.value.replace(/[^0-9]/g, '');
-    setValue('price', rawValue);
-  };
   const handleIsOpen = () => setIsOpen(true);
   return {
     control,
@@ -37,7 +32,6 @@ export const useWriteForm = () => {
     isPending,
     setIsOpen,
     handleIsOpen,
-    handlePriceChange,
     useWatch,
     register,
     handleSubmit,

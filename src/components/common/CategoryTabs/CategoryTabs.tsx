@@ -21,10 +21,10 @@ export default function CategoryTab<T extends FieldValues>({
             key={item.type}
             onClick={() => handleCurrentCategory(item.type)}
             type="button"
-            className={`flex items-center justify-center rounded-full border px-4 py-2 text-[14px] ${
+            className={`flex items-center justify-center rounded-full border border-[#C7C4D7] px-4 py-2 text-[14px] ${
               currCategory === item.type
-                ? 'border-none bg-black font-bold text-white'
-                : 'border-[#C7C4D7] text-[#464554]'
+                ? 'bg-teal-light border-teal-primary text-teal-primary font-bold'
+                : 'text-[#464554]'
             }`}
           >
             {item.text}

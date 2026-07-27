@@ -5,12 +5,11 @@ import AddressInput from '@/components/WriteErrand/AddressInput/AddressInput';
 import ErrandTextarea from '@/components/WriteErrand/ErrandTextarea/ErrandTextarea';
 import ImageUpload from '@/components/WriteErrand/ImageUpload/ImageUpload';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
-import { formattedPrice } from '@/lib/lib';
 import { useSearchAddress } from '@/hooks/useSearchAddress';
 import SearchAddress from '@/components/common/SearchAddress/SearchAddress';
-import { CATEGORY_TABS } from '@/constants/common.-constants';
 import CategoryTabs from '@/components/common/CategoryTabs/CategoryTabs';
 import { ErrandTimeSelect } from '@/components/WriteErrand/ErrandTimeSelect/ErrandTimeSelect';
+import { usePriceInput } from '@/hooks/common/usePriceInput';
 
 export default function WriteErrandTemplate() {
   const {
@@ -25,24 +24,22 @@ export default function WriteErrandTemplate() {
     useWatch,
     setValue,
     handleWriteSubmit,
-    handlePriceChange,
   } = useWriteForm();
+  const { handlePriceChange } = usePriceInput({ setValue });
   const { handleComplete, handleLocation } = useSearchAddress({
     setValue,
     setIsOpen,
   });
-  const currCategory = useWatch({ control, name: 'category' });
-  const textLength = useWatch({ control, name: 'description' });
-  const price = useWatch({ control, name: 'price' });
-  const address = useWatch({ control, name: 'address' });
-  const time = useWatch({ control, name: 'deadlineTime' });
   return (
     <form
       className="mt-6 flex flex-col gap-4 pb-20"
       onSubmit={handleSubmit(handleWriteSubmit)}
     >
       {/* 카테고리 선택 */}
-      <CategoryTabs currCategory={currCategory} setValue={setValue} />
+      <CategoryTabs
+        currCategory={useWatch({ control, name: 'category' })}
+        setValue={setValue}
+      />
       {/* 제목 */}
       <ErrandWriteInput
         label="제목"
@@ -55,23 +52,25 @@ export default function WriteErrandTemplate() {
 
       {/* 주소 */}
       <AddressInput
-        value={address}
-        register={register}
+        value={useWatch({ control, name: 'address' })}
         handleIsOpen={handleIsOpen}
       />
-      <ErrandTimeSelect value={time} setValue={setValue} />
+      <ErrandTimeSelect
+        value={useWatch({ control, name: 'deadlineTime' })}
+        setValue={setValue}
+      />
       {/* 가격 */}
       <ErrandWriteInput
         label="가격"
         placeholder="가격을 입력해주세요."
         name="price"
-        register={register}
-        value={formattedPrice(price)}
+        value={useWatch({ control, name: 'price' })}
         onChange={handlePriceChange}
       />
       <ErrandTextarea
         register={register}
-        textLength={textLength?.length || 0}
+        name={'description'}
+        textLength={useWatch({ control, name: 'description' })?.length || 0}
       />
       <ImageUpload setValue={setValue} />
       <ErrandWriteInput

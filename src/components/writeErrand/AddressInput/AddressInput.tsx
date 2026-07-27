@@ -1,34 +1,27 @@
-import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
-import ErrandWriteInput from '../ErrandWriteInput/ErrandWriteInput';
+import Image from 'next/image';
 
-interface Props<T extends FieldValues> {
+interface Props {
   value: string;
-  register: UseFormRegister<T>;
   handleIsOpen: () => void;
 }
 
-export default function AddressInput<T extends FieldValues>({
-  value,
-  register,
-  handleIsOpen,
-}: Props<T>) {
+export default function AddressInput({ value, handleIsOpen }: Props) {
   return (
-    <div className="flex gap-2">
-      <div className="w-full">
-        <ErrandWriteInput
-          label="주소"
-          placeholder="주소를 입력해주세요"
-          name={'address' as Path<T>}
-          value={value}
-          readonly={true}
-          register={register}
-        />
-      </div>
+    <div className="flex justify-between gap-2 rounded-[8px] border px-4 py-3">
+      <p className="font-bold">거래 희망장소</p>
       <button
+        className="flex items-center justify-end gap-1"
         onClick={handleIsOpen}
-        className="mt-auto h-[46px] w-[82px] self-center rounded-[8px] bg-black px-4 py-3 text-[10px] font-bold text-white"
       >
-        주소검색
+        <p className="text-[14px] text-[#464554]">
+          {value ? value : '위치추가'}
+        </p>
+        <Image
+          src={'/common/gray-right-arrow.svg'}
+          alt="right-arrow"
+          width={8}
+          height={8}
+        />
       </button>
     </div>
   );

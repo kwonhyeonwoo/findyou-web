@@ -15,7 +15,7 @@ export default function MovementMethod({
         {MOVEMENT.map(({ text, type, img }, idx) => (
           <button
             type="button"
-            className={`flex items-center gap-2 px-[17px] py-2 ${type === currMovement ? 'bg-black' : 'bg-white'} border-primary-basic-border rounded-[8px] border`}
+            className={`flex items-center gap-2 px-[17px] py-2 ${type === currMovement ? 'bg-teal-light border-teal-primary' : 'bg-white'} border-primary-basic-border rounded-[8px] border`}
             onClick={() => handleCurrMovement(type)}
           >
             <img
@@ -24,7 +24,7 @@ export default function MovementMethod({
               `}
             />
             <p
-              className={`text-[13px] font-medium ${type === currMovement ? 'text-white' : 'text-black'}`}
+              className={`text-[13px] font-medium ${type === currMovement ? 'text-teal-primary' : 'text-black'}`}
             >
               {text}
             </p>

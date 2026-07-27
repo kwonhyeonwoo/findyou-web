@@ -1,8 +1,8 @@
-import { ErrandResponse, ErrandStatus } from "@/interfaces/errand.interface";
-import { useApplicationStatusMutation } from "./quires/errand-application/useApplicationStatusMutation";
-import { useGetMyErrandsQuery } from "./quires/errand/useGetMyErrandsQuery";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { ErrandResponse, ErrandStatus } from '@/interfaces/errand.interface';
+import { useApplicationStatusMutation } from './quires/errand-application/useApplicationStatusMutation';
+import { useGetMyErrandsQuery } from './quires/errand/useGetMyErrandsQuery';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export const useRequestTemplate = () => {
   const router = useRouter();
@@ -14,25 +14,23 @@ export const useRequestTemplate = () => {
   const handleActive = ({
     idx,
     id,
-    status }:
-    {
-      idx: number | null,
-      id?: string,
-      status: ErrandStatus
-    }) => {
+    status,
+  }: {
+    idx: number | null;
+    id?: string;
+    status: ErrandStatus;
+  }) => {
     if (status === ErrandStatus.MATCHING) {
       setCurrentIdx(idx);
       setIsOpen((prev) => !prev);
     } else if (status === ErrandStatus.IN_PROGRESS) {
-      router.push(`/errand/status/${id}`)
+      router.push(`/errand/status/${id}`);
     } else if (status === ErrandStatus.COMPLETED) {
-
     }
-
   };
   const handleApplicationStatus = (
     id: string,
-    status: "ACCEPTED" | "REJECTED",
+    status: 'ACCEPTED' | 'REJECTED',
   ) => {
     mutate({ id, status });
   };

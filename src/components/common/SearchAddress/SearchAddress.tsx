@@ -27,6 +27,7 @@ export default function SearchAddress({
           <DialogTitle>주소 검색</DialogTitle>
         </DialogHeader>
         <button
+          type="button"
           onClick={handleLocation}
           className="bg-teal-primary flex w-full items-center gap-2 rounded-[12px] p-3 text-white"
         >
