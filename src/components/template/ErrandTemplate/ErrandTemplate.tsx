@@ -1,5 +1,5 @@
 'use client';
-import { useErrandSearch } from './hooks/useErrandSearch';
+import { useErrandTemplate } from './hooks/useErrandTemplate';
 import { useErrandListsQuery } from '@/hooks/quires/errand/useErrandListsQuery';
 import ErrandList from '@/components/Errand/ErrandList/ErrandList';
 import ErrandSearchInput from '@/components/common/ErrandSearchInput/ErrandSearchInput';
@@ -17,13 +17,13 @@ export default function ErrandTemplate() {
     handleKeydown,
     handleCurrentCategory,
     handleRouter,
-  } = useErrandSearch();
+  } = useErrandTemplate();
   const { data } = useErrandListsQuery({
     keyword,
     category: currentCategory,
     status,
   });
-
+  console.log('data', data);
   return (
     <div className="mt-4 flex flex-col gap-4 pb-20">
       <ErrandSearchInput handleKeydown={handleKeydown} />

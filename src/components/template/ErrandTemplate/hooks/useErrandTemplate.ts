@@ -3,7 +3,7 @@ import { ErrandCategory } from '@/schema/errand.schema';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 
-export const useErrandSearch = () => {
+export const useErrandTemplate = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams.toString());
@@ -37,7 +37,6 @@ export const useErrandSearch = () => {
     if (status === undefined) {
       params.delete('status');
     } else {
-      console.log('status', status);
       params.set('status', status);
     }
     router.push(`/errand?${params.toString()}`);

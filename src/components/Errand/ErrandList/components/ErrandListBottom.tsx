@@ -1,14 +1,13 @@
-import { fillterCategory } from "@/lib/lib";
-import { ErrandCategory } from "@/schema/errand.schema";
-import Image from "next/image";
+import { formatPriceNumber, parsePrice } from '@/lib/lib';
+import Image from 'next/image';
 
 interface Props {
   price: string;
-  category: ErrandCategory;
   address_dong: string;
+  applicationsCount: number;
 }
 
-function ErrandListBottom({ price, category, address_dong }: Props) {
+function ErrandListBottom({ price, applicationsCount, address_dong }: Props) {
   return (
     <div className="flex items-center justify-between py-4">
       <div className="flex items-center gap-1">
@@ -21,11 +20,16 @@ function ErrandListBottom({ price, category, address_dong }: Props) {
           />
           <p className="text-[12px] text-[#464554]">{address_dong}</p>
         </div>
-        <p className="text-[12px] text-[#464554]">
-          {fillterCategory(category)}
-        </p>
+        <div className="flex items-center gap-1">
+          <Image src={`/errand/users.svg`} alt="user" width={15} height={10} />
+          <p className="text-[12px] text-[#464554]">
+            {String(applicationsCount)}
+          </p>
+        </div>
       </div>
-      <p className="text-[18px] font-bold">{price}</p>
+      <p className="text-[18px] font-bold">
+        {formatPriceNumber(Number(price))}
+      </p>
     </div>
   );
 }
