@@ -25,7 +25,7 @@ const STATUS_BAR: { type: ErrandStatus | undefined; text: string }[] = [
 ];
 function StatusBar({ status, handleStatusChange }: Props) {
   return (
-    <div className="flex items-center gap-5">
+    <div className="flex items-center gap-5 border-b">
       {STATUS_BAR.map((item) => (
         <button
           type="button"

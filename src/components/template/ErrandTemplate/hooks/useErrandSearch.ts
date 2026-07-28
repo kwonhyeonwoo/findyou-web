@@ -1,33 +1,32 @@
-import { CATEGORY_TABS } from "@/constants/common.-constants";
-import { ErrandCategory } from "@/schema/errand.schema";
-import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+import { CATEGORY_TABS } from '@/constants/category.-constants';
+import { ErrandCategory } from '@/schema/errand.schema';
+import { useRouter, useSearchParams } from 'next/navigation';
+import React from 'react';
 
 export const useErrandSearch = () => {
-    const router = useRouter();
-    const searchParams = useSearchParams();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-    const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.nativeEvent.isComposing) return;
+  const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.nativeEvent.isComposing) return;
 
-        if (e.key === 'Enter') {
-            const value = e.currentTarget.value;
+    if (e.key === 'Enter') {
+      const value = e.currentTarget.value;
 
-            const params = new URLSearchParams(searchParams.toString());
+      const params = new URLSearchParams(searchParams.toString());
 
-            if (value.trim()) {
-                params.set('keyword', value);
-            } else {
-                params.delete('keyword');
-            }
+      if (value.trim()) {
+        params.set('keyword', value);
+      } else {
+        params.delete('keyword');
+      }
 
-            router.push(`/errand?${params.toString()}`);
-        }
-    };
+      router.push(`/errand?${params.toString()}`);
+    }
+  };
 
-
-    return {
-        keyword: searchParams.get('keyword') || "",
-        handleKeydown,
-    };
+  return {
+    keyword: searchParams.get('keyword') || '',
+    handleKeydown,
+  };
 };

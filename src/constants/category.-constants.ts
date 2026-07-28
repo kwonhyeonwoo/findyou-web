@@ -34,3 +34,8 @@ export const CATEGORY_TABS: { text: string; type: ERRAND_CATEGORIES }[] = [
     type: ERRAND_CATEGORIES.ETC,
   },
 ];
+
+export const CATEGORY_TABS_WITH_ALL: {
+  text: string;
+  type: ERRAND_CATEGORIES | 'all';
+}[] = [{ text: '전체', type: 'all' }, ...CATEGORY_TABS];

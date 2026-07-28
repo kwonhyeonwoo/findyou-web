@@ -1,13 +1,15 @@
-import { CATEGORY_TABS } from '@/constants/common.-constants';
+import { CATEGORY_TABS } from '@/constants/category.-constants';
 import { useCategoryTabs } from './hooks/useCategoryTabs';
 import { FieldValues, UseFormSetValue } from 'react-hook-form';
+import { ERRAND_CATEGORIES } from '@/interfaces/category.enum';
+import CategoryTab from '../CategoryTab/CategoryTab';
 
 interface Props<T extends FieldValues> {
-  currCategory: string;
+  currCategory: ERRAND_CATEGORIES;
   setValue: UseFormSetValue<T>;
 }
 
-export default function CategoryTab<T extends FieldValues>({
+export default function CategoryTas<T extends FieldValues>({
   currCategory,
   setValue,
 }: Props<T>) {
@@ -17,18 +19,13 @@ export default function CategoryTab<T extends FieldValues>({
       <p className="text-[12px] text-[#464554]">카테고리 선택</p>
       <div className="flex flex-wrap gap-2">
         {CATEGORY_TABS.map((item) => (
-          <button
+          <CategoryTab
             key={item.type}
-            onClick={() => handleCurrentCategory(item.type)}
-            type="button"
-            className={`flex items-center justify-center rounded-full border border-[#C7C4D7] px-4 py-2 text-[14px] ${
-              currCategory === item.type
-                ? 'bg-teal-light border-teal-primary text-teal-primary font-bold'
-                : 'text-[#464554]'
-            }`}
-          >
-            {item.text}
-          </button>
+            type={item.type}
+            currCategory={currCategory}
+            text={item.text}
+            handleCurrentCategory={handleCurrentCategory}
+          />
         ))}
       </div>
     </div>

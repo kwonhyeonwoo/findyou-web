@@ -6,6 +6,8 @@ import ErrandList from '@/components/Errand/ErrandList/ErrandList';
 import { useErrandTemplate } from './hooks/useErrandTemplate';
 import ErrandSearchInput from '@/components/common/ErrandSearchInput/ErrandSearchInput';
 import StatusBar from '@/components/common/StatusBar/StatusBar';
+import CategoryTab from '@/components/common/CategoryTab/CategoryTab';
+import { CATEGORY_TABS_WITH_ALL } from '@/constants/category.-constants';
 
 export default function ErrandTemplate() {
   const { status, handleStatusChange, handleRouter } = useErrandTemplate();
@@ -17,21 +19,17 @@ export default function ErrandTemplate() {
     <div className="mt-4 flex flex-col gap-4 pb-20">
       <ErrandSearchInput handleKeydown={handleKeydown} />
       <StatusBar status={status} handleStatusChange={handleStatusChange} />
-      {/* <div className="flex max-w-[480px] [scrollbar-width:none] items-center gap-2 overflow-x-auto whitespace-nowrap [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-        {listTabs.map((item) => (
-          <CategoryTabs
+      <div className="no-scrollbar flex gap-2 overflow-x-auto">
+        {CATEGORY_TABS_WITH_ALL.map((item) => (
+          <CategoryTab
             key={item.type}
+            currCategory={currentCategory ? currentCategory : 'all'}
             text={item.text}
             type={item.type}
-            isActive={
-              item.type === "all"
-                ? !currentCategory
-                : currentCategory === item.type
-            }
-            onCurrCategory={onCurrentCategory}
+            handleCurrentCategory={onCurrentCategory}
           />
         ))}
-      </div> */}
+      </div>
       <div className="no-scrollbar flex max-h-220 flex-col gap-4 overflow-y-auto pb-20">
         {data?.map((item) => (
           <ErrandList {...item} key={item.id} onRouter={handleRouter} />
