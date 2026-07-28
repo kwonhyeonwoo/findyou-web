@@ -13,8 +13,6 @@ export default function CategoryTab<T>({
   text,
   handleCurrentCategory,
 }: Props<T>) {
-  console.log('type', type);
-  console.log('curr', currCategory);
   return (
     <button
       onClick={() => handleCurrentCategory(type)}
