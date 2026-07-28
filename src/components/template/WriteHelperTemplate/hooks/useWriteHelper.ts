@@ -1,4 +1,6 @@
+import { useHelperCreateMutation } from '@/hooks/mutations/helper/useHelperCreateMutation';
 import { MOVEMENT_ENUM } from '@/interfaces/helper.interface';
+import { parsePrice } from '@/lib/lib';
 import {
   helperRegisterSchema,
   HelperRegisterType,
@@ -18,12 +20,19 @@ export const useWriteHelper = () => {
   } = useForm<HelperRegisterType>({
     resolver: zodResolver(helperRegisterSchema),
   });
+  const { mutate } = useHelperCreateMutation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleCurrMovement = (type: MOVEMENT_ENUM) => {
     setValue('movement', type);
   };
   const handleAddressOpen = () => setIsOpen(true);
-  const handleHelperSubmit = (data: HelperRegisterType) => {};
+  const handleHelperSubmit = (data: HelperRegisterType) => {
+    console.log('submit data', data);
+    mutate({
+      ...data,
+      price: String(parsePrice(data.price)),
+    });
+  };
   return {
     isOpen,
     isValid,

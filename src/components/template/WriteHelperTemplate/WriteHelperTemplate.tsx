@@ -32,7 +32,7 @@ export default function WriteHelperTemplate() {
   });
   return (
     <form
-      className="flex flex-col gap-6 pt-6"
+      className="flex flex-col gap-6 pt-6 pb-10"
       onSubmit={handleSubmit(handleHelperSubmit)}
     >
       <CategoryTabs
@@ -51,6 +51,8 @@ export default function WriteHelperTemplate() {
         name="title"
         register={register}
       />
+
+      {/* 주소  */}
       <AddressInput
         value={useWatch({ control, name: 'address' })}
         handleIsOpen={handleAddressOpen}

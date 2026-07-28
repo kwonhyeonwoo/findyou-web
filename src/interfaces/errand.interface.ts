@@ -3,9 +3,9 @@ import { UserResponse } from './user.interface';
 import { ErrandApplicationResponse } from './errand_application.interface';
 
 export enum ErrandStatus {
-  MATCHING = 'MATCHING',
-  IN_PROGRESS = 'IN_PROGRESS',
-  COMPLETED = 'COMPLETED',
+  MATCHING = 'MATCHING', // 모집중
+  IN_PROGRESS = 'IN_PROGRESS',// 진행중
+  COMPLETED = 'COMPLETED',// 완료
 }
 // matching: 모집중, in_progress: 진행중, completed: 완료
 

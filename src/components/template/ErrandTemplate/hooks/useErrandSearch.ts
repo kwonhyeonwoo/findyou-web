@@ -25,20 +25,9 @@ export const useErrandSearch = () => {
         }
     };
 
-    const listTabs: {
-        type: ErrandCategory | 'all';
-        text: string;
-    }[] = [
-            {
-                type: 'all',
-                text: "전체",
-            },
-            ...CATEGORY_TABS,
-        ];
 
     return {
         keyword: searchParams.get('keyword') || "",
-        listTabs,
         handleKeydown,
     };
 };
