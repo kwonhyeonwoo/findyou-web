@@ -7,11 +7,15 @@ import ApplicantCard from '@/components/History/ApplicantCard/ApplicantCard';
 function RequestTemplate() {
   const {
     data,
-    isOpen,
+    isBottomOpen,
     currentIdx,
-    setIsOpen,
+    isModalOpen,
+    setIsModalOpen,
+    handleModalOpen,
+    setIsBottomOpen,
+    handleHelperProfile,
     handleActive,
-    handleApplicationStatus,
+    handleApplicationUpdate,
   } = useRequestTemplate();
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
@@ -25,16 +29,18 @@ function RequestTemplate() {
           }
         />
       ))}
-      <Drawer open={isOpen} onOpenChange={() => setIsOpen(false)}>
+      <Drawer open={isBottomOpen} onOpenChange={() => setIsBottomOpen(false)}>
         <DrawerContent className="m-auto max-w-120 gap-4 p-4">
           {data?.[currentIdx ?? 0]?.applications?.map((item) => (
             <ApplicantCard
               key={item.id}
               id={item.id}
-              name={item.helper.name}
+              nickName={item.helper.nickName}
               message={item.message}
               profile={item.helper.profile}
-              handleApplicationStatus={handleApplicationStatus}
+              helperId={item.helper.id}
+              handleHelperProfile={handleHelperProfile}
+              handleModalOpen={handleModalOpen}
             />
           ))}
         </DrawerContent>

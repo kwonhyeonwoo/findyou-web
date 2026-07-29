@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import CompletedErrand from "@/components/HelperProfile/CompletedErrand";
-import ErrandMessage from "@/components/HelperProfile/ErrandMessage";
-import HelperProfile from "@/components/HelperProfile/HelperProfile";
-import ReceivedReviews from "@/components/HelperProfile/ReceivedReviews";
-import { useGetMyErrandsQuery } from "@/hooks/quires/errand/useGetMyErrandsQuery";
+import CompletedErrand from '@/components/HelperProfile/CompletedErrand';
+import ErrandMessage from '@/components/HelperProfile/ErrandMessage';
+import HelperProfile from '@/components/HelperProfile/HelperProfile';
+import ReceivedReviews from '@/components/HelperProfile/ReceivedReviews';
+import { useGetMyErrandsQuery } from '@/hooks/quires/errand/useGetMyErrandsQuery';
 
 function HelperProfileTemplate() {
   const { data } = useGetMyErrandsQuery();

@@ -24,16 +24,9 @@ export const errandApplicationApi = {
     return response;
   },
 
-  updatedStatus: async ({
-    id,
-    status,
-  }: {
-    id: string;
-    status: 'ACCEPTED' | 'REJECTED';
-  }) => {
+  updatedStatus: async ({ id }: { id: string }) => {
     const response = await client.post<IResponse>(
       `/errand-application/${id}/status`,
-      { status },
     );
     return response;
   },

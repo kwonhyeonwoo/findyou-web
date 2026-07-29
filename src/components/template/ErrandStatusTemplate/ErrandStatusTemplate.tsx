@@ -15,6 +15,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import AlertModal from '@/components/common/AlertModal/AlertModal';
 
 const ErrandStatusTemplate = () => {
   const {
@@ -60,24 +61,15 @@ const ErrandStatusTemplate = () => {
         onClick={handleOpenCompleteModal}
       />
 
-      <AlertDialog open={isCompleteOpen} onOpenChange={setIsCompleteOpen}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>심부름을 완료하시겠습니까?</AlertDialogTitle>
-            <AlertDialogDescription>
-              이 작업은 되돌릴 수 없습니다. 수행자가 심부름을 완벽히 마쳤는지
-              확인해 주세요.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-
-          <AlertDialogFooter className="flex gap-2 sm:justify-center sm:space-x-0">
-            <AlertDialogCancel className="h-10 flex-1">취소</AlertDialogCancel>
-            <AlertDialogAction onClick={handleComplete} className="h-10 flex-1">
-              완료하기
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <AlertModal
+        title="심부름을 완료하시겠습니까?"
+        description={` 이 작업은 되돌릴 수 없습니다. 수행자가 심부름을 완벽히 마쳤는지
+              확인해 주세요.`}
+        isOpen={isCompleteOpen}
+        actionText="완료하기"
+        setState={setIsCompleteOpen}
+        handleActive={handleComplete}
+      />
     </div>
   );
 };

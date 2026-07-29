@@ -8,7 +8,8 @@ export const useRequestTemplate = () => {
   const router = useRouter();
   const { mutate } = useApplicationStatusMutation();
   const [currentIdx, setCurrentIdx] = useState<number | null>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isBottomOpen, setIsBottomOpen] = useState<boolean>(false);
   const { data } = useGetMyErrandsQuery();
 
   const handleActive = ({
@@ -22,25 +23,29 @@ export const useRequestTemplate = () => {
   }) => {
     if (status === ErrandStatus.MATCHING) {
       setCurrentIdx(idx);
-      setIsOpen((prev) => !prev);
+      setIsBottomOpen((prev) => !prev);
     } else if (status === ErrandStatus.IN_PROGRESS) {
       router.push(`/errand/status/${id}`);
     } else if (status === ErrandStatus.COMPLETED) {
     }
   };
-  const handleApplicationStatus = (
-    id: string,
-    status: 'ACCEPTED' | 'REJECTED',
-  ) => {
-    mutate({ id, status });
+  const handleModalOpen = () => setIsModalOpen(true);
+  const handleApplicationUpdate = (id: string) => {
+    mutate({ id });
   };
-
+  const handleHelperProfile = (helperId: string) => {
+    router.push(`/helper/${helperId}`);
+  };
   return {
     data,
-    isOpen,
+    isBottomOpen,
     currentIdx,
-    setIsOpen,
-    handleApplicationStatus,
+    isModalOpen,
+    setIsModalOpen,
+    handleModalOpen,
+    setIsBottomOpen,
+    handleHelperProfile,
+    handleApplicationUpdate,
     handleActive,
   };
 };
