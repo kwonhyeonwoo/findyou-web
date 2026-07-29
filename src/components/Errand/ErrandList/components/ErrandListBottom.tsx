@@ -23,7 +23,7 @@ function ErrandListBottom({ price, applicationsCount, address_dong }: Props) {
         <div className="flex items-center gap-1">
           <Image src={`/errand/users.svg`} alt="user" width={15} height={10} />
           <p className="text-[12px] text-[#464554]">
-            {String(applicationsCount)}
+            {String(applicationsCount)}명
           </p>
         </div>
       </div>

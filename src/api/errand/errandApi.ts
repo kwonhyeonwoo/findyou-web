@@ -54,8 +54,13 @@ export const errandApi = {
   },
 
   // 심부름 진행 상황
-  getErrandProgress: async (id: string): Promise<ErrandDetailResponse> => {
-    const response = await client.get<ErrandDetailResponse>(`/errand/${id}`);
+  getErrandProgress: async (id: string): Promise<ErrandResponse> => {
+    const response = await client.get<ErrandResponse>(`/errand/${id}/progress`);
+    return response;
+  },
+
+  getErrandDetail: async (id: string) => {
+    const response = await client.get<ErrandResponse>(`/errand/${id}`);
     return response;
   },
 

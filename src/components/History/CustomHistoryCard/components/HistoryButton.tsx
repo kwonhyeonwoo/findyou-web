@@ -8,7 +8,7 @@ interface Props {
 
 function HistoryButton({ status, count, onClick }: Props) {
   const BTN_TEXT = {
-    MATCHING: count > 0 ? `지원자 ${count}먕 보기` : '지원자 없음',
+    MATCHING: count > 0 ? `지원자 ${count}명 보기` : '지원자 없음',
     IN_PROGRESS: '진행 상황 보기',
     COMPLETED: '리뷰 쓰기',
   };

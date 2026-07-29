@@ -1,5 +1,5 @@
 import { useApplicationCreateMutation } from '@/hooks/quires/errand-application/useApplicationCreateMutation';
-import { useErrandDetailQuery } from '@/hooks/quires/errand/useErrandDetailMutation';
+import { useErrandDetailQuery } from '@/hooks/quires/errand/useErrandDetailQuery';
 import { useUser } from '@/store/useUserStore';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
