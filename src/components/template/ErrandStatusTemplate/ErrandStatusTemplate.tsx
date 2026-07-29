@@ -27,6 +27,7 @@ const ErrandStatusTemplate = () => {
     handleProfileDetail,
   } = useErrandStatus();
   if (!data) return null;
+  console.log('helper', data);
   return (
     <div className="flex flex-col gap-6">
       <ErrandStatusTitle
@@ -37,14 +38,14 @@ const ErrandStatusTemplate = () => {
       />
       <ErrandHelper
         nickName={data.applications[0].helper.nickName}
-        profile={data.applications[0].helper.profile}
+        profile={data.applications[0]?.helper.profile}
         onProfileDetail={() =>
           handleProfileDetail(data.applications[0].helper.id)
         }
       />
       <ErrandStatusInfo
-        startTime={data.applications[0].updatedAt}
-        start={data.applications[0].helper.address}
+        startTime={data.applications[0]?.updatedAt}
+        start={data.applications[0]?.helper.address}
         arrive={data.address}
         description={data.description}
       />

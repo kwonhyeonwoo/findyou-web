@@ -1,7 +1,11 @@
 import { ErrandCategory, ErrandRegisterType } from '@/schema/errand.schema';
 import { client } from '../client/clientApi';
 import { IResponse } from '@/interfaces/response.interface';
-import { ErrandResponse, ErrandStatus } from '@/interfaces/errand.interface';
+import {
+  ErrandDetailResponse,
+  ErrandResponse,
+  ErrandStatus,
+} from '@/interfaces/errand.interface';
 import { parsePrice } from '@/lib/lib';
 
 export const errandApi = {
@@ -48,14 +52,15 @@ export const errandApi = {
     const response = await client.get<ErrandResponse[]>(requestUrl);
     return response;
   },
-  getErrand: async (id: string): Promise<ErrandResponse> => {
-    const response = await client.get<ErrandResponse>(`/errand/${id}`);
+
+  // 심부름 진행 상황
+  getErrandProgress: async (id: string): Promise<ErrandDetailResponse> => {
+    const response = await client.get<ErrandDetailResponse>(`/errand/${id}`);
     return response;
   },
 
   getMyErrand: async (): Promise<ErrandResponse[]> => {
     const response = await client.get<ErrandResponse[]>('/errand/my');
-    console.log('response', response);
     return response;
   },
 

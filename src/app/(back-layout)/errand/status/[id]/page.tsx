@@ -1,5 +1,4 @@
-import ErrandStatusTemplate from "@/components/template/ErrandStatusTemplate/ErrandStatusTemplate";
-import React from "react";
+import ErrandStatusTemplate from '@/components/template/ErrandStatusTemplate/ErrandStatusTemplate';
 
 function Page() {
   return <ErrandStatusTemplate />;

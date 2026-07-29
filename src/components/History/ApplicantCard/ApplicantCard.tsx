@@ -1,5 +1,5 @@
-import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
-import Image from "next/image";
+import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
+import Image from 'next/image';
 
 interface Props {
   id: string;
@@ -8,7 +8,7 @@ interface Props {
   message: string;
   handleApplicationStatus: (
     id: string,
-    status: "ACCEPTED" | "REJECTED",
+    status: 'ACCEPTED' | 'REJECTED',
   ) => void;
   //   scop: string;
 }
@@ -22,20 +22,20 @@ function ApplicantCard({
 }: Props) {
   const STATUS_BTNS = [
     {
-      text: "거절",
+      text: '거절',
       isPending: false,
       isDisabled: false,
-      bgColor: "bg-gray-100",
-      textColor: "text-gray-600",
-      onClick: () => handleApplicationStatus(id, "REJECTED"),
+      bgColor: 'bg-gray-100',
+      textColor: 'text-gray-600',
+      onClick: () => handleApplicationStatus(id, 'REJECTED'),
     },
     {
-      text: "수락",
+      text: '수락',
       isPending: false,
       isDisabled: false,
-      bgColor: "bg-black",
-      textColor: "text-white",
-      onClick: () => handleApplicationStatus(id, "ACCEPTED"),
+      bgColor: 'bg-black',
+      textColor: 'text-white',
+      onClick: () => handleApplicationStatus(id, 'ACCEPTED'),
     },
   ];
   return (

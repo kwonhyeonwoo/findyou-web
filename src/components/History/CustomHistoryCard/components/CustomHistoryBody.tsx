@@ -1,12 +1,12 @@
-import StatusBox from "@/components/common/StatusBox/StatusBox";
+import StatusBox from '@/components/common/StatusBox/StatusBox';
 import {
   ErrandApplicationResponse,
   ErrandApplicationStatus,
-} from "@/interfaces/errand_application.interface";
-import { formatPriceNumber, formatRelativeTime } from "@/lib/lib";
-import Image from "next/image";
-import AvatarStack from "./AvatarStack";
-import { ErrandStatus } from "@/interfaces/errand.interface";
+} from '@/interfaces/errand_application.interface';
+import { formatPriceNumber, formatRelativeTime } from '@/lib/lib';
+import Image from 'next/image';
+import AvatarStack from './AvatarStack';
+import { ErrandStatus } from '@/interfaces/errand.interface';
 
 interface Props {
   image?: string | undefined;
@@ -32,12 +32,12 @@ function CustomHistoryBody({
   return (
     <div className="flex gap-2">
       {image && (
-        <div className="h-25 w-25">
+        <div className="h-20 w-20">
           <Image
             src={`http://localhost:8000${image}`}
             alt={image}
-            width={100}
-            height={100}
+            width={80}
+            height={80}
             className="h-full rounded-[8px] border object-cover"
           />
         </div>

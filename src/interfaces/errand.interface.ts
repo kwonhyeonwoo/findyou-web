@@ -36,3 +36,10 @@ export interface ErrandResponse {
   applications: ErrandApplicationResponse[];
   applicationsCount: number;
 }
+
+export interface ErrandDetailResponse extends Omit<
+  ErrandResponse,
+  'applications'
+> {
+  applications: ErrandApplicationResponse[];
+}

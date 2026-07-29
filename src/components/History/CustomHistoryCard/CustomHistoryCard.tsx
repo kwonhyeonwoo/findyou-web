@@ -5,12 +5,10 @@ import { ErrandApplicationResponse } from '@/interfaces/errand_application.inter
 import HistoryButton from './components/HistoryButton';
 
 interface Props {
-  idx: number;
   images?: string[];
   title: string;
   address_dong: string;
   price: string;
-  btnText: string;
   applications?: ErrandApplicationResponse[];
   status: ErrandStatus;
   createdAt: Date;
@@ -24,9 +22,7 @@ function CustomHistoryCard({
   price,
   status,
   applications,
-  btnText,
   createdAt,
-  idx,
   onClick,
 }: Props) {
   return (
@@ -41,7 +37,11 @@ function CustomHistoryCard({
         price={price}
         applications={applications}
       />
-      <HistoryButton text={btnText} idx={idx} onClick={onClick} />
+      <HistoryButton
+        status={status}
+        count={applications?.length || 0}
+        onClick={onClick}
+      />
     </div>
   );
 }

@@ -42,7 +42,7 @@ export default function ErrandTemplate() {
           />
         ))}
       </div>
-      <div className="no-scrollbar flex max-h-220 flex-col gap-4 overflow-y-auto pb-20">
+      <div className="no-scrollbar flex max-h-220 flex-col gap-4 overflow-y-auto pt-3 pb-20">
         {data?.map((item) => (
           <ErrandList {...item} key={item.id} onRouter={handleRouter} />
         ))}

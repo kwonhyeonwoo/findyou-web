@@ -1,4 +1,4 @@
-import { ErrandResponse, ErrandStatus } from '@/interfaces/errand.interface';
+import { ErrandStatus } from '@/interfaces/errand.interface';
 import { useApplicationStatusMutation } from './quires/errand-application/useApplicationStatusMutation';
 import { useGetMyErrandsQuery } from './quires/errand/useGetMyErrandsQuery';
 import { useState } from 'react';
@@ -39,6 +39,7 @@ export const useRequestTemplate = () => {
     data,
     isOpen,
     currentIdx,
+    setIsOpen,
     handleApplicationStatus,
     handleActive,
   };

@@ -1,15 +1,15 @@
-import { useErrandCompleteMutation } from "@/hooks/mutations/errand/useErrandCompleteMutation";
-import { useGetErrandDetail } from "@/hooks/quires/errand/useGetErrandDetail";
-import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useErrandCompleteMutation } from '@/hooks/mutations/errand/useErrandCompleteMutation';
+import { useGetErrandProgressQuery } from '@/hooks/quires/errand/useGetErrandProgressQuery';
+import { useParams, useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export const useErrandStatus = () => {
   const { id } = useParams();
   const router = useRouter();
-  const { data } = useGetErrandDetail(String(id));
+  const { data } = useGetErrandProgressQuery(String(id));
   const { mutate } = useErrandCompleteMutation(
     String(id),
-    String(data?.applications?.[0].helper.nickName),
+    String(data?.applications[0]?.helper.nickName),
   );
   const [isCompleteOpen, setIsCompleteOpen] = useState<boolean>(false);
   const handleProfileDetail = (id: string) => {
