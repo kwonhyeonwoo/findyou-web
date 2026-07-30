@@ -30,8 +30,9 @@ export const useRequestTemplate = () => {
     }
   };
   const handleModalOpen = () => setIsModalOpen(true);
-  const handleApplicationUpdate = (id: string) => {
+  const handleApplicationUpdate = (id: string, errandId: string) => {
     mutate({ id });
+    router.push(`/errand/status/${errandId}`);
   };
   const handleHelperProfile = (helperId: string) => {
     router.push(`/helper/${helperId}`);

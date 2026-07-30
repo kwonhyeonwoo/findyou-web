@@ -3,6 +3,7 @@ import CustomHistoryCard from '@/components/History/CustomHistoryCard/CustomHist
 import { useRequestTemplate } from '@/hooks/useRequestTemplate';
 import { Drawer, DrawerContent } from '@/components/ui/drawer';
 import ApplicantCard from '@/components/History/ApplicantCard/ApplicantCard';
+import AlertModal from '@/components/common/AlertModal/AlertModal';
 
 function RequestTemplate() {
   const {
@@ -17,6 +18,7 @@ function RequestTemplate() {
     handleActive,
     handleApplicationUpdate,
   } = useRequestTemplate();
+  console.log(';errand', data);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {data?.map((item, idx) => (
@@ -34,11 +36,14 @@ function RequestTemplate() {
           {data?.[currentIdx ?? 0]?.applications?.map((item) => (
             <ApplicantCard
               key={item.id}
-              id={item.id}
+              errandId={data?.[currentIdx ?? 0]?.id}
               nickName={item.helper.nickName}
               message={item.message}
               profile={item.helper.profile}
               helperId={item.helper.id}
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+              handleApplicationUpdate={handleApplicationUpdate}
               handleHelperProfile={handleHelperProfile}
               handleModalOpen={handleModalOpen}
             />

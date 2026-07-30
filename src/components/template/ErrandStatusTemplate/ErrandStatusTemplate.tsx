@@ -5,16 +5,6 @@ import ErrandHelperKaKao from '@/components/ErrandStatus/ErrandHelperKaKao';
 import ErrandStatusInfo from '@/components/ErrandStatus/ErrandStatusInfo';
 import ErrandStatusTitle from '@/components/ErrandStatus/ErrandStatusTitle';
 import { useErrandStatus } from './hooks/useErrandStatus';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
 import AlertModal from '@/components/common/AlertModal/AlertModal';
 
 const ErrandStatusTemplate = () => {
@@ -27,8 +17,8 @@ const ErrandStatusTemplate = () => {
     handleKaKaoOpenLink,
     handleProfileDetail,
   } = useErrandStatus();
-  if (!data) return null;
   console.log('helper', data);
+  if (!data) return null;
   return (
     <div className="flex flex-col gap-6">
       <ErrandStatusTitle

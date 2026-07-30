@@ -1,13 +1,18 @@
+import AlertModal from '@/components/common/AlertModal/AlertModal';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
 import Image from 'next/image';
+import { SetStateAction } from 'react';
 
 interface Props {
-  id: string;
   profile?: string;
   nickName: string;
   message: string;
   helperId: string;
-  handleModalOpen: (id: string) => void;
+  isModalOpen: boolean;
+  errandId: string;
+  setIsModalOpen: React.Dispatch<SetStateAction<boolean>>;
+  handleApplicationUpdate: (helperId: string, errandId: string) => void;
+  handleModalOpen: () => void;
   handleHelperProfile: (heloperId: string) => void;
 }
 
@@ -16,7 +21,10 @@ function ApplicantCard({
   nickName,
   message,
   helperId,
-  id,
+  isModalOpen,
+  errandId,
+  setIsModalOpen,
+  handleApplicationUpdate,
   handleHelperProfile,
   handleModalOpen,
 }: Props) {
@@ -35,7 +43,7 @@ function ApplicantCard({
       isDisabled: false,
       bgColor: 'bg-teal-primary',
       textColor: 'text-white',
-      onClick: () => handleModalOpen(id),
+      onClick: () => handleModalOpen(),
     },
   ];
   return (
@@ -98,6 +106,14 @@ function ApplicantCard({
           ))}
         </div>
       </div>
+      <AlertModal
+        title={`${nickName}님을 수락하시겠습니까?`}
+        isOpen={isModalOpen}
+        description={`이 작업은 되돌릴 수 없습니다.`}
+        setState={setIsModalOpen}
+        actionText="수락"
+        handleActive={() => handleApplicationUpdate(helperId, errandId)}
+      />
     </div>
   );
 }
