@@ -28,6 +28,7 @@ function ApplicantCard({
   handleHelperProfile,
   handleModalOpen,
 }: Props) {
+  console.log('nickName', nickName);
   const STATUS_BTNS = [
     {
       text: '프로필',
