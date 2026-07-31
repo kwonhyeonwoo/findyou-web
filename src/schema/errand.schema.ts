@@ -1,8 +1,8 @@
-import { ERRAND_CATEGORIES } from '@/interfaces/category.enum';
+import { CATEGORIES_ENUM } from '@/interfaces/category.enum';
 import { z } from 'zod';
 
 export const errandRegisterSchema = z.object({
-  category: z.enum(ERRAND_CATEGORIES),
+  category: z.enum(CATEGORIES_ENUM),
   title: z
     .string()
     .min(4, '제목은 최소 4자 이상 입니다.')

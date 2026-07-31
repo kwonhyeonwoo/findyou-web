@@ -1,4 +1,4 @@
-import { ERRAND_CATEGORIES } from '@/interfaces/category.enum';
+import { CATEGORIES_ENUM } from '@/interfaces/category.enum';
 import { MOVEMENT_ENUM } from '@/interfaces/helper.interface';
 import z from 'zod';
 
@@ -18,7 +18,7 @@ export const helperRegisterSchema = z.object({
   movement: z.enum(MOVEMENT_ENUM),
   price: z.string(),
   openLink: z.string(),
-  category: z.enum(ERRAND_CATEGORIES),
+  category: z.enum(CATEGORIES_ENUM),
 });
 
 export type HelperRegisterType = z.infer<typeof helperRegisterSchema>;

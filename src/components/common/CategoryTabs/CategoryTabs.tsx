@@ -1,11 +1,11 @@
 import { CATEGORY_TABS } from '@/constants/category.-constants';
 import { useCategoryTabs } from './hooks/useCategoryTabs';
 import { FieldValues, UseFormSetValue } from 'react-hook-form';
-import { ERRAND_CATEGORIES } from '@/interfaces/category.enum';
+import { CATEGORIES_ENUM } from '@/interfaces/category.enum';
 import CategoryTab from '../CategoryTab/CategoryTab';
 
 interface Props<T extends FieldValues> {
-  currCategory: ERRAND_CATEGORIES;
+  currCategory: CATEGORIES_ENUM;
   setValue: UseFormSetValue<T>;
 }
 
