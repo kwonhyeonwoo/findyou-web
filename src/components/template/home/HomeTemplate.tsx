@@ -86,9 +86,7 @@ export default function HomeTemplate() {
                     casesCount={item.helper?.receivedReviews?.length}
                     id={item.helper.id}
                     category={item.category}
-                    handleHelperProfile={() =>
-                      handleHelperProfile(item.helper.id)
-                    }
+                    handleHelperProfile={() => handleHelperProfile(item.id)}
                   />
                 </div>
               );
