@@ -7,6 +7,7 @@ import LiveErrandCard from '@/components/home/LiveErrandCard/LiveErrandCard';
 import { IBestHeleper, IHelperCardType } from '@/interfaces/helper.interface';
 import Link from 'next/link';
 import { useHomeTemplate } from './hooks/useHomeTemplate';
+import Empty from '@/components/common/Empty/Empty';
 
 export default function HomeTemplate() {
   const { liveErrand, helpers, handleHelperProfile } = useHomeTemplate();
@@ -52,11 +53,18 @@ export default function HomeTemplate() {
         </div>
         <div className="-mx-5 px-5">
           <div className="flex gap-3 overflow-x-auto pb-2">
-            {liveErrand?.map((item) => (
-              <div key={item.id} className="min-w-[78%] sm:min-w-[60%]">
-                <LiveErrandCard {...item} />
-              </div>
-            ))}
+            {liveErrand && liveErrand.length > 0 ? (
+              liveErrand?.map((item) => (
+                <div key={item.id} className="min-w-[78%] sm:min-w-[60%]">
+                  <LiveErrandCard {...item} />
+                </div>
+              ))
+            ) : (
+              <Empty
+                title="등록된 심부름이 없어요"
+                description={`심부름을 등록하면 헬퍼가 지원할 수 있어요`}
+              />
+            )}
           </div>
         </div>
       </section>
@@ -67,23 +75,30 @@ export default function HomeTemplate() {
           지금 바로 가능한 헬퍼
         </h3>
         <div className="flex gap-3 overflow-x-auto pb-2">
-          {helpers?.map((item, key) => {
-            return (
-              <div key={item.id} className="min-w-[110px]">
-                <HelperCard
-                  nickName={item.helper.nickName}
-                  profile={item.helper.profile}
-                  rating={item.helper?.receivedReviews?.[key]?.rating}
-                  casesCount={item.helper?.receivedReviews?.length}
-                  id={item.helper.id}
-                  category={item.category}
-                  handleHelperProfile={() =>
-                    handleHelperProfile(item.helper.id)
-                  }
-                />
-              </div>
-            );
-          })}
+          {helpers && helpers.length > 0 ? (
+            helpers?.map((item, key) => {
+              return (
+                <div key={item.id} className="min-w-[110px]">
+                  <HelperCard
+                    nickName={item.helper.nickName}
+                    profile={item.helper.profile}
+                    rating={item.helper?.receivedReviews?.[key]?.rating}
+                    casesCount={item.helper?.receivedReviews?.length}
+                    id={item.helper.id}
+                    category={item.category}
+                    handleHelperProfile={() =>
+                      handleHelperProfile(item.helper.id)
+                    }
+                  />
+                </div>
+              );
+            })
+          ) : (
+            <Empty
+              title="지금은 대기중인 헬퍼가 없어요"
+              description={`헬퍼를 등록하면 의뢰인이 지원할 수 있어요`}
+            />
+          )}
         </div>
       </section>
 
