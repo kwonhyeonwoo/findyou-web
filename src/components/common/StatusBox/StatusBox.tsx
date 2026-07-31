@@ -1,5 +1,5 @@
-import { ErrandStatus } from "@/interfaces/errand.interface";
-import { ErrandApplicationStatus } from "@/interfaces/errand_application.interface";
+import { ErrandStatus } from '@/interfaces/errand.interface';
+import { ErrandApplicationStatus } from '@/interfaces/errand_application.interface';
 
 interface Props {
   status: ErrandApplicationStatus | ErrandStatus;
@@ -7,27 +7,30 @@ interface Props {
 
 function StatusBox({ status }: Props) {
   const CURRENT_STATUS = {
-    PENDING: "대기",
-    ACCEPTED: "수락",
-    REJECTED: "거절",
-    COMPLETED: "완료",
-    matching: "모집중",
-    in_progress: "진행중",
-    completed: "완료",
+    PENDING: '대기',
+    ACCEPTED: '수락',
+    REJECTED: '거절',
+    COMPLETED: '완료',
+    MATCHING: '모집중',
+    IN_PROGRESS: '진행중',
   };
 
-  const STATUS_STYPE = {
-    PENDING: "bg-[#0D9488]",
-    ACCEPTED: "bg-[#4028D4]",
-    REJECTED: "bg-[#F2F4F6]",
-    COMPLETED: "bg-[#F2F4F6]",
-    matching: "bg-[#4028D4]",
-    in_progress: "bg-[#0D9488]",
-    completed: "bg-[#F2F4F6]",
+  const STATUS_STYLE = {
+    // 대기/모집 계열 — 메인 청록
+    PENDING: 'bg-teal-primary',
+    MATCHING: 'bg-teal-primary',
+
+    // 진행중 계열 — 앰버 (캐릭터 장바구니와 같은 계열)
+    IN_PROGRESS: 'bg-[#EF9F27]',
+    ACCEPTED: 'bg-[#EF9F27]',
+
+    // 종료/비활성 계열 — 무채색
+    REJECTED: 'bg-[#F2F4F6]',
+    COMPLETED: 'bg-[#F2F4F6]',
   };
   return (
     <div
-      className={`rounded-[6px] px-[6px] py-[2px] text-[10px] font-bold ${STATUS_STYPE[status]} ${status === "REJECTED" || (status === "COMPLETED" ? "text-[#8B95A1]" : "text-white")} `}
+      className={`rounded-[6px] px-[6px] py-[2px] text-[10px] font-bold ${STATUS_STYLE[status]} ${status === 'REJECTED' || (status === 'COMPLETED' ? 'text-[#8B95A1]' : 'text-white')} `}
     >
       {CURRENT_STATUS[status]}
     </div>

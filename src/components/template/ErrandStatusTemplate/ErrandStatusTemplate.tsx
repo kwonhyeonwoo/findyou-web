@@ -5,16 +5,7 @@ import ErrandHelperKaKao from '@/components/ErrandStatus/ErrandHelperKaKao';
 import ErrandStatusInfo from '@/components/ErrandStatus/ErrandStatusInfo';
 import ErrandStatusTitle from '@/components/ErrandStatus/ErrandStatusTitle';
 import { useErrandStatus } from './hooks/useErrandStatus';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
+import AlertModal from '@/components/common/AlertModal/AlertModal';
 
 const ErrandStatusTemplate = () => {
   const {
@@ -26,6 +17,7 @@ const ErrandStatusTemplate = () => {
     handleKaKaoOpenLink,
     handleProfileDetail,
   } = useErrandStatus();
+  console.log('helper', data);
   if (!data) return null;
   return (
     <div className="flex flex-col gap-6">
@@ -36,15 +28,15 @@ const ErrandStatusTemplate = () => {
         date={data.createdAt}
       />
       <ErrandHelper
-        nickName={data.applications[0].helper.nickName}
-        profile={data.applications[0].helper.profile}
+        nickName={data.applications?.helper.nickName}
+        profile={data.applications?.helper.profile}
         onProfileDetail={() =>
-          handleProfileDetail(data.applications[0].helper.id)
+          handleProfileDetail(data.applications?.helper.id)
         }
       />
       <ErrandStatusInfo
-        startTime={data.applications[0].updatedAt}
-        start={data.applications[0].helper.address}
+        startTime={data.deadlineTime}
+        start={data.applications?.helper.address}
         arrive={data.address}
         description={data.description}
       />
@@ -59,24 +51,15 @@ const ErrandStatusTemplate = () => {
         onClick={handleOpenCompleteModal}
       />
 
-      <AlertDialog open={isCompleteOpen} onOpenChange={setIsCompleteOpen}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>심부름을 완료하시겠습니까?</AlertDialogTitle>
-            <AlertDialogDescription>
-              이 작업은 되돌릴 수 없습니다. 수행자가 심부름을 완벽히 마쳤는지
-              확인해 주세요.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-
-          <AlertDialogFooter className="flex gap-2 sm:justify-center sm:space-x-0">
-            <AlertDialogCancel className="h-10 flex-1">취소</AlertDialogCancel>
-            <AlertDialogAction onClick={handleComplete} className="h-10 flex-1">
-              완료하기
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <AlertModal
+        title="심부름을 완료하시겠습니까?"
+        description={` 이 작업은 되돌릴 수 없습니다. 수행자가 심부름을 완벽히 마쳤는지
+              확인해 주세요.`}
+        isOpen={isCompleteOpen}
+        actionText="완료하기"
+        setState={setIsCompleteOpen}
+        handleActive={handleComplete}
+      />
     </div>
   );
 };

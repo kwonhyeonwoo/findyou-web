@@ -1,27 +1,33 @@
-interface Props<T> {
-  text: string;
-  type: T ;
-  isActive: boolean;
-  onCurrCategory: (type: T ) => void;
+import { CATEGORY_TABS } from '@/constants/category.-constants';
+import { useCategoryTabs } from './hooks/useCategoryTabs';
+import { FieldValues, UseFormSetValue } from 'react-hook-form';
+import { CATEGORIES_ENUM } from '@/interfaces/category.enum';
+import CategoryTab from '../CategoryTab/CategoryTab';
+
+interface Props<T extends FieldValues> {
+  currCategory: CATEGORIES_ENUM;
+  setValue: UseFormSetValue<T>;
 }
 
-export default function CategoryTabs<T>({
-  text,
-  type,
-  isActive,
-  onCurrCategory,
+export default function CategoryTas<T extends FieldValues>({
+  currCategory,
+  setValue,
 }: Props<T>) {
+  const { handleCurrentCategory } = useCategoryTabs({ setValue });
   return (
-    <button
-      onClick={() => onCurrCategory(type)}
-      type="button"
-      className={`flex items-center justify-center rounded-full border px-4 py-2 text-[14px] ${
-        isActive
-          ? "border-none bg-black font-bold text-white"
-          : "border-[#C7C4D7] text-[#464554]"
-      }`}
-    >
-      {text}
-    </button>
+    <div className="flex flex-col gap-2">
+      <p className="text-[12px] text-[#464554]">카테고리 선택</p>
+      <div className="flex flex-wrap gap-2">
+        {CATEGORY_TABS.map((item) => (
+          <CategoryTab
+            key={item.type}
+            type={item.type}
+            currCategory={currCategory}
+            text={item.text}
+            handleCurrentCategory={handleCurrentCategory}
+          />
+        ))}
+      </div>
+    </div>
   );
 }

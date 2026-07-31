@@ -1,7 +1,11 @@
 import { ErrandCategory, ErrandRegisterType } from '@/schema/errand.schema';
 import { client } from '../client/clientApi';
 import { IResponse } from '@/interfaces/response.interface';
-import { ErrandResponse } from '@/interfaces/errand.interface';
+import {
+  ErrandDetailResponse,
+  ErrandResponse,
+  ErrandStatus,
+} from '@/interfaces/errand.interface';
 import { parsePrice } from '@/lib/lib';
 
 export const errandApi = {
@@ -30,29 +34,38 @@ export const errandApi = {
     limit,
     category,
     keyword,
+    status,
   }: {
     limit?: string;
     category?: ErrandCategory;
     keyword?: string;
+    status?: ErrandStatus;
   }): Promise<ErrandResponse[]> => {
     const searchParams = new URLSearchParams();
     if (limit) searchParams.append('limit', limit);
     if (category) searchParams.append('category', category);
     if (keyword) searchParams.append('keyword', keyword);
+    if (status) searchParams.append('status', status);
 
     const queryString = searchParams.toString();
     const requestUrl = `/errand${queryString ? `?${queryString}` : ''}`;
     const response = await client.get<ErrandResponse[]>(requestUrl);
     return response;
   },
-  getErrand: async (id: string): Promise<ErrandResponse> => {
+
+  // 심부름 진행 상황
+  getErrandProgress: async (id: string): Promise<ErrandResponse> => {
+    const response = await client.get<ErrandResponse>(`/errand/${id}/progress`);
+    return response;
+  },
+
+  getErrandDetail: async (id: string) => {
     const response = await client.get<ErrandResponse>(`/errand/${id}`);
     return response;
   },
 
   getMyErrand: async (): Promise<ErrandResponse[]> => {
     const response = await client.get<ErrandResponse[]>('/errand/my');
-    console.log('response', response);
     return response;
   },
 

@@ -23,7 +23,6 @@ export default function ErrandDetailTemplate() {
   const { currentIndex, goToSlide, handleSlide } = useSliderImg(
     data?.images || [],
   );
-  console.log('data', data);
   if (!data) return null;
   return (
     <div className="flex min-h-screen flex-col items-center gap-6 pb-20">

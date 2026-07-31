@@ -1,6 +1,6 @@
-import { ErrandStatus } from "@/interfaces/errand.interface";
-import StatusBox from "../common/StatusBox/StatusBox";
-import { formatDate } from "@/lib/lib";
+import { ErrandStatus } from '@/interfaces/errand.interface';
+import StatusBox from '../common/StatusBox/StatusBox';
+import { formatDate, formatPriceNumber } from '@/lib/lib';
 
 interface Props {
   title: string;
@@ -18,7 +18,9 @@ function ErrandStatusTitle({ title, price, status, date }: Props) {
       </div>
 
       <div className="text-[24px]">{title}</div>
-      <p className="text-[24px] font-bold">{price}</p>
+      <p className="text-[24px] font-bold">
+        {formatPriceNumber(Number(price))}
+      </p>
     </div>
   );
 }

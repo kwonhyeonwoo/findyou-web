@@ -2,8 +2,9 @@
 import { ErrandCategory } from '@/schema/errand.schema';
 
 export const formattedPrice = (price: string) => {
-  if (!price) return '';
-  return `${price.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원`;
+  const numbers = price.replace(/[^\d]/g, ''); // "1원2" → "12", 콤마·원 제거
+  if (!numbers) return '';
+  return `${numbers.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원`; // "12000" → "12,000"
 };
 export function formatRelativeTime(dateString: string): string {
   const inputDate = new Date(dateString);

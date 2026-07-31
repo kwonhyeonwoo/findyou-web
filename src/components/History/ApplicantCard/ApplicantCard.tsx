@@ -1,41 +1,48 @@
-import SubmitButton from "@/components/common/SubmitButton/SubmitButton";
-import Image from "next/image";
+import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
+import { SelectedApplication } from '@/hooks/useRequestTemplate';
+import Image from 'next/image';
 
 interface Props {
-  id: string;
+  applicationId: string;
   profile?: string;
-  name: string;
+  nickName: string;
   message: string;
-  handleApplicationStatus: (
-    id: string,
-    status: "ACCEPTED" | "REJECTED",
-  ) => void;
-  //   scop: string;
+  helperId: string;
+  errandId: string;
+  handleModalOpen: ({
+    helperId,
+    applicationId,
+    nickName,
+  }: SelectedApplication) => void;
+  handleHelperProfile: (heloperId: string) => void;
 }
 
 function ApplicantCard({
+  applicationId,
   profile,
-  name,
+  nickName,
   message,
-  id,
-  handleApplicationStatus,
+  helperId,
+  errandId,
+  handleHelperProfile,
+  handleModalOpen,
 }: Props) {
   const STATUS_BTNS = [
     {
-      text: "거절",
+      text: '프로필',
       isPending: false,
       isDisabled: false,
-      bgColor: "bg-gray-100",
-      textColor: "text-gray-600",
-      onClick: () => handleApplicationStatus(id, "REJECTED"),
+      bgColor: 'bg-gray-100',
+      textColor: 'text-gray-600',
+      onClick: () => handleHelperProfile(helperId),
     },
     {
-      text: "수락",
+      text: '수락',
       isPending: false,
       isDisabled: false,
-      bgColor: "bg-black",
-      textColor: "text-white",
-      onClick: () => handleApplicationStatus(id, "ACCEPTED"),
+      bgColor: 'bg-teal-primary',
+      textColor: 'text-white',
+      onClick: () => handleModalOpen({ nickName, applicationId, helperId }),
     },
   ];
   return (
@@ -47,7 +54,7 @@ function ApplicantCard({
             {profile ? (
               <Image
                 src={`http://localhost:8000${profile}`}
-                alt={name}
+                alt={nickName}
                 width={62}
                 height={62}
                 className="rounded-full object-cover"
@@ -59,7 +66,7 @@ function ApplicantCard({
 
           {/* 별점,수행횟수 */}
           <div>
-            <p className="text-[18px]">{name}</p>
+            <p className="font-semibold">{nickName}</p>
             <div className="flex items-center gap-1">
               <div className="flex items-center gap-1">
                 <Image
@@ -78,9 +85,10 @@ function ApplicantCard({
         </div>
 
         {/* 메시지 */}
-        <p className="mt-3 text-[14px] leading-normal text-[#464554]">
-          {message}
-        </p>
+        <div className="mt-3 flex flex-col justify-center">
+          <p className="text-[14px] text-[#464554]">지원 메시지</p>
+          <p className="text-[14px] leading-normal text-[#464554]">{message}</p>
+        </div>
 
         {/* 버튼 */}
         <div className="mt-4 flex w-full gap-3">

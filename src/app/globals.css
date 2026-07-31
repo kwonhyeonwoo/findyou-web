@@ -52,6 +52,10 @@
   --color-teal-light: var(--color-teal-light);
   --color-teal-border: var(--color-teal-border);
   --color-basic-border: var(--color-basic-border);
+
+  /* 오렌지 컬러 */
+  --color-orange-primary: var(--color-orange-primary);
+  --color-orange-light: var(--color-orange-light);
 }
 button {
   cursor: pointer;
@@ -102,6 +106,10 @@ input {
   --color-teal-light: #e6f7f4;
   --color-teal-border: #d7f0ec;
   --color-basic-border: #c7c4d7;
+
+  /* 오렌지 계열 */
+  --color-orange-primary: #faeeda;
+  --color-orange-light: #854f0b;
 }
 
 .dark {

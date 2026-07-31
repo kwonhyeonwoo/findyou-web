@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
 import { Map, MapMarker, useKakaoLoader } from 'react-kakao-maps-sdk';
 
 interface Props {
@@ -11,7 +10,7 @@ export default function AddressCard({ address }: Props) {
     libraries: ['services'],
   });
   if (loading) return <div style={{ height: 476 }}>로딩중</div>;
-
+  console.log('error', error);
   if (error) return <div style={{ height: 476 }}>에러: {String(error)}</div>;
   console.log('sss', Object.keys(window.kakao.maps));
   //   return (

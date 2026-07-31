@@ -1,8 +1,8 @@
-import FloatingActionBtn from "@/components/common/FloatingActionBtn/FloatingActionBtn";
-import BottomTab from "@/components/layout/BottomTab/BottomTab";
-import MainHeader from "@/components/layout/MainHeader/MainHeader";
-import MainAuthProvider from "@/components/MainAuthProvider/MainAuthProvider";
-import React from "react";
+import FloatingActionBtn from '@/components/common/FloatingActionBtn/FloatingActionBtn';
+import BottomTab from '@/components/layout/BottomTab/BottomTab';
+import MainHeader from '@/components/layout/MainHeader/MainHeader';
+import MainAuthProvider from '@/components/MainAuthProvider/MainAuthProvider';
+import React from 'react';
 
 export default function MainLayout({
   children,
@@ -11,13 +11,13 @@ export default function MainLayout({
 }) {
   return (
     <MainAuthProvider>
-      <div className="mx-auto relative flex min-h-screen w-full max-w-[480px] flex-col bg-white shadow-xl">
+      <div className="relative mx-auto flex min-h-screen w-full max-w-[480px] flex-col bg-white shadow-xl">
         <MainHeader />
         <main className="flex-1 pb-20">
           {children}
-          <BottomTab/>
+          <BottomTab />
         </main>
-        <FloatingActionBtn/>
+        <FloatingActionBtn />
       </div>
     </MainAuthProvider>
   );

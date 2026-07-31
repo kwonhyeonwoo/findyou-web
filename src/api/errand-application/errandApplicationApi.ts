@@ -1,6 +1,6 @@
-import { IResponse } from "@/interfaces/response.interface";
-import { ErrandApplicationResponse } from "@/interfaces/errand_application.interface";
-import { client } from "../client/clientApi";
+import { IResponse } from '@/interfaces/response.interface';
+import { ErrandApplicationResponse } from '@/interfaces/errand_application.interface';
+import { client } from '../client/clientApi';
 
 export const errandApplicationApi = {
   create: async ({
@@ -19,21 +19,14 @@ export const errandApplicationApi = {
 
   getMyApplications: async (): Promise<ErrandApplicationResponse[]> => {
     const response = await client.get<ErrandApplicationResponse[]>(
-      "/errand-application/my",
+      '/errand-application/my',
     );
     return response;
   },
 
-  postStatus: async ({
-    id,
-    status,
-  }: {
-    id: string;
-    status: "ACCEPTED" | "REJECTED";
-  }) => {
+  updatedStatus: async ({ applicationId }: { applicationId: string }) => {
     const response = await client.post<IResponse>(
-      `/errand-application/${id}/status`,
-      { status },
+      `/errand-application/${applicationId}/status`,
     );
     return response;
   },

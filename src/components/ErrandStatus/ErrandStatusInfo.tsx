@@ -1,6 +1,5 @@
-import { formatDateTime } from "@/lib/lib";
-import Image from "next/image";
-import React from "react";
+import { formatDateTime } from '@/lib/lib';
+import Image from 'next/image';
 
 interface Props {
   startTime: Date;
@@ -12,24 +11,24 @@ interface Props {
 function ErrandStatusInfo({ startTime, start, arrive, description }: Props) {
   const STATUS_INGO = [
     {
-      text: "요청시간",
+      text: '요청시간',
       value: formatDateTime(startTime),
-      img: "time",
+      img: 'time',
     },
     {
-      text: "출발지",
+      text: '출발지',
       value: start,
-      img: "start",
+      img: 'start',
     },
     {
-      text: "도착지",
+      text: '도착지',
       value: arrive,
-      img: "arrive",
+      img: 'arrive',
     },
     {
-      text: "요청내용",
+      text: '요청내용',
       value: description,
-      img: "docs",
+      img: 'docs',
     },
   ];
   return (

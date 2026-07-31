@@ -19,9 +19,9 @@ export default function LiveErrandCard({
     },
   ];
   return (
-    <div className="flex w-full flex-col justify-center gap-2 rounded-[12px] border border-[#EEEEEE] px-4 py-4">
+    <div className="flex w-full cursor-pointer flex-col justify-center gap-2 rounded-[12px] border border-[#EEEEEE] px-4 py-4">
       <div className="flex items-center justify-between">
-        <div className="rounded-[8px] bg-teal-light px-2 py-[2px] text-[10px] text-teal-primary">
+        <div className="bg-teal-light text-teal-primary rounded-[8px] px-2 py-[2px] text-[10px]">
           {status === ErrandStatus.MATCHING
             ? '모집중'
             : status === ErrandStatus.IN_PROGRESS
