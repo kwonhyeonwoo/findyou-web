@@ -28,15 +28,15 @@ const ErrandStatusTemplate = () => {
         date={data.createdAt}
       />
       <ErrandHelper
-        nickName={data.applications[0].helper.nickName}
-        profile={data.applications[0]?.helper.profile}
+        nickName={data.applications?.helper.nickName}
+        profile={data.applications?.helper.profile}
         onProfileDetail={() =>
-          handleProfileDetail(data.applications[0].helper.id)
+          handleProfileDetail(data.applications?.helper.id)
         }
       />
       <ErrandStatusInfo
-        startTime={data.applications[0]?.updatedAt}
-        start={data.applications[0]?.helper.address}
+        startTime={data.deadlineTime}
+        start={data.applications?.helper.address}
         arrive={data.address}
         description={data.description}
       />

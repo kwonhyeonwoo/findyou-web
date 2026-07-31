@@ -4,11 +4,18 @@ import { useGetMyErrandsQuery } from './quires/errand/useGetMyErrandsQuery';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+export interface SelectedApplication {
+  applicationId: string;
+  nickName: string;
+  helperId: string;
+}
+
 export const useRequestTemplate = () => {
   const router = useRouter();
   const { mutate } = useApplicationStatusMutation();
   const [currentIdx, setCurrentIdx] = useState<number | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedApplicant, setSelectedApplicant] =
+    useState<SelectedApplication | null>(null);
   const [isBottomOpen, setIsBottomOpen] = useState<boolean>(false);
   const { data } = useGetMyErrandsQuery();
 
@@ -29,11 +36,30 @@ export const useRequestTemplate = () => {
     } else if (status === ErrandStatus.COMPLETED) {
     }
   };
-  const handleModalOpen = () => setIsModalOpen(true);
-  const handleApplicationUpdate = (id: string, errandId: string) => {
-    mutate({ id });
-    router.push(`/errand/status/${errandId}`);
+  const handleModalOpen = ({
+    applicationId,
+    nickName,
+    helperId,
+  }: SelectedApplication) => {
+    setSelectedApplicant({
+      applicationId,
+      nickName,
+      helperId,
+    });
   };
+
+  const handleApplicationUpdate = ({
+    applicationId,
+    helperId,
+  }: {
+    applicationId: string;
+    helperId: string;
+  }) => {
+    mutate({ applicationId });
+    setSelectedApplicant(null);
+    router.push(`/helper/${helperId}}`);
+  };
+
   const handleHelperProfile = (helperId: string) => {
     router.push(`/helper/${helperId}`);
   };
@@ -41,8 +67,8 @@ export const useRequestTemplate = () => {
     data,
     isBottomOpen,
     currentIdx,
-    isModalOpen,
-    setIsModalOpen,
+    selectedApplicant,
+    setSelectedApplicant,
     handleModalOpen,
     setIsBottomOpen,
     handleHelperProfile,

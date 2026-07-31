@@ -1,34 +1,32 @@
-import AlertModal from '@/components/common/AlertModal/AlertModal';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
+import { SelectedApplication } from '@/hooks/useRequestTemplate';
 import Image from 'next/image';
-import { SetStateAction } from 'react';
 
 interface Props {
+  applicationId: string;
   profile?: string;
   nickName: string;
   message: string;
   helperId: string;
-  isModalOpen: boolean;
   errandId: string;
-  setIsModalOpen: React.Dispatch<SetStateAction<boolean>>;
-  handleApplicationUpdate: (helperId: string, errandId: string) => void;
-  handleModalOpen: () => void;
+  handleModalOpen: ({
+    helperId,
+    applicationId,
+    nickName,
+  }: SelectedApplication) => void;
   handleHelperProfile: (heloperId: string) => void;
 }
 
 function ApplicantCard({
+  applicationId,
   profile,
   nickName,
   message,
   helperId,
-  isModalOpen,
   errandId,
-  setIsModalOpen,
-  handleApplicationUpdate,
   handleHelperProfile,
   handleModalOpen,
 }: Props) {
-  console.log('nickName', nickName);
   const STATUS_BTNS = [
     {
       text: '프로필',
@@ -44,7 +42,7 @@ function ApplicantCard({
       isDisabled: false,
       bgColor: 'bg-teal-primary',
       textColor: 'text-white',
-      onClick: () => handleModalOpen(),
+      onClick: () => handleModalOpen({ nickName, applicationId, helperId }),
     },
   ];
   return (
@@ -107,14 +105,6 @@ function ApplicantCard({
           ))}
         </div>
       </div>
-      <AlertModal
-        title={`${nickName}님을 수락하시겠습니까?`}
-        isOpen={isModalOpen}
-        description={`이 작업은 되돌릴 수 없습니다.`}
-        setState={setIsModalOpen}
-        actionText="수락"
-        handleActive={() => handleApplicationUpdate(helperId, errandId)}
-      />
     </div>
   );
 }

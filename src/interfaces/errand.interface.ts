@@ -33,7 +33,7 @@ export interface ErrandResponse {
   title: string;
   user: UserResponse;
   deadlineTime: Date;
-  applications: ErrandApplicationResponse[];
+  applications: ErrandApplicationResponse;
   applicationsCount: number;
 }
 

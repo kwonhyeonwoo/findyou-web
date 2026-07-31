@@ -24,9 +24,9 @@ export const errandApplicationApi = {
     return response;
   },
 
-  updatedStatus: async ({ id }: { id: string }) => {
+  updatedStatus: async ({ applicationId }: { applicationId: string }) => {
     const response = await client.post<IResponse>(
-      `/errand-application/${id}/status`,
+      `/errand-application/${applicationId}/status`,
     );
     return response;
   },

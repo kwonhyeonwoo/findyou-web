@@ -3,14 +3,15 @@ import CustomHistoryCard from '@/components/History/CustomHistoryCard/CustomHist
 import { useRequestTemplate } from '@/hooks/useRequestTemplate';
 import { Drawer, DrawerContent } from '@/components/ui/drawer';
 import ApplicantCard from '@/components/History/ApplicantCard/ApplicantCard';
+import AlertModal from '@/components/common/AlertModal/AlertModal';
 
 function RequestTemplate() {
   const {
     data,
     isBottomOpen,
     currentIdx,
-    isModalOpen,
-    setIsModalOpen,
+    selectedApplicant,
+    setSelectedApplicant,
     handleModalOpen,
     setIsBottomOpen,
     handleHelperProfile,
@@ -34,20 +35,33 @@ function RequestTemplate() {
           {data?.[currentIdx ?? 0]?.applications?.map((item) => (
             <ApplicantCard
               key={item.id}
-              errandId={data?.[currentIdx ?? 0]?.id}
+              errandId={item.errand?.id}
+              applicationId={item.id}
               nickName={item.helper.nickName}
               message={item.message}
               profile={item.helper.profile}
               helperId={item.helper.id}
-              isModalOpen={isModalOpen}
-              setIsModalOpen={setIsModalOpen}
-              handleApplicationUpdate={handleApplicationUpdate}
               handleHelperProfile={handleHelperProfile}
               handleModalOpen={handleModalOpen}
             />
           ))}
         </DrawerContent>
       </Drawer>
+      <AlertModal
+        title={`${selectedApplicant?.nickName}님을 수락하시겠습니까?`}
+        isOpen={!!selectedApplicant}
+        description={`이 작업은 되돌릴 수 없습니다.`}
+        setState={() => setSelectedApplicant(null)}
+        actionText="수락"
+        handleActive={() => {
+          if (selectedApplicant) {
+            handleApplicationUpdate({
+              applicationId: selectedApplicant.applicationId,
+              helperId: selectedApplicant.helperId,
+            });
+          }
+        }}
+      />
     </div>
   );
 }
