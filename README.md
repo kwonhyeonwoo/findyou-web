@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FindYou
 
-## Getting Started
+> FindYou(너를 찾는다) — 동네 기반 심부름 매칭 플랫폼
 
-First, run the development server:
+FindYou는 우리 동네에서 필요한 심부름을 의뢰하고, 가까운 이웃이 헬퍼가 되어 
+직접 수행하는 매칭 서비스입니다.
+
+의뢰인과 헬퍼가 고정되어 있지 않은 것이 특징입니다. 심부름을 맡기던 사람이 
+언제든 헬퍼로 전환해 용돈벌이를 할 수 있고, 반대로 헬퍼도 필요할 때 의뢰인이 
+됩니다. 정해진 근무 시간 없이, 내가 가능한 시간에 맞춰 자유롭게 참여하는 구조입니다.
+
+매칭이 완료되면 카카오톡 오픈채팅 링크가 공유되어, 의뢰인과 헬퍼가 실시간으로 
+소통하며 심부름을 진행할 수 있습니다.
+
+## 기술 스택
+
+### Frontend
+- **Next.js (App Router)** — React 기반 프레임워크
+- **TypeScript** — 정적 타입
+
+### State Management
+- **Zustand** — 전역 상태 관리
+- **TanStack Query** — 서버 상태 관리 및 데이터 페칭 (GET/POST/PUT/DELETE)
+
+### Form & Validation
+- **React Hook Form** — 입력값 관리
+- **Zod** — 스키마 기반 유효성 검증
+
+### UI
+- **shadcn/ui** — UI 컴포넌트
+- Claude · Stitch 를 활용한 UI 설계
+
+### Networking & Auth
+- **Fetch API** — HTTP 통신
+- **JWT** — 토큰 기반 인증/인가
+
+
+## 주요 기능
+
+### 회원
+- 회원가입 / 로그인 (JWT 기반 인증)
+
+### 심부름 (의뢰인)
+- 심부름 등록 — 카테고리, 위치, 가격, 이미지 첨부
+- 심부름 목록 조회 — 카테고리 필터, 키워드 검색
+- 지원자 확인 후 수락 → 매칭
+
+### 헬퍼
+- 헬퍼 등록 — 여러 카테고리로 활동 가능
+- 심부름 지원
+
+### 매칭
+- 의뢰인이 지원자 중 한 명을 수락하면 매칭 성립
+- 매칭 시 나머지 지원자는 자동 거절 처리 (트랜잭션으로 정합성 보장)
+- 카카오톡 오픈채팅 링크 공유로 실시간 소통
+
+### 리뷰
+- 심부름 완료 후 상호 리뷰 (의뢰인 ↔ 헬퍼)
+- 별점 + 태그 + 텍스트 리뷰
+
+## 기술적 의사결정
+
+### 1. 수락된 헬퍼 조회 방식 개선
+
+**문제**  
+심부름에 지원한 헬퍼 중 수락된 사람을 찾을 때, 처음에는 지원자 배열의 
+첫 번째(`applications[0]`)를 수락자로 간주했습니다. 하지만 배열 순서가 
+수락 여부를 보장하지 않아, 엉뚱한 지원자가 조회되는 버그가 발생했습니다.
+
+**선택**  
+지원서에 상태 값(`ACCEPTED`)을 두어 상태 기반으로 조회하고, 동시에 
+`Errand` 엔티티에 `helper` 컬럼을 추가해 수락된 헬퍼를 직접 연결했습니다.
+
+**이유**  
+상태 기반 조회로 정확성을 확보하고, 수락된 헬퍼를 별도 컬럼에 저장해 
+매번 지원자 배열 전체를 탐색하지 않고 한 번에 조회할 수 있도록 했습니다.
+
+---
+
+### 2. 매칭 로직의 트랜잭션 처리
+
+**문제**  
+의뢰인이 한 명을 수락하면 ① 해당 지원자 수락, ② 나머지 지원자 자동 거절, 
+③ 심부름 상태를 '진행중'으로 변경, 이 세 작업이 함께 일어나야 합니다. 
+중간에 하나라도 실패하면 데이터 정합성이 깨집니다.
+
+**선택**  
+세 작업을 하나의 트랜잭션으로 묶어, 모두 성공하거나 모두 취소되도록 
+처리했습니다.
+
+**이유**  
+'수락은 됐는데 다른 지원자는 거절 안 됨' 같은 중간 상태를 원천 차단하기 
+위함입니다. 동시 요청으로 인한 중복 수락도 상태 조건부 업데이트로 방어했습니다.
+
+---
+
+### 3. HTTP 통신에 fetch 채택 (vs axios)
+
+**문제**  
+데이터 통신 라이브러리로 axios와 fetch 중 무엇을 쓸지 선택해야 했습니다.
+
+**선택**  
+Next.js 환경에 맞춰 fetch를 사용하고, 클라이언트 요청은 TanStack Query로 
+감쌌습니다.
+
+**이유**  
+Next.js가 확장한 fetch의 캐싱·revalidate 기능을 활용하기 위함입니다. 
+fetch의 단점(에러 처리, 응답 파싱의 번거로움)은 TanStack Query가 재시도· 
+캐싱·에러 핸들링을 담당해 보완했습니다.
+
+## 실행 방법
 
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 환경변수
+프로젝트 루트에 `.env` 파일을 생성하고 아래 값을 설정해야 합니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+NEXT_PUBLIC_KAKAO_REST_KEY=카카오 지도 JavaScript 키
+NEXT_PUBLIC_API_URL=백엔드 API 주소
+```
