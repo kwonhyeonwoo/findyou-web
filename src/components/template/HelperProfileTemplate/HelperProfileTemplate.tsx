@@ -10,7 +10,6 @@ import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
 
 function HelperProfileTemplate() {
   const { data } = useHelperProfileTemplate();
-  console.log('data', data);
   if (!data) null;
   return (
     <div className="flex flex-1 flex-col gap-6 pb-10">
