@@ -1,5 +1,7 @@
+import { ReviewTag } from '@/interfaces/review.interface';
+
 interface Props {
-  mention: string;
+  mention: ReviewTag;
 }
 
 function ReviewMention({ mention }: Props) {

@@ -1,0 +1,7 @@
+<svg width="120" height="120" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="핀디 빈 상태">
+  <path d="M32 12 C22 12 15 18.5 15 27.5 C15 34.5 19.5 40 26 42 L20 52 L33.5 42.8 C42.5 42.2 49 35.8 49 27.5 C49 18.5 42 12 32 12 Z" fill="#0aa39a" opacity="0.15"/>
+  <path d="M32 12 C22 12 15 18.5 15 27.5 C15 34.5 19.5 40 26 42 L20 52 L33.5 42.8 C42.5 42.2 49 35.8 49 27.5 C49 18.5 42 12 32 12 Z" fill="none" stroke="#0aa39a" stroke-width="1.5" opacity="0.45"/>
+  <circle cx="26" cy="25.5" r="2.2" fill="#0aa39a"/>
+  <circle cx="38" cy="25.5" r="2.2" fill="#0aa39a"/>
+  <path d="M25.5 31 Q32 36 38.5 31" stroke="#0aa39a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+</svg>

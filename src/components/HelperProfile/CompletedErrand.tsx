@@ -1,7 +1,7 @@
-import { ErrandResponse } from "@/interfaces/errand.interface";
-import { formatDate } from "@/lib/lib";
-import Image from "next/image";
-import React from "react";
+import { ErrandResponse } from '@/interfaces/errand.interface';
+import { formatDate } from '@/lib/lib';
+import Image from 'next/image';
+import React from 'react';
 
 interface Props {
   errands: ErrandResponse[];

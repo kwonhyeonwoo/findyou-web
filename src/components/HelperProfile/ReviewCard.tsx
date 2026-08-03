@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 interface Props {}
 
@@ -9,7 +9,7 @@ function ReviewCard() {
         <div className="flex gap-2">
           <div className="h-10 w-10 rounded-full bg-gray-400" />
           <div className="flex flex-col gap-1">
-            <Image src={"/common/star.svg"} alt="star" width={11} height={11} />
+            <Image src={'/common/star.svg'} alt="star" width={11} height={11} />
             <p className="text-[12px]">2일전 / 편의점 물품 배달</p>
           </div>
         </div>
