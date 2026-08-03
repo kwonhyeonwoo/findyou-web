@@ -6,27 +6,43 @@ import HelperProfile from '@/components/HelperProfile/HelperProfile';
 import ReceivedReviews from '@/components/HelperProfile/ReceivedReviews';
 import { useGetMyErrandsQuery } from '@/hooks/quires/errand/useGetMyErrandsQuery';
 import { useHelperProfileTemplate } from './hooks/useHelperProfileTemplate';
+import Empty from '@/components/common/Empty/Empty';
+import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
 
 function HelperProfileTemplate() {
-  const { helper } = useHelperProfileTemplate();
-  console.log('helper', helper);
-  if (!helper?.helper?.errands) null;
+  const { data } = useHelperProfileTemplate();
+  console.log('data', data?.helper.errands);
+  if (!data) null;
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex h-full flex-col gap-6 border">
       <HelperProfile
-        nickName="권현우"
+        nickName={data?.helper.nickName || ''}
         rating="4.9"
         reviewCount={32}
         completedCount={142}
       />
-      <ErrandMessage
-        message={`안녕하세요! 빠르고 정확하게 도와드리는 헬퍼 김민정입니다. 어떤 사소 한 
-심부름이라도 성실하게 수행하겠습니다. 서울 전지역 가능합니다!`}
-      />
-      {/* {helper?.helper?.errands && (
-        <CompletedErrand errands={helper?.helper?.errands} />
-      )} */}
-      <ReceivedReviews />
+      <ErrandMessage message={data?.title || ''} />
+      {data?.helper?.errands && data?.helper.errands.length > 0 ? (
+        <CompletedErrand errands={data.helper.errands} />
+      ) : (
+        <Empty title="심부름 내역이 없습니다." />
+      )}
+
+      {data?.helper.receivedReviews &&
+      data?.helper.receivedReviews.length > 0 ? (
+        <ReceivedReviews reviews={data?.helper?.receivedReviews || []} />
+      ) : (
+        <Empty title="받은 후기가 없습니다." />
+      )}
+      <div className="mt-auto w-full">
+        <SubmitButton
+          text="신청하기"
+          isPending={false}
+          isDisabled={false}
+          bgColor="bg-teal-primary"
+          onClick={() => {}}
+        />
+      </div>
     </div>
   );
 }
