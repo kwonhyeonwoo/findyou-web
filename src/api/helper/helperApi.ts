@@ -15,7 +15,7 @@ export const helperApi = {
   },
 
   async getHelper(id: string): Promise<HelperResponse> {
-    const response = await client.get<HelperResponse>(`/helper/${id}`);
+    const response = await client.get<HelperResponse>(`/helper/${id}?limit=3`);
     return response;
   },
 };
