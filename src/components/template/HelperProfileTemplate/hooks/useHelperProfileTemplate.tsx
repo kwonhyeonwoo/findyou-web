@@ -5,16 +5,27 @@ import { useState } from 'react';
 
 export const useHelperProfileTemplate = () => {
   const { id } = useParams();
+  const [message, setMessage] = useState<string>('');
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { data } = useGetHelperQuery(String(id));
-  const { mutate } = useHelperAppliCreateMutation();
-
-  const handleModalOpen = () => setIsOpen(true);
-  const handleApplicationSubmit = () => {};
+  const { mutate, isPending } = useHelperAppliCreateMutation();
+  const handleChangeMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(e.target.value);
+  };
+  const handleModalOpen = () => setIsOpen((prev) => !prev);
+  const handleApplicationSubmit = (helperId: string) => {
+    mutate({
+      message,
+      helperId,
+    });
+  };
 
   return {
     data,
     isOpen,
+    message,
+    isPending,
+    handleChangeMessage,
     setIsOpen,
     handleModalOpen,
     handleApplicationSubmit,

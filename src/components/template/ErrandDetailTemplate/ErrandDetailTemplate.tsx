@@ -66,6 +66,7 @@ export default function ErrandDetailTemplate() {
       <ErrandMessageModal
         isOpen={isOpen}
         message={message}
+        title="의뢰자에게 어필할 수 있는 간단한 소개를 남겨주세요!"
         handleIsOpen={handleIsOpen}
         handleChangeMessage={handleChangeMessage}
         handleSubmit={handleSubmit}

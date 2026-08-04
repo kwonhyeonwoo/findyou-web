@@ -7,10 +7,21 @@ import ReceivedReviews from '@/components/HelperProfile/ReceivedReviews';
 import { useHelperProfileTemplate } from './hooks/useHelperProfileTemplate';
 import Empty from '@/components/common/Empty/Empty';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
+import ErrandMessageModal from '@/components/ErrandDetail/ErrandMessageModal/ErrandMessageModal';
 
 function HelperProfileTemplate() {
-  const { data } = useHelperProfileTemplate();
+  const {
+    data,
+    isOpen,
+    message,
+    isPending,
+    handleChangeMessage,
+    handleModalOpen,
+    handleApplicationSubmit,
+    setIsOpen,
+  } = useHelperProfileTemplate();
   if (!data) null;
+  console.log('ispending', data);
   return (
     <div className="flex flex-1 flex-col gap-6 pb-10">
       <HelperProfile
@@ -40,12 +51,21 @@ function HelperProfileTemplate() {
       <div className="mt-auto w-full">
         <SubmitButton
           text="신청하기"
-          isPending={false}
+          isPending={isPending}
           isDisabled={false}
           bgColor="bg-teal-primary"
-          onClick={() => {}}
+          onClick={handleModalOpen}
         />
       </div>
+
+      <ErrandMessageModal
+        isOpen={isOpen}
+        title="헬퍼에게 어필할 수 있는 간단한 소개를 남겨주세요!"
+        message={message}
+        handleIsOpen={handleModalOpen}
+        handleChangeMessage={handleChangeMessage}
+        handleSubmit={() => handleApplicationSubmit(data?.helper.id || '')}
+      />
     </div>
   );
 }
