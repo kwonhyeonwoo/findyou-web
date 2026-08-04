@@ -17,6 +17,7 @@ export const useHelperProfileTemplate = () => {
     mutate({
       message,
       helperId,
+      helperPostId: String(id),
     });
   };
 
