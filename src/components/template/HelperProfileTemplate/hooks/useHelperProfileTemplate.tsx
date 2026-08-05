@@ -21,7 +21,6 @@ export const useHelperProfileTemplate = () => {
       message,
       helperId: String(id),
     });
-    console.log('helperId', helperId);
   };
 
   return {
