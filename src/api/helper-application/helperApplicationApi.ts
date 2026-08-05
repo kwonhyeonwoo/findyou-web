@@ -1,4 +1,7 @@
-import { HelperApplicationRequest } from '@/interfaces/helper-application.interface';
+import {
+  HelperApplicationRequest,
+  HelperApplicationResponse,
+} from '@/interfaces/helper-application.interface';
 import { IResponse } from '@/interfaces/response.interface';
 import { client } from '../client/clientApi';
 
@@ -13,8 +16,10 @@ export const helperApplicationApi = {
     return response;
   },
 
-  getHelperApplications: async () => {
-    const response = await client.get('/helper-application');
+  getHelperApplications: async (): Promise<HelperApplicationResponse[]> => {
+    const response = await client.get<HelperApplicationResponse[]>(
+      '/helper-application',
+    );
     return response;
   },
 };
