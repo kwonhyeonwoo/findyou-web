@@ -1,5 +1,4 @@
 export interface HelperApplicationRequest {
   message: string;
   helperId: string;
-  helperPostId: string
 }

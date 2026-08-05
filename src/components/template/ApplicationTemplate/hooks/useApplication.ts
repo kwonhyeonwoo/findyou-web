@@ -1,5 +1,5 @@
-import { useMyApplicationsQuery } from "@/hooks/quires/errand-application/useMyApplicationsQuery";
-import { useRouter } from "next/navigation";
+import { useMyApplicationsQuery } from '@/hooks/quires/errand-application/useMyApplicationsQuery';
+import { useRouter } from 'next/navigation';
 
 export const useApplication = () => {
   const router = useRouter();

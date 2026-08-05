@@ -10,7 +10,11 @@ export const helperApplicationApi = {
         message: data.message,
       },
     );
-    console.log('helper-application', response);
+    return response;
+  },
+
+  getHelperApplications: async () => {
+    const response = await client.get('/helper-application');
     return response;
   },
 };
