@@ -1,16 +1,16 @@
 export const HISTORY_TAB: {
-  type: "request" | "application";
+  type: 'request' | 'apply';
   text: string;
   link: string;
 }[] = [
   {
-    type: "request",
-    text: "의뢰내역",
-    link: "/history/request",
+    type: 'request',
+    text: '의뢰내역',
+    link: '/history/request',
   },
   {
-    type: "application",
-    text: "지원내역",
-    link: "/history/application",
+    type: 'apply',
+    text: '지원내역',
+    link: '/history/apply',
   },
 ];
