@@ -4,10 +4,12 @@ import { client } from '../client/clientApi';
 
 export const helperApplicationApi = {
   postCreate: async (data: HelperApplicationRequest): Promise<IResponse> => {
-    const response = await client.post<IResponse>(`/helper-application/${data.helperPostId}`, {
-      helperId: data.helperId,
-      message: data.message,
-    });
+    const response = await client.post<IResponse>(
+      `/helper-application/${data.helperId}`,
+      {
+        message: data.message,
+      },
+    );
     console.log('helper-application', response);
     return response;
   },

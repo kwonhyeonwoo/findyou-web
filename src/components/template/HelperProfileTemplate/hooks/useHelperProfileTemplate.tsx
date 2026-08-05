@@ -12,13 +12,16 @@ export const useHelperProfileTemplate = () => {
   const handleChangeMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
   };
-  const handleModalOpen = () => setIsOpen((prev) => !prev);
+  const handleModalOpen = () => {
+    setIsOpen((prev) => !prev);
+    setMessage('');
+  };
   const handleApplicationSubmit = (helperId: string) => {
     mutate({
       message,
-      helperId,
-      helperPostId: String(id),
+      helperId: String(id),
     });
+    console.log('helperId', helperId);
   };
 
   return {
