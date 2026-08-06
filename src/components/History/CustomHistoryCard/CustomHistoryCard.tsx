@@ -3,6 +3,7 @@ import CustomHistoryBody from './components/CustomHistoryBody';
 import { ErrandApplicationResponse } from '@/interfaces/errand_application.interface';
 import HistoryButton from './components/HistoryButton';
 import { CustomStatus } from '@/interfaces/common.interface';
+import CustomHistoryFooter from './components/CustomHisotryFooter';
 
 interface Props {
   images?: string[];
@@ -12,7 +13,6 @@ interface Props {
   applications?: ErrandApplicationResponse[];
   status: CustomStatus;
   createdAt: Date;
-  type: 'apply' | 'errand';
   onClick: () => void;
 }
 
@@ -24,7 +24,6 @@ function CustomHistoryCard({
   status,
   applications,
   createdAt,
-  type,
   onClick,
 }: Props) {
   return (
@@ -39,12 +38,7 @@ function CustomHistoryCard({
         price={price}
         applications={applications}
       />
-      <HistoryButton
-        status={status}
-        count={applications?.length || 0}
-        type={type}
-        onClick={onClick}
-      />
+      <CustomHistoryFooter status={status} />
     </div>
   );
 }

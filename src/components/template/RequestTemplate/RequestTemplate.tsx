@@ -18,6 +18,7 @@ function RequestTemplate() {
     handleActive,
     handleApplicationUpdate,
   } = useRequestTemplate();
+  console.log('data', data);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {data?.map((item, idx) => (
@@ -25,7 +26,6 @@ function RequestTemplate() {
           key={item.id}
           {...item}
           applications={item?.applications}
-          type="errand"
           onClick={() =>
             handleActive({ idx, id: item.id, status: item.status })
           }

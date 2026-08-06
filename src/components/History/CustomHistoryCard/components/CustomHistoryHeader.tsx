@@ -16,8 +16,8 @@ const STATUS_STYLES = {
 
 function CustomHistoryHeader({ status }: Props) {
   return (
-    <div className="items-centere flex w-full justify-between">
-      <div
+    <div className="items-centere flex w-full">
+      {/* <div
         className={`rounded-[6px] px-2 py-1 ${STATUS_STYLES[status]} text-[12px] font-bold`}
       >
         {status === CustomStatus.PENDING
@@ -31,8 +31,9 @@ function CustomHistoryHeader({ status }: Props) {
                 : status === CustomStatus.COMPLETED
                   ? '완료'
                   : ''}
-      </div>
+      </div> */}
       <Image
+        className="ml-auto"
         src={'/history-card/meatball.svg'}
         alt="Meatball"
         width={14}

@@ -11,7 +11,6 @@ function AppliyTemplate() {
           {...item.helper}
           key={item.id}
           status={item.status}
-          type="apply"
           applications={item.helper}
           onClick={() => {}}
         />

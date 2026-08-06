@@ -3,7 +3,6 @@ import { ErrandApplicationResponse } from '@/interfaces/errand_application.inter
 import { formatPriceNumber, formatRelativeTime } from '@/lib/lib';
 import Image from 'next/image';
 import AvatarStack from './AvatarStack';
-import { ErrandStatus } from '@/interfaces/errand.interface';
 import { CustomStatus } from '@/interfaces/common.interface';
 
 interface Props {
