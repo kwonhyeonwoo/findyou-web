@@ -1,11 +1,6 @@
+import { CustomStatus } from './common.interface';
 import { ErrandResponse } from './errand.interface';
 import { UserResponse } from './user.interface';
-
-export type ErrandApplicationStatus =
-  | 'PENDING'
-  | 'ACCEPTED'
-  | 'REJECTED'
-  | 'COMPLETED';
 
 export interface ErrandApplicationResponse {
   id: string;
@@ -16,7 +11,7 @@ export interface ErrandApplicationResponse {
 
   errand: ErrandResponse;
 
-  status: ErrandApplicationStatus;
+  status: CustomStatus;
 
   updatedAt: Date;
 }

@@ -1,4 +1,3 @@
-import { useMyApplicationsQuery } from '@/hooks/quires/errand-application/useMyApplicationsQuery';
 import { useGetApplicationsQuery } from '@/hooks/quires/helper-application/useGetApplicationsQuery';
 import { useRouter } from 'next/navigation';
 

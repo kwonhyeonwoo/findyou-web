@@ -1,14 +1,17 @@
+import { CustomStatus } from '@/interfaces/common.interface';
 import { ErrandStatus } from '@/interfaces/errand.interface';
 import Image from 'next/image';
 
 interface Props {
-  status: ErrandStatus;
+  status: CustomStatus;
 }
 
 const STATUS_STYLES = {
-  MATCHING: 'bg-teal-primary text-teal-light',
-  IN_PROGRESS: 'bg-orange-primary text-orange-light',
-  COMPLETED: 'bg-[#5F5E5A] text-[#5F5E5A]',
+  PENDING: 'bg-teal-primary text-teal-light', // 대기
+  IN_PROGRESS: 'bg-orange-primary text-orange-light', // 진행
+  COMPLETED: 'bg-[#5F5E5A] text-[#5F5E5A]', // 완료
+  ACCEPTED: 'bg-teal-primary text-teal-light', // 수락
+  REJECTED: 'bg-[#5F5E5A] text-[#5F5E5A]', // 거절
 };
 
 function CustomHistoryHeader({ status }: Props) {
@@ -17,11 +20,17 @@ function CustomHistoryHeader({ status }: Props) {
       <div
         className={`rounded-[6px] px-2 py-1 ${STATUS_STYLES[status]} text-[12px] font-bold`}
       >
-        {status === ErrandStatus.MATCHING
+        {status === CustomStatus.PENDING
           ? '대기중'
-          : status === ErrandStatus.IN_PROGRESS
+          : status === CustomStatus.IN_PROGRESS
             ? '진행중'
-            : '완료'}
+            : status === CustomStatus.ACCEPTED
+              ? '수락'
+              : status === CustomStatus.REJECTED
+                ? '거절'
+                : status === CustomStatus.COMPLETED
+                  ? '완료'
+                  : ''}
       </div>
       <Image
         src={'/history-card/meatball.svg'}

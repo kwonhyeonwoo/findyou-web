@@ -25,6 +25,7 @@ function RequestTemplate() {
           key={item.id}
           {...item}
           applications={item?.applications}
+          type="errand"
           onClick={() =>
             handleActive({ idx, id: item.id, status: item.status })
           }

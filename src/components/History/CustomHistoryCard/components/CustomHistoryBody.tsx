@@ -1,12 +1,10 @@
 import StatusBox from '@/components/common/StatusBox/StatusBox';
-import {
-  ErrandApplicationResponse,
-  ErrandApplicationStatus,
-} from '@/interfaces/errand_application.interface';
+import { ErrandApplicationResponse } from '@/interfaces/errand_application.interface';
 import { formatPriceNumber, formatRelativeTime } from '@/lib/lib';
 import Image from 'next/image';
 import AvatarStack from './AvatarStack';
 import { ErrandStatus } from '@/interfaces/errand.interface';
+import { CustomStatus } from '@/interfaces/common.interface';
 
 interface Props {
   image?: string | undefined;
@@ -14,9 +12,9 @@ interface Props {
   address_dong: string;
   createdAt: Date;
   price: string;
-  status: ErrandStatus;
+  status: CustomStatus;
   applications?: ErrandApplicationResponse[];
-  applyStatus?: ErrandApplicationStatus;
+  applyStatus?: CustomStatus;
 }
 
 function CustomHistoryBody({
@@ -58,7 +56,7 @@ function CustomHistoryBody({
           <p className="text-[13px] text-[#464554]">
             {formatRelativeTime(String(createdAt))}
           </p>
-          {applications && status === ErrandStatus.MATCHING && (
+          {applications && status === CustomStatus.PENDING && (
             <AvatarStack count={applications?.length} />
           )}
         </div>
