@@ -1,3 +1,5 @@
+import ReceivedTemplate from '@/components/template/ReceivedTemplate/ReceivedTemplate';
+
 export default function Page() {
-  return <div>received;</div>;
+  return <ReceivedTemplate />;
 }

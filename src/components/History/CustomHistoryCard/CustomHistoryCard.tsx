@@ -1,7 +1,6 @@
 import CustomHistoryHeader from './components/CustomHistoryHeader';
 import CustomHistoryBody from './components/CustomHistoryBody';
 import { ErrandApplicationResponse } from '@/interfaces/errand_application.interface';
-import HistoryButton from './components/HistoryButton';
 import { CustomStatus } from '@/interfaces/common.interface';
 import CustomHistoryFooter from './components/CustomHisotryFooter';
 
