@@ -62,3 +62,13 @@ export interface HelperResponse {
 
   helper: UserResponse;
 }
+
+export interface ReceivedHistoryResponse {
+  profile?: string;
+  nickName: string;
+  message: string;
+  dateTime: Date;
+  rating: number;
+}
+
+// 신청자프로필,닉네임, 시간, 별점,메시지,

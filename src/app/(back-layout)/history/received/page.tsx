@@ -1,5 +1,5 @@
-import ReceivedTemplate from '@/components/template/ReceivedTemplate/ReceivedTemplate';
+import ReceivedHistoryTemplate from '@/components/template/ReceivedHistoryTemplate/ReceivedHistoryTemplate';
 
 export default function Page() {
-  return <ReceivedTemplate />;
+  return <ReceivedHistoryTemplate />;
 }

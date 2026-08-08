@@ -18,6 +18,12 @@ export const helperApi = {
     const response = await client.get<HelperResponse>(`/helper/${id}?limit=3`);
     return response;
   },
+
+  async getReceivedApplications() {
+    const response = await client.get('/helper/applications');
+    console.log('response', response);
+    return response;
+  },
 };
 
 // 헬퍼 닉네임, 별점, 카테고리, 프로필,
