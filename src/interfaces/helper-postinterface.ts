@@ -31,7 +31,7 @@ export interface IBestHeleper {
   success: string;
 }
 
-export interface HelperResponse {
+export interface HelperPostResponse {
   id: string;
 
   title: string;

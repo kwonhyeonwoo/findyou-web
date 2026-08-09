@@ -1,8 +1,8 @@
 import { CATEGORIES_ENUM } from '@/interfaces/category.enum';
-import { MOVEMENT_ENUM } from '@/interfaces/helper.interface';
+import { MOVEMENT_ENUM } from '@/interfaces/helper-postinterface';
 import z from 'zod';
 
-export const helperRegisterSchema = z.object({
+export const helperPostRegisterSchema = z.object({
   title: z
     .string()
     .min(4, '제목은 최소 4자 이상입니다.')
@@ -21,4 +21,4 @@ export const helperRegisterSchema = z.object({
   category: z.enum(CATEGORIES_ENUM),
 });
 
-export type HelperRegisterType = z.infer<typeof helperRegisterSchema>;
+export type HelperPostRegisterType = z.infer<typeof helperPostRegisterSchema>;

@@ -10,7 +10,6 @@ import { parsePrice } from '@/lib/lib';
 
 export const errandApi = {
   write: async (data: ErrandRegisterType): Promise<IResponse> => {
-    console.log('price', typeof data.price);
     const formData = new FormData();
     formData.append('title', data.title);
     formData.append('category', data.category);
