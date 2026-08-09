@@ -1,10 +1,10 @@
-import { helperApi } from "@/api/helper/helperApi";
-import { HELPER_KEYS } from "@/api/helper/helperKeys";
+import { helperPostApi } from "@/api/helper-post/helperPostApi";
+import { HELPER_POST_KEYS } from "@/api/helper-post/helperPostKeys";
 import { useQuery } from "@tanstack/react-query"
 
 export const useGetHelpersQuery = () => {
     return useQuery({
-        queryFn: () => helperApi.getHelpers(),
-        queryKey: HELPER_KEYS.lists(),
+        queryFn: () => helperPostApi.getHelpers(),
+        queryKey: HELPER_POST_KEYS.lists(),
     })
 }

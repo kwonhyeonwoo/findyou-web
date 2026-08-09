@@ -4,7 +4,10 @@ import HelperCard from '@/components/home/HelperCard/HelperCard';
 import HomeCategories from '@/components/home/HomeCategories/HomeCategories';
 import HomeSearch from '@/components/home/HomeSearch/HomeSearch';
 import LiveErrandCard from '@/components/home/LiveErrandCard/LiveErrandCard';
-import { IBestHeleper, IHelperCardType } from '@/interfaces/helper.interface';
+import {
+  IBestHeleper,
+  IHelperCardType,
+} from '@/interfaces/helper-postinterface';
 import Link from 'next/link';
 import { useHomeTemplate } from './hooks/useHomeTemplate';
 import Empty from '@/components/common/Empty/Empty';

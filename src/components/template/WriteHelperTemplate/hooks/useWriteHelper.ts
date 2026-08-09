@@ -1,10 +1,10 @@
 import { useHelperCreateMutation } from '@/hooks/mutations/helper/useHelperCreateMutation';
-import { MOVEMENT_ENUM } from '@/interfaces/helper.interface';
+import { MOVEMENT_ENUM } from '@/interfaces/helper-postinterface';
 import { parsePrice } from '@/lib/lib';
 import {
   helperRegisterSchema,
   HelperRegisterType,
-} from '@/schema/helper.schema';
+} from '@/schema/helper-post.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
