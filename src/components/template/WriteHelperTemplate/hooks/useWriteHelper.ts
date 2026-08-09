@@ -2,8 +2,8 @@ import { useHelperCreateMutation } from '@/hooks/mutations/helper/useHelperCreat
 import { MOVEMENT_ENUM } from '@/interfaces/helper-postinterface';
 import { parsePrice } from '@/lib/lib';
 import {
-  helperRegisterSchema,
-  HelperRegisterType,
+  helperPostRegisterSchema,
+  HelperPostRegisterType,
 } from '@/schema/helper-post.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
@@ -17,8 +17,8 @@ export const useWriteHelper = () => {
     setValue,
     register,
     handleSubmit,
-  } = useForm<HelperRegisterType>({
-    resolver: zodResolver(helperRegisterSchema),
+  } = useForm<HelperPostRegisterType>({
+    resolver: zodResolver(helperPostRegisterSchema),
   });
   const { mutate } = useHelperCreateMutation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -26,7 +26,7 @@ export const useWriteHelper = () => {
     setValue('movement', type);
   };
   const handleAddressOpen = () => setIsOpen(true);
-  const handleHelperSubmit = (data: HelperRegisterType) => {
+  const handleHelperSubmit = (data: HelperPostRegisterType) => {
     console.log('submit data', data);
     mutate({
       ...data,
