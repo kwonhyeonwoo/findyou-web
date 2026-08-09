@@ -1,5 +1,6 @@
 import { CATEGORIES_ENUM } from './category.enum';
 import { ErrandStatus } from './errand.interface';
+import { HelperApplicationResponse } from './helper-application.interface';
 import { UserResponse } from './user.interface';
 
 export enum MOVEMENT_ENUM {
@@ -61,8 +62,9 @@ export interface HelperPostResponse {
   updatedAt: Date;
 
   helper: UserResponse;
-}
 
+  applications: HelperApplicationResponse[];
+}
 export interface ReceivedHistoryResponse {
   profile?: string;
   nickName: string;

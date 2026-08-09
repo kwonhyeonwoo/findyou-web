@@ -21,8 +21,10 @@ export const helperPostApi = {
     return response;
   },
 
-  async getReceivedApplications() {
-    const response = await client.get('/helper-post/applications');
+  async getReceivedApplications(): Promise<HelperPostResponse[]> {
+    const response = await client.get<HelperPostResponse[]>(
+      '/helper-post/applications',
+    );
     console.log('response', response);
     return response;
   },

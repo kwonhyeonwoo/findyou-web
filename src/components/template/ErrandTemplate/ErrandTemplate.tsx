@@ -5,7 +5,7 @@ import ErrandList from '@/components/Errand/ErrandList/ErrandList';
 import ErrandSearchInput from '@/components/common/ErrandSearchInput/ErrandSearchInput';
 import StatusBar from '@/components/common/StatusBar/StatusBar';
 import CategoryTab from '@/components/common/CategoryTab/CategoryTab';
-import { CATEGORY_TABS_WITH_ALL } from '@/constants/category.-constants';
+import { CATEGORY_TABS_WITH_ALL } from '@/constants/category-constants';
 import { ErrandStatus } from '@/interfaces/errand.interface';
 
 export default function ErrandTemplate() {

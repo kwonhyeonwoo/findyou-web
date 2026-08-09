@@ -39,3 +39,14 @@ export const CATEGORY_TABS_WITH_ALL: {
   text: string;
   type: CATEGORIES_ENUM | 'all';
 }[] = [{ text: '전체', type: 'all' }, ...CATEGORY_TABS];
+
+export const CATEGORY_BG_STYLE = {
+  DELIVERY: 'bg-[#FFEDD5]', // 배달,
+  SHOPPING: 'bg-[#DBEAFE]', //쇼핑
+  CLEANING: 'bg-[#F3E8FF]', // 청소
+  REPAIR: 'bg-[#FEE2E2]', // 수리
+  PROXY: 'bg-[#E0E7FF]', // 역할대행
+  PET: 'bg-[#FEF3C7]', // 반려동물
+  CAR_WASH: 'bg-[#CFFAFE]', // 세차
+  ETC: 'bg-[#E2E8F0]', // 기타
+};
