@@ -1,5 +1,6 @@
 import { CustomStatus } from './common.interface';
 import { ErrandStatus } from './errand.interface';
+import { HelperPostResponse } from './helper-postinterface';
 import { UserResponse } from './user.interface';
 
 export interface HelperApplicationRequest {
@@ -11,7 +12,7 @@ export interface HelperApplicationResponse {
   id: string;
   message: string;
   status: CustomStatus;
-  helper: UserResponse;
+  helperPosts: HelperPostResponse;
   client: UserResponse;
   createdAt: Date;
   updatedAt: Date;
