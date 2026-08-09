@@ -1,7 +1,10 @@
-import { HelperApplicationRequest } from '@/interfaces/helper-application.interface';
+import {
+  HelperApplicationRequest,
+  HelperApplicationResponse,
+} from '@/interfaces/helper-application.interface';
 import { IResponse } from '@/interfaces/response.interface';
 import { client } from '../client/clientApi';
-
+3;
 export const helperApplicationApi = {
   postCreate: async (data: HelperApplicationRequest): Promise<IResponse> => {
     const response = await client.post<IResponse>(
@@ -10,7 +13,13 @@ export const helperApplicationApi = {
         message: data.message,
       },
     );
-    console.log('helper-application', response);
+    return response;
+  },
+
+  getHelperApplications: async (): Promise<HelperApplicationResponse[]> => {
+    const response = await client.get<HelperApplicationResponse[]>(
+      '/helper-application',
+    );
     return response;
   },
 };

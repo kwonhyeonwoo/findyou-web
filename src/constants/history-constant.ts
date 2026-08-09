@@ -1,5 +1,5 @@
 export const HISTORY_TAB: {
-  type: 'request' | 'apply';
+  type: 'request' | 'apply' | 'received';
   text: string;
   link: string;
 }[] = [
@@ -12,5 +12,10 @@ export const HISTORY_TAB: {
     type: 'apply',
     text: '지원내역',
     link: '/history/apply',
+  },
+  {
+    type: 'received',
+    text: '받은내역',
+    link: '/history/received',
   },
 ];

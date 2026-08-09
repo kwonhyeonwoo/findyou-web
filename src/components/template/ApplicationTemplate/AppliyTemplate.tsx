@@ -6,16 +6,15 @@ function AppliyTemplate() {
   const { data, handleActive } = useApplication();
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
-      clg
-      {/* {data?.map((item) => (
+      {data?.map((item) => (
         <CustomHistoryCard
-          {...item.errand}
+          {...item.helper}
           key={item.id}
-          appliedStatus={item.status}
-          onClick={handleActive}
-          btnText="심부름 상세"
+          status={item.status}
+          applications={item.helper}
+          onClick={() => {}}
         />
-      ))} */}
+      ))}
     </div>
   );
 }

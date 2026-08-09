@@ -1,10 +1,10 @@
-import { useMyApplicationsQuery } from "@/hooks/quires/errand-application/useMyApplicationsQuery";
-import { useRouter } from "next/navigation";
+import { useGetApplicationsQuery } from '@/hooks/quires/helper-application/useGetApplicationsQuery';
+import { useRouter } from 'next/navigation';
 
 export const useApplication = () => {
   const router = useRouter();
-  const { data, isLoading } = useMyApplicationsQuery();
-
+  const { data, isLoading } = useGetApplicationsQuery();
+  console.log('data', data);
   const handleActive = (id: string) => {
     router.push(`/history/errand/${id}`);
   };
