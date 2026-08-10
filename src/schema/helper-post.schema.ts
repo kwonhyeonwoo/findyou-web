@@ -1,5 +1,5 @@
 import { CATEGORIES_ENUM } from '@/interfaces/category.enum';
-import { MOVEMENT_ENUM } from '@/interfaces/helper-postinterface';
+import { MOVEMENT_ENUM } from '@/interfaces/helper-post.interface';
 import z from 'zod';
 
 export const helperPostRegisterSchema = z.object({

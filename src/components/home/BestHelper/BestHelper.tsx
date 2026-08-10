@@ -1,4 +1,4 @@
-import { IBestHeleper } from '@/interfaces/helper-postinterface';
+import { IBestHeleper } from '@/interfaces/helper-post.interface';
 import Image from 'next/image';
 
 export default function BestHelper({

@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 export default function useGetMyHelperPostsQuery(id: string) {
   return useQuery({
-    queryKey: HELPER_POST_KEYS.applications(id),
+    queryKey: HELPER_POST_KEYS.myLists(id),
     queryFn: () => helperPostApi.getMyHelperPosts(),
   });
 }

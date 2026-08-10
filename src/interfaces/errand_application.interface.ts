@@ -1,6 +1,6 @@
 import { CustomStatus } from './common.interface';
 import { ErrandResponse } from './errand.interface';
-import { HelperPostResponse } from './helper-postinterface';
+import { HelperPostResponse } from './helper-post.interface';
 
 export interface ErrandApplicationResponse {
   id: string;

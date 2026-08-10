@@ -1,6 +1,5 @@
 import { CustomStatus } from './common.interface';
-import { ErrandStatus } from './errand.interface';
-import { HelperPostResponse } from './helper-postinterface';
+import { HelperPostResponse } from './helper-post.interface';
 import { UserResponse } from './user.interface';
 
 export interface HelperApplicationRequest {

@@ -7,7 +7,7 @@ import LiveErrandCard from '@/components/home/LiveErrandCard/LiveErrandCard';
 import {
   IBestHeleper,
   IHelperCardType,
-} from '@/interfaces/helper-postinterface';
+} from '@/interfaces/helper-post.interface';
 import Link from 'next/link';
 import { useHomeTemplate } from './hooks/useHomeTemplate';
 import Empty from '@/components/common/Empty/Empty';

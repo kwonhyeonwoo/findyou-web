@@ -2,7 +2,7 @@ import ReceivedHeader from '../ReceivedHeader/ReceivedHeader';
 import ReceivedBody from '../ReceivedBody/ReceivedBody';
 import ReceivedButton from '../ReceivedFooter/ReceivedButton';
 import Image from 'next/image';
-import { HelperPostResponse } from '@/interfaces/helper-postinterface';
+import { HelperPostResponse } from '@/interfaces/helper-post.interface';
 import { CATEGORY_BG_STYLE } from '@/constants/category-constants';
 import { fillterCategory } from '@/lib/lib';
 interface Props {
@@ -10,7 +10,6 @@ interface Props {
   handleReceivedHistory: (helperPostId: string) => void;
 }
 function ReceivedCard({ data, handleReceivedHistory }: Props) {
-  console.log('id', data.helper);
   return (
     <div
       onClick={() => handleReceivedHistory(data.id)}

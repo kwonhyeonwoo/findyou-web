@@ -1,7 +1,8 @@
 import { HelperPostRegisterType } from '@/schema/helper-post.schema';
 import { client } from '../client/clientApi';
 import { IResponse } from '@/interfaces/response.interface';
-import { HelperPostResponse } from '@/interfaces/helper-postinterface';
+import { HelperPostResponse } from '@/interfaces/helper-post.interface';
+import { HelperApplicationResponse } from '@/interfaces/helper-application.interface';
 
 export const helperPostApi = {
   async createHelper(data: HelperPostRegisterType): Promise<IResponse> {
@@ -23,9 +24,6 @@ export const helperPostApi = {
 
   async getMyHelperPosts(): Promise<HelperPostResponse[]> {
     const response = await client.get<HelperPostResponse[]>('/helper-post/my');
-    console.log('response', response);
     return response;
   },
 };
-
-// 헬퍼 닉네임, 별점, 카테고리, 프로필,
