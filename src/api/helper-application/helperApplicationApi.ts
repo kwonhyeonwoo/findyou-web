@@ -22,4 +22,30 @@ export const helperApplicationApi = {
     );
     return response;
   },
+
+  // 내가 받은 지원내역
+  async getReceivedApplications(
+    helperPostId: string,
+  ): Promise<HelperApplicationResponse[]> {
+    const response = await client.get<HelperApplicationResponse[]>(
+      `/helper-application/received/${helperPostId}`,
+    );
+    return response;
+  },
+
+  // 내역 수락
+  async patchAcceptedApplication(id: string): Promise<IResponse> {
+    console.log('id', id);
+    const response = await client.patch<IResponse>(`/helper-application/${id}`);
+    console.log('response', response);
+    return response;
+  },
+
+  // 내역 거절
+  async patchRejectedApplication(id: string): Promise<IResponse> {
+    const response = await client.patch<IResponse>(
+      `/helper-application/rejected/${id}`,
+    );
+    return response;
+  },
 };

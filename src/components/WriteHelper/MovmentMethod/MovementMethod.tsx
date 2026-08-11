@@ -1,5 +1,5 @@
 import { MOVEMENT } from '@/constants/helper.constant';
-import { MOVEMENT_ENUM } from '@/interfaces/helper-postinterface';
+import { MOVEMENT_ENUM } from '@/interfaces/helper-post.interface';
 interface Props {
   currMovement: MOVEMENT_ENUM;
   handleCurrMovement: (type: MOVEMENT_ENUM) => void;

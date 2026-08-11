@@ -1,8 +1,8 @@
-import { CATEGORY_TABS } from '@/constants/category.-constants';
 import { useCategoryTabs } from './hooks/useCategoryTabs';
 import { FieldValues, UseFormSetValue } from 'react-hook-form';
 import { CATEGORIES_ENUM } from '@/interfaces/category.enum';
 import CategoryTab from '../CategoryTab/CategoryTab';
+import { CATEGORY_TABS } from '@/constants/category-constants';
 
 interface Props<T extends FieldValues> {
   currCategory: CATEGORIES_ENUM;

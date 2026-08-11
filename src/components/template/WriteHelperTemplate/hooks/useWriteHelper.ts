@@ -1,5 +1,5 @@
 import { useHelperCreateMutation } from '@/hooks/mutations/helper/useHelperCreateMutation';
-import { MOVEMENT_ENUM } from '@/interfaces/helper-postinterface';
+import { MOVEMENT_ENUM } from '@/interfaces/helper-post.interface';
 import { parsePrice } from '@/lib/lib';
 import {
   helperPostRegisterSchema,

@@ -1,4 +1,4 @@
-import { MOVEMENT_ENUM } from '@/interfaces/helper-postinterface';
+import { MOVEMENT_ENUM } from '@/interfaces/helper-post.interface';
 
 export const MOVEMENT: { type: MOVEMENT_ENUM; text: string; img: string }[] = [
   {

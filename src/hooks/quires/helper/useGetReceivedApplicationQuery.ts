@@ -2,9 +2,9 @@ import { helperApplicationApi } from '@/api/helper-application/helperApplication
 import { HELPER_APPLICATION_KEYS } from '@/api/helper-application/helperApplicationKeys';
 import { useQuery } from '@tanstack/react-query';
 
-export const useGetApplicationsQuery = () => {
+export default function useGetReceivedApplicationQuery(helperPostId: string) {
   return useQuery({
-    queryFn: () => helperApplicationApi.getHelperApplications(),
-    queryKey: HELPER_APPLICATION_KEYS.lists(),
+    queryKey: HELPER_APPLICATION_KEYS.myLists(helperPostId),
+    queryFn: () => helperApplicationApi.getReceivedApplications(helperPostId),
   });
-};
+}

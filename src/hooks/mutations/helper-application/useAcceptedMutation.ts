@@ -4,19 +4,20 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
-export const useHelperAppliCreateMutation = () => {
+export default function useAcceptedMutation(id: string) {
   const router = useRouter();
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: helperApplicationApi.postCreate,
+    mutationFn: helperApplicationApi.patchAcceptedApplication,
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: HELPER_APPLICATION_KEYS.all });
-      toast.success('헬퍼에게 심부름 신청이 완료되었습니다.');
-      router.push('/history/apply');
+      queryClient.invalidateQueries({
+        queryKey: HELPER_APPLICATION_KEYS.myLists(id),
+      });
+      toast.success('수락을 완료 하였습니다.');
+      // 주소 이동
     },
     onError: (error) => {
-      console.log('error', error.message);
       toast.error(error.message);
     },
   });
-};
+}
