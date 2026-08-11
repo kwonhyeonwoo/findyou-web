@@ -5,20 +5,21 @@ import ReceivedDetailButton from '../ReceivedDetailButton/ReceivedDetailButton';
 
 interface Props {
   data: HelperApplicationResponse;
+  handleActive: (type: 'ACCEPTED' | 'REJECT', id: string) => void;
 }
-export default function ReceivedDetailCard({ data }: Props) {
+export default function ReceivedDetailCard({ data, handleActive }: Props) {
   const BUTTONS = [
     {
       text: '거절',
       bgColor: 'bg-[#F2F4F6]',
       textColor: 'text-[#4E5968]',
-      Active: () => {},
+      Active: () => handleActive('REJECT', data.id),
     },
     {
       text: '수락',
       bgColor: 'bg-black',
       textColor: 'text-white',
-      Active: () => {},
+      Active: () => handleActive('ACCEPTED', data.id),
     },
   ];
   return (
