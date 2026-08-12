@@ -9,26 +9,44 @@ export default function useReceivedDetail() {
   const [selectedType, setSelectedType] = useState<
     'ACCEPTED' | 'REJECT' | undefined
   >(undefined);
-  const [currAppliId, setCurrAppliId] = useState<string>();
+  const [currApplication, setCurrApplication] = useState<{
+    appliId: string;
+    clientId: string;
+  }>({
+    appliId: '',
+    clientId: '',
+  });
   const [isCompleteOpen, setIsCompleteOpen] = useState<boolean>(false);
   const { data, isLoading } = useGetReceivedApplicationQuery(String(id) ?? '');
-  const { mutate } = useAcceptedMutation(currAppliId ?? '');
-  const { mutate: rejectedMutate } = useRejectedMutation(currAppliId ?? '');
+  const { mutate } = useAcceptedMutation({
+    appliId: currApplication.appliId ?? '',
+    clientId: currApplication.clientId,
+  });
+  const { mutate: rejectedMutate } = useRejectedMutation(
+    currApplication.appliId ?? '',
+  );
 
-  const handleCompleteOpen = (type: 'ACCEPTED' | 'REJECT', id: string) => {
+  const handleCompleteOpen = (
+    type: 'ACCEPTED' | 'REJECT',
+    appliId: string,
+    clientId: string,
+  ) => {
     setSelectedType(type);
-    setCurrAppliId(id);
+    setCurrApplication({
+      appliId,
+      clientId,
+    });
     setIsCompleteOpen((prev) => !prev);
   };
   const handleAccepted = () => {
-    if (currAppliId) {
-      mutate(currAppliId);
+    if (currApplication.appliId) {
+      mutate(currApplication.appliId);
     }
   };
 
   const handleRejected = () => {
-    if (currAppliId) {
-      rejectedMutate(currAppliId);
+    if (currApplication.appliId) {
+      rejectedMutate(currApplication.appliId);
     }
   };
 
