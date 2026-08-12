@@ -1,39 +1,39 @@
-import { ErrandResponse } from "./errand.interface";
-import { UserResponse } from "./user.interface";
+import { ErrandResponse } from './errand.interface';
+import { UserResponse } from './user.interface';
 
 export enum ReviewRole {
-    HELPER = 'HELPER',
-    USER = 'USER',
+  HELPER = 'HELPER',
+  USER = 'USER',
 }
 export enum ReviewTag {
-    PUNCTUAL = "PUNCTUAL",
-    KIND = "KIND",
-    FAST = "FAST",
-    GOOD_COMM = "GOOD_COMM",
+  PUNCTUAL = 'PUNCTUAL',
+  KIND = 'KIND',
+  FAST = 'FAST',
+  GOOD_COMM = 'GOOD_COMM',
 }
 
 export interface ReviewCreateRequest {
-    rating: number;
-    tags: ReviewTag[];
-    content: string;
+  rating: number;
+  tags: ReviewTag[];
+  content: string;
 }
 
 export interface ReviewResponse {
-    id: string;
+  id: string;
 
-    rating: number;
+  rating: number;
 
-    tags: ReviewTag[];
+  tags: ReviewTag[];
 
-    content: string;
+  content: string;
 
-    reviewer: UserResponse; // 리뷰작성자
+  reviewer: UserResponse; // 리뷰작성자
 
-    reviewee: UserResponse;// 리뷰 대상자
+  reviewee: UserResponse; // 리뷰 대상자
 
-    role: ReviewRole;
+  role: ReviewRole;
 
-    errand: ErrandResponse;
+  errand: ErrandResponse;
 
-    createdAt: Date;
+  createdAt: Date;
 }
