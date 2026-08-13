@@ -30,7 +30,3 @@ export default function useHelperProgress() {
     handleProfileActive,
   };
 }
-
-// 수락요청만 하면 됨... helper-application/:id/completed-requested 보내면 됨
-//  application id를 post로 보냄, 그리고 서버에서는 getUser을 받아와서 application에 있는
-// helper.helper.id랑 비교를함. 같으면 completed-reuqest , 같지가않으면 에러전달

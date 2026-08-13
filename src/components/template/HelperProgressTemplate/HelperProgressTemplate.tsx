@@ -8,8 +8,14 @@ import AlertModal from '@/components/common/AlertModal/AlertModal';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
 
 export default function HelperProgressTemplate() {
-  const { data, isOpen, setIsOpen, handleIsOpen, handleProfileActive } =
-    useHelperProgress();
+  const {
+    data,
+    isOpen,
+    setIsOpen,
+    handleIsOpen,
+    handleProfileActive,
+    handleCompletedRequest,
+  } = useHelperProgress();
   console.log('dta', data);
   if (!data) return null;
   return (
@@ -42,7 +48,7 @@ export default function HelperProgressTemplate() {
         isOpen={isOpen}
         actionText="완료신청"
         setState={setIsOpen}
-        handleActive={() => {}}
+        handleActive={handleCompletedRequest}
       />
     </div>
   );
