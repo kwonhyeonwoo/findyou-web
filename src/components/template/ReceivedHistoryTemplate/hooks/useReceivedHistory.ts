@@ -9,9 +9,13 @@ export default function useReceivedHistory() {
   const handleReceivedHistory = (helperPostId: string) => {
     router.push(`/history/received/${helperPostId}`);
   };
+  const handleAcceptedActive = (appliId: string) => {
+    router.push(`/helper/${appliId}/progress`);
+  };
   return {
     data,
     isLoading,
+    handleAcceptedActive,
     handleReceivedHistory,
   };
 }

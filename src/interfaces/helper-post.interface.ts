@@ -1,4 +1,5 @@
 import { CATEGORIES_ENUM } from './category.enum';
+import { CustomStatus } from './common.interface';
 import { ErrandStatus } from './errand.interface';
 import { HelperApplicationResponse } from './helper-application.interface';
 import { UserResponse } from './user.interface';
@@ -53,7 +54,7 @@ export interface HelperPostResponse {
 
   category: CATEGORIES_ENUM;
 
-  status: ErrandStatus;
+  status: CustomStatus;
 
   price: number;
 

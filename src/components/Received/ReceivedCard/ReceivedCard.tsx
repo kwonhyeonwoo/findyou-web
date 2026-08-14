@@ -1,18 +1,29 @@
-import ReceivedHeader from '../ReceivedHeader/ReceivedHeader';
-import ReceivedBody from '../ReceivedBody/ReceivedBody';
-import ReceivedButton from '../ReceivedFooter/ReceivedButton';
 import Image from 'next/image';
 import { HelperPostResponse } from '@/interfaces/helper-post.interface';
 import { CATEGORY_BG_STYLE } from '@/constants/category-constants';
 import { fillterCategory } from '@/lib/lib';
+import { HelperApplicationResponse } from '@/interfaces/helper-application.interface';
 interface Props {
   data: HelperPostResponse;
+  acceptedApplication?: HelperApplicationResponse;
+  handleAcceptedActive: (appliId: string) => void;
   handleReceivedHistory: (helperPostId: string) => void;
 }
-function ReceivedCard({ data, handleReceivedHistory }: Props) {
+function ReceivedCard({
+  data,
+  acceptedApplication,
+  handleAcceptedActive,
+  handleReceivedHistory,
+}: Props) {
   return (
     <div
-      onClick={() => handleReceivedHistory(data.id)}
+      onClick={() => {
+        if (acceptedApplication) {
+          handleAcceptedActive(acceptedApplication.id);
+        } else {
+          handleReceivedHistory(data.id);
+        }
+      }}
       className="border-basic-border flex cursor-pointer items-center justify-between gap-2 border-b pb-4"
     >
       {/* 카테고리이미지, 제목, 카테고리, 시간 */}
@@ -38,8 +49,14 @@ function ReceivedCard({ data, handleReceivedHistory }: Props) {
       </div>
 
       <div className="flex items-center gap-2">
-        <div className="bg-teal-primary rounded-full px-3 py-1 text-[12px] font-bold text-white">
-          {data.applications.length}
+        <div>
+          {acceptedApplication ? (
+            <p className="text-[14px] text-[#4E5968]">{`${acceptedApplication.client.nickName}님과 진행중`}</p>
+          ) : (
+            <div className="bg-teal-primary rounded-full px-3 py-1 text-[12px] font-bold text-white">
+              {data.applications.length}
+            </div>
+          )}
         </div>
         <Image
           src={'/common/right-arrow.svg'}
