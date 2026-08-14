@@ -19,12 +19,7 @@ export default function HelperProgressTemplate() {
     handleCompletedRequest,
   } = useHelperProgress();
 
-  console.log(
-    'isStatus',
-    data && data.status === CustomStatus.COMPLETE_REQUESTED,
-  );
   if (!data) return null;
-  console.log('dta', data);
   const buttonStatus =
     data.status === CustomStatus.COMPLETE_REQUESTED
       ? '완료 요청 대기 중'
