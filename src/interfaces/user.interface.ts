@@ -8,6 +8,7 @@ export interface UserResponse {
   name: string;
   type: UserType;
   phone: string;
+  introduction?: string;
   address_dong: string;
   division: string; // kakao, naver, email
   address: string;
@@ -15,7 +16,8 @@ export interface UserResponse {
   lng: number; // 경도
   nickName: string;
   profile?: string;
-  receivedReviews?: ReviewResponse[]; // 받은 리뷰
+  applications: ErrandResponse[];
+  receivedReviews: ReviewResponse[]; // 받은 리뷰
   writeReview?: ReviewResponse[];
   errands?: ErrandResponse[];
 }
