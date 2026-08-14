@@ -1,5 +1,5 @@
-import React from "react";
+import MyPageTemplate from '@/components/template/MyPageTemplate/MyPageTemplate';
 
 export default function page() {
-  return <div>page</div>;
+  return <MyPageTemplate />;
 }
