@@ -35,9 +35,7 @@ export const helperApplicationApi = {
 
   // 내역 수락
   async patchAcceptedApplication(id: string): Promise<IResponse> {
-    console.log('id', id);
     const response = await client.patch<IResponse>(`/helper-application/${id}`);
-    console.log('response', response);
     return response;
   },
 
@@ -45,6 +43,24 @@ export const helperApplicationApi = {
   async patchRejectedApplication(id: string): Promise<IResponse> {
     const response = await client.patch<IResponse>(
       `/helper-application/rejected/${id}`,
+    );
+    return response;
+  },
+
+  // 수락된 내역상세
+  async getAcceptedApplication(
+    appliId: string,
+  ): Promise<HelperApplicationResponse> {
+    const response = await client.get<HelperApplicationResponse>(
+      `/helper-application/${appliId}`,
+    );
+    return response;
+  },
+
+  // 완료요청
+  async postCompletedRequested(appliId: string): Promise<IResponse> {
+    const response = await client.post<IResponse>(
+      `/helper-application/${appliId}/completed-request`,
     );
     return response;
   },

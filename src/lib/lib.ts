@@ -1,4 +1,5 @@
 'use client';
+import { CATEGORIES_ENUM } from '@/interfaces/category.enum';
 import { ErrandCategory } from '@/schema/errand.schema';
 
 export const formattedPrice = (price: string) => {
@@ -38,7 +39,7 @@ export function formatRelativeTime(dateString: string): string {
   return '방금 전';
 }
 
-const CATEGORY_MAP: Record<ErrandCategory, string> = {
+const CATEGORY_MAP: Record<CATEGORIES_ENUM, string> = {
   DELIVERY: '배달',
   SHOPPING: '장보기',
   CLEANING: '청소',
@@ -48,7 +49,7 @@ const CATEGORY_MAP: Record<ErrandCategory, string> = {
   CAR_WASH: '세차',
   ETC: '기타',
 };
-export function fillterCategory(category: ErrandCategory) {
+export function fillterCategory(category: CATEGORIES_ENUM) {
   return CATEGORY_MAP[category] ?? '기타';
 }
 

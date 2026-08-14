@@ -4,7 +4,6 @@ import useReceivedHistory from './hooks/useReceivedHistory';
 
 export default function ReceivedHistoryTemplate() {
   const { data, handleReceivedHistory } = useReceivedHistory();
-  console.log('data', data);
   return (
     <div className="flex flex-col gap-5 pt-5 pb-10">
       <p className="text-[13px] text-[#464554]">

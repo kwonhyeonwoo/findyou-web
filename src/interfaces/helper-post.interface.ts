@@ -45,6 +45,8 @@ export interface HelperPostResponse {
 
   movement: HelperMovement;
 
+  description: string;
+
   lat: number;
 
   lng: number;
