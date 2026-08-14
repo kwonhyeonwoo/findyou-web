@@ -8,7 +8,7 @@ export default function useHelperProgress() {
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const { data } = useGetAcceptedApplicationQuery(String(id));
-  const { mutate } = usePostCompletedRequestMutation(String(id));
+  const { mutate, isPending } = usePostCompletedRequestMutation(String(id));
   const handleProfileActive = (clientId: string) => {
     router.push(`/user/${clientId}`);
   };
@@ -24,6 +24,7 @@ export default function useHelperProgress() {
   return {
     data,
     isOpen,
+    isPending,
     handleCompletedRequest,
     setIsOpen,
     handleIsOpen,

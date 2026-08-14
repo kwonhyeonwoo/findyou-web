@@ -6,18 +6,29 @@ import HelperProgressTop from '../HelperProgress/HelperProgressTop/HelperProgres
 import useHelperProgress from './hooks/useHelperProgress';
 import AlertModal from '@/components/common/AlertModal/AlertModal';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
+import { CustomStatus } from '@/interfaces/common.interface';
 
 export default function HelperProgressTemplate() {
   const {
     data,
     isOpen,
+    isPending,
     setIsOpen,
     handleIsOpen,
     handleProfileActive,
     handleCompletedRequest,
   } = useHelperProgress();
-  console.log('dta', data);
+
+  console.log(
+    'isStatus',
+    data && data.status === CustomStatus.COMPLETE_REQUESTED,
+  );
   if (!data) return null;
+  console.log('dta', data);
+  const buttonStatus =
+    data.status === CustomStatus.COMPLETE_REQUESTED
+      ? '완료 요청 대기 중'
+      : '완료요청 하기';
   return (
     <div className="flex w-full flex-1 flex-col gap-5 pt-5 pb-10">
       <HelperProgressTop />
@@ -37,16 +48,16 @@ export default function HelperProgressTemplate() {
       />
       <KaKaoChatButton />
       <SubmitButton
-        text="완료 요청하기"
-        isPending={false}
-        isDisabled={false}
+        text={buttonStatus}
+        isPending={isPending}
+        isDisabled={data.status === CustomStatus.COMPLETE_REQUESTED}
         onClick={handleIsOpen}
       />
       <AlertModal
         title="심부름 진행을 완료 하시겠습니까?"
         description={`의뢰인이 확인 전 까지 완료 대기 상태입니다.`}
         isOpen={isOpen}
-        actionText="완료신청"
+        actionText="완료요청"
         setState={setIsOpen}
         handleActive={handleCompletedRequest}
       />
