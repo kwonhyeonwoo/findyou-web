@@ -2,9 +2,10 @@ import { CustomStatus } from '@/interfaces/common.interface';
 
 interface Props {
   status: CustomStatus;
+  handleActive: () => void;
 }
 
-export default function CustomHistoryFooter({ status }: Props) {
+export default function CustomHistoryFooter({ status, handleActive }: Props) {
   type StatusConfig = {
     label: string;
     bg: string;
@@ -49,6 +50,13 @@ export default function CustomHistoryFooter({ status }: Props) {
       subText: '',
       subTextColor: 'text-[#6B7280]',
     },
+    COMPLETED_REQUEST: {
+      label: '완료 대기 중',
+      bg: 'bg-orange-primary',
+      textColor: 'text-orange-light',
+      subText: '수락하기',
+      subTextColor: 'text-[#6B7280]',
+    },
   };
 
   return (
@@ -59,6 +67,7 @@ export default function CustomHistoryFooter({ status }: Props) {
         </p>
       </div>
       <button
+        onClick={handleActive}
         className={`text-[13px] font-bold ${STATUS_TEXT[status].subTextColor ? STATUS_TEXT[status].subTextColor : 'text-[#6B7280]'} `}
       >
         {STATUS_TEXT[status].subText}

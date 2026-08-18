@@ -1,8 +1,8 @@
-import { ErrandStatus } from '@/interfaces/errand.interface';
 import { useApplicationStatusMutation } from './quires/errand-application/useApplicationStatusMutation';
 import { useGetMyErrandsQuery } from './quires/errand/useGetMyErrandsQuery';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { CustomStatus } from '@/interfaces/common.interface';
 
 export interface SelectedApplication {
   applicationId: string;
@@ -26,14 +26,15 @@ export const useRequestTemplate = () => {
   }: {
     idx: number | null;
     id?: string;
-    status: ErrandStatus;
+    status: CustomStatus;
   }) => {
-    if (status === ErrandStatus.MATCHING) {
+    console.log('idx', idx, 'id', id, 'status', status);
+    if (status === CustomStatus.PENDING) {
       setCurrentIdx(idx);
       setIsBottomOpen((prev) => !prev);
-    } else if (status === ErrandStatus.IN_PROGRESS) {
+    } else if (status === CustomStatus.IN_PROGRESS) {
       router.push(`/errand/status/${id}`);
-    } else if (status === ErrandStatus.COMPLETED) {
+    } else if (status === CustomStatus.COMPLETED) {
     }
   };
   const handleModalOpen = ({

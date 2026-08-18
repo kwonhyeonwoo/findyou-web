@@ -1,6 +1,7 @@
 import { ErrandCategory } from '@/schema/errand.schema';
 import { UserResponse } from './user.interface';
 import { ErrandApplicationResponse } from './errand_application.interface';
+import { CustomStatus } from './common.interface';
 
 export enum ErrandStatus {
   MATCHING = 'MATCHING', // 모집중
@@ -29,11 +30,11 @@ export interface ErrandResponse {
   lng: number;
   openLink: string;
   price: string;
-  status: ErrandStatus;
+  status: CustomStatus;
   title: string;
   user: UserResponse;
   deadlineTime: Date;
-  applications: ErrandApplicationResponse;
+  applications: ErrandApplicationResponse[];
   applicationsCount: number;
 }
 

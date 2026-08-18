@@ -1,5 +1,5 @@
-import AppliyTemplate from '@/components/template/ApplicationTemplate/AppliyTemplate';
+import ApplyTemplate from '@/components/template/ApplicationTemplate/ApplyTemplate';
 
 export default function page() {
-  return <AppliyTemplate />;
+  return <ApplyTemplate />;
 }

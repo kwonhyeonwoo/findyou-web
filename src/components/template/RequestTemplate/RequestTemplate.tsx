@@ -18,13 +18,18 @@ function RequestTemplate() {
     handleActive,
     handleApplicationUpdate,
   } = useRequestTemplate();
-  console.log('data', data);
+  console.log('request data', data);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {data?.map((item, idx) => (
         <CustomHistoryCard
+          images={item.images}
+          title={item.title}
+          address_dong={item.address_dong}
+          price={item.price}
+          status={item.status}
+          createdAt={item.createdAt}
           key={item.id}
-          {...item}
           applications={item?.applications}
           onClick={() =>
             handleActive({ idx, id: item.id, status: item.status })
@@ -38,10 +43,10 @@ function RequestTemplate() {
               key={item.id}
               errandId={item.errand?.id}
               applicationId={item.id}
-              nickName={item.helper.nickName}
+              nickName={item.helperPosts.helper.nickName}
               message={item.message}
-              profile={item.helper.profile}
-              helperId={item.helper.id}
+              profile={item.helperPosts.helper.profile}
+              helperId={item.helperPosts.id}
               handleHelperProfile={handleHelperProfile}
               handleModalOpen={handleModalOpen}
             />

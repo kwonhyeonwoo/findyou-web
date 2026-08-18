@@ -37,7 +37,7 @@ function CustomHistoryCard({
         price={price}
         applications={applications}
       />
-      <CustomHistoryFooter status={status} />
+      <CustomHistoryFooter status={status} handleActive={onClick} />
     </div>
   );
 }
