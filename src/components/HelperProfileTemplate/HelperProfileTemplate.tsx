@@ -1,13 +1,13 @@
 'use client';
 
 import CompletedErrand from '@/components/HelperProfile/CompletedErrand';
-import ErrandMessage from '@/components/HelperProfile/ErrandMessage';
 import HelperProfile from '@/components/HelperProfile/HelperProfile';
 import ReceivedReviews from '@/components/HelperProfile/ReceivedReviews';
 import { useHelperProfileTemplate } from './hooks/useHelperProfileTemplate';
 import Empty from '@/components/common/Empty/Empty';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
 import ErrandMessageModal from '@/components/ErrandDetail/ErrandMessageModal/ErrandMessageModal';
+import HelperMessage from '@/components/HelperProfile/HelperMessage';
 
 function HelperProfileTemplate() {
   const {
@@ -21,7 +21,6 @@ function HelperProfileTemplate() {
     setIsOpen,
   } = useHelperProfileTemplate();
   if (!data) null;
-  console.log('ispending', data);
   return (
     <div className="flex flex-1 flex-col gap-6 pb-10">
       <HelperProfile
@@ -30,7 +29,7 @@ function HelperProfileTemplate() {
         reviewCount={32}
         completedCount={142}
       />
-      <ErrandMessage message={data?.title || ''} />
+      <HelperMessage message={data?.title || ''} />
 
       {/* 수행 완료한 심부름 */}
       {data?.helper?.errands && data?.helper.errands.length > 0 ? (

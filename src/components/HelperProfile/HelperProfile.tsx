@@ -16,31 +16,37 @@ function HelperProfile({
   completedCount,
 }: Props) {
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex gap-[14px]">
       {profile ? (
-        <div className="h-30 w-30 rounded-full">
+        <div className="h-16 w-16 rounded-full">
           <Image
             src={`http://localhost:8000/${profile}`}
             alt={nickName}
-            width={120}
-            height={120}
-            className="h-30 w-30 rounded-full object-cover"
+            width={64}
+            height={64}
+            className="h-16 w-16 rounded-full object-cover"
           />
         </div>
       ) : (
-        <div className="h-30 w-30 rounded-full bg-gray-400" />
+        <div className="h-16 w-16 rounded-full bg-gray-400" />
       )}
-      <div className="flex flex-col items-center gap-2">
-        <p className="text-[24px]">{nickName} 헬퍼</p>
+
+      <div className="flex flex-col gap-1">
+        <p className="text-[18px] font-bold">
+          {nickName}
+          <span className="font-regular ml-1 text-[13px] text-[#8B95A1]">
+            헬퍼
+          </span>
+        </p>
         <div className="flex items-center">
-          <div className="flex items-center gap-1 text-[14px]">
+          <div className="flex items-center gap-1 text-[13px]">
             <Image src="/common/star.svg" alt="start" width={19} height={14} />
-            <p className="font-bold">{rating}</p>
-            <p>({String(reviewCount)}건)</p>
+            <p className="text-[#4E5968]">{rating}</p>
+            <p>({String(reviewCount)})</p>
           </div>
-          <p className="text-[14px] text-[#C7C4D7]">•</p>
-          <p className="text-[14px] text-[#464554]">
-            수행건수 {String(completedCount)}건
+          <p className="text-[14px] text-[#E0E0E0]">•</p>
+          <p className="text-[14px] text-[#4E5968]">
+            수행 <span className="font-bold">{String(completedCount)}</span>회
           </p>
         </div>
       </div>
