@@ -1,9 +1,11 @@
 'use client';
 import CustomHistoryCard from '@/components/History/CustomHistoryCard/CustomHistoryCard';
 import { useApplication } from './hooks/useApplication';
+import AlertModal from '@/components/common/AlertModal/AlertModal';
 
 function ApplyTemplate() {
-  const { data, handleActive } = useApplication();
+  const { data, isModalOpen, setIsModalOpen, handleStatusAction } =
+    useApplication();
   console.log('apply data', data);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
@@ -14,11 +16,13 @@ function ApplyTemplate() {
           price={String(item.helperPosts.price)}
           key={item.id}
           createdAt={item.createdAt}
+          type="apply"
           status={item.status}
           // applications={item.helperPost}
           onClick={() => {}}
         />
       ))}
+      <AlertModal />
     </div>
   );
 }

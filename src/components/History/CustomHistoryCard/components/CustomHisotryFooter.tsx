@@ -2,10 +2,15 @@ import { CustomStatus } from '@/interfaces/common.interface';
 
 interface Props {
   status: CustomStatus;
+  type: 'apply' | 'request';
   handleActive: () => void;
 }
 
-export default function CustomHistoryFooter({ status, handleActive }: Props) {
+export default function CustomHistoryFooter({
+  status,
+  type,
+  handleActive,
+}: Props) {
   type StatusConfig = {
     label: string;
     bg: string;
@@ -20,28 +25,28 @@ export default function CustomHistoryFooter({ status, handleActive }: Props) {
       bg: 'bg-orange-primary',
       textColor: 'text-orange-light',
       subText: '진행상황',
-      subTextColor: 'text-teal-primary',
+      subTextColor: 'text-teal-primary', // 진행상황 페이지로 가야함
     },
     COMPLETED: {
       label: '완료',
       bg: 'bg-[#F2F4F6]',
       textColor: 'text-[#8B95A1]',
       subText: '리뷰쓰기',
-      subTextColor: 'text-[#6B7280]',
+      subTextColor: 'text-[#6B7280]', // 리뷰작성 페이지로 이동
     },
     PENDING: {
       label: '대기중',
       bg: 'bg-orange-primary',
       textColor: 'text-orange-light',
-      subText: '지원취소',
-      subTextColor: 'text-[#6B7280]',
+      subText: type === 'request' ? '지원내역 보기' : '지원 취소',
+      subTextColor: 'text-[#6B7280]', // 지원취소이면 모달창으로 알려줘야함
     },
     ACCEPTED: {
       label: '수락',
       bg: 'bg-teal-light',
       textColor: 'text-teal-primary',
       subText: '진행상황',
-      subTextColor: 'text-teal-primary',
+      subTextColor: 'text-teal-primary', // 진행상황으로 가야함
     },
     REJECTED: {
       label: '지원마감(미선정)',
@@ -54,7 +59,7 @@ export default function CustomHistoryFooter({ status, handleActive }: Props) {
       label: '완료 대기 중',
       bg: 'bg-orange-primary',
       textColor: 'text-orange-light',
-      subText: '수락하기',
+      subText: '수락하기', // 수락하기 모달창 띄어줘야함
       subTextColor: 'text-[#6B7280]',
     },
   };

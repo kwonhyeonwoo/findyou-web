@@ -28,7 +28,6 @@ export const useRequestTemplate = () => {
     id?: string;
     status: CustomStatus;
   }) => {
-    console.log('idx', idx, 'id', id, 'status', status);
     if (status === CustomStatus.PENDING) {
       setCurrentIdx(idx);
       setIsBottomOpen((prev) => !prev);
