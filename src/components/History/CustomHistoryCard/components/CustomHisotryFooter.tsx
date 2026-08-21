@@ -38,7 +38,7 @@ export default function CustomHistoryFooter({
       label: '대기중',
       bg: 'bg-orange-primary',
       textColor: 'text-orange-light',
-      subText: type === 'request' ? '지원내역 보기' : '지원 취소',
+      subText: type === 'request' ? '지원자 보기' : '지원 취소',
       subTextColor: 'text-[#6B7280]', // 지원취소이면 모달창으로 알려줘야함
     },
     ACCEPTED: {
