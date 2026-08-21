@@ -13,7 +13,6 @@ export default function ReceivedHistoryTemplate() {
       </p>
       <div className="flex flex-col gap-4">
         {data?.map((item) => {
-          console.log('item', item.applications);
           const acceptedApplication = item.applications.find(
             (accepted) =>
               accepted.status === CustomStatus.ACCEPTED ||

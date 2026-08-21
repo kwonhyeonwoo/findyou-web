@@ -3,6 +3,7 @@ import { HelperPostResponse } from '@/interfaces/helper-post.interface';
 import { CATEGORY_BG_STYLE } from '@/constants/category-constants';
 import { fillterCategory } from '@/lib/lib';
 import { HelperApplicationResponse } from '@/interfaces/helper-application.interface';
+import { CustomStatus } from '@/interfaces/common.interface';
 interface Props {
   data: HelperPostResponse;
   acceptedApplication?: HelperApplicationResponse;
@@ -15,12 +16,20 @@ function ReceivedCard({
   handleAcceptedActive,
   handleReceivedHistory,
 }: Props) {
+  const isApplicationLength = data.applications.filter(
+    (item) =>
+      item.status !== CustomStatus.REJECTED &&
+      item.status !== CustomStatus.COMPLETED,
+  );
+  console.log('first', isApplicationLength.length);
   return (
     <div
       onClick={() => {
         if (acceptedApplication) {
+          // 심부름 진행내역으로
           handleAcceptedActive(acceptedApplication.id);
         } else {
+          // 지원자 내역으로
           handleReceivedHistory(data.id);
         }
       }}
@@ -54,7 +63,7 @@ function ReceivedCard({
             <p className="text-[14px] text-[#4E5968]">{`${acceptedApplication.client.nickName}님과 진행중`}</p>
           ) : (
             <div className="bg-teal-primary rounded-full px-3 py-1 text-[12px] font-bold text-white">
-              {data.applications.length}
+              {isApplicationLength.length}
             </div>
           )}
         </div>

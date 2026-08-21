@@ -3,6 +3,7 @@
 import ReceivedDetailCard from '@/components/ReceivedDetail/ReceivedDetailCard/ReceivedDetailCard';
 import useReceivedDetail from './hooks/useReceivedDetail';
 import AlertModal from '@/components/common/AlertModal/AlertModal';
+import { CustomStatus } from '@/interfaces/common.interface';
 
 function ReceivedDetailTemplate() {
   const {
@@ -15,15 +16,23 @@ function ReceivedDetailTemplate() {
     setIsCompleteOpen,
     handleCompleteOpen,
   } = useReceivedDetail();
+  console.log('first', data);
   return (
     <div className="flex flex-col gap-4 pt-5 pb-10">
-      {data?.map((item) => (
-        <ReceivedDetailCard
-          data={item}
-          key={item.id}
-          handleActive={handleCompleteOpen}
-        />
-      ))}
+      {data?.map((item) => {
+        const isVisible =
+          item.status !== CustomStatus.REJECTED &&
+          item.status !== CustomStatus.ACCEPTED;
+        return (
+          isVisible && (
+            <ReceivedDetailCard
+              data={item}
+              key={item.id}
+              handleActive={handleCompleteOpen}
+            />
+          )
+        );
+      })}
 
       {selectedType === 'ACCEPTED' ? (
         <AlertModal
