@@ -7,20 +7,29 @@ import { useState } from 'react';
 export const useApplication = () => {
   const router = useRouter();
   const { data, isLoading } = useGetApplicationsQuery();
-  const { mutate: deleteApplication } = useDeleteHelperAppliMutation()
+  const { mutate: deleteApplication } = useDeleteHelperAppliMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currAppliId, setCurrAppliId] = useState<string>("");
+  const [currAppliId, setCurrAppliId] = useState<string>('');
 
-  const handleStatusAction = ({ id, status, helperId }: { id: string, helperId: string, status: CustomStatus }) => {
+  const handleStatusAction = ({
+    id,
+    status,
+    helperId,
+  }: {
+    id: string;
+    helperId: string;
+    status: CustomStatus;
+  }) => {
     // router.push(`/history/errand/${id}`);
-    if (status === CustomStatus.IN_PROGRESS) { // 진행 중
+    if (status === CustomStatus.IN_PROGRESS) {
+      // 진행 중
     } else if (status === CustomStatus.COMPLETED) {
-      router.push(`/helper/${id}/review`) // 완료 
+      router.push(`/helper/${id}/review`); // 완료
     } else if (status === CustomStatus.PENDING) {
       setIsModalOpen(true);
-      setCurrAppliId(id)
-      console.log('currid', id)
+      setCurrAppliId(id);
+      console.log('currid', id);
       // 대기 -> 모달창 띄어서 거절하기 할건지 물어보기,
     } else if (status === CustomStatus.ACCEPTED) {
       // 수락 -> 진행상황 페이지로 이동
@@ -30,8 +39,8 @@ export const useApplication = () => {
   };
 
   const handleDeleteApplication = () => {
-    deleteApplication(currAppliId)
-  }
+    deleteApplication(currAppliId);
+  };
   return {
     data,
     isModalOpen,
