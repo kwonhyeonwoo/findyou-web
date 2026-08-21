@@ -67,7 +67,9 @@ export const helperApplicationApi = {
 
   // 지원취소
   async deleteApplication(id: string): Promise<IResponse> {
-    const response = await client.delete<IResponse>(`/helper-application/${id}`);
+    const response = await client.delete<IResponse>(
+      `/helper-application/${id}`,
+    );
     return response;
-  }
+  },
 };
