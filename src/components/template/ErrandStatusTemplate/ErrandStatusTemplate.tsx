@@ -6,6 +6,7 @@ import ErrandStatusInfo from '@/components/ErrandStatus/ErrandStatusInfo';
 import ErrandStatusTitle from '@/components/ErrandStatus/ErrandStatusTitle';
 import { useErrandStatus } from './hooks/useErrandStatus';
 import AlertModal from '@/components/common/AlertModal/AlertModal';
+import { CustomStatus } from '@/interfaces/common.interface';
 
 const ErrandStatusTemplate = () => {
   const {
@@ -24,19 +25,19 @@ const ErrandStatusTemplate = () => {
       <ErrandStatusTitle
         title={data.title}
         price={data.price}
-        status={data.status}
-        date={data.createdAt}
+        status={CustomStatus.ACCEPTED}
+        date={new Date()}
       />
       <ErrandHelper
-        nickName={data.applications?.helper.nickName}
-        profile={data.applications?.helper.profile}
+        nickName={data.applications?.helperPosts.nickName}
+        profile={data.applications?.helperPosts.profile}
         onProfileDetail={() =>
-          handleProfileDetail(data.applications?.helper.id)
+          handleProfileDetail(data.applications?.helperPosts.id)
         }
       />
       <ErrandStatusInfo
         startTime={data.deadlineTime}
-        start={data.applications?.helper.address}
+        start={data.applications?.helperPosts.address}
         arrive={data.address}
         description={data.description}
       />

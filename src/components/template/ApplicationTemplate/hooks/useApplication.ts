@@ -33,6 +33,7 @@ export const useApplication = () => {
       // 대기 -> 모달창 띄어서 거절하기 할건지 물어보기,
     } else if (status === CustomStatus.ACCEPTED) {
       // 수락 -> 진행상황 페이지로 이동
+      router.push(`/apply/${id}/progress`);
     } else if (status === CustomStatus.COMPLETE_REQUESTED) {
       // 완료 대기중 -> 완료 수락하기 모달 띄어서 해야함
     }

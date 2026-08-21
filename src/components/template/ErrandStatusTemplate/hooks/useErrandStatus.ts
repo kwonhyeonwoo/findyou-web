@@ -6,6 +6,7 @@ import { useState } from 'react';
 export const useErrandStatus = () => {
   const { id } = useParams();
   const router = useRouter();
+  console.log('id', id);
   const { data } = useGetErrandProgressQuery(String(id));
   const { mutate } = useErrandCompleteMutation(
     String(id),

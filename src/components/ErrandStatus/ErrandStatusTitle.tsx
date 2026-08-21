@@ -1,11 +1,12 @@
 import { ErrandStatus } from '@/interfaces/errand.interface';
 import StatusBox from '../common/StatusBox/StatusBox';
 import { formatDate, formatPriceNumber } from '@/lib/lib';
+import { CustomStatus } from '@/interfaces/common.interface';
 
 interface Props {
   title: string;
   price: string;
-  status: ErrandStatus;
+  status: CustomStatus;
   date: Date;
 }
 function ErrandStatusTitle({ title, price, status, date }: Props) {
