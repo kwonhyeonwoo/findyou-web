@@ -36,6 +36,7 @@ export const useApplication = () => {
       router.push(`/apply/${id}/progress`);
     } else if (status === CustomStatus.COMPLETE_REQUESTED) {
       // 완료 대기중 -> 완료 수락하기 모달 띄어서 해야함
+      router.push(`/apply/${id}/progress`);
     }
   };
 

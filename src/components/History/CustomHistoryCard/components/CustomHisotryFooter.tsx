@@ -59,7 +59,7 @@ export default function CustomHistoryFooter({
       label: '완료 대기 중',
       bg: 'bg-orange-primary',
       textColor: 'text-orange-light',
-      subText: '수락하기', // 수락하기 모달창 띄어줘야함
+      subText: '진행 상황', // 수락하기 모달창 띄어줘야함
       subTextColor: 'text-[#6B7280]',
     },
   };

@@ -1,9 +1,11 @@
 import { helperApplicationApi } from '@/api/helper-application/helperApplicationApi';
 import { HELPER_APPLICATION_KEYS } from '@/api/helper-application/helperApplicationKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 export default function useApplicationCompleteMutation() {
+  const router = useRouter()
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: helperApplicationApi.patchCompleted,
@@ -12,6 +14,7 @@ export default function useApplicationCompleteMutation() {
         queryKey: HELPER_APPLICATION_KEYS.lists(),
       });
       toast.success(data.message);
+      router.push('/history/apply')
     },
   });
 }
