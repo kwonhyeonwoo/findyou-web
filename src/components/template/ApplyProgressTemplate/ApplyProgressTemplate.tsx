@@ -9,12 +9,6 @@ import KaKaoOpenLink from '@/components/ErrandDetail/KaKaoOpenLink';
 import AlertModal from '@/components/common/AlertModal/AlertModal';
 
 function ApplyProgressTemplate() {
-  // helper-application get 요청
-  // helperPosts 에서 title,description, pirce 필요,
-  // helperPosts.helper에서 nickName, profile 필요
-  // 상세정보에서는 helperPosts에 address, addressDong,startTime필요하고
-  // helper-application에 있는 message 필요료함
-  // 완료승인은 helper-application에 completed 보내줘야함.
   const {
     data,
     isPending,

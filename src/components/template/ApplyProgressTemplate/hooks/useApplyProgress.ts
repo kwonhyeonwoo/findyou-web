@@ -12,6 +12,7 @@ function useApplyProgress() {
   const handleModalOpen = () => setIsModalOpen(true);
   const handleApplicationComplete = (id: string) => {
     mutate(id);
+
   };
   const handleOpenLinkAction = (link: string) => window.open(link, '_blank')
   return {

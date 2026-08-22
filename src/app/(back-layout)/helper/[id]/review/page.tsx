@@ -1,4 +1,4 @@
-import HelperReviewTemplate from "@/components/template/HelperReviewTemplate/HelperReviewTemplate";
+import HelperReviewTemplate from '@/components/template/HelperReviewTemplate/HelperReviewTemplate';
 
 function page() {
   return <HelperReviewTemplate />;
