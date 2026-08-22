@@ -72,4 +72,12 @@ export const helperApplicationApi = {
     );
     return response;
   },
+
+  // 수락
+  async patchCompleted(id: string): Promise<IResponse> {
+    const response = await client.patch<IResponse>(
+      `/helper-application/${id}/completed`,
+    );
+    return response;
+  },
 };

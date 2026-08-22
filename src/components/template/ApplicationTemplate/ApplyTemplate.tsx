@@ -11,7 +11,6 @@ function ApplyTemplate() {
     handleDeleteApplication,
     handleStatusAction,
   } = useApplication();
-  console.log('apply data', data);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {data?.map((item) => (
@@ -23,7 +22,6 @@ function ApplyTemplate() {
           createdAt={item.createdAt}
           type="apply"
           status={item.status}
-          // applications={item.helperPost}
           onClick={() =>
             handleStatusAction({
               id: item.id,
