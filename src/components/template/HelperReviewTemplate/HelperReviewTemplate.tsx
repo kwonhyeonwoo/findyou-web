@@ -20,7 +20,6 @@ function HelperReviewTemplate() {
     handleReviewSubmit,
     handleRatingClicked,
   } = useHelperReview();
-  console.log('rating', rating);
   return (
     <div className="h-full flex-col">
       <div className="flex-col border-b border-b-[#F2F2F2] pb-10">
