@@ -13,6 +13,7 @@ export interface HelperApplicationResponse {
   status: CustomStatus;
   helperPosts: HelperPostResponse;
   client: UserResponse;
+  hasWrittenReview: boolean;
   createdAt: Date;
   updatedAt: Date;
 }

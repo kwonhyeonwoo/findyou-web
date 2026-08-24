@@ -11,6 +11,7 @@ function ApplyTemplate() {
     handleDeleteApplication,
     handleStatusAction,
   } = useApplication();
+  console.log('data', data);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {data?.map((item) => (
@@ -19,6 +20,7 @@ function ApplyTemplate() {
           address_dong={item.helperPosts.address_dong}
           price={String(item.helperPosts.price)}
           key={item.id}
+          hasWrittenReview={item.hasWrittenReview}
           createdAt={item.createdAt}
           type="apply"
           status={item.status}
@@ -27,6 +29,7 @@ function ApplyTemplate() {
               id: item.id,
               status: item.status,
               helperId: item.helperPosts.helper.id,
+              hasWrittenReview: item.hasWrittenReview,
             })
           }
         />
