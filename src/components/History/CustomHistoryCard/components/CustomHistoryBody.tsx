@@ -39,11 +39,11 @@ function CustomHistoryBody({
           />
         </div>
       )}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col">
         <p className="text-[14px] font-bold">{title}</p>
         {/* 위치, 시간, 동네 */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center">
+          <div className="flex items-center gap-1">
             <Image
               src="/home/address.svg"
               width={11}

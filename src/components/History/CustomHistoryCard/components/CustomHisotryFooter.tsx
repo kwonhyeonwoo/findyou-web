@@ -3,12 +3,14 @@ import { CustomStatus } from '@/interfaces/common.interface';
 interface Props {
   status: CustomStatus;
   type: 'apply' | 'request';
+  hasWrittenReview: boolean;
   handleActive: () => void;
 }
 
 export default function CustomHistoryFooter({
   status,
   type,
+  hasWrittenReview,
   handleActive,
 }: Props) {
   type StatusConfig = {
@@ -31,7 +33,7 @@ export default function CustomHistoryFooter({
       label: '완료',
       bg: 'bg-[#F2F4F6]',
       textColor: 'text-[#8B95A1]',
-      subText: '리뷰쓰기',
+      subText: hasWrittenReview ? '리뷰 보기' : '리뷰쓰기',
       subTextColor: 'text-[#6B7280]', // 리뷰작성 페이지로 이동
     },
     PENDING: {

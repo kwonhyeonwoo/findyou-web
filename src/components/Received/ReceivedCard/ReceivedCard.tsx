@@ -21,6 +21,7 @@ function ReceivedCard({
       item.status !== CustomStatus.REJECTED &&
       item.status !== CustomStatus.COMPLETED,
   );
+  console.log('data', data);
   return (
     <div
       onClick={() => {

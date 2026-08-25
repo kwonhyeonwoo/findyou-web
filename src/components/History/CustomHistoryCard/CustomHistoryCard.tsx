@@ -12,6 +12,7 @@ interface Props {
   applications?: ErrandApplicationResponse[];
   status: CustomStatus;
   createdAt: Date;
+  hasWrittenReview: boolean;
   type: 'apply' | 'request';
   onClick: () => void;
 }
@@ -25,6 +26,7 @@ function CustomHistoryCard({
   applications,
   createdAt,
   type,
+  hasWrittenReview,
   onClick,
 }: Props) {
   return (
@@ -39,7 +41,12 @@ function CustomHistoryCard({
         price={price}
         applications={applications}
       />
-      <CustomHistoryFooter type={type} status={status} handleActive={onClick} />
+      <CustomHistoryFooter
+        type={type}
+        hasWrittenReview={hasWrittenReview}
+        status={status}
+        handleActive={onClick}
+      />
     </div>
   );
 }

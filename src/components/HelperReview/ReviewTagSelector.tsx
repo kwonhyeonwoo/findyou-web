@@ -1,6 +1,6 @@
-import { HELPER_REVIEW_TAGS } from "@/constants/helper-review.constant";
-import { ReviewTag } from "@/interfaces/review.interface";
-import Image from "next/image";
+import { REVIEW_TAGS } from '@/constants/helper-review.constant';
+import { ReviewTag } from '@/interfaces/review.interface';
+import Image from 'next/image';
 
 interface Props {
   selectedTags: string[];
@@ -12,7 +12,7 @@ function ReviewTagSelector({ selectedTags, onTagClick }: Props) {
     <div className="flex flex-col gap-5 border-b border-b-[#F2F2F2] p-6">
       <p className="text-[20px] font-bold">어떤 점이 좋았나요?</p>
       <div className="flex flex-col gap-4">
-        {HELPER_REVIEW_TAGS.map((item) => (
+        {REVIEW_TAGS.map((item) => (
           <button
             onClick={() => onTagClick(item.type)}
             key={item.type}
@@ -21,14 +21,14 @@ function ReviewTagSelector({ selectedTags, onTagClick }: Props) {
             <div
               className={`flex h-6 w-6 items-center justify-center rounded-full ${
                 selectedTags.includes(item.type)
-                  ? "bg-black"
-                  : "border border-[#E5E7EB] bg-white"
+                  ? 'bg-black'
+                  : 'border border-[#E5E7EB] bg-white'
               }`}
             >
               {selectedTags.includes(item.type) && (
                 <Image
                   src="/icon/check-icon.svg"
-                  alt={"check-icon"}
+                  alt={'check-icon'}
                   width={14}
                   height={14}
                 />

@@ -13,7 +13,7 @@ function useApplyProgress() {
   const handleApplicationComplete = (id: string) => {
     mutate(id);
   };
-  const handleOpenLinkAction = (link: string) => window.open(link, '_blank')
+  const handleOpenLinkAction = (link: string) => window.open(link, '_blank');
   return {
     data,
     isPending,

@@ -3,7 +3,7 @@ import { UserResponse } from './user.interface';
 
 export enum ReviewRole {
   HELPER = 'HELPER',
-  USER = 'USER',
+  USER = 'CLIENT',
 }
 export enum ReviewTag {
   PUNCTUAL = 'PUNCTUAL', // 시간을 잘 지켜요

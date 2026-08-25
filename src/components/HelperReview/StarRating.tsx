@@ -1,5 +1,5 @@
-import { useState } from "react";
-import Image from "next/image";
+import { useState } from 'react';
+import Image from 'next/image';
 
 interface Props {
   hoverRating: number;
@@ -28,15 +28,15 @@ export default function StarRating({
             onMouseEnter={() => onHoverRating(star)} // 마우스 올리면 임시 점수 적용
             onMouseLeave={onHoverReave} // 마우스 떼면 임시 점수 초기화
             style={{
-              border: "none",
-              background: "transparent",
-              cursor: "pointer",
+              border: 'none',
+              background: 'transparent',
+              cursor: 'pointer',
               padding: 0,
             }}
           >
             <Image
               src={
-                isFilled ? "/common/star-filled.svg" : "/common/star-empty.svg"
+                isFilled ? '/common/star-filled.svg' : '/common/star-empty.svg'
               }
               alt={`${star}점 별`}
               width={32}
