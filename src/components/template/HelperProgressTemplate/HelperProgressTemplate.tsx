@@ -18,7 +18,7 @@ export default function HelperProgressTemplate() {
     handleProfileActive,
     handleCompletedRequest,
   } = useHelperProgress();
-
+  console.log('data', data);
   if (!data) return null;
   const buttonStatus =
     data.status === CustomStatus.COMPLETE_REQUESTED

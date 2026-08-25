@@ -14,7 +14,7 @@ export default function usePostCompletedRequestMutation(id: string) {
         queryKey: HELPER_APPLICATION_KEYS.detail(id),
       });
       toast.success(data.message);
-      //   router.push('/hisotry/received');
+      router.push('/history/received');
     },
     onError: (error) => {
       toast.error(error.message);

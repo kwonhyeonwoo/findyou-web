@@ -1,5 +1,6 @@
 import { CustomStatus } from './common.interface';
 import { HelperPostResponse } from './helper-post.interface';
+import { ReviewResponse } from './review.interface';
 import { UserResponse } from './user.interface';
 
 export interface HelperApplicationRequest {
@@ -14,6 +15,7 @@ export interface HelperApplicationResponse {
   helperPosts: HelperPostResponse;
   client: UserResponse;
   hasWrittenReview: boolean;
+  reviews: ReviewResponse[];
   createdAt: Date;
   updatedAt: Date;
 }
