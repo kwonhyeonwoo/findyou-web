@@ -1,5 +1,14 @@
-import { ErrandResponse, ErrandStatus } from '@/interfaces/errand.interface';
+import { CustomStatus } from '@/interfaces/common.interface';
 import { formatPriceNumber, formatRelativeTime } from '@/lib/lib';
+
+interface Props {
+  status: CustomStatus;
+  title: string;
+  price: string;
+  address_dong: string;
+  createdAt: Date;
+  handleErrandDetail: () => void;
+}
 
 export default function LiveErrandCard({
   status,
@@ -7,7 +16,8 @@ export default function LiveErrandCard({
   price,
   address_dong,
   createdAt,
-}: ErrandResponse) {
+  handleErrandDetail,
+}: Props) {
   const bottomArr = [
     {
       text: address_dong,
@@ -19,12 +29,15 @@ export default function LiveErrandCard({
     },
   ];
   return (
-    <div className="flex w-full cursor-pointer flex-col justify-center gap-2 rounded-[12px] border border-[#EEEEEE] px-4 py-4">
+    <div
+      onClick={handleErrandDetail}
+      className="flex w-full cursor-pointer flex-col justify-center gap-2 rounded-[12px] border border-[#EEEEEE] px-4 py-4"
+    >
       <div className="flex items-center justify-between">
         <div className="bg-teal-light text-teal-primary rounded-[8px] px-2 py-[2px] text-[10px]">
-          {status === ErrandStatus.MATCHING
+          {status === CustomStatus.PENDING
             ? '모집중'
-            : status === ErrandStatus.IN_PROGRESS
+            : status === CustomStatus.IN_PROGRESS
               ? '진행중'
               : '완료'}
         </div>

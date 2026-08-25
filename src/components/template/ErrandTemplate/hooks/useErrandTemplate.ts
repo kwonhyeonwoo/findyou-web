@@ -1,4 +1,4 @@
-import { ErrandStatus } from '@/interfaces/errand.interface';
+import { CustomStatus } from '@/interfaces/common.interface';
 import { ErrandCategory } from '@/schema/errand.schema';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
@@ -33,7 +33,7 @@ export const useErrandTemplate = () => {
     router.push(`/errand?${params.toString()}`);
   };
 
-  const handleStatusChange = (status: ErrandStatus | undefined) => {
+  const handleStatusChange = (status: CustomStatus | undefined) => {
     if (status === undefined) {
       params.delete('status');
     } else {
@@ -45,7 +45,7 @@ export const useErrandTemplate = () => {
   return {
     keyword: searchParams.get('keyword') || '',
     currentCategory: searchParams.get('category') as ErrandCategory,
-    status: (searchParams.get('status') as ErrandStatus) || undefined,
+    status: (searchParams.get('status') as CustomStatus) || undefined,
     handleRouter,
     handleStatusChange,
     handleCurrentCategory,

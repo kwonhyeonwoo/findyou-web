@@ -3,15 +3,8 @@ import { UserResponse } from './user.interface';
 import { ErrandApplicationResponse } from './errand_application.interface';
 import { CustomStatus } from './common.interface';
 
-export enum ErrandStatus {
-  MATCHING = 'MATCHING', // 모집중
-  IN_PROGRESS = 'IN_PROGRESS', // 진행중
-  COMPLETED = 'COMPLETED', // 완료
-}
-// matching: 모집중, in_progress: 진행중, completed: 완료
-
 export interface ILiveErrand {
-  status: ErrandStatus;
+  status: CustomStatus;
   title: string;
   price: string;
   address: string;

@@ -4,16 +4,14 @@ import HelperCard from '@/components/home/HelperCard/HelperCard';
 import HomeCategories from '@/components/home/HomeCategories/HomeCategories';
 import HomeSearch from '@/components/home/HomeSearch/HomeSearch';
 import LiveErrandCard from '@/components/home/LiveErrandCard/LiveErrandCard';
-import {
-  IBestHeleper,
-  IHelperCardType,
-} from '@/interfaces/helper-post.interface';
+import { IBestHeleper } from '@/interfaces/helper-post.interface';
 import Link from 'next/link';
 import { useHomeTemplate } from './hooks/useHomeTemplate';
 import Empty from '@/components/common/Empty/Empty';
 
 export default function HomeTemplate() {
-  const { liveErrand, helpers, handleHelperProfile } = useHomeTemplate();
+  const { liveErrand, helpers, handleHelperProfile, handleErrandDetail } =
+    useHomeTemplate();
   const bestHelper: IBestHeleper[] = [
     {
       nickName: '김지훈',
@@ -59,7 +57,14 @@ export default function HomeTemplate() {
             {liveErrand && liveErrand.length > 0 ? (
               liveErrand?.map((item) => (
                 <div key={item.id} className="min-w-[78%] sm:min-w-[60%]">
-                  <LiveErrandCard {...item} />
+                  <LiveErrandCard
+                    status={item.status}
+                    title={item.title}
+                    price={item.price}
+                    address_dong={item.address_dong}
+                    createdAt={item.createdAt}
+                    handleErrandDetail={() => handleErrandDetail(item.id)}
+                  />
                 </div>
               ))
             ) : (
