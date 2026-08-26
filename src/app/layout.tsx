@@ -26,7 +26,8 @@ export default function MainLayout({
       <body className="flex min-h-full flex-col text-gray-900">
         <Providers>
           <Script
-            src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&libraries=services,clusterer`}
+            type="text/javascript"
+            src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&libraries=services,clusterer&autoload=false`}
             strategy="beforeInteractive"
           />
 

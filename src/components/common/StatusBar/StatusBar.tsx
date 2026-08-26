@@ -28,6 +28,7 @@ function StatusBar({ status, handleStatusChange }: Props) {
     <div className="flex items-center gap-5 border-b">
       {STATUS_BAR.map((item) => (
         <button
+          key={item.type}
           type="button"
           className={`pb-1 font-semibold ${item.type === status ? 'text-teal-primary border-b-teal-primary border-b-2' : ''}`}
           onClick={() => handleStatusChange(item.type)}
