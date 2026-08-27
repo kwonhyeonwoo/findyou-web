@@ -1,18 +1,16 @@
-import { useReviewCreateMutation } from "@/hooks/mutations/review/useReviewCreateMutation";
-import { ReviewTag } from "@/interfaces/review.interface";
-import { useParams, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import { useReviewCreateMutation } from '@/hooks/mutations/review/useReviewCreateMutation';
+import { ReviewTag } from '@/interfaces/review.interface';
+import { useParams, useSearchParams } from 'next/navigation';
+import React, { useState } from 'react';
 
 export const useHelperReview = () => {
   const { id } = useParams();
   const [rating, setRating] = useState<number>(0);
   const [selectedTags, setSelectedTags] = useState<ReviewTag[]>([]);
-  const [review, setReview] = useState<string>("");
+  const [review, setReview] = useState<string>('');
   const [hoverRating, setHoverRating] = useState<number>(0);
   const searchParams = useSearchParams();
-  const nickName = searchParams.get("nickName");
   const { mutate } = useReviewCreateMutation();
-
 
   const handleTagClick = (tag: ReviewTag) => {
     setSelectedTags((prev) =>
@@ -28,15 +26,17 @@ export const useHelperReview = () => {
       return;
     }
     setReview(value);
-  }
+  };
 
   const handleReviewSubmit = () => {
-    mutate({ data: { rating, tags: selectedTags, content: review }, helperApplicationId: String(id) });
-  }
+    mutate({
+      data: { rating, tags: selectedTags, content: review },
+      helperApplicationId: String(id),
+    });
+  };
   return {
     rating,
     hoverRating,
-    nickName,
     selectedTags,
     review,
     handleTagClick,

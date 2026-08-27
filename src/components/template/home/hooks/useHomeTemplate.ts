@@ -10,9 +10,16 @@ export const useHomeTemplate = () => {
   const handleHelperProfile = (helperId: string) => {
     router.push(`/helper/${helperId}`);
   };
+
+  const handleErrandDetail = (errandId: string) => {
+    console.log('실행 안되냐?');
+    router.push(`/errand/${errandId}`);
+  };
+
   return {
     liveErrand,
     helpers,
+    handleErrandDetail,
     handleHelperProfile,
   };
 };

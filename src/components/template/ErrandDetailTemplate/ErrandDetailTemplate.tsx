@@ -23,6 +23,7 @@ export default function ErrandDetailTemplate() {
   const { currentIndex, goToSlide, handleSlide } = useSliderImg(
     data?.images || [],
   );
+  console.log('data', data);
   if (!data) return null;
   return (
     <div className="flex min-h-screen flex-col items-center gap-6 pb-20">
@@ -53,7 +54,7 @@ export default function ErrandDetailTemplate() {
       />
 
       {/* 카톡 오픈링크, 주소 */}
-      <AddressCard address={data.address} />
+      <AddressCard lat={data.lat} lng={data.lng} />
       <div className="mt-auto flex w-full items-center justify-center border-t border-t-[#C7C4D7] py-4">
         <SubmitButton
           text="심부름 신청"

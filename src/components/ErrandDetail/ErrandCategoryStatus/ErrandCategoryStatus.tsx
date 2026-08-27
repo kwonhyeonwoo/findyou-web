@@ -1,14 +1,14 @@
-import { ErrandStatus } from "@/interfaces/errand.interface";
-import { fillterCategory, STATUS_FILLTER, STATUS_STYLES } from "@/lib/lib";
-import { ErrandCategory } from "@/schema/errand.schema";
+import { CustomStatus } from '@/interfaces/common.interface';
+import { fillterCategory, STATUS_FILLTER, STATUS_STYLES } from '@/lib/lib';
+import { ErrandCategory } from '@/schema/errand.schema';
 
 interface Props {
-  status: ErrandStatus;
+  status: CustomStatus;
   category: ErrandCategory;
 }
 
 function ErrandCategoryStatus({ status, category }: Props) {
-  const statusStyle = STATUS_STYLES[status] || STATUS_STYLES.MATCHING;
+  const statusStyle = STATUS_STYLES[status] || STATUS_STYLES.PENDING;
   return (
     <div className="flex w-full gap-2">
       <div

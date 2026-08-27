@@ -8,7 +8,6 @@ import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
 
 function HelperReviewTemplate() {
   const {
-    nickName,
     hoverRating,
     rating,
     selectedTags,
@@ -25,7 +24,7 @@ function HelperReviewTemplate() {
       <div className="flex-col border-b border-b-[#F2F2F2] pb-10">
         <div className="mt-8 flex flex-col items-center gap-2">
           <p className="text-[20px] font-bold text-[#111827]">
-            {nickName}님과의 거래는 어떠셨나요?
+            거래는 어떠셨나요?
           </p>
           <p className="text-[14px] text-[#6B7280]">
             거래 선호도는 나만 볼 수 있습니다.

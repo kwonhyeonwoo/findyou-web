@@ -1,8 +1,7 @@
-import { ErrandStatus } from '@/interfaces/errand.interface';
-import { ErrandApplicationStatus } from '@/interfaces/errand_application.interface';
+import { CustomStatus } from '@/interfaces/common.interface';
 
 interface Props {
-  status: ErrandApplicationStatus | ErrandStatus;
+  status: CustomStatus;
 }
 
 function StatusBox({ status }: Props) {

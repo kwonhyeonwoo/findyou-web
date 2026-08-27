@@ -54,7 +54,7 @@ export function fillterCategory(category: CATEGORIES_ENUM) {
 }
 
 export const STATUS_STYLES = {
-  MATCHING: {
+  PENDING: {
     bg: 'bg-[#E7F5E8]',
     text: 'text-[#2E7D32]',
   },
@@ -66,12 +66,27 @@ export const STATUS_STYLES = {
     bg: 'bg-[#E3E2E2]',
     text: 'text-[#464554]',
   },
+  ACCEPTED: {
+    bg: '',
+    text: '',
+  },
+  REJECTED: {
+    bg: '',
+    text: '',
+  },
+  COMPLETED_REQUEST: {
+    bg: '',
+    text: '',
+  },
 };
 
 export const STATUS_FILLTER = {
   COMPLETED: '완료',
-  MATCHING: '모집중',
+  PENDING: '모집중',
   IN_PROGRESS: '대기중',
+  COMPLETED_REQUEST: '완료 대기 중',
+  REJECTED: '거절',
+  ACCEPTED: '수락',
 };
 export const formatDate = (isoString: Date) => {
   if (!isoString) return ''; // 빈 값이 들어올 경우 예외 처리

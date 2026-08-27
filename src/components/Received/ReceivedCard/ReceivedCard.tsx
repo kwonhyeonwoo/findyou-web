@@ -6,35 +6,31 @@ import { HelperApplicationResponse } from '@/interfaces/helper-application.inter
 import { CustomStatus } from '@/interfaces/common.interface';
 interface Props {
   data: HelperPostResponse;
+  completedApplication?: HelperApplicationResponse;
   acceptedApplication?: HelperApplicationResponse;
   handleAcceptedActive: (appliId: string) => void;
   handleReceivedHistory: (helperPostId: string) => void;
+  handleCompletedActive: (
+    completedApplication: HelperApplicationResponse,
+  ) => void;
 }
 function ReceivedCard({
   data,
+  completedApplication,
   acceptedApplication,
   handleAcceptedActive,
   handleReceivedHistory,
+  handleCompletedActive,
 }: Props) {
   const isApplicationLength = data.applications.filter(
     (item) =>
       item.status !== CustomStatus.REJECTED &&
       item.status !== CustomStatus.COMPLETED,
   );
-  console.log('data', data);
+  console.log('data1234', data);
+  console.log('completedApplication', completedApplication);
   return (
-    <div
-      onClick={() => {
-        if (acceptedApplication) {
-          // 심부름 진행내역으로
-          handleAcceptedActive(acceptedApplication.id);
-        } else {
-          // 지원자 내역으로
-          handleReceivedHistory(data.id);
-        }
-      }}
-      className="border-basic-border flex cursor-pointer items-center justify-between gap-2 border-b pb-4"
-    >
+    <div className="border-basic-border flex cursor-pointer items-center justify-between gap-2 border-b pb-4">
       {/* 카테고리이미지, 제목, 카테고리, 시간 */}
       <div className="flex items-center gap-3">
         <div
@@ -60,11 +56,24 @@ function ReceivedCard({
       <div className="flex items-center gap-2">
         <div>
           {acceptedApplication ? (
-            <p className="text-[14px] text-[#4E5968]">{`${acceptedApplication.client.nickName}님과 진행중`}</p>
+            <button
+              onClick={() => handleAcceptedActive(acceptedApplication.id)}
+              className="text-[13px] text-[#4E5968]"
+            >{`${acceptedApplication.client.nickName}님과 진행중`}</button>
+          ) : completedApplication ? (
+            <button
+              onClick={() => handleCompletedActive(completedApplication)}
+              className="text-[14px] text-[#4E5968]"
+            >
+              {completedApplication.hasWrittenReview ? '리뷰보기' : '리뷰쓰기'}
+            </button>
           ) : (
-            <div className="bg-teal-primary rounded-full px-3 py-1 text-[12px] font-bold text-white">
+            <button
+              onClick={() => handleReceivedHistory(data.id)}
+              className="bg-teal-primary rounded-full px-3 py-1 text-[12px] font-bold text-white"
+            >
               {isApplicationLength.length}
-            </div>
+            </button>
           )}
         </div>
         <Image
@@ -79,3 +88,4 @@ function ReceivedCard({
 }
 
 export default ReceivedCard;
+// status가 completed이면 리뷰쓰기 또는 리뷰 보기로 넘어가야함
