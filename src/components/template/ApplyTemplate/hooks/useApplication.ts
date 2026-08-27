@@ -19,11 +19,13 @@ export const useApplication = () => {
     status,
     helperId,
     hasWrittenReview,
+    nickName,
   }: {
     id: string;
     helperId: string;
     status: CustomStatus;
     hasWrittenReview?: boolean;
+    nickName?: string;
   }) => {
     // router.push(`/history/errand/${id}`);
     if (status === CustomStatus.IN_PROGRESS) {

@@ -43,7 +43,7 @@ function ApplyProgressTemplate() {
         <SubmitButton
           text="완료승인"
           isPending={false}
-          isDisabled={data.status !== CustomStatus.COMPLETE_REQUESTED}
+          isDisabled={data.status !== CustomStatus.COMPLETED_REQUEST}
           onClick={handleModalOpen}
         />
       </div>

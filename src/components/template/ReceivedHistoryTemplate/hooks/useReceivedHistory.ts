@@ -1,4 +1,6 @@
 import useGetMyHelperPostsQuery from '@/hooks/quires/helper/useGetMyHelperPostsQuery';
+import { HelperApplicationResponse } from '@/interfaces/helper-application.interface';
+import { ReviewResponse } from '@/interfaces/review.interface';
 import { useUser } from '@/store/useUserStore';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -7,8 +9,10 @@ export default function useReceivedHistory() {
   const router = useRouter();
   const { userId } = useUser();
   const { data, isLoading } = useGetMyHelperPostsQuery(userId ?? '');
+  const [selectedReview, setSelectedReview] = useState<
+    ReviewResponse | undefined
+  >(undefined);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [helperPostId, setHelperPostId] = useState<string>('');
   const handleReceivedHistory = (helperPostId: string) => {
     router.push(`/history/received/${helperPostId}`);
   };
@@ -16,21 +20,23 @@ export default function useReceivedHistory() {
     router.push(`/helper/${appliId}/progress`);
   };
 
-  const handleCompletedActive = (id: string, appliId: string) => {
-    const helperPost = data?.find((item) => item.id === id);
-    const application = helperPost?.applications.find((app) => app.id === appliId);
+  const handleCompletedActive = (
+    completedApplication: HelperApplicationResponse,
+  ) => {
+    if (completedApplication.hasWrittenReview) {
+      setSelectedReview(completedApplication.review);
+      setIsModalOpen(true);
+    } else {
+      router.push(`/helper/${completedApplication.id}/review`);
+    }
+  };
 
-    console.log('first', application)
-
-  }
-
-  const review = data?.map((item) => {
-    const application = item.applications;
-    return application.find((app) => app.reviews)
-  });
   return {
     data,
     isLoading,
+    selectedReview,
+    isModalOpen,
+    setIsModalOpen,
     handleCompletedActive,
     handleAcceptedActive,
     handleReceivedHistory,

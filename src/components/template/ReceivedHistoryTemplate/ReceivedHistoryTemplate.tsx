@@ -2,14 +2,20 @@
 import ReceivedCard from '@/components/Received/ReceivedCard/ReceivedCard';
 import useReceivedHistory from './hooks/useReceivedHistory';
 import { CustomStatus } from '@/interfaces/common.interface';
+import { Drawer, DrawerContent } from '@/components/ui/drawer';
+import ReviewDropCard from '@/components/ReviewDropCard/ReviewDropCard';
 
 export default function ReceivedHistoryTemplate() {
   const {
     data,
+    isModalOpen,
+    selectedReview,
+    setIsModalOpen,
     handleReceivedHistory,
     handleAcceptedActive,
     handleCompletedActive,
   } = useReceivedHistory();
+  console.log('여기는 뭥미?', data);
   return (
     <div className="flex flex-col gap-5 pt-5 pb-10">
       <p className="text-[13px] text-[#464554]">
@@ -17,6 +23,7 @@ export default function ReceivedHistoryTemplate() {
       </p>
       <div className="flex flex-col gap-4">
         {data?.map((item) => {
+          console.log('item', item);
           const acceptedApplication = item.applications.find(
             (accepted) =>
               accepted.status === CustomStatus.ACCEPTED ||
@@ -39,6 +46,17 @@ export default function ReceivedHistoryTemplate() {
           );
         })}
       </div>
+      <Drawer open={isModalOpen} onOpenChange={() => setIsModalOpen(false)}>
+        <DrawerContent className="m-auto max-w-120 gap-4 p-4">
+          {selectedReview && (
+            <ReviewDropCard
+              rating={selectedReview.rating}
+              tags={selectedReview.tags}
+              content={selectedReview.content}
+            />
+          )}
+        </DrawerContent>
+      </Drawer>
     </div>
   );
 }
