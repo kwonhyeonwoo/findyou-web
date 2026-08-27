@@ -4,8 +4,12 @@ import useReceivedHistory from './hooks/useReceivedHistory';
 import { CustomStatus } from '@/interfaces/common.interface';
 
 export default function ReceivedHistoryTemplate() {
-  const { data, handleReceivedHistory, handleAcceptedActive } =
-    useReceivedHistory();
+  const {
+    data,
+    handleReceivedHistory,
+    handleAcceptedActive,
+    handleCompletedActive,
+  } = useReceivedHistory();
   return (
     <div className="flex flex-col gap-5 pt-5 pb-10">
       <p className="text-[13px] text-[#464554]">
@@ -16,13 +20,19 @@ export default function ReceivedHistoryTemplate() {
           const acceptedApplication = item.applications.find(
             (accepted) =>
               accepted.status === CustomStatus.ACCEPTED ||
-              accepted.status === CustomStatus.COMPLETE_REQUESTED,
+              accepted.status === CustomStatus.COMPLETED_REQUEST,
+          );
+
+          const completedApplication = item.applications.find(
+            (completed) => completed.status === CustomStatus.COMPLETED,
           );
           return (
             <ReceivedCard
               data={item}
               acceptedApplication={acceptedApplication}
               key={item.id}
+              completedApplication={completedApplication}
+              handleCompletedActive={handleCompletedActive}
               handleAcceptedActive={handleAcceptedActive}
               handleReceivedHistory={handleReceivedHistory}
             />

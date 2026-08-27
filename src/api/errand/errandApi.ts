@@ -4,9 +4,9 @@ import { IResponse } from '@/interfaces/response.interface';
 import {
   ErrandDetailResponse,
   ErrandResponse,
-  ErrandStatus,
 } from '@/interfaces/errand.interface';
 import { parsePrice } from '@/lib/lib';
+import { CustomStatus } from '@/interfaces/common.interface';
 
 export const errandApi = {
   write: async (data: ErrandRegisterType): Promise<IResponse> => {
@@ -38,7 +38,7 @@ export const errandApi = {
     limit?: string;
     category?: ErrandCategory;
     keyword?: string;
-    status?: ErrandStatus;
+    status?: CustomStatus;
   }): Promise<ErrandResponse[]> => {
     const searchParams = new URLSearchParams();
     if (limit) searchParams.append('limit', limit);

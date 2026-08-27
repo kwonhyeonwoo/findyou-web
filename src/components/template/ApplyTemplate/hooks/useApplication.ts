@@ -44,7 +44,7 @@ export const useApplication = () => {
     } else if (status === CustomStatus.ACCEPTED) {
       // 수락 -> 진행상황 페이지로 이동
       router.push(`/apply/${id}/progress`);
-    } else if (status === CustomStatus.COMPLETE_REQUESTED) {
+    } else if (status === CustomStatus.COMPLETED_REQUEST) {
       router.push(`/apply/${id}/progress`);
     } else if (status === CustomStatus.REJECTED) {
       setIsModalOpen(true);

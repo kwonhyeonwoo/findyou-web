@@ -1,6 +1,5 @@
 import { CATEGORIES_ENUM } from './category.enum';
 import { CustomStatus } from './common.interface';
-import { ErrandStatus } from './errand.interface';
 import { HelperApplicationResponse } from './helper-application.interface';
 import { UserResponse } from './user.interface';
 
