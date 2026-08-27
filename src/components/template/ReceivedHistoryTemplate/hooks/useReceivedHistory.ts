@@ -36,6 +36,7 @@ export default function useReceivedHistory() {
     isLoading,
     selectedReview,
     isModalOpen,
+    userId,
     setIsModalOpen,
     handleCompletedActive,
     handleAcceptedActive,

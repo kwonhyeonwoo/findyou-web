@@ -16,6 +16,7 @@ export interface HelperApplicationResponse {
   client: UserResponse;
   hasWrittenReview: boolean;
   reviews: ReviewResponse[];
+  review?: ReviewResponse;
   createdAt: Date;
   updatedAt: Date;
 }
