@@ -10,6 +10,9 @@ interface Props {
   completedApplication?: HelperApplicationResponse;
   acceptedApplication?: HelperApplicationResponse;
   handleAcceptedActive: (appliId: string) => void;
+  handleSelectedReview: (
+    completedApplication: HelperApplicationResponse,
+  ) => void;
   handleReceivedHistory: (helperPostId: string) => void;
   handleCompletedActive: (
     completedApplication: HelperApplicationResponse,
@@ -20,6 +23,7 @@ function ReceivedCard({
   userId,
   completedApplication,
   acceptedApplication,
+  handleSelectedReview,
   handleAcceptedActive,
   handleReceivedHistory,
   handleCompletedActive,
@@ -34,8 +38,6 @@ function ReceivedCard({
   const receivedReview = completedApplication?.reviews?.some(
     (review) => review.reviewee.id === userId,
   );
-  console.log('gk', receivedReview);
-  console.log('receivedReview', completedApplication?.reviews);
   return (
     <div className="border-basic-border flex cursor-pointer flex-col gap-4 rounded-[16px] border px-4 py-5 pb-4">
       {/* 카테고리이미지, 제목, 카테고리, 시간 */}
@@ -74,9 +76,14 @@ function ReceivedCard({
                 onClick={() => handleCompletedActive(completedApplication)}
                 className="text-[14px] text-[#4E5968]"
               >
+                {/* 헬퍼가 리뷰를 작성하고, 리뷰를 받았는 경우 */}
                 {completedApplication.hasWrittenReview && receivedReview ? (
-                  '리뷰 대기중'
+                  '리뷰 보기'
+                ) : // 헬퍼가 리뷰를 작성하고, 리뷰를 못 받았는 경우
+                completedApplication.hasWrittenReview && !receivedReview ? (
+                  '리뷰 대기 중'
                 ) : (
+                  // 리뷰를 작성하지 않았는 경우
                   <div className="flex items-center gap-1">
                     <p>리뷰쓰기</p>
                     <Image
@@ -108,7 +115,24 @@ function ReceivedCard({
         </div>
       </div>
       {/* 받은리뷰가있고 내가 아직 리뷰를 안 적었을 때 */}
-      {completedApplication?.review && !receivedReview && <div>ggg</div>}
+      {completedApplication?.review && !receivedReview && (
+        <div className="-mx-4 -mb-4 flex justify-between rounded-br-[12px] rounded-bl-[12px] border border-b border-[#F2E4C4] bg-[#FFF7E8] px-3 py-2 text-[13px] font-medium">
+          <p className="text-[#8A6D2B]">받은 리뷰가 도착했습니다.</p>
+          <button
+            onClick={() => handleSelectedReview(completedApplication)}
+            className="flex items-center gap-1"
+          >
+            <p className="text-[#8A6D2B]">보기</p>
+            <Image
+              src={'/common/right-arrow-amber.svg'}
+              width={15}
+              height={15}
+              className="h-[15px] w-[15px]"
+              alt="arrow"
+            />
+          </button>
+        </div>
+      )}
     </div>
   );
 }

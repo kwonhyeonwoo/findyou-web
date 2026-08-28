@@ -23,12 +23,19 @@ export default function useReceivedHistory() {
   const handleCompletedActive = (
     completedApplication: HelperApplicationResponse,
   ) => {
-    if (completedApplication.hasWrittenReview) {
+    if (completedApplication.review && completedApplication.hasWrittenReview) {
       setSelectedReview(completedApplication.review);
       setIsModalOpen(true);
     } else {
       router.push(`/helper/${completedApplication.id}/review`);
     }
+  };
+
+  const handleSelectedReview = (
+    completedApplication: HelperApplicationResponse,
+  ) => {
+    setSelectedReview(completedApplication.review);
+    setIsModalOpen(true);
   };
 
   return {
@@ -37,6 +44,7 @@ export default function useReceivedHistory() {
     selectedReview,
     isModalOpen,
     userId,
+    handleSelectedReview,
     setIsModalOpen,
     handleCompletedActive,
     handleAcceptedActive,
