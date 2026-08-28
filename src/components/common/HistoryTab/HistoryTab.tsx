@@ -4,25 +4,42 @@ import Link from 'next/link';
 import { useHistoryTab } from './hooks/useHistoryTab';
 
 function HistoryTab() {
-  const { pathname, id } = useHistoryTab();
-  console.log('pathname', pathname);
+  const { pathname, id, selectedTab, handleSelectedTab } = useHistoryTab();
+  const TAB: { type: 'post' | 'application'; text: string }[] = [
+    {
+      type: 'post',
+      text: '내 게시글',
+    },
+    {
+      type: 'application',
+      text: '지원내역',
+    },
+  ];
   return (
-    <div>
-      {id ? (
-        <></>
-      ) : (
-        <div className="flex w-full items-center justify-between border-b border-b-[#E3E2E2]">
-          {HISTORY_TAB.map(({ type, text, link }) => (
-            <Link
-              href={link}
-              className={`flex flex-1 items-center justify-center p-4 ${pathname.slice(9) === type && 'border-b-teal-primary border-b-2'} `}
-              key={type}
-            >
-              <p className="text-[18px] font-medium">{text}</p>
-            </Link>
-          ))}
-        </div>
-      )}
+    <div className="flex flex-col gap-3">
+      <div className="rounded-[12px] bg-[#EAECEF] p-2">
+        {id ? (
+          <></>
+        ) : (
+          <div className="flex w-full items-center justify-between">
+            {HISTORY_TAB.map(({ type, text, link }) => (
+              <Link
+                href={link}
+                className={`flex flex-1 items-center justify-center p-2 ${pathname.slice(9) === type && 'rounded-[12px] bg-white'} `}
+                key={type}
+              >
+                <p
+                  className={` ${pathname.slice(9) === type && 'text-teal-primary'} text-[14px] font-semibold text-[#8B95A1]`}
+                >
+                  {text}
+                </p>
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+      {/*  게시글, 지원내역 등 탭박스 작업해야함. */}
+      <div>lsdjfklsjljfl</div>
     </div>
   );
 }

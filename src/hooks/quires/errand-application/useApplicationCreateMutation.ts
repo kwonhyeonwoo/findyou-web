@@ -13,7 +13,7 @@ export const useApplicationCreateMutation = () => {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ERRAND_APPLICAION_KEYS.all });
       toast.success(data.message);
-      router.push('/history/application')
+      router.push('/history/apply')
     },
     onError: (error) => {
       toast.error(error.message);

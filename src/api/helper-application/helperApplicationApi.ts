@@ -30,6 +30,7 @@ export const helperApplicationApi = {
     const response = await client.get<HelperApplicationResponse[]>(
       `/helper-application/received/${helperPostId}`,
     );
+    console.log('apply', response);
     return response;
   },
 
