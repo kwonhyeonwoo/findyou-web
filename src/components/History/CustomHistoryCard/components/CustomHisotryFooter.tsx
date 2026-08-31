@@ -4,14 +4,14 @@ interface Props {
   status: CustomStatus;
   type: 'apply' | 'request';
   hasWrittenReview: boolean;
-  handleActive: () => void;
+  handleSatusActive: () => void;
 }
 
 export default function CustomHistoryFooter({
   status,
   type,
   hasWrittenReview,
-  handleActive,
+  handleSatusActive,
 }: Props) {
   type StatusConfig = {
     label: string;
@@ -66,6 +66,10 @@ export default function CustomHistoryFooter({
     },
   };
 
+  const onStatusClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    handleSatusActive();
+  };
   return (
     <div className="flex w-full items-center justify-between">
       <div className={`rounded-[8px] px-2 py-1 ${STATUS_TEXT[status].bg} `}>
@@ -74,7 +78,7 @@ export default function CustomHistoryFooter({
         </p>
       </div>
       <button
-        onClick={handleActive}
+        onClick={onStatusClick}
         className={`text-[13px] font-bold ${STATUS_TEXT[status].subTextColor ? STATUS_TEXT[status].subTextColor : 'text-[#6B7280]'} `}
       >
         {STATUS_TEXT[status].subText}

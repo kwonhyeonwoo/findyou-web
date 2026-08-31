@@ -14,7 +14,8 @@ interface Props {
   createdAt: Date;
   hasWrittenReview: boolean;
   type: 'apply' | 'request';
-  onClick: () => void;
+  handleErrandDetailActive: () => void;
+  handleSatusActive: () => void;
 }
 
 function CustomHistoryCard({
@@ -27,10 +28,14 @@ function CustomHistoryCard({
   createdAt,
   type,
   hasWrittenReview,
-  onClick,
+  handleErrandDetailActive,
+  handleSatusActive,
 }: Props) {
   return (
-    <div className="border-basic-border flex w-full flex-col justify-center gap-3 rounded-[12px] border bg-white p-4">
+    <div
+      onClick={handleErrandDetailActive}
+      className="border-basic-border flex w-full cursor-pointer flex-col justify-center gap-3 rounded-[12px] border bg-white p-4"
+    >
       <CustomHistoryHeader status={status} />
       <CustomHistoryBody
         image={images?.[0]}
@@ -45,7 +50,7 @@ function CustomHistoryCard({
         type={type}
         hasWrittenReview={hasWrittenReview}
         status={status}
-        handleActive={onClick}
+        handleSatusActive={handleSatusActive}
       />
     </div>
   );

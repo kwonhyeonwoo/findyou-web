@@ -1,4 +1,3 @@
-import { ErrandStatus } from '@/interfaces/errand.interface';
 import StatusBox from '../common/StatusBox/StatusBox';
 import { formatDate, formatPriceNumber } from '@/lib/lib';
 import { CustomStatus } from '@/interfaces/common.interface';

@@ -22,8 +22,9 @@ function PostHisotryTemplate() {
     handleModalOpen,
     setIsBottomOpen,
     handleHelperProfile,
-    handleActive,
+    handleSatusActive,
     handleApplicationUpdate,
+    handleErrandDetailActive,
   } = useErrandPostHook();
   const {
     helperPostData,
@@ -59,8 +60,11 @@ function PostHisotryTemplate() {
                 createdAt={item.createdAt}
                 key={item.id}
                 applications={item?.applications}
-                onClick={() =>
-                  handleActive({ idx, id: item.id, status: item.status })
+                handleErrandDetailActive={() =>
+                  handleErrandDetailActive(item.id)
+                }
+                handleSatusActive={() =>
+                  handleSatusActive({ idx, id: item.id, status: item.status })
                 }
               />
             );

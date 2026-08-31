@@ -18,26 +18,23 @@ const ErrandStatusTemplate = () => {
     handleKaKaoOpenLink,
     handleProfileDetail,
   } = useErrandStatus();
-  console.log('helper', data);
   if (!data) return null;
   return (
     <div className="flex flex-col gap-6">
       <ErrandStatusTitle
         title={data.title}
         price={data.price}
-        status={CustomStatus.ACCEPTED}
+        status={data.status}
         date={new Date()}
       />
       <ErrandHelper
-        nickName={data.applications?.helperPosts.nickName}
-        profile={data.applications?.helperPosts.profile}
-        onProfileDetail={() =>
-          handleProfileDetail(data.applications?.helperPosts.id)
-        }
+        nickName={data.helper.nickName}
+        profile={data.helper.profile}
+        onProfileDetail={() => handleProfileDetail(data.helper.id)}
       />
       <ErrandStatusInfo
         startTime={data.deadlineTime}
-        start={data.applications?.helperPosts.address}
+        start={data.helper.address}
         arrive={data.address}
         description={data.description}
       />

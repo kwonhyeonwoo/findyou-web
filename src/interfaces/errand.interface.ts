@@ -26,6 +26,7 @@ export interface ErrandResponse {
   status: CustomStatus;
   title: string;
   user: UserResponse;
+  helper: UserResponse;
   deadlineTime: Date;
   applications: ErrandApplicationResponse[];
   applicationsCount: number;

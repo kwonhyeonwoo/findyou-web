@@ -26,7 +26,7 @@ export const useErrandPostHook = () => {
     useState<SelectedApplication | null>(null);
   const [isBottomOpen, setIsBottomOpen] = useState<boolean>(false);
   const { data: errandData } = useGetMyErrandsQuery();
-  const handleActive = ({
+  const handleSatusActive = ({
     idx,
     id,
     status,
@@ -70,6 +70,10 @@ export const useErrandPostHook = () => {
   const handleHelperProfile = (helperId: string) => {
     router.push(`/helper/${helperId}`);
   };
+
+  const handleErrandDetailActive = (errandId: string) => {
+    router.push(`/errand/${errandId}`);
+  };
   return {
     errandData,
     isBottomOpen,
@@ -77,11 +81,12 @@ export const useErrandPostHook = () => {
     selectedApplicant,
     userId,
     dataType: searchParams.get('type'),
+    handleErrandDetailActive,
     setSelectedApplicant,
     handleModalOpen,
     setIsBottomOpen,
     handleHelperProfile,
     handleApplicationUpdate,
-    handleActive,
+    handleSatusActive,
   };
 };

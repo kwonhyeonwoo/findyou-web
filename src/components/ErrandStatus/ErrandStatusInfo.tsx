@@ -11,7 +11,7 @@ interface Props {
 function ErrandStatusInfo({ startTime, start, arrive, description }: Props) {
   const STATUS_INGO = [
     {
-      text: '요청시간',
+      text: '마감시간',
       value: formatDateTime(startTime),
       img: 'time',
     },
@@ -26,7 +26,7 @@ function ErrandStatusInfo({ startTime, start, arrive, description }: Props) {
       img: 'arrive',
     },
     {
-      text: '요청내용',
+      text: '심부름 내용',
       value: description,
       img: 'docs',
     },
