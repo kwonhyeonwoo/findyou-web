@@ -13,7 +13,6 @@ import { useHelperPostHook } from './hooks/useHelperPostHook';
 function PostHisotryTemplate() {
   const {
     errandData,
-    helperPostData,
     isBottomOpen,
     currentIdx,
     selectedApplicant,
@@ -27,6 +26,7 @@ function PostHisotryTemplate() {
     handleApplicationUpdate,
   } = useErrandPostHook();
   const {
+    helperPostData,
     handleSelectedReview,
     handleCompletedActive,
     handleAcceptedActive,

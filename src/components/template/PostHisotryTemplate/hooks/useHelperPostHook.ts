@@ -1,3 +1,4 @@
+import { useGetMyErrandsQuery } from '@/hooks/quires/errand/useGetMyErrandsQuery';
 import useGetMyHelperPostsQuery from '@/hooks/quires/helper/useGetMyHelperPostsQuery';
 import { HelperApplicationResponse } from '@/interfaces/helper-application.interface';
 import { ReviewResponse } from '@/interfaces/review.interface';
@@ -8,7 +9,9 @@ import { useState } from 'react';
 export const useHelperPostHook = () => {
   const router = useRouter();
   const { userId } = useUser();
-  const { data, isLoading } = useGetMyHelperPostsQuery(userId ?? '');
+  const { data: helperPostData, isLoading } = useGetMyHelperPostsQuery(
+    userId ?? '',
+  );
   const [selectedReview, setSelectedReview] = useState<
     ReviewResponse | undefined
   >(undefined);
@@ -39,7 +42,7 @@ export const useHelperPostHook = () => {
   };
 
   return {
-    data,
+    helperPostData,
     isLoading,
     selectedReview,
     isModalOpen,

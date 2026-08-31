@@ -26,7 +26,6 @@ export const useErrandPostHook = () => {
     useState<SelectedApplication | null>(null);
   const [isBottomOpen, setIsBottomOpen] = useState<boolean>(false);
   const { data: errandData } = useGetMyErrandsQuery();
-  const { data: helperPostData } = useGetMyHelperPostsQuery(userId ?? '');
   const handleActive = ({
     idx,
     id,
@@ -73,7 +72,6 @@ export const useErrandPostHook = () => {
   };
   return {
     errandData,
-    helperPostData,
     isBottomOpen,
     currentIdx,
     selectedApplicant,
