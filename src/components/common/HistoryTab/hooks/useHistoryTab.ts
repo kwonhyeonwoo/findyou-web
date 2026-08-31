@@ -1,18 +1,24 @@
-import { useParams, usePathname } from 'next/navigation';
-import { useState } from 'react';
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from 'next/navigation';
 
 export const useHistoryTab = () => {
+  const router = useRouter();
   const pathname = usePathname();
-  const [selectedTab, setSelectedTab] = useState<"post" | "application">("post");
+  const searchParams = useSearchParams();
+
   const { id } = useParams();
 
-  const handleSelectedTab = (type: "post" | "application") => {
-    setSelectedTab(type)
-  }
+  const handleSagmentActive = (type: string) => {
+    router.push(`/history/post?type=${type}`);
+  };
   return {
     pathname,
     id,
-    selectedTab,
-    handleSelectedTab,
+    searchParams,
+    handleSagmentActive,
   };
 };

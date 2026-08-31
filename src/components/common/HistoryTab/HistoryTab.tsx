@@ -2,17 +2,18 @@
 import { HISTORY_TAB } from '@/constants/history-constant';
 import Link from 'next/link';
 import { useHistoryTab } from './hooks/useHistoryTab';
+import SegmentedControl from '../SegmentedControl/SegmentedControl';
 
 function HistoryTab() {
-  const { pathname, id, selectedTab, handleSelectedTab } = useHistoryTab();
-  const TAB: { type: 'post' | 'application'; text: string }[] = [
+  const { pathname, id, searchParams, handleSagmentActive } = useHistoryTab();
+  const SAGMENT_TAB: { type: 'post' | 'application'; text: string }[] = [
     {
       type: 'post',
-      text: '내 게시글',
+      text: '헬퍼',
     },
     {
       type: 'application',
-      text: '지원내역',
+      text: '심부름',
     },
   ];
   return (
@@ -39,7 +40,17 @@ function HistoryTab() {
         )}
       </div>
       {/*  게시글, 지원내역 등 탭박스 작업해야함. */}
-      <div>lsdjfklsjljfl</div>
+      <div className="flex items-center gap-3">
+        {SAGMENT_TAB.map((item, idx) => (
+          <SegmentedControl
+            key={idx}
+            text={item.text}
+            type={item.type}
+            selectedType={searchParams.get('type')}
+            handleActive={handleSagmentActive}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,21 +1,21 @@
 export const HISTORY_TAB: {
-  type: 'request' | 'apply' | 'received';
+  type: 'post' | 'application-detail';
   text: string;
   link: string;
 }[] = [
-    {
-      type: 'request',
-      text: '내 게시글',
-      link: '/history/request',
-    },
-    {
-      type: 'apply',
-      text: '지원내역',
-      link: '/history/apply',
-    },
-    // {
-    //   type: 'received',
-    //   text: '받은내역',
-    //   link: '/history/received',
-    // },
-  ];
+  {
+    type: 'post',
+    text: '내 게시글',
+    link: '/history/post',
+  },
+  {
+    type: 'application-detail',
+    text: '지원내역',
+    link: '/history/application-detail',
+  },
+  // {
+  //   type: 'received',
+  //   text: '받은내역',
+  //   link: '/history/received',
+  // },
+];
