@@ -7,7 +7,7 @@ import AlertModal from '@/components/common/AlertModal/AlertModal';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 
-function RequestTemplate() {
+function PostHisotryTemplate() {
   const {
     data,
     isBottomOpen,
@@ -85,4 +85,4 @@ function RequestTemplate() {
   );
 }
 
-export default RequestTemplate;
+export default PostHisotryTemplate;

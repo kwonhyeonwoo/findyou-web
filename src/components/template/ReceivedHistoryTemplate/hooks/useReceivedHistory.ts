@@ -23,7 +23,7 @@ export default function useReceivedHistory() {
   const handleCompletedActive = (
     completedApplication: HelperApplicationResponse,
   ) => {
-    if (completedApplication.hasWrittenReview) {
+    if (completedApplication.review && completedApplication.hasWrittenReview) {
       setSelectedReview(completedApplication.review);
       setIsModalOpen(true);
     } else {
@@ -31,11 +31,20 @@ export default function useReceivedHistory() {
     }
   };
 
+  const handleSelectedReview = (
+    completedApplication: HelperApplicationResponse,
+  ) => {
+    setSelectedReview(completedApplication.review);
+    setIsModalOpen(true);
+  };
+
   return {
     data,
     isLoading,
     selectedReview,
     isModalOpen,
+    userId,
+    handleSelectedReview,
     setIsModalOpen,
     handleCompletedActive,
     handleAcceptedActive,

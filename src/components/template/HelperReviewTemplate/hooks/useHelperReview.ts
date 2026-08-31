@@ -9,7 +9,6 @@ export const useHelperReview = () => {
   const [selectedTags, setSelectedTags] = useState<ReviewTag[]>([]);
   const [review, setReview] = useState<string>('');
   const [hoverRating, setHoverRating] = useState<number>(0);
-  const searchParams = useSearchParams();
   const { mutate } = useReviewCreateMutation();
 
   const handleTagClick = (tag: ReviewTag) => {

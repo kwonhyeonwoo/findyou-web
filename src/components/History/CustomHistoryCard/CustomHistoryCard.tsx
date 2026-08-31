@@ -30,7 +30,7 @@ function CustomHistoryCard({
   onClick,
 }: Props) {
   return (
-    <div className="flex w-full flex-col justify-center gap-3 rounded-[12px] border border-[#E3E2E2] p-4">
+    <div className="border-basic-border flex w-full flex-col justify-center gap-3 rounded-[12px] border bg-white p-4">
       <CustomHistoryHeader status={status} />
       <CustomHistoryBody
         image={images?.[0]}

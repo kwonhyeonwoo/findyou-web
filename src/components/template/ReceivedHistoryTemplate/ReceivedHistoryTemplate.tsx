@@ -10,6 +10,8 @@ export default function ReceivedHistoryTemplate() {
     data,
     isModalOpen,
     selectedReview,
+    userId,
+    handleSelectedReview,
     setIsModalOpen,
     handleReceivedHistory,
     handleAcceptedActive,
@@ -36,9 +38,11 @@ export default function ReceivedHistoryTemplate() {
           return (
             <ReceivedCard
               data={item}
+              userId={userId}
               acceptedApplication={acceptedApplication}
               key={item.id}
               completedApplication={completedApplication}
+              handleSelectedReview={handleSelectedReview}
               handleCompletedActive={handleCompletedActive}
               handleAcceptedActive={handleAcceptedActive}
               handleReceivedHistory={handleReceivedHistory}
