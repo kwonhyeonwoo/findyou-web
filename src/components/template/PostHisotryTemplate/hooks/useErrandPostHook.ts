@@ -1,8 +1,14 @@
-import { useApplicationStatusMutation } from './quires/errand-application/useApplicationStatusMutation';
-import { useGetMyErrandsQuery } from './quires/errand/useGetMyErrandsQuery';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { CustomStatus } from '@/interfaces/common.interface';
+import { useApplicationStatusMutation } from '@/hooks/quires/errand-application/useApplicationStatusMutation';
+import { useGetMyErrandsQuery } from '@/hooks/quires/errand/useGetMyErrandsQuery';
+import { useGetHelpersQuery } from '@/hooks/quires/helper/useGetHelpersQuery';
+import { useUser } from '@/store/useUserStore';
+import useGetMyHelperPostsQuery from '@/hooks/quires/helper/useGetMyHelperPostsQuery';
+
+// 내 게시글
+// 내가 등록한 심부름 , 내가 등록한 헬퍼게시글
 
 export interface SelectedApplication {
   applicationId: string;
@@ -10,15 +16,17 @@ export interface SelectedApplication {
   helperId: string;
 }
 
-export const useRequestTemplate = () => {
+export const useErrandPostHook = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const { userId } = useUser();
   const { mutate } = useApplicationStatusMutation();
   const [currentIdx, setCurrentIdx] = useState<number | null>(null);
   const [selectedApplicant, setSelectedApplicant] =
     useState<SelectedApplication | null>(null);
   const [isBottomOpen, setIsBottomOpen] = useState<boolean>(false);
-  const { data } = useGetMyErrandsQuery();
-
+  const { data: errandData } = useGetMyErrandsQuery();
+  const { data: helperPostData } = useGetMyHelperPostsQuery(userId ?? '');
   const handleActive = ({
     idx,
     id,
@@ -64,10 +72,13 @@ export const useRequestTemplate = () => {
     router.push(`/helper/${helperId}`);
   };
   return {
-    data,
+    errandData,
+    helperPostData,
     isBottomOpen,
     currentIdx,
     selectedApplicant,
+    userId,
+    dataType: searchParams.get('type'),
     setSelectedApplicant,
     handleModalOpen,
     setIsBottomOpen,

@@ -63,8 +63,10 @@ export const errandApi = {
     return response;
   },
 
+  // 내가 등록한 심부름
   getMyErrand: async (): Promise<ErrandResponse[]> => {
     const response = await client.get<ErrandResponse[]>('/errand/my');
+    console.log('response', response);
     return response;
   },
 

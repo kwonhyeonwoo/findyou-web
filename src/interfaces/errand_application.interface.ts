@@ -1,18 +1,18 @@
 import { CustomStatus } from './common.interface';
 import { ErrandResponse } from './errand.interface';
 import { HelperPostResponse } from './helper-post.interface';
+import { ReviewResponse } from './review.interface';
+import { UserResponse } from './user.interface';
 
 export interface ErrandApplicationResponse {
   id: string;
-
   message: string;
-
-  helperPosts: HelperPostResponse;
-
+  helper: UserResponse; //  헬퍼 게시글..?
   errand: ErrandResponse;
-
   status: CustomStatus;
-
+  hasWrittenReview: boolean;
+  reviews: ReviewResponse[];
+  createdAt: Date;
   updatedAt: Date;
 }
 

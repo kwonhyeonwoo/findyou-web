@@ -15,6 +15,7 @@ export default function MovementMethod({
         {MOVEMENT.map(({ text, type, img }, idx) => (
           <button
             type="button"
+            key={idx}
             className={`flex items-center gap-2 px-[17px] py-2 ${type === currMovement ? 'bg-teal-light border-teal-primary' : 'bg-white'} border-primary-basic-border rounded-[8px] border`}
             onClick={() => handleCurrMovement(type)}
           >

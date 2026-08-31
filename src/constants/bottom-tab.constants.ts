@@ -12,7 +12,7 @@ export const BOTTOM_TAB = [
   {
     icon: 'history',
     text: '내역',
-    link: '/history/post',
+    link: '/history/post?type=helper',
   },
   {
     icon: 'profile',

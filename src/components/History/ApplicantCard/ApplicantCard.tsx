@@ -1,7 +1,10 @@
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
-import { SelectedApplication } from '@/hooks/useRequestTemplate';
 import Image from 'next/image';
-
+interface SelectedApplication {
+  applicationId: string;
+  nickName: string;
+  helperId: string;
+}
 interface Props {
   applicationId: string;
   profile?: string;
@@ -86,8 +89,8 @@ function ApplicantCard({
 
         {/* 메시지 */}
         <div className="mt-3 flex flex-col justify-center">
-          <p className="text-[14px] text-[#464554]">지원 메시지</p>
-          <p className="text-[14px] leading-normal text-[#464554]">{message}</p>
+          <p className="text-[14px] font-bold text-[#464554]">지원 메시지</p>
+          <p className="text-[13px] leading-normal text-[#464554]">{message}</p>
         </div>
 
         {/* 버튼 */}

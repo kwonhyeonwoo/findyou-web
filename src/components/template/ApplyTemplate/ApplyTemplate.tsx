@@ -17,7 +17,6 @@ function ApplyTemplate() {
     handleDeleteApplication,
     handleStatusAction,
   } = useApplication();
-  console.log('data31231', data);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {data?.map((item) => (
