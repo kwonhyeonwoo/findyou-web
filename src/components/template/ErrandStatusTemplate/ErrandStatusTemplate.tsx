@@ -12,6 +12,7 @@ const ErrandStatusTemplate = () => {
   const {
     data,
     isCompleteOpen,
+    BUTTON_STATUS_TEXT,
     setIsCompleteOpen,
     handleComplete,
     handleOpenCompleteModal,
@@ -19,6 +20,7 @@ const ErrandStatusTemplate = () => {
     handleProfileDetail,
   } = useErrandStatus();
   if (!data) return null;
+  console.log('data', data);
   return (
     <div className="flex flex-col gap-6">
       <ErrandStatusTitle
@@ -42,7 +44,7 @@ const ErrandStatusTemplate = () => {
         onKaKaoOpenLink={() => handleKaKaoOpenLink(data.openLink)}
       />
       <SubmitButton
-        text="심부름 완료"
+        text={BUTTON_STATUS_TEXT[data.status]?.label ?? ''}
         isDisabled={false}
         bgColor="bg-teal-primary"
         isPending={false}
