@@ -28,7 +28,8 @@ export interface ErrandResponse {
   user: UserResponse;
   helper: UserResponse;
   deadlineTime: Date;
-  applications: ErrandApplicationResponse[];
+  applications?: ErrandApplicationResponse[];
+  application: ErrandApplicationResponse;
   applicationsCount: number;
 }
 

@@ -5,23 +5,25 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import ErrandMsgTextarea from '../ErrandMsgTextarea/ErrandMsgTextarea';
+import ErrandMsgOpenLink from '../ErrandMsgOpenLink/ErrandMsgOpenLink';
+import { useErrandMessage } from './hooks/useErrandMessage';
 
 interface Props {
   title: string;
   isOpen: boolean;
-  message: string;
   handleIsOpen: () => void;
-  handleChangeMessage: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  handleSubmit: () => void;
 }
-function ErrandMessageModal({
-  isOpen,
-  title,
-  message,
-  handleIsOpen,
-  handleChangeMessage,
-  handleSubmit,
-}: Props) {
+function ErrandMessageModal({ isOpen, title, handleIsOpen }: Props) {
+  const {
+    message,
+    link,
+    isSelected,
+    handleChangeMessage,
+    handleSubmit,
+    handleLinkChange,
+    handleSelectBox,
+  } = useErrandMessage();
   return (
     <Dialog open={isOpen} onOpenChange={handleIsOpen}>
       <DialogContent className="w-[90%] max-w-[425px] rounded-[12px]">
@@ -30,32 +32,29 @@ function ErrandMessageModal({
           <DialogDescription>{title}</DialogDescription>
         </DialogHeader>
 
-        <div className="py-4">
-          <div className="relative">
-            <textarea
-              placeholder="예: 자전거를 타고 있어서 5분 안에 갈 수 있어요!"
-              value={message}
-              onChange={handleChangeMessage}
-              maxLength={100}
-              className="focus-visible:ring-teal-primary h-40 w-full resize-none rounded-[8px] p-2"
-            />
-            <span className="absolute right-2 bottom-2 text-[12px] text-[#8B95A1]">
-              {message?.length || 0} / 100
-            </span>
-          </div>
-        </div>
+        <ErrandMsgTextarea
+          message={message}
+          handleChangeMessage={handleChangeMessage}
+        />
 
-        <div className="flex justify-end gap-2">
+        <ErrandMsgOpenLink
+          link={link}
+          isSelected={isSelected}
+          onOpenLinkChange={handleLinkChange}
+          onSelectBox={handleSelectBox}
+        />
+
+        <div className="flex gap-2">
           <button
             onClick={handleIsOpen}
-            className="rounded-[8px] border border-gray-300 px-4 py-2 text-[14px] font-medium text-gray-600 hover:bg-gray-50"
+            className="flex-1 rounded-[8px] border border-gray-300 px-4 py-2 text-[14px] font-medium text-gray-600 hover:bg-gray-50"
           >
             취소
           </button>
           <button
             onClick={handleSubmit}
             // disabled={isPending || !message?.trim()}
-            className="bg-teal-primary rounded-[8px] px-4 py-2 text-[14px] font-medium text-white disabled:opacity-50"
+            className="bg-teal-primary flex-3 rounded-[8px] px-4 py-2 text-[14px] font-medium text-white disabled:opacity-50"
           >
             지원완료
           </button>

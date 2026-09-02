@@ -36,7 +36,7 @@ export const useErrandStatus = () => {
       label: '완료 수락하기',
       onClick: handleOpenCompleteModal,
     },
-    COMPLETED: { label: '리뷰쓰기', onClick: () => {} },
+    COMPLETED: { label: '리뷰쓰기', onClick: () => { } },
   };
   return {
     data,

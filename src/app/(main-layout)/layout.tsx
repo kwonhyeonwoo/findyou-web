@@ -12,12 +12,7 @@ export default function MainLayout({
   return (
     <MainAuthProvider>
       <div className="relative mx-auto flex min-h-screen w-full max-w-[480px] flex-col bg-white shadow-xl">
-        <MainHeader />
-        <main className="flex-1 pb-20">
-          {children}
-          <BottomTab />
-        </main>
-        <FloatingActionBtn />
+        <main className="flex-1 pb-20">{children}</main>
       </div>
     </MainAuthProvider>
   );
