@@ -4,8 +4,9 @@ import { useApplication } from './hooks/useApplication';
 import AlertModal from '@/components/common/AlertModal/AlertModal';
 import { Drawer, DrawerContent } from '@/components/ui/drawer';
 import ReviewDropCard from '@/components/ReviewDropCard/ReviewDropCard';
+import { useErrandApplicationDetail } from './hooks/useErrandApplicationDetail';
 
-function ApplyTemplate() {
+function ApplicationDetailTemplate() {
   const {
     data,
     isModalOpen,
@@ -17,28 +18,24 @@ function ApplyTemplate() {
     handleDeleteApplication,
     handleStatusAction,
   } = useApplication();
+
+  const { errandApplications } = useErrandApplicationDetail();
+  console.log('errandApplication', errandApplications);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
-      {data?.map((item) => (
-        <CustomHistoryCard
-          title={item.helperPosts.title}
-          address_dong={item.helperPosts.address_dong}
-          price={String(item.helperPosts.price)}
-          key={item.id}
-          hasWrittenReview={item.hasWrittenReview}
-          createdAt={item.createdAt}
-          type="apply"
-          status={item.status}
-          onClick={() =>
-            handleStatusAction({
-              id: item.id,
-              status: item.status,
-              helperId: item.helperPosts.helper.id,
-              hasWrittenReview: item.hasWrittenReview,
-            })
-          }
-        />
-      ))}
+      {errandApplications
+        ? errandApplications.map((item) => (
+            <CustomHistoryCard
+              key={item.id}
+              images={item.errand.images}
+              title={item.errand.title}
+              address_dong={item.errand.address_dong}
+              status={item.status}
+              hasWrittenReview={item.hasWrittenReview}
+              onClick={() => {}}
+            />
+          ))
+        : null}
       <Drawer open={isBottomOpen} onOpenChange={() => setIsBottomOpen(false)}>
         <DrawerContent className="m-auto max-w-120 gap-4 p-4">
           {review && (
@@ -62,4 +59,4 @@ function ApplyTemplate() {
   );
 }
 
-export default ApplyTemplate;
+export default ApplicationDetailTemplate;

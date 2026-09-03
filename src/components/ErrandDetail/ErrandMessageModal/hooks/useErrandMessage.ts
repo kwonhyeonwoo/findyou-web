@@ -1,4 +1,4 @@
-import { useApplicationCreateMutation } from '@/hooks/quires/errand-application/useApplicationCreateMutation';
+import { useApplicationCreateMutation } from '@/hooks/mutations/errandApplication/useApplicationCreateMutation';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
@@ -14,12 +14,12 @@ export const useErrandMessage = () => {
     setMessage(value);
   };
   const handleSubmit = () => {
+    console.log('save default', saveAsDefault, "openlink", openLink, "id", id)
     if (id) {
       mutate({ message, errandId: id as string, saveAsDefault, openLink });
     }
   };
 
-  console.log('openLink', openLink);
   const handleSelectBox = () => setSaveAsDefault((prev) => !prev);
 
   const handleLinkChange = (e: React.ChangeEvent<HTMLInputElement>) => {

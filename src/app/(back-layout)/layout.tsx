@@ -11,4 +11,3 @@ export default function layout({ children }: { children: React.ReactNode }) {
     </MainAuthProvider>
   );
 }
-// bg-[#F7F8FA]

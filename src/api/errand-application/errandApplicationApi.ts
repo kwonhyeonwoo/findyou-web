@@ -21,9 +21,9 @@ export const errandApplicationApi = {
     return response;
   },
 
-  getMyApplications: async (): Promise<ErrandApplicationResponse[]> => {
+  getApplications: async (): Promise<ErrandApplicationResponse[]> => {
     const response = await client.get<ErrandApplicationResponse[]>(
-      '/errand-application/my',
+      `/errand-application`,
     );
     return response;
   },
@@ -36,3 +36,5 @@ export const errandApplicationApi = {
     return response;
   },
 };
+
+//결국에는 내역은 나만 볼 수 있어야함...

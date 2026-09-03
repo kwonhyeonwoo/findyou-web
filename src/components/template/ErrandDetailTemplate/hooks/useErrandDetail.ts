@@ -1,4 +1,4 @@
-import { useApplicationCreateMutation } from '@/hooks/quires/errand-application/useApplicationCreateMutation';
+import { useApplicationCreateMutation } from '@/hooks/mutations/errandApplication/useApplicationCreateMutation';
 import { useErrandDetailQuery } from '@/hooks/quires/errand/useErrandDetailQuery';
 import { useUser } from '@/store/useUserStore';
 import { useParams } from 'next/navigation';

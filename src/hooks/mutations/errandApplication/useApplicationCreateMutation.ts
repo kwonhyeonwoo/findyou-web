@@ -18,6 +18,7 @@ export const useApplicationCreateMutation = () => {
       router.push('/history/application-detail?type=errand');
     },
     onError: (error) => {
+      console.log('first')
       toast.error(error.message);
     },
   });

@@ -1,14 +1,10 @@
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { CustomStatus } from '@/interfaces/common.interface';
-import { useApplicationStatusMutation } from '@/hooks/quires/errand-application/useApplicationStatusMutation';
 import { useGetMyErrandsQuery } from '@/hooks/quires/errand/useGetMyErrandsQuery';
-import { useGetHelpersQuery } from '@/hooks/quires/helper/useGetHelpersQuery';
 import { useUser } from '@/store/useUserStore';
-import useGetMyHelperPostsQuery from '@/hooks/quires/helper/useGetMyHelperPostsQuery';
+import { useApplicationStatusMutation } from '@/hooks/mutations/errandApplication/useApplicationStatusMutation';
 
-// 내 게시글
-// 내가 등록한 심부름 , 내가 등록한 헬퍼게시글
 
 export interface SelectedApplication {
   applicationId: string;
