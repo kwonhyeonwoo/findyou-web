@@ -55,7 +55,7 @@ export const useErrandPostHook = () => {
     });
   };
 
-  const handleApplicationUpdate = ({
+  const handleAccepted = ({
     applicationId,
     helperId,
   }: {
@@ -86,7 +86,7 @@ export const useErrandPostHook = () => {
     handleModalOpen,
     setIsBottomOpen,
     handleHelperProfile,
-    handleApplicationUpdate,
+    handleAccepted,
     handleSatusActive,
   };
 };

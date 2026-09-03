@@ -28,7 +28,8 @@ export const errandApplicationApi = {
     return response;
   },
 
-  updatedStatus: async ({ applicationId }: { applicationId: string }) => {
+  // 수락
+  accepted: async ({ applicationId }: { applicationId: string }) => {
     const response = await client.post<IResponse>(
       `/errand-application/${applicationId}/status`,
     );

@@ -7,7 +7,7 @@ import ErrandStatusTitle from '@/components/ErrandStatus/ErrandStatusTitle';
 import { useErrandStatus } from './hooks/useErrandStatus';
 import AlertModal from '@/components/common/AlertModal/AlertModal';
 
-const ErrandStatusTemplate = () => {
+const ErrandProgressTemplate = () => {
   const {
     data,
     isCompleteOpen,
@@ -71,7 +71,7 @@ const ErrandStatusTemplate = () => {
   );
 };
 
-export default ErrandStatusTemplate;
+export default ErrandProgressTemplate;
 // 심부름에서 완료요청을보냄.
 // 헬퍼가 완료요청된것을 보고 수락을 해줌
 // 그럼 헬퍼와 심부름 서로서로 completed....

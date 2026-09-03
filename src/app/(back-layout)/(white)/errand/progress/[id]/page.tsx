@@ -1,7 +1,7 @@
-import ErrandStatusTemplate from '@/components/template/ErrandStatusTemplate/ErrandStatusTemplate';
+import ErrandProgressTemplate from '@/components/template/ErrandProgressTemplate/ErrandProgressTemplate';
 
 function Page() {
-  return <ErrandStatusTemplate />;
+  return <ErrandProgressTemplate />;
 }
 
 export default Page;

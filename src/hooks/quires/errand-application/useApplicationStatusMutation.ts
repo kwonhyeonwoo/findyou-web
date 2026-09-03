@@ -9,7 +9,7 @@ export const useApplicationStatusMutation = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: errandApplicationApi.updatedStatus,
+    mutationFn: errandApplicationApi.accepted,
     onSuccess: (data) => {
       queryClient.invalidateQueries({
         queryKey: [...ERRAND_APPLICAION_KEYS.lists(), ...ERRAND_KEYS.lists()],
