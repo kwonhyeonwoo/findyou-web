@@ -7,20 +7,26 @@ import ReviewDropCard from '@/components/ReviewDropCard/ReviewDropCard';
 import { useErrandApplicationDetail } from './hooks/useErrandApplicationDetail';
 
 function ApplicationDetailTemplate() {
-  const {
-    data,
-    isModalOpen,
-    currAppliId,
-    review,
-    isBottomOpen,
-    setIsBottomOpen,
-    setIsModalOpen,
-    handleDeleteApplication,
-    handleStatusAction,
-  } = useApplication();
+  // const {
+  //   data,
+  //   isModalOpen,
+  //   currAppliId,
+  //   review,
+  //   isBottomOpen,
+  //   setIsBottomOpen,
+  //   setIsModalOpen,
+  //   handleDeleteApplication,
+  //   handleStatusAction,
+  // } = useApplication();
 
-  const { errandApplications } = useErrandApplicationDetail();
-  console.log('errandApplication', errandApplications);
+  const {
+    errandApplications,
+    isModalOpen,
+    setIsModalOpen,
+    handleStatusActive,
+    handleDeleteApplication,
+    handleErrandDetailActive,
+  } = useErrandApplicationDetail();
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {errandApplications
@@ -30,13 +36,24 @@ function ApplicationDetailTemplate() {
               images={item.errand.images}
               title={item.errand.title}
               address_dong={item.errand.address_dong}
+              price={item.errand.price}
               status={item.status}
               hasWrittenReview={item.hasWrittenReview}
-              onClick={() => {}}
+              createdAt={item.createdAt}
+              type="apply"
+              handleErrandDetailActive={() =>
+                handleErrandDetailActive(item.errand.id)
+              }
+              handleSatusActive={() =>
+                handleStatusActive({
+                  status: item.status,
+                  currApplicationId: item.id,
+                })
+              }
             />
           ))
         : null}
-      <Drawer open={isBottomOpen} onOpenChange={() => setIsBottomOpen(false)}>
+      {/* <Drawer open={isBottomOpen} onOpenChange={() => setIsBottomOpen(false)}>
         <DrawerContent className="m-auto max-w-120 gap-4 p-4">
           {review && (
             <ReviewDropCard
@@ -46,7 +63,7 @@ function ApplicationDetailTemplate() {
             />
           )}
         </DrawerContent>
-      </Drawer>
+      </Drawer> */}
       <AlertModal
         title="지원을 취소하시겠습니까?"
         description={`이 작업은 다시 되돌릴 수 없습니다.`}

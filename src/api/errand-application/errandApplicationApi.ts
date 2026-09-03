@@ -35,6 +35,11 @@ export const errandApplicationApi = {
     );
     return response;
   },
+
+  delete: async (applicationId: string) => {
+    const response = await client.delete<IResponse>(`/errand-application/${applicationId}`);
+    return response;
+  }
 };
 
 //결국에는 내역은 나만 볼 수 있어야함...
