@@ -17,26 +17,33 @@ export const useErrandStatus = () => {
     router.push(`/helper/${id}`);
   };
 
+  // 카카오 오픈링크 이동
   const handleKaKaoOpenLink = (link: string) => {
     router.push(link);
   };
 
+  // 심부름 완료 모달 열기
   const handleOpenCompleteModal = () => {
     setIsCompleteOpen(true);
   };
-  const handleComplete = () => {
+
+  // 수락하기 버튼 클릭 시 심부름 완료 처리
+  const handleAccepted = () => {
     mutate(String(id));
   };
+
+  // 완료요청 보내기
+  const handleCompletedRequest = () => {};
 
   const BUTTON_STATUS_TEXT: Partial<
     Record<CustomStatus, { label: string; onClick: () => void }>
   > = {
-    IN_PROGRESS: { label: '카카오톡 채팅', onClick: handleKaKaoOpenLink },
+    IN_PROGRESS: { label: '심부름 완료하기', onClick: handleCompletedRequest },
     COMPLETED_REQUEST: {
       label: '완료 수락하기',
       onClick: handleOpenCompleteModal,
     },
-    COMPLETED: { label: '리뷰쓰기', onClick: () => { } },
+    COMPLETED: { label: '리뷰쓰기', onClick: () => {} },
   };
   return {
     data,
@@ -44,7 +51,7 @@ export const useErrandStatus = () => {
     BUTTON_STATUS_TEXT,
     setIsCompleteOpen,
     handleOpenCompleteModal,
-    handleComplete,
+    handleAccepted,
     handleProfileDetail,
     handleKaKaoOpenLink,
   };

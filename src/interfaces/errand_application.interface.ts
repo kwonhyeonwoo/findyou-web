@@ -12,6 +12,7 @@ export interface ErrandApplicationResponse {
   status: CustomStatus;
   hasWrittenReview: boolean;
   reviews: ReviewResponse[];
+  openLink: string;
   createdAt: Date;
   updatedAt: Date;
 }

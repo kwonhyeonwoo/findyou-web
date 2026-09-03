@@ -17,8 +17,8 @@ interface Props {
 function ErrandMessageModal({ isOpen, title, handleIsOpen }: Props) {
   const {
     message,
-    link,
-    isSelected,
+    openLink,
+    saveAsDefault,
     handleChangeMessage,
     handleSubmit,
     handleLinkChange,
@@ -38,8 +38,8 @@ function ErrandMessageModal({ isOpen, title, handleIsOpen }: Props) {
         />
 
         <ErrandMsgOpenLink
-          link={link}
-          isSelected={isSelected}
+          link={openLink}
+          saveAsDefault={saveAsDefault}
           onOpenLinkChange={handleLinkChange}
           onSelectBox={handleSelectBox}
         />

@@ -6,7 +6,6 @@ import ErrandStatusInfo from '@/components/ErrandStatus/ErrandStatusInfo';
 import ErrandStatusTitle from '@/components/ErrandStatus/ErrandStatusTitle';
 import { useErrandStatus } from './hooks/useErrandStatus';
 import AlertModal from '@/components/common/AlertModal/AlertModal';
-import { CustomStatus } from '@/interfaces/common.interface';
 
 const ErrandStatusTemplate = () => {
   const {
@@ -14,15 +13,14 @@ const ErrandStatusTemplate = () => {
     isCompleteOpen,
     BUTTON_STATUS_TEXT,
     setIsCompleteOpen,
-    handleComplete,
+    handleAccepted,
     handleOpenCompleteModal,
     handleKaKaoOpenLink,
     handleProfileDetail,
   } = useErrandStatus();
   if (!data) return null;
-  console.log('data', data);
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-1 flex-col gap-6">
       <ErrandStatusTitle
         title={data.title}
         price={data.price}
@@ -40,16 +38,25 @@ const ErrandStatusTemplate = () => {
         arrive={data.address}
         description={data.description}
       />
-      <ErrandHelperKaKao
-        onKaKaoOpenLink={() => handleKaKaoOpenLink(data.openLink)}
-      />
-      <SubmitButton
-        text={BUTTON_STATUS_TEXT[data.status]?.label ?? ''}
-        isDisabled={false}
-        bgColor="bg-teal-primary"
-        isPending={false}
-        onClick={handleOpenCompleteModal}
-      />
+
+      <div className="mt-auto flex items-center gap-2">
+        <div className="flex-1">
+          <ErrandHelperKaKao
+            onKaKaoOpenLink={() =>
+              handleKaKaoOpenLink(data.application.openLink)
+            }
+          />
+        </div>
+        <div className="flex-3">
+          <SubmitButton
+            text={BUTTON_STATUS_TEXT[data.status]?.label ?? ''}
+            isDisabled={false}
+            bgColor="bg-teal-primary"
+            isPending={false}
+            onClick={handleOpenCompleteModal}
+          />
+        </div>
+      </div>
 
       <AlertModal
         title="심부름을 완료하시겠습니까?"
@@ -58,10 +65,13 @@ const ErrandStatusTemplate = () => {
         isOpen={isCompleteOpen}
         actionText="완료하기"
         setState={setIsCompleteOpen}
-        handleActive={handleComplete}
+        handleActive={handleAccepted}
       />
     </div>
   );
 };
 
 export default ErrandStatusTemplate;
+// 심부름에서 완료요청을보냄.
+// 헬퍼가 완료요청된것을 보고 수락을 해줌
+// 그럼 헬퍼와 심부름 서로서로 completed....

@@ -39,7 +39,7 @@ export const useErrandPostHook = () => {
       setCurrentIdx(idx);
       setIsBottomOpen((prev) => !prev);
     } else if (status === CustomStatus.IN_PROGRESS) {
-      router.push(`/errand/status/${id}`);
+      router.push(`/errand/progress/${id}`);
     } else if (status === CustomStatus.COMPLETED) {
     }
   };
@@ -64,7 +64,7 @@ export const useErrandPostHook = () => {
   }) => {
     mutate({ applicationId });
     setSelectedApplicant(null);
-    router.push(`/helper/${helperId}}`);
+    // router.push(`/helper/${helperId}}`);
   };
 
   const handleHelperProfile = (helperId: string) => {

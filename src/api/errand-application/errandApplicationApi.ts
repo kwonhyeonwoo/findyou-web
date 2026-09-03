@@ -6,13 +6,17 @@ export const errandApplicationApi = {
   create: async ({
     message,
     errandId,
+    openLink,
+    saveAsDefault,
   }: {
     message: string;
+    saveAsDefault: boolean;
+    openLink: string;
     errandId: string;
   }): Promise<IResponse> => {
     const response = await client.post<IResponse>(
       `/errand-application/${errandId}`,
-      { message },
+      { message, saveAsDefault, openLink },
     );
     return response;
   },

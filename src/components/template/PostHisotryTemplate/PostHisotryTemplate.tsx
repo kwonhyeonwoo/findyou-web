@@ -45,9 +45,13 @@ function PostHisotryTemplate() {
       {dataType === 'errand'
         ? // 심부름 데이터
           errandData?.map((item, idx) => {
-            const hasWrittenReview = item.applications.some(
-              (item) => item.hasWrittenReview,
-            );
+            let hasWrittenReview = false;
+            if (item.applications) {
+              hasWrittenReview = item.applications?.some(
+                (item) => item.hasWrittenReview,
+              );
+            }
+
             return (
               <CustomHistoryCard
                 images={item.images}

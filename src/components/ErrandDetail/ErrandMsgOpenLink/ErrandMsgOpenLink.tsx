@@ -2,14 +2,14 @@ import Image from 'next/image';
 
 interface Props {
   link: string;
-  isSelected: boolean;
+  saveAsDefault: boolean;
   onSelectBox?: () => void;
   onOpenLinkChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 function ErrandMsgOpenLink({
   link,
-  isSelected,
+  saveAsDefault,
   onSelectBox,
   onOpenLinkChange,
 }: Props) {
@@ -45,9 +45,9 @@ function ErrandMsgOpenLink({
       <div className="flex items-center gap-2">
         <div
           onClick={onSelectBox}
-          className={`border-basic-border flex h-5 w-5 cursor-pointer items-center justify-center rounded-[6px] border p-2 ${isSelected ? 'bg-teal-primary' : ''}`}
+          className={`border-basic-border flex h-5 w-5 cursor-pointer items-center justify-center rounded-[6px] border p-2 ${saveAsDefault ? 'bg-teal-primary' : ''}`}
         >
-          {isSelected && (
+          {saveAsDefault && (
             <svg
               viewBox="0 0 24 24"
               fill="none"
