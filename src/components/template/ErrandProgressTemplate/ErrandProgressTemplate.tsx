@@ -14,6 +14,7 @@ const ErrandProgressTemplate = () => {
     BUTTON_STATUS_TEXT,
     setIsCompleteOpen,
     handleAccepted,
+    BUTTOM_SUBMIT,
     handleOpenCompleteModal,
     handleKaKaoOpenLink,
     handleProfileDetail,
@@ -53,7 +54,7 @@ const ErrandProgressTemplate = () => {
             isDisabled={false}
             bgColor="bg-teal-primary"
             isPending={false}
-            onClick={handleOpenCompleteModal}
+            onClick={BUTTON_STATUS_TEXT[data.status]?.onClick}
           />
         </div>
       </div>
@@ -65,7 +66,7 @@ const ErrandProgressTemplate = () => {
         isOpen={isCompleteOpen}
         actionText="완료하기"
         setState={setIsCompleteOpen}
-        handleActive={handleAccepted}
+        handleActive={BUTTOM_SUBMIT[data.status] ?? (() => {})}
       />
     </div>
   );

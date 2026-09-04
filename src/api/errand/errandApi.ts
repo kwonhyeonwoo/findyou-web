@@ -74,4 +74,9 @@ export const errandApi = {
     const response = await client.post<IResponse>(`/errand/${id}/complete`);
     return response;
   },
+
+  patchCompleteRequest: async (id: string): Promise<IResponse> => {
+    const response = await client.patch<IResponse>(`/errand/${id}`);
+    return response;
+  },
 };
