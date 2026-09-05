@@ -31,6 +31,7 @@ export interface ErrandResponse {
   applications?: ErrandApplicationResponse[];
   application: ErrandApplicationResponse;
   applicationsCount: number;
+  completionRequestedBy?: string; // uuid, 누가 완료요청을 했는지 판별기준
 }
 
 export interface ErrandDetailResponse extends Omit<

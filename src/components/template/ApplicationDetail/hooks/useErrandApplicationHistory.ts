@@ -4,7 +4,7 @@ import { CustomStatus } from '@/interfaces/common.interface';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export const useErrandApplicationDetail = () => {
+export const useErrandApplicationHistory = () => {
   const router = useRouter();
   const { data: errandApplications } = useGetErrandApplicationsQuery();
   const { mutate: applicationDelete } = useDeleteErrandApplicationMutation();
@@ -26,9 +26,11 @@ export const useErrandApplicationDetail = () => {
     errandId: string;
   }) => {
     if (status === CustomStatus.PENDING) {
+      // 대기 중
       setCurrApplicationId(currApplicationId);
       setIsModalOpen(true);
     } else if (status === CustomStatus.ACCEPTED) {
+      // 수락
       router.push(`/errand/progress/${errandId}`);
     }
   };
@@ -46,10 +48,6 @@ export const useErrandApplicationDetail = () => {
   };
 };
 
-// 내 게시글 (심부름)
-// 1. 심부름 지원내역일 때 리뷰보기, 지원취소, 진행상황 등 볼 수 있어야하고
-// 2. 심부름 지원내역에서 내가 카드를 클릭하면 심부름상세로 이동해야함.
-
 // 내 게시글(헬퍼)
 // 1. 헬퍼지원 내역에도 리뷰보기, 지원취소, 진행상황등을 볼 수 있어야함.
 // 2. 여기에서도 카드를 클릭하면 심부름 진행상황을 볼 수 있어애함 맞지?
@@ -57,3 +55,9 @@ export const useErrandApplicationDetail = () => {
 // 공통부분
 // 진행상황인 경우에는 심부름상세 페이지로 이동하긴해야함
 // 지원취소를 클릭하면 모닱창이 떠야함.
+
+// 심부름완료 요청
+// 1. 의뢰인 또는 헬퍼가 완료요청을 함
+// 2. 완료요청을 받는 쪽에서는 수락을 해줘야함
+// 3. 누가 완료요청을 했는지 알아야함.
+// 4. 그 완료요청을 한 기준은 completionRequestedBy 컬럼으로 알아내면 될듯?

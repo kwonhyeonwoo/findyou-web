@@ -4,9 +4,9 @@ import { useApplication } from './hooks/useApplication';
 import AlertModal from '@/components/common/AlertModal/AlertModal';
 import { Drawer, DrawerContent } from '@/components/ui/drawer';
 import ReviewDropCard from '@/components/ReviewDropCard/ReviewDropCard';
-import { useErrandApplicationDetail } from './hooks/useErrandApplicationDetail';
+import { useErrandApplicationHistory } from './hooks/useErrandApplicationHistory';
 
-function ApplicationDetailTemplate() {
+function ApplicationHistoryTemplate() {
   // const {
   //   data,
   //   isModalOpen,
@@ -26,7 +26,7 @@ function ApplicationDetailTemplate() {
     handleStatusActive,
     handleDeleteApplication,
     handleErrandDetailActive,
-  } = useErrandApplicationDetail();
+  } = useErrandApplicationHistory();
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {errandApplications
@@ -77,4 +77,4 @@ function ApplicationDetailTemplate() {
   );
 }
 
-export default ApplicationDetailTemplate;
+export default ApplicationHistoryTemplate;
