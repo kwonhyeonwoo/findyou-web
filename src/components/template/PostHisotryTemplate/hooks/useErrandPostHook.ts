@@ -22,6 +22,7 @@ export const useErrandPostHook = () => {
     useState<SelectedApplication | null>(null);
   const [isBottomOpen, setIsBottomOpen] = useState<boolean>(false);
   const { data: errandData } = useGetMyErrandsQuery();
+
   const handleSatusActive = ({
     idx,
     id,
@@ -37,6 +38,8 @@ export const useErrandPostHook = () => {
     } else if (status === CustomStatus.IN_PROGRESS) {
       router.push(`/errand/progress/${id}`);
     } else if (status === CustomStatus.COMPLETED) {
+    } else if (status === CustomStatus.COMPLETED_REQUEST) {
+      router.push(`/errand/progress/${id}`)
     }
   };
   const handleModalOpen = ({
@@ -50,6 +53,7 @@ export const useErrandPostHook = () => {
       helperId,
     });
   };
+
 
   const handleAccepted = ({
     applicationId,

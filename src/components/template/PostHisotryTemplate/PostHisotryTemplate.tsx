@@ -23,7 +23,7 @@ function PostHisotryTemplate() {
     setIsBottomOpen,
     handleHelperProfile,
     handleSatusActive,
-    handleAccepted,
+    handleCompleted,
     handleErrandDetailActive,
   } = useErrandPostHook();
   const {
@@ -125,7 +125,7 @@ function PostHisotryTemplate() {
         actionText="수락"
         handleActive={() => {
           if (selectedApplicant) {
-            handleAccepted({
+            handleCompleted({
               applicationId: selectedApplicant.applicationId,
               helperId: selectedApplicant.helperId,
             });

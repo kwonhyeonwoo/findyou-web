@@ -6,11 +6,10 @@ import { useUser } from '@/store/useUserStore';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export const useErrandStatus = () => {
+export const useErrandProgress = () => {
   const { id } = useParams();
   const router = useRouter();
   const params = useParams();
-  console.log('params', params);
   const { userId } = useUser();
   const { data } = useGetErrandProgressQuery(String(id));
   const { mutate: completeMutate } = useErrandCompleteMutation(
@@ -48,21 +47,23 @@ export const useErrandStatus = () => {
   > = {
     IN_PROGRESS: { label: '심부름 완료하기', onClick: handleOpenCompleteModal },
     COMPLETED_REQUEST: {
-      label: '완료 수락하기',
+      label: data?.completionRequestedBy === userId ? "완료 대기중" : "완료 수락하기",
       onClick: handleOpenCompleteModal,
     },
-    COMPLETED: { label: '리뷰쓰기', onClick: () => {} },
+    COMPLETED: { label: '리뷰쓰기', onClick: () => { } },
   };
 
   const BUTTOM_SUBMIT: Partial<Record<CustomStatus, () => void>> = {
     IN_PROGRESS: handleCompletedRequest,
-    COMPLETED_REQUEST: () => {},
+    COMPLETED_REQUEST: () => { },
   };
+  console.log('data', data?.status)
   return {
     data,
     isCompleteOpen,
     BUTTOM_SUBMIT,
     BUTTON_STATUS_TEXT,
+    userId,
     setIsCompleteOpen,
     handleOpenCompleteModal,
     handleAccepted,
