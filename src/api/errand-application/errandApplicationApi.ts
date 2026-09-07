@@ -22,9 +22,8 @@ export const errandApplicationApi = {
   },
 
   getApplications: async (): Promise<ErrandApplicationResponse[]> => {
-    const response = await client.get<ErrandApplicationResponse[]>(
-      `/errand-application`,
-    );
+    const response =
+      await client.get<ErrandApplicationResponse[]>(`/errand-application`);
     return response;
   },
 
@@ -37,9 +36,13 @@ export const errandApplicationApi = {
   },
 
   delete: async (applicationId: string) => {
-    const response = await client.delete<IResponse>(`/errand-application/${applicationId}`);
+    console.log('errand-application', applicationId);
+    const response = await client.delete<IResponse>(
+      `/errand-application/${applicationId}`,
+    );
+    console.log('tq', response);
     return response;
-  }
+  },
 };
 
 //결국에는 내역은 나만 볼 수 있어야함...

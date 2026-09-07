@@ -33,7 +33,7 @@ export const useErrandProgress = () => {
   };
 
   // 수락하기 버튼 클릭 시 심부름 완료 처리
-  const handleAccepted = () => {
+  const handleCompleted = () => {
     completeMutate(String(id));
   };
 
@@ -47,17 +47,20 @@ export const useErrandProgress = () => {
   > = {
     IN_PROGRESS: { label: '심부름 완료하기', onClick: handleOpenCompleteModal },
     COMPLETED_REQUEST: {
-      label: data?.completionRequestedBy === userId ? "완료 대기중" : "완료 수락하기",
+      label:
+        data?.completionRequestedBy === userId
+          ? '완료 대기중'
+          : '완료 수락하기',
       onClick: handleOpenCompleteModal,
     },
-    COMPLETED: { label: '리뷰쓰기', onClick: () => { } },
+    COMPLETED: { label: '리뷰쓰기', onClick: () => {} },
   };
 
   const BUTTOM_SUBMIT: Partial<Record<CustomStatus, () => void>> = {
     IN_PROGRESS: handleCompletedRequest,
-    COMPLETED_REQUEST: () => { },
+    COMPLETED_REQUEST: handleCompleted,
   };
-  console.log('data', data?.status)
+  console.log('data', data?.status);
   return {
     data,
     isCompleteOpen,
@@ -66,7 +69,7 @@ export const useErrandProgress = () => {
     userId,
     setIsCompleteOpen,
     handleOpenCompleteModal,
-    handleAccepted,
+    handleCompleted,
     handleProfileDetail,
     handleKaKaoOpenLink,
   };

@@ -1,4 +1,4 @@
-import { useDeleteErrandApplicationMutation } from '@/hooks/mutations/errandApplication/useDeleteErrandApplicationMutation';
+import { useDeleteErrandApplication } from '@/hooks/mutations/errand-application/useDeleteErrandApplication';
 import { useGetErrandApplicationsQuery } from '@/hooks/quires/errand-application/useGetErrandApplicationsQuery';
 import { CustomStatus } from '@/interfaces/common.interface';
 import { useRouter } from 'next/navigation';
@@ -7,15 +7,16 @@ import { useState } from 'react';
 export const useErrandApplicationHistory = () => {
   const router = useRouter();
   const { data: errandApplications } = useGetErrandApplicationsQuery();
-  const { mutate: applicationDelete } = useDeleteErrandApplicationMutation();
+  const { mutate: applicationDelete } = useDeleteErrandApplication();
   const [currApplicationId, setCurrApplicationId] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleErrandDetailActive = (errandId: string) => {
     router.push(`/errand/${errandId}`);
   };
-
-  // 이 부분도 취소인지, 진행상황인지, 리뷰보기 인지 알아야하잖아
+  const handleDeleteApplication = () => {
+    applicationDelete(currApplicationId);
+  };
   const handleStatusActive = ({
     status,
     currApplicationId,
@@ -35,9 +36,6 @@ export const useErrandApplicationHistory = () => {
     }
   };
 
-  const handleDeleteApplication = () => {
-    applicationDelete(currApplicationId);
-  };
   return {
     errandApplications,
     isModalOpen,

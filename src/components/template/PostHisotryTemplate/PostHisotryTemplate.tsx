@@ -23,7 +23,7 @@ function PostHisotryTemplate() {
     setIsBottomOpen,
     handleHelperProfile,
     handleSatusActive,
-    handleCompleted,
+    handleAccepted,
     handleErrandDetailActive,
   } = useErrandPostHook();
   const {
@@ -40,6 +40,7 @@ function PostHisotryTemplate() {
       toast.error('지원자가 없습니다.');
     }
   }, [isBottomOpen, hasApplicants]);
+  console.log('errandData', errandData);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {dataType === 'errand'
@@ -68,7 +69,12 @@ function PostHisotryTemplate() {
                   handleErrandDetailActive(item.id)
                 }
                 handleSatusActive={() =>
-                  handleSatusActive({ idx, id: item.id, status: item.status })
+                  handleSatusActive({
+                    idx,
+                    id: item.id,
+                    status: item.status,
+                    applicationId: item.application.id,
+                  })
                 }
               />
             );
@@ -125,7 +131,7 @@ function PostHisotryTemplate() {
         actionText="수락"
         handleActive={() => {
           if (selectedApplicant) {
-            handleCompleted({
+            handleAccepted({
               applicationId: selectedApplicant.applicationId,
               helperId: selectedApplicant.helperId,
             });

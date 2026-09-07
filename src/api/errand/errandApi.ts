@@ -66,6 +66,7 @@ export const errandApi = {
   // 내가 등록한 심부름
   getMyErrand: async (): Promise<ErrandResponse[]> => {
     const response = await client.get<ErrandResponse[]>('/errand/my');
+    console.log('여기는 실행이 안돼?');
     console.log('response', response);
     return response;
   },

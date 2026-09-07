@@ -3,8 +3,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { CustomStatus } from '@/interfaces/common.interface';
 import { useGetMyErrandsQuery } from '@/hooks/quires/errand/useGetMyErrandsQuery';
 import { useUser } from '@/store/useUserStore';
-import { useApplicationStatusMutation } from '@/hooks/mutations/errandApplication/useApplicationStatusMutation';
-
+import { useApplicationStatusMutation } from '@/hooks/mutations/errand-application/useApplicationStatusMutation';
 
 export interface SelectedApplication {
   applicationId: string;
@@ -27,10 +26,12 @@ export const useErrandPostHook = () => {
     idx,
     id,
     status,
+    applicationId,
   }: {
     idx: number | null;
     id?: string;
     status: CustomStatus;
+    applicationId: string;
   }) => {
     if (status === CustomStatus.PENDING) {
       setCurrentIdx(idx);
@@ -38,8 +39,9 @@ export const useErrandPostHook = () => {
     } else if (status === CustomStatus.IN_PROGRESS) {
       router.push(`/errand/progress/${id}`);
     } else if (status === CustomStatus.COMPLETED) {
+      router.push(`/errand/${applicationId}/review`);
     } else if (status === CustomStatus.COMPLETED_REQUEST) {
-      router.push(`/errand/progress/${id}`)
+      router.push(`/errand/progress/${id}`);
     }
   };
   const handleModalOpen = ({
@@ -54,7 +56,6 @@ export const useErrandPostHook = () => {
     });
   };
 
-
   const handleAccepted = ({
     applicationId,
     helperId,
@@ -64,7 +65,7 @@ export const useErrandPostHook = () => {
   }) => {
     mutate({ applicationId });
     setSelectedApplicant(null);
-    // router.push(`/helper/${helperId}}`);
+    setIsBottomOpen(false);
   };
 
   const handleHelperProfile = (helperId: string) => {
