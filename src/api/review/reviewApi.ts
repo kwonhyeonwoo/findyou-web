@@ -3,15 +3,14 @@ import { client } from '../client/clientApi';
 import { IResponse } from '@/interfaces/response.interface';
 
 export const reviewApi = {
-  createReview: async ({
+  createErrandReview: async ({
     data,
-    errandId,
+    errandApplicationId,
   }: {
     data: ReviewCreateRequest;
-    errandId: string;
-  }) => {
-    const response = await client.post(`/review/${errandId}`, data);
-    console.log('response', response);
+    errandApplicationId: string;
+  }): Promise<IResponse> => {
+    const response = await client.post<IResponse>(`/review/${errandApplicationId}`, data);
     return response;
   },
 
@@ -29,4 +28,6 @@ export const reviewApi = {
     console.log('response', response);
     return response;
   },
+
+
 };

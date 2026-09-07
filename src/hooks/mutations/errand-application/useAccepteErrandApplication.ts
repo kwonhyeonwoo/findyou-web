@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
-export const useApplicationStatusMutation = () => {
+export const useAccepteErrandApplication = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   return useMutation({
@@ -15,7 +15,7 @@ export const useApplicationStatusMutation = () => {
         queryKey: [...ERRAND_APPLICAION_KEYS.lists(), ...ERRAND_KEYS.lists()],
       });
       toast.success(data.message);
-      // router.push(`/errand/progress/${}`)
+      // router.push(`/errand/errandId/review`)
     },
     onError: (error: any) => {
       console.log('error', error);

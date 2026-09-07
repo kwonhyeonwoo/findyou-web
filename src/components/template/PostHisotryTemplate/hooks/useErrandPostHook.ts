@@ -3,7 +3,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { CustomStatus } from '@/interfaces/common.interface';
 import { useGetMyErrandsQuery } from '@/hooks/quires/errand/useGetMyErrandsQuery';
 import { useUser } from '@/store/useUserStore';
-import { useApplicationStatusMutation } from '@/hooks/mutations/errand-application/useApplicationStatusMutation';
+import { useAccepteErrandApplication } from '@/hooks/mutations/errand-application/useAccepteErrandApplication';
 
 export interface SelectedApplication {
   applicationId: string;
@@ -15,14 +15,14 @@ export const useErrandPostHook = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { userId } = useUser();
-  const { mutate } = useApplicationStatusMutation();
+  const { mutate } = useAccepteErrandApplication();
   const [currentIdx, setCurrentIdx] = useState<number | null>(null);
   const [selectedApplicant, setSelectedApplicant] =
     useState<SelectedApplication | null>(null);
   const [isBottomOpen, setIsBottomOpen] = useState<boolean>(false);
   const { data: errandData } = useGetMyErrandsQuery();
 
-  const handleSatusActive = ({
+  const handleStatusActive = ({
     idx,
     id,
     status,
@@ -31,7 +31,7 @@ export const useErrandPostHook = () => {
     idx: number | null;
     id?: string;
     status: CustomStatus;
-    applicationId: string;
+    applicationId?: string;
   }) => {
     if (status === CustomStatus.PENDING) {
       setCurrentIdx(idx);
@@ -56,12 +56,11 @@ export const useErrandPostHook = () => {
     });
   };
 
-  const handleAccepted = ({
+  // 지원자 수락
+  const handleErrandAccepted = ({
     applicationId,
-    helperId,
   }: {
     applicationId: string;
-    helperId: string;
   }) => {
     mutate({ applicationId });
     setSelectedApplicant(null);
@@ -87,7 +86,7 @@ export const useErrandPostHook = () => {
     handleModalOpen,
     setIsBottomOpen,
     handleHelperProfile,
-    handleAccepted,
-    handleSatusActive,
+    handleErrandAccepted,
+    handleStatusActive,
   };
 };

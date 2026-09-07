@@ -15,7 +15,7 @@ interface Props {
   hasWrittenReview: boolean;
   type: 'apply' | 'request';
   handleErrandDetailActive: () => void;
-  handleSatusActive: () => void;
+  handleStatusActive: () => void;
 }
 
 function CustomHistoryCard({
@@ -29,7 +29,7 @@ function CustomHistoryCard({
   type,
   hasWrittenReview,
   handleErrandDetailActive,
-  handleSatusActive,
+  handleStatusActive,
 }: Props) {
   return (
     <div
@@ -50,7 +50,7 @@ function CustomHistoryCard({
         type={type}
         hasWrittenReview={hasWrittenReview}
         status={status}
-        handleSatusActive={handleSatusActive}
+        handleStatusActive={handleStatusActive}
       />
     </div>
   );

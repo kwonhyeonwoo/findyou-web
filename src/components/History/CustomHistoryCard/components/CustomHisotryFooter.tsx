@@ -4,14 +4,14 @@ interface Props {
   status: CustomStatus;
   type: 'apply' | 'request';
   hasWrittenReview: boolean;
-  handleSatusActive: () => void;
+  handleStatusActive: () => void;
 }
 
 export default function CustomHistoryFooter({
   status,
   type,
   hasWrittenReview,
-  handleSatusActive,
+  handleStatusActive,
 }: Props) {
   type StatusConfig = {
     label: string;
@@ -68,7 +68,7 @@ export default function CustomHistoryFooter({
 
   const onStatusClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    handleSatusActive();
+    handleStatusActive();
   };
   return (
     <div className="flex w-full items-center justify-between">

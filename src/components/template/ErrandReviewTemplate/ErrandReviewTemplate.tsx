@@ -10,14 +10,14 @@ import { useErrandReview } from './hooks/useErrandReview';
 export default function ErrandReviewTemplate() {
   const {
     rating,
+    tags,
+    reviewContent,
     hoverRating,
-    selectedTags,
-    review,
-    handleTagClick,
+    setRating,
+    setSelectedTags,
     handleHoverLeave,
     handleHoverRating,
-    handleRatingClicked,
-    handleReviewChange,
+    setReviewContent,
   } = useCommonReview();
   const { handleReviewSubmit } = useErrandReview();
   return (
@@ -36,17 +36,14 @@ export default function ErrandReviewTemplate() {
           rating={rating}
           onHoverRating={handleHoverRating}
           onHoverReave={handleHoverLeave}
-          onRatingClicked={handleRatingClicked}
+          onRatingClicked={setRating}
         />
       </div>
-      <ReviewTagSelector
-        selectedTags={selectedTags}
-        onTagClick={handleTagClick}
-      />
+      <ReviewTagSelector selectedTags={tags} onTagClick={setSelectedTags} />
       <HelperReviewTextarea
-        textLength={review.length}
-        text={review}
-        onTextChange={handleReviewChange}
+        textLength={reviewContent.length}
+        text={reviewContent}
+        onTextChange={setReviewContent}
       />
       <div className="mt-auto h-full border-t border-t-[#F2F2F2] pt-6">
         <SubmitButton

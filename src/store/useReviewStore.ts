@@ -4,10 +4,10 @@ import { create } from 'zustand';
 interface ReviewStore {
   rating: number;
   tags: ReviewTag[];
-  hover: number;
+  hoverRating: number;
   review: string;
   setRating: (rating: number) => void;
-  setSelectTags: (tags: ReviewTag[]) => void;
+  setSelectTags: (tags: ReviewTag) => void;
   setHoverRating: (hover: number) => void;
   setReview: (review: string) => void;
 }
@@ -15,11 +15,15 @@ interface ReviewStore {
 export const useReviewStore = create<ReviewStore>((set) => ({
   rating: 0,
   tags: [],
-  hover: 0,
+  hoverRating: 0,
   review: '',
   setRating: (rating: number) => set({ rating }),
-  setSelectTags: (tags: ReviewTag[]) => set({ tags }),
-  setHoverRating: (hover: number) => set({ hover }),
+  setSelectTags: (tag: ReviewTag) => set((state) => ({
+    tags: state.tags.includes(tag)
+      ? state.tags.filter((item) => item !== tag)
+      : [...state.tags, tag],
+  })),
+  setHoverRating: (hoverRating: number) => set({ hoverRating }),
   setReview: (review: string) => set({ review }),
 }));
 
@@ -33,10 +37,28 @@ export const useReviewRating = () => {
 };
 
 export const useReviewTags = () => {
-  const setTags = useReviewStore((state) => state.setSelectTags);
-  const tags = useReviewStore((state) => state.tags);
+  const tags = useReviewStore((state) => state.tags)
+  const setSelectedTags = useReviewStore((state) => state.setSelectTags);
   return {
     tags,
-    setTags,
+    setSelectedTags,
   };
 };
+
+export const useReviewContent = () => {
+  const reviewContent = useReviewStore((state) => state.review);
+  const setReviewContent = useReviewStore((state) => state.setReview);
+  return {
+    reviewContent,
+    setReviewContent
+  }
+}
+
+export const useReviewHoverRating = () => {
+  const hoverRating = useReviewStore((state) => state.hoverRating);
+  const setHoverRating = useReviewStore((state) => state.setHoverRating);
+  return {
+    hoverRating,
+    setHoverRating
+  }
+}

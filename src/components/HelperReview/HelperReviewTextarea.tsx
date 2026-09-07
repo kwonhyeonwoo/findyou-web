@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 interface Props {
   textLength: number;
   text: string;
-  onTextChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onTextChange: (value: string) => void;
 }
 
 function HelperReviewTextarea({ text, textLength, onTextChange }: Props) {
@@ -13,7 +13,7 @@ function HelperReviewTextarea({ text, textLength, onTextChange }: Props) {
       <div className="relative">
         <textarea
           value={text}
-          onChange={onTextChange}
+          onChange={(e) => onTextChange(e.target.value)}
           placeholder="후기를 남겨주세요"
           className="h-[162px] w-full resize-none rounded-[8px] border border-[#E5E7EB] p-4 text-[14px] outline-none"
         />
