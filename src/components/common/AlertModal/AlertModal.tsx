@@ -16,7 +16,7 @@ interface Props {
   isOpen: boolean;
   actionText: string;
   setState: React.Dispatch<SetStateAction<boolean>>;
-  handleActive: () => void;
+  onActive: () => void;
 }
 export default function AlertModal({
   title,
@@ -24,7 +24,7 @@ export default function AlertModal({
   isOpen,
   actionText,
   setState,
-  handleActive,
+  onActive,
 }: Props) {
   return (
     <AlertDialog open={isOpen} onOpenChange={setState}>
@@ -36,7 +36,7 @@ export default function AlertModal({
 
         <AlertDialogFooter className="flex gap-2 sm:justify-center sm:space-x-0">
           <AlertDialogCancel className="h-10 flex-1">취소</AlertDialogCancel>
-          <AlertDialogAction onClick={handleActive} className="h-10 flex-1">
+          <AlertDialogAction onClick={onActive} className="h-10 flex-1">
             {actionText}
           </AlertDialogAction>
         </AlertDialogFooter>

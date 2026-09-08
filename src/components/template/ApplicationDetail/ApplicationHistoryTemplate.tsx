@@ -44,7 +44,7 @@ function ApplicationHistoryTemplate() {
               handleErrandDetailActive={() =>
                 handleErrandDetailActive(item.errand.id)
               }
-              handleSatusActive={() =>
+              handleStatusActive={() =>
                 handleStatusActive({
                   status: item.status,
                   currApplicationId: item.id,
@@ -71,7 +71,7 @@ function ApplicationHistoryTemplate() {
         isOpen={isModalOpen}
         actionText="지원 취소"
         setState={setIsModalOpen}
-        handleActive={handleDeleteApplication}
+        onActive={handleDeleteApplication}
       />
     </div>
   );

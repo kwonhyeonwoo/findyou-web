@@ -10,7 +10,7 @@ import { CustomStatus } from '@/interfaces/common.interface';
 import ReceivedCard from '@/components/Received/ReceivedCard/ReceivedCard';
 import { useHelperPostHook } from './hooks/useHelperPostHook';
 
-function PostHisotryTemplate() {
+function PostHistoryTemplate() {
   const {
     errandData,
     isBottomOpen,
@@ -129,7 +129,7 @@ function PostHisotryTemplate() {
         description={`이 작업은 되돌릴 수 없습니다.`}
         setState={() => setSelectedApplicant(null)}
         actionText="수락"
-        handleActive={() => {
+        onActive={() => {
           if (selectedApplicant) {
             handleErrandAccepted({
               applicationId: selectedApplicant.applicationId,
@@ -141,4 +141,4 @@ function PostHisotryTemplate() {
   );
 }
 
-export default PostHisotryTemplate;
+export default PostHistoryTemplate;

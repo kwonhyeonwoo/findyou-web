@@ -65,7 +65,7 @@ const ErrandProgressTemplate = () => {
         isOpen={isCompleteOpen}
         actionText="완료하기"
         setState={setIsCompleteOpen}
-        handleActive={BUTTOM_SUBMIT[data.status] ?? (() => {})}
+        onActive={BUTTOM_SUBMIT[data.status] ?? (() => {})}
       />
     </div>
   );
