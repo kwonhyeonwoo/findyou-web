@@ -5,10 +5,10 @@ import { useUser } from '@/store/useUserStore';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export const useApplication = () => {
+export const useHelperApplication = () => {
   const router = useRouter();
   const { userId } = useUser();
-  const { data, isLoading } = useGetApplicationsQuery();
+  const { data: helperApplications, isLoading } = useGetApplicationsQuery();
   const { mutate: deleteApplication } = useDeleteHelperAppliMutation();
   const [isBottomOpen, setIsBottomOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,12 +56,18 @@ export const useApplication = () => {
   const handleDeleteApplication = () => {
     deleteApplication(currAppliId);
   };
-  const currApplication = data?.find((item) => item.id === currAppliId);
+  const currApplication = helperApplications?.find(
+    (item) => item.id === currAppliId,
+  );
   const review = currApplication?.reviews.find(
     (item) => item.reviewer.id === userId,
   );
+
+  const handleDetailActive = (postId: string) => {
+    router.push(`/helper/${postId}`);
+  };
   return {
-    data,
+    helperApplications,
     isModalOpen,
     currAppliId,
     review,
