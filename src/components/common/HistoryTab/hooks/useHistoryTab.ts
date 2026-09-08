@@ -11,9 +11,9 @@ export const useHistoryTab = () => {
   const searchParams = useSearchParams();
 
   const { id } = useParams();
-
+  console.log('pathname', pathname)
   const handleSagmentActive = (type: string) => {
-    router.push(`/history/post?type=${type}`);
+    router.push(`${pathname}?type=${type}`);
   };
   return {
     pathname,

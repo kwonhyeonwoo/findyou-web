@@ -63,13 +63,21 @@ export const errandApi = {
     return response;
   },
 
+  // 내가 등록한 심부름
   getMyErrand: async (): Promise<ErrandResponse[]> => {
     const response = await client.get<ErrandResponse[]>('/errand/my');
+    console.log('여기는 실행이 안돼?');
+    console.log('response', response);
     return response;
   },
 
   postComplete: async (id: string): Promise<IResponse> => {
     const response = await client.post<IResponse>(`/errand/${id}/complete`);
+    return response;
+  },
+
+  patchCompleteRequest: async (id: string): Promise<IResponse> => {
+    const response = await client.patch<IResponse>(`/errand/${id}`);
     return response;
   },
 };

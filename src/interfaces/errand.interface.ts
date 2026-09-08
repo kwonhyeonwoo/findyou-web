@@ -26,9 +26,12 @@ export interface ErrandResponse {
   status: CustomStatus;
   title: string;
   user: UserResponse;
+  helper: UserResponse;
   deadlineTime: Date;
-  applications: ErrandApplicationResponse[];
+  applications?: ErrandApplicationResponse[];
+  application: ErrandApplicationResponse;
   applicationsCount: number;
+  completionRequestedBy?: string; // uuid, 누가 완료요청을 했는지 판별기준
 }
 
 export interface ErrandDetailResponse extends Omit<

@@ -10,16 +10,7 @@ import ErrandDetailProfile from '@/components/ErrandDetail/ErrandDetailProfile/E
 import ErrandCategoryStatus from '@/components/ErrandDetail/ErrandCategoryStatus/ErrandCategoryStatus';
 
 export default function ErrandDetailTemplate() {
-  const {
-    data,
-    uid,
-    isPending,
-    isOpen,
-    message,
-    handleSubmit,
-    handleIsOpen,
-    handleChangeMessage,
-  } = useErrandDetail();
+  const { data, uid, isPending, isOpen, handleIsOpen } = useErrandDetail();
   const { currentIndex, goToSlide, handleSlide } = useSliderImg(
     data?.images || [],
   );
@@ -65,11 +56,8 @@ export default function ErrandDetailTemplate() {
       </div>
       <ErrandMessageModal
         isOpen={isOpen}
-        message={message}
         title="의뢰자에게 어필할 수 있는 간단한 소개를 남겨주세요!"
         handleIsOpen={handleIsOpen}
-        handleChangeMessage={handleChangeMessage}
-        handleSubmit={handleSubmit}
       />
     </div>
   );

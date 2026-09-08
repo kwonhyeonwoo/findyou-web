@@ -6,13 +6,13 @@ import SegmentedControl from '../SegmentedControl/SegmentedControl';
 
 function HistoryTab() {
   const { pathname, id, searchParams, handleSagmentActive } = useHistoryTab();
-  const SAGMENT_TAB: { type: 'post' | 'application'; text: string }[] = [
+  const SAGMENT_TAB: { type: 'helper' | 'errand'; text: string }[] = [
     {
-      type: 'post',
+      type: 'helper',
       text: '헬퍼',
     },
     {
-      type: 'application',
+      type: 'errand',
       text: '심부름',
     },
   ];

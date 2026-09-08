@@ -17,7 +17,6 @@ export default function ReceivedHistoryTemplate() {
     handleAcceptedActive,
     handleCompletedActive,
   } = useReceivedHistory();
-  console.log('여기는 뭥미?', data);
   return (
     <div className="flex flex-col gap-5 pt-5 pb-10">
       <p className="text-[13px] text-[#464554]">
@@ -25,7 +24,6 @@ export default function ReceivedHistoryTemplate() {
       </p>
       <div className="flex flex-col gap-4">
         {data?.map((item) => {
-          console.log('item', item);
           const acceptedApplication = item.applications.find(
             (accepted) =>
               accepted.status === CustomStatus.ACCEPTED ||

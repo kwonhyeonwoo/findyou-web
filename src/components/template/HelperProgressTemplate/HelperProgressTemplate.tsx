@@ -18,10 +18,9 @@ export default function HelperProgressTemplate() {
     handleProfileActive,
     handleCompletedRequest,
   } = useHelperProgress();
-  console.log('data', data);
   if (!data) return null;
   const buttonStatus =
-    data.status === CustomStatus.COMPLETE_REQUESTED
+    data.status === CustomStatus.COMPLETED_REQUEST
       ? '완료 요청 대기 중'
       : '완료요청 하기';
   return (
@@ -45,7 +44,7 @@ export default function HelperProgressTemplate() {
       <SubmitButton
         text={buttonStatus}
         isPending={isPending}
-        isDisabled={data.status === CustomStatus.COMPLETE_REQUESTED}
+        isDisabled={data.status === CustomStatus.COMPLETED_REQUEST}
         onClick={handleIsOpen}
       />
       <AlertModal

@@ -16,7 +16,6 @@ function ReceivedDetailTemplate() {
     setIsCompleteOpen,
     handleCompleteOpen,
   } = useReceivedDetail();
-  console.log('first', data);
   return (
     <div className="flex flex-col gap-4 pt-5 pb-10">
       {data?.map((item) => {

@@ -1,8 +1,9 @@
-import { useApplicationStatusMutation } from './quires/errand-application/useApplicationStatusMutation';
-import { useGetMyErrandsQuery } from './quires/errand/useGetMyErrandsQuery';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { CustomStatus } from '@/interfaces/common.interface';
+import { useGetMyErrandsQuery } from '@/hooks/quires/errand/useGetMyErrandsQuery';
+import { useUser } from '@/store/useUserStore';
+import { useAccepteErrandApplication } from '@/hooks/mutations/errand-application/useAccepteErrandApplication';
 
 export interface SelectedApplication {
   applicationId: string;
@@ -10,30 +11,37 @@ export interface SelectedApplication {
   helperId: string;
 }
 
-export const useRequestTemplate = () => {
+export const useErrandPostHook = () => {
   const router = useRouter();
-  const { mutate } = useApplicationStatusMutation();
+  const searchParams = useSearchParams();
+  const { userId } = useUser();
+  const { mutate } = useAccepteErrandApplication();
   const [currentIdx, setCurrentIdx] = useState<number | null>(null);
   const [selectedApplicant, setSelectedApplicant] =
     useState<SelectedApplication | null>(null);
   const [isBottomOpen, setIsBottomOpen] = useState<boolean>(false);
-  const { data } = useGetMyErrandsQuery();
+  const { data: errandData } = useGetMyErrandsQuery();
 
-  const handleActive = ({
+  const handleStatusActive = ({
     idx,
     id,
     status,
+    applicationId,
   }: {
     idx: number | null;
     id?: string;
     status: CustomStatus;
+    applicationId?: string;
   }) => {
     if (status === CustomStatus.PENDING) {
       setCurrentIdx(idx);
       setIsBottomOpen((prev) => !prev);
     } else if (status === CustomStatus.IN_PROGRESS) {
-      router.push(`/errand/status/${id}`);
+      router.push(`/errand/progress/${id}`);
     } else if (status === CustomStatus.COMPLETED) {
+      router.push(`/errand/${applicationId}/review`);
+    } else if (status === CustomStatus.COMPLETED_REQUEST) {
+      router.push(`/errand/progress/${id}`);
     }
   };
   const handleModalOpen = ({
@@ -48,31 +56,37 @@ export const useRequestTemplate = () => {
     });
   };
 
-  const handleApplicationUpdate = ({
+  // 지원자 수락
+  const handleErrandAccepted = ({
     applicationId,
-    helperId,
   }: {
     applicationId: string;
-    helperId: string;
   }) => {
     mutate({ applicationId });
     setSelectedApplicant(null);
-    router.push(`/helper/${helperId}}`);
+    setIsBottomOpen(false);
   };
 
   const handleHelperProfile = (helperId: string) => {
     router.push(`/helper/${helperId}`);
   };
+
+  const handleErrandDetailActive = (errandId: string) => {
+    router.push(`/errand/${errandId}`);
+  };
   return {
-    data,
+    errandData,
     isBottomOpen,
     currentIdx,
     selectedApplicant,
+    userId,
+    dataType: searchParams.get('type'),
+    handleErrandDetailActive,
     setSelectedApplicant,
     handleModalOpen,
     setIsBottomOpen,
     handleHelperProfile,
-    handleApplicationUpdate,
-    handleActive,
+    handleErrandAccepted,
+    handleStatusActive,
   };
 };

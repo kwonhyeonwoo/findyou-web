@@ -39,7 +39,7 @@ function ReceivedCard({
     (review) => review.reviewee.id === userId,
   );
   return (
-    <div className="border-basic-border flex cursor-pointer flex-col gap-4 rounded-[16px] border px-4 py-5 pb-4">
+    <div className="border-basic-border flex cursor-pointer flex-col gap-4 rounded-[16px] border bg-white px-4 py-5 pb-4">
       {/* 카테고리이미지, 제목, 카테고리, 시간 */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">

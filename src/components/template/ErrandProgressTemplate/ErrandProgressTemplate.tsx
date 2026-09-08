@@ -4,53 +4,59 @@ import ErrandHelper from '@/components/ErrandStatus/ErrandHelper';
 import ErrandHelperKaKao from '@/components/ErrandStatus/ErrandHelperKaKao';
 import ErrandStatusInfo from '@/components/ErrandStatus/ErrandStatusInfo';
 import ErrandStatusTitle from '@/components/ErrandStatus/ErrandStatusTitle';
-import { useErrandStatus } from './hooks/useErrandStatus';
+import { useErrandProgress } from './hooks/useErrandProgress';
 import AlertModal from '@/components/common/AlertModal/AlertModal';
-import { CustomStatus } from '@/interfaces/common.interface';
 
-const ErrandStatusTemplate = () => {
+const ErrandProgressTemplate = () => {
   const {
     data,
     isCompleteOpen,
+    BUTTON_STATUS_TEXT,
+    userId,
+    BUTTOM_SUBMIT,
     setIsCompleteOpen,
-    handleComplete,
-    handleOpenCompleteModal,
     handleKaKaoOpenLink,
     handleProfileDetail,
-  } = useErrandStatus();
-  console.log('helper', data);
+  } = useErrandProgress();
   if (!data) return null;
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-1 flex-col gap-6">
       <ErrandStatusTitle
         title={data.title}
         price={data.price}
-        status={CustomStatus.ACCEPTED}
+        status={data.status}
         date={new Date()}
       />
       <ErrandHelper
-        nickName={data.applications?.helperPosts.nickName}
-        profile={data.applications?.helperPosts.profile}
-        onProfileDetail={() =>
-          handleProfileDetail(data.applications?.helperPosts.id)
-        }
+        nickName={data.application.helper.nickName}
+        profile={data.application.helper.profile}
+        onProfileDetail={() => handleProfileDetail(data.helper.id)}
       />
       <ErrandStatusInfo
         startTime={data.deadlineTime}
-        start={data.applications?.helperPosts.address}
+        start={data.application.helper.address}
         arrive={data.address}
         description={data.description}
       />
-      <ErrandHelperKaKao
-        onKaKaoOpenLink={() => handleKaKaoOpenLink(data.openLink)}
-      />
-      <SubmitButton
-        text="심부름 완료"
-        isDisabled={false}
-        bgColor="bg-teal-primary"
-        isPending={false}
-        onClick={handleOpenCompleteModal}
-      />
+
+      <div className="mt-auto flex items-center gap-2">
+        <div className="flex-1">
+          <ErrandHelperKaKao
+            onKaKaoOpenLink={() =>
+              handleKaKaoOpenLink(data.application.openLink)
+            }
+          />
+        </div>
+        <div className="flex-3">
+          <SubmitButton
+            text={BUTTON_STATUS_TEXT[data.status]?.label ?? ''}
+            isDisabled={userId === data.completionRequestedBy ? true : false}
+            bgColor="bg-teal-primary"
+            isPending={false}
+            onClick={BUTTON_STATUS_TEXT[data.status]?.onClick}
+          />
+        </div>
+      </div>
 
       <AlertModal
         title="심부름을 완료하시겠습니까?"
@@ -59,10 +65,10 @@ const ErrandStatusTemplate = () => {
         isOpen={isCompleteOpen}
         actionText="완료하기"
         setState={setIsCompleteOpen}
-        handleActive={handleComplete}
+        handleActive={BUTTOM_SUBMIT[data.status] ?? (() => {})}
       />
     </div>
   );
 };
 
-export default ErrandStatusTemplate;
+export default ErrandProgressTemplate;

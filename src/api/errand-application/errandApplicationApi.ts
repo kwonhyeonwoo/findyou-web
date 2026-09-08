@@ -6,28 +6,43 @@ export const errandApplicationApi = {
   create: async ({
     message,
     errandId,
+    openLink,
+    saveAsDefault,
   }: {
     message: string;
+    saveAsDefault: boolean;
+    openLink: string;
     errandId: string;
   }): Promise<IResponse> => {
     const response = await client.post<IResponse>(
       `/errand-application/${errandId}`,
-      { message },
+      { message, saveAsDefault, openLink },
     );
     return response;
   },
 
-  getMyApplications: async (): Promise<ErrandApplicationResponse[]> => {
-    const response = await client.get<ErrandApplicationResponse[]>(
-      '/errand-application/my',
-    );
+  getApplications: async (): Promise<ErrandApplicationResponse[]> => {
+    const response =
+      await client.get<ErrandApplicationResponse[]>(`/errand-application`);
     return response;
   },
 
-  updatedStatus: async ({ applicationId }: { applicationId: string }) => {
+  // 수락
+  accepted: async ({ applicationId }: { applicationId: string }) => {
     const response = await client.post<IResponse>(
-      `/errand-application/${applicationId}/status`,
+      `/errand-application/${applicationId}/accepte`,
     );
+    return response;
+  },
+
+  delete: async (applicationId: string) => {
+    console.log('errand-application', applicationId);
+    const response = await client.delete<IResponse>(
+      `/errand-application/${applicationId}`,
+    );
+    console.log('tq', response);
     return response;
   },
 };
+
+//결국에는 내역은 나만 볼 수 있어야함...
