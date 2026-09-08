@@ -1,4 +1,4 @@
-import { usePatchErrandCompleteRequest } from '@/hooks/mutations/errand/usePatchErrandCompleteRequest';
+import { useCompleteRequestErrand } from '@/hooks/mutations/errand-application/useCompleteRequestErrand';
 import { usePostErrandApplicationComplete } from '@/hooks/mutations/errand/usePostErrandApplicationComplete';
 import { useGetErrandProgressQuery } from '@/hooks/quires/errand/useGetErrandProgressQuery';
 import { CustomStatus } from '@/interfaces/common.interface';
@@ -16,7 +16,7 @@ export const useErrandProgress = () => {
     String(id),
     String(data?.helper?.nickName),
   );
-  const { mutate: completeRequestMutate } = usePatchErrandCompleteRequest();
+  const { mutate: completeRequestMutate } = useCompleteRequestErrand();
   const [isCompleteOpen, setIsCompleteOpen] = useState<boolean>(false);
   const handleProfileDetail = (id: string) => {
     router.push(`/helper/${id}`);
@@ -53,7 +53,7 @@ export const useErrandProgress = () => {
           : '완료 수락하기',
       onClick: handleOpenCompleteModal,
     },
-    COMPLETED: { label: '리뷰쓰기', onClick: () => { } },
+    COMPLETED: { label: '리뷰쓰기', onClick: () => {} },
   };
 
   const BUTTOM_SUBMIT: Partial<Record<CustomStatus, () => void>> = {

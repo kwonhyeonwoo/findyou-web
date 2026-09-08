@@ -3,7 +3,7 @@ import { ERRAND_KEYS } from '@/api/errand/errandKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-export const usePatchErrandCompleteRequest = () => {
+export const useCompleteRequestErrand = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: errandApi.patchCompleteRequest,
