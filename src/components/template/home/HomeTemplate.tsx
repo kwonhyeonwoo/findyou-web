@@ -10,7 +10,7 @@ import { useHomeTemplate } from './hooks/useHomeTemplate';
 import Empty from '@/components/common/Empty/Empty';
 
 export default function HomeTemplate() {
-  const { liveErrand, helpers, handleHelperProfile, handleErrandDetail } =
+  const { liveErrand, helpers, handleHelperPostDetail, handleErrandDetail } =
     useHomeTemplate();
   const bestHelper: IBestHeleper[] = [
     {
@@ -94,7 +94,9 @@ export default function HomeTemplate() {
                     casesCount={item.helper?.receivedReviews?.length}
                     id={item.helper.id}
                     category={item.category}
-                    handleHelperProfile={() => handleHelperProfile(item.id)}
+                    handleHelperPostDetail={() =>
+                      handleHelperPostDetail(item.id)
+                    }
                   />
                 </div>
               );

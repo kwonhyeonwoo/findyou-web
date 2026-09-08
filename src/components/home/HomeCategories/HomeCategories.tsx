@@ -1,14 +1,13 @@
 'use client';
-import { HOME_CATEGORIES } from '@/constants/home-constants';
+import { CATEGORIES } from '@/constants/category-constants';
 import { useHomeCategoryHook } from './hooks/useHomeCategoryHook';
 
 export default function HomeCategories() {
   const { handleCategoryClick } = useHomeCategoryHook();
   return (
     <div className="grid grid-cols-4 gap-4">
-      {HOME_CATEGORIES.map(({ text, type, img, bgColor }) => (
+      {CATEGORIES.map(({ text, type, img, bgColor }) => (
         <button
-          onClick={() => handleCategoryClick(type)}
           key={type}
           className="flex flex-col items-center justify-center gap-2"
         >

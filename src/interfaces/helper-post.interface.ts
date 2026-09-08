@@ -18,12 +18,6 @@ export interface IHelperCardType {
   category: string;
 }
 
-export enum HelperMovement {
-  BICYCLE = 'BICYCLE', // 자전거
-  CAR = 'CAR', // 자동차
-  WALK = 'WALK', // 도보
-  MOTORCYCLE = 'MOTORCYCLE', // 오토바이
-}
 
 export interface IBestHeleper {
   nickName: string;
@@ -43,9 +37,8 @@ export interface HelperPostResponse {
 
   address_dong: string;
 
-  movement: HelperMovement;
+  movement: MOVEMENT_ENUM;
 
-  description: string;
 
   lat: number;
 

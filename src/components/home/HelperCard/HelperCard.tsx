@@ -9,7 +9,7 @@ interface Props {
   id: string;
   category: CATEGORIES_ENUM;
   casesCount?: number;
-  handleHelperProfile: () => void;
+  handleHelperPostDetail: () => void;
 }
 
 export default function HelperCard({
@@ -18,12 +18,12 @@ export default function HelperCard({
   profile,
   category,
   casesCount,
-  handleHelperProfile,
+  handleHelperPostDetail,
 }: Props) {
   return (
     <div
       className="flex w-[140px] cursor-pointer flex-col items-center rounded-[16px] border border-[#E8EEEB] bg-white py-4 shadow-sm"
-      onClick={handleHelperProfile}
+      onClick={handleHelperPostDetail}
     >
       {/* 여기는 나중에 프로필로 변경해야함 */}
       {profile ? (

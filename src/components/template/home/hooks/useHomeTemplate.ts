@@ -7,8 +7,8 @@ export const useHomeTemplate = () => {
   const { data: helpers } = useGetHelpersQuery();
   const { data: liveErrand } = useErrandListsQuery({ limit: '3' });
 
-  const handleHelperProfile = (helperId: string) => {
-    router.push(`/helper/${helperId}`);
+  const handleHelperPostDetail = (postId: string) => {
+    router.push(`/helper/${postId}/post`);
   };
 
   const handleErrandDetail = (errandId: string) => {
@@ -20,6 +20,6 @@ export const useHomeTemplate = () => {
     liveErrand,
     helpers,
     handleErrandDetail,
-    handleHelperProfile,
+    handleHelperPostDetail,
   };
 };

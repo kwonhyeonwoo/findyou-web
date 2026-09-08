@@ -60,10 +60,10 @@ function HelperProfileTemplate() {
       <ErrandMessageModal
         isOpen={isOpen}
         title="헬퍼에게 어필할 수 있는 간단한 소개를 남겨주세요!"
-        message={message}
+        // message={message}
         handleIsOpen={handleModalOpen}
-        handleChangeMessage={handleChangeMessage}
-        handleSubmit={() => handleApplicationSubmit(data?.helper.id || '')}
+        // handleChangeMessage={handleChangeMessage}
+        // handleSubmit={() => handleApplicationSubmit(data?.helper.id || '')}
       />
     </div>
   );
