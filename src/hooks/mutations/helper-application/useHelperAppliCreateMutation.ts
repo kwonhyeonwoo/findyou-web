@@ -12,7 +12,7 @@ export const useHelperAppliCreateMutation = () => {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: HELPER_APPLICATION_KEYS.all });
       toast.success('헬퍼에게 심부름 신청이 완료되었습니다.');
-      router.push('/history/apply');
+      // router.push('/history/apply');
     },
     onError: (error) => {
       console.log('error', error.message);

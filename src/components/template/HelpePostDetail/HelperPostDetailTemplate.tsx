@@ -10,10 +10,22 @@ import HelperPostDetailContent from '@/components/HelperPostDetail/HelperPostDet
 import HelperPostDetailPrice from '@/components/HelperPostDetail/HelperPostDetailPrice/HelperPostDetailPrice';
 import Image from 'next/image';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
-import ErrandMessageModal from '@/components/ErrandDetail/ErrandMessageModal/ErrandMessageModal';
+import ApplicationMessageModal from '@/components/ErrandDetail/ApplicationMessageModal/ApplicationMessageModal';
+import { useCustomApplication } from '@/hooks/common/useCustomApplication';
 
 export default function HelperPostDetailTemplate() {
-  const { data } = useHelperPostDetail();
+  const { data, handleSubmit } = useHelperPostDetail();
+  const {
+    message,
+    saveAsDefault,
+    openLink,
+    isModalOpen,
+    onMessageChange,
+    onLinkChange,
+    onSelectedSaveDefault,
+    handleIsOpen,
+  } = useCustomApplication();
+  console.log('opeenlink', openLink);
   if (!data) return null;
   return (
     <div className="flex flex-col gap-5 pb-15">
@@ -62,11 +74,22 @@ export default function HelperPostDetailTemplate() {
             isDisabled={false}
             bgColor="bg-teal-primary"
             textColor="text-white"
-            onClick={() => {}}
+            onClick={handleIsOpen}
           />
         </div>
       </div>
-      {/* <ErrandMessageModal isOpen={} title='의뢰자에게 어필할 수 있는 간단한 소개를 남겨주세요!' handleIsOpen={()=>{}}/> */}
+      <ApplicationMessageModal
+        title="헬퍼"
+        isOpen={isModalOpen}
+        message={message}
+        saveAsDefault={saveAsDefault}
+        openLink={openLink}
+        onLinkChange={onLinkChange}
+        onMessageChange={onMessageChange}
+        onSelectedSaveDefault={onSelectedSaveDefault}
+        onSubmit={handleSubmit}
+        handleIsOpen={handleIsOpen}
+      />
     </div>
   );
 }

@@ -5,12 +5,15 @@ import { UserResponse } from './user.interface';
 
 export interface HelperApplicationRequest {
   message: string;
+  openLink: string;
+  saveAsDefault: boolean;
   helperId: string;
 }
 
 export interface HelperApplicationResponse {
   id: string;
   message: string;
+  openLink: string;
   status: CustomStatus;
   helperPosts: HelperPostResponse;
   client: UserResponse;
