@@ -23,6 +23,7 @@ export default function HelperProgressTemplate() {
     data.status === CustomStatus.COMPLETED_REQUEST
       ? '완료 요청 대기 중'
       : '완료요청 하기';
+  console.log('data', data);
   return (
     <div className="flex w-full flex-1 flex-col gap-5 pt-5 pb-10">
       <HelperProgressTop />
@@ -30,7 +31,7 @@ export default function HelperProgressTemplate() {
         price="12000"
         category={data?.helperPosts?.category}
         title={data.helperPosts.title}
-        description={data.helperPosts.description}
+        introduction={data.helperPosts.introduction}
         message={data.message}
       />
       <ClientProfileCard
@@ -53,7 +54,7 @@ export default function HelperProgressTemplate() {
         isOpen={isOpen}
         actionText="완료요청"
         setState={setIsOpen}
-        handleActive={handleCompletedRequest}
+        onActive={handleCompletedRequest}
       />
     </div>
   );

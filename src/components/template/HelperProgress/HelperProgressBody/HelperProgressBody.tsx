@@ -10,14 +10,14 @@ interface Props {
   price: string;
   category: CATEGORIES_ENUM;
   title: string;
-  description: string;
+  introduction: string;
   message: string;
 }
 
 function HelperProgressBody({
   price,
   title,
-  description,
+  introduction,
   message,
   category,
 }: Props) {
@@ -48,9 +48,9 @@ function HelperProgressBody({
 
       {/* 제목,내용 */}
       <div className="flex flex-col gap-1">
-        <h2 className="font-semibold whitespace-pre">{title}</h2>
+        <h2 className="text-[20px] font-bold whitespace-pre">{title}</h2>
         <p className="text-[14px] leading-normal whitespace-pre-line">
-          {description}
+          {introduction}
         </p>
       </div>
 

@@ -13,7 +13,8 @@ function ApplicationHistoryTemplate() {
     review,
     isBottomOpen,
     setIsBottomOpen,
-    handleStatusAction,
+    handleHelperStatusActive,
+    handleHelperDetailActive,
   } = useHelperApplication();
 
   const {
@@ -63,13 +64,14 @@ function ApplicationHistoryTemplate() {
               createdAt={item.createdAt}
               type="apply"
               handleErrandDetailActive={() =>
-                handleErrandDetailActive(item.helperPosts.id)
+                handleHelperDetailActive(item.helperPosts.id)
               }
               handleStatusActive={() =>
-                handleStatusActive({
+                handleHelperStatusActive({
                   status: item.status,
-                  currApplicationId: item.id,
-                  errandId: item.helperPosts.id,
+                  id: item.id,
+                  hasWrittenReview: item.hasWrittenReview,
+                  helperId: item.helperPosts.id,
                 })
               }
             />

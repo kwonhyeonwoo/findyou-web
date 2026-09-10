@@ -14,7 +14,7 @@ import ApplicationMessageModal from '@/components/ErrandDetail/ApplicationMessag
 import { useCustomApplication } from '@/hooks/common/useCustomApplication';
 
 export default function HelperPostDetailTemplate() {
-  const { data, handleSubmit } = useHelperPostDetail();
+  const { data, uid, handleSubmit } = useHelperPostDetail();
   const {
     message,
     saveAsDefault,
@@ -25,7 +25,6 @@ export default function HelperPostDetailTemplate() {
     onSelectedSaveDefault,
     handleIsOpen,
   } = useCustomApplication();
-  console.log('opeenlink', openLink);
   if (!data) return null;
   return (
     <div className="flex flex-col gap-5 pb-15">
@@ -71,7 +70,7 @@ export default function HelperPostDetailTemplate() {
           <SubmitButton
             text="신청하기"
             isPending={false}
-            isDisabled={false}
+            isDisabled={data.helper.id === uid}
             bgColor="bg-teal-primary"
             textColor="text-white"
             onClick={handleIsOpen}

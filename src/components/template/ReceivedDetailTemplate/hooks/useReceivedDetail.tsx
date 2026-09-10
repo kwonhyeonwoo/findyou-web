@@ -20,6 +20,7 @@ export default function useReceivedDetail() {
     setCurrAppliId(appliId);
     setIsCompleteOpen((prev) => !prev);
   };
+  console.log('setCurrAppliId', currAppliId);
   const handleAccepted = () => {
     if (currAppliId) {
       mutate(currAppliId);

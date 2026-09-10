@@ -14,7 +14,7 @@ export const useHelperApplication = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currAppliId, setCurrAppliId] = useState<string>('');
 
-  const handleStatusAction = ({
+  const handleHelperStatusActive = ({
     id,
     status,
     helperId,
@@ -63,9 +63,10 @@ export const useHelperApplication = () => {
     (item) => item.reviewer.id === userId,
   );
 
-  const handleDetailActive = (postId: string) => {
+  const handleHelperDetailActive = (postId: string) => {
     router.push(`/helper/${postId}`);
   };
+
   return {
     helperApplications,
     isModalOpen,
@@ -73,8 +74,9 @@ export const useHelperApplication = () => {
     review,
     isBottomOpen,
     setIsBottomOpen,
+    handleHelperDetailActive,
     handleDeleteApplication,
     setIsModalOpen,
-    handleStatusAction,
+    handleHelperStatusActive,
   };
 };

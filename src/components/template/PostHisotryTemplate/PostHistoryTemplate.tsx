@@ -40,7 +40,7 @@ function PostHistoryTemplate() {
       toast.error('지원자가 없습니다.');
     }
   }, [isBottomOpen, hasApplicants]);
-  console.log('errand', errandData);
+  console.log('helperPostData', helperPostData);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {dataType === 'errand'
@@ -86,7 +86,7 @@ function PostHistoryTemplate() {
                 accepted.status === CustomStatus.ACCEPTED ||
                 accepted.status === CustomStatus.COMPLETED_REQUEST,
             );
-
+            console.log('acceptedApplication', acceptedApplication);
             const completedApplication = item.applications.find(
               (completed) => completed.status === CustomStatus.COMPLETED,
             );
