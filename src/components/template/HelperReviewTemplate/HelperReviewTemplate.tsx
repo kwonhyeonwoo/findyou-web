@@ -5,20 +5,21 @@ import { useHelperReview } from './hooks/useHelperReview';
 import ReviewTagSelector from '@/components/HelperReview/ReviewTagSelector';
 import HelperReviewTextarea from '@/components/HelperReview/HelperReviewTextarea';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
+import { useCommonReview } from '@/hooks/common/useCommonReview';
 
 function HelperReviewTemplate() {
   const {
-    hoverRating,
     rating,
-    selectedTags,
-    review,
-    handleTagClick,
-    handleReviewChange,
+    tags,
+    reviewContent,
+    hoverRating,
+    setRating,
+    setSelectedTags,
     handleHoverLeave,
     handleHoverRating,
-    handleReviewSubmit,
-    handleRatingClicked,
-  } = useHelperReview();
+    setReviewContent,
+  } = useCommonReview();
+  const { handleReviewSubmit } = useHelperReview();
   return (
     <div className="h-full flex-col">
       <div className="flex-col border-b border-b-[#F2F2F2] pb-10">
@@ -35,17 +36,14 @@ function HelperReviewTemplate() {
           rating={rating}
           onHoverRating={handleHoverRating}
           onHoverReave={handleHoverLeave}
-          onRatingClicked={handleRatingClicked}
+          onRatingClicked={setRating}
         />
       </div>
-      <ReviewTagSelector
-        selectedTags={selectedTags}
-        onTagClick={handleTagClick}
-      />
+      <ReviewTagSelector selectedTags={tags} onTagClick={setSelectedTags} />
       <HelperReviewTextarea
-        textLength={review.length}
-        text={review}
-        onTextChange={handleReviewChange}
+        textLength={reviewContent.length}
+        text={reviewContent}
+        onTextChange={setReviewContent}
       />
       <div className="mt-auto h-full border-t border-t-[#F2F2F2] pt-6">
         <SubmitButton

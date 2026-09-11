@@ -1,26 +1,24 @@
 import { useReviewCreateMutation } from '@/hooks/mutations/review/useReviewCreateMutation';
-import { ReviewTag } from '@/interfaces/review.interface';
-import { useParams, useSearchParams } from 'next/navigation';
-import React, { useState } from 'react';
+import {
+  useReviewContent,
+  useReviewRating,
+  useReviewTags,
+} from '@/store/useReviewStore';
+import { useParams } from 'next/navigation';
 
 export const useHelperReview = () => {
+  const { id } = useParams();
   const { mutate } = useReviewCreateMutation();
-  const handleReviewChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const { value } = e.target;
-    if (value.length > 100) {
-      return;
-    }
-    setReview(value);
-  };
+  const { reviewContent } = useReviewContent();
+  const { rating } = useReviewRating();
+  const { tags } = useReviewTags();
 
   const handleReviewSubmit = () => {
     mutate({
-      data: { rating, tags: selectedTags, content: review },
+      data: { rating, tags, content: reviewContent },
       helperApplicationId: String(id),
     });
   };
-  return {
-    handleReviewSubmit,
-    handleReviewChange,
-  };
+
+  return { handleReviewSubmit };
 };

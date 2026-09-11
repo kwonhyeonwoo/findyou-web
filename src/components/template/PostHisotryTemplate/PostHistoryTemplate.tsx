@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import { useErrandPostHook } from './hooks/useErrandPostHook';
 import { CustomStatus } from '@/interfaces/common.interface';
 import ReceivedCard from '@/components/Received/ReceivedCard/ReceivedCard';
+import ReviewDropCard from '@/components/ReviewDropCard/ReviewDropCard';
 import { useHelperPostHook } from './hooks/useHelperPostHook';
 
 function PostHistoryTemplate() {
@@ -18,6 +19,8 @@ function PostHistoryTemplate() {
     selectedApplicant,
     dataType,
     userId,
+    selectedReview: errandSelectedReview,
+    isReviewOpen: isErrandReviewOpen,
     setSelectedApplicant,
     handleModalOpen,
     setIsBottomOpen,
@@ -25,13 +28,17 @@ function PostHistoryTemplate() {
     handleStatusActive,
     handleErrandAccepted,
     handleErrandDetailActive,
+    closeReview: closeErrandReview,
   } = useErrandPostHook();
   const {
     helperPostData,
+    selectedReview: helperSelectedReview,
+    isReviewOpen: isHelperReviewOpen,
     handleSelectedReview,
     handleCompletedActive,
     handleAcceptedActive,
     handleReceivedHistory,
+    closeReview: closeHelperReview,
   } = useHelperPostHook();
   const applicants = errandData?.[currentIdx ?? 0]?.applications ?? [];
   const hasApplicants = applicants.length > 0;
@@ -40,7 +47,6 @@ function PostHistoryTemplate() {
       toast.error('지원자가 없습니다.');
     }
   }, [isBottomOpen, hasApplicants]);
-  console.log('helperPostData', helperPostData);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {dataType === 'errand'
@@ -90,6 +96,7 @@ function PostHistoryTemplate() {
             const completedApplication = item.applications.find(
               (completed) => completed.status === CustomStatus.COMPLETED,
             );
+            console.log('completedApplication', completedApplication);
             return (
               <ReceivedCard
                 data={item}
@@ -123,6 +130,36 @@ function PostHistoryTemplate() {
           </DrawerContent>
         </Drawer>
       ) : null}
+      <Drawer
+        open={isErrandReviewOpen}
+        onOpenChange={(open) => !open && closeErrandReview()}
+      >
+        <DrawerContent className="m-auto max-w-120 gap-4 p-4">
+          {errandSelectedReview && (
+            <ReviewDropCard
+              title="내가 받은 리뷰"
+              rating={errandSelectedReview.rating}
+              tags={errandSelectedReview.tags}
+              content={errandSelectedReview.content}
+            />
+          )}
+        </DrawerContent>
+      </Drawer>
+      <Drawer
+        open={isHelperReviewOpen}
+        onOpenChange={(open) => !open && closeHelperReview()}
+      >
+        <DrawerContent className="m-auto max-w-120 gap-4 p-4">
+          {helperSelectedReview && (
+            <ReviewDropCard
+              title="내가 받은 리뷰"
+              rating={helperSelectedReview.rating}
+              tags={helperSelectedReview.tags}
+              content={helperSelectedReview.content}
+            />
+          )}
+        </DrawerContent>
+      </Drawer>
       <AlertModal
         title={`${selectedApplicant?.nickName}님을 수락하시겠습니까?`}
         isOpen={!!selectedApplicant}

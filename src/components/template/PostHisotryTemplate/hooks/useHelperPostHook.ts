@@ -1,10 +1,8 @@
-import { useGetMyErrandsQuery } from '@/hooks/quires/errand/useGetMyErrandsQuery';
 import useGetMyHelperPostsQuery from '@/hooks/quires/helper/useGetMyHelperPostsQuery';
+import { useReviewViewer } from '@/hooks/common/useReviewViewer';
 import { HelperApplicationResponse } from '@/interfaces/helper-application.interface';
-import { ReviewResponse } from '@/interfaces/review.interface';
 import { useUser } from '@/store/useUserStore';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 export const useHelperPostHook = () => {
   const router = useRouter();
@@ -12,10 +10,9 @@ export const useHelperPostHook = () => {
   const { data: helperPostData, isLoading } = useGetMyHelperPostsQuery(
     userId ?? '',
   );
-  const [selectedReview, setSelectedReview] = useState<
-    ReviewResponse | undefined
-  >(undefined);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const { selectedReview, isReviewOpen, openReceivedReview, closeReview } =
+    useReviewViewer();
+
   const handleReceivedHistory = (helperPostId: string) => {
     router.push(`/history/received/${helperPostId}`);
   };
@@ -26,9 +23,8 @@ export const useHelperPostHook = () => {
   const handleCompletedActive = (
     completedApplication: HelperApplicationResponse,
   ) => {
-    if (completedApplication.review && completedApplication.hasWrittenReview) {
-      setSelectedReview(completedApplication.review);
-      setIsModalOpen(true);
+    if (completedApplication.hasWrittenReview) {
+      openReceivedReview(completedApplication.reviews, userId);
     } else {
       router.push(`/helper/${completedApplication.id}/review`);
     }
@@ -37,18 +33,17 @@ export const useHelperPostHook = () => {
   const handleSelectedReview = (
     completedApplication: HelperApplicationResponse,
   ) => {
-    setSelectedReview(completedApplication.review);
-    setIsModalOpen(true);
+    openReceivedReview(completedApplication.reviews, userId);
   };
 
   return {
     helperPostData,
     isLoading,
     selectedReview,
-    isModalOpen,
+    isReviewOpen,
     userId,
     handleSelectedReview,
-    setIsModalOpen,
+    closeReview,
     handleCompletedActive,
     handleAcceptedActive,
     handleReceivedHistory,

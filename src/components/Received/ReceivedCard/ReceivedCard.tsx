@@ -34,8 +34,8 @@ function ReceivedCard({
       item.status !== CustomStatus.COMPLETED,
   );
 
-  // completedApplication.review => 내가 받은 리뷰
-  const receivedReview = completedApplication?.reviews?.some(
+  // completedApplication.reviews 중 reviewee가 나인 리뷰 => 내가 받은 리뷰
+  const receivedReview = completedApplication?.reviews?.find(
     (review) => review.reviewee.id === userId,
   );
   return (
@@ -115,7 +115,7 @@ function ReceivedCard({
         </div>
       </div>
       {/* 받은리뷰가있고 내가 아직 리뷰를 안 적었을 때 */}
-      {completedApplication?.review && !receivedReview && (
+      {completedApplication && receivedReview && !completedApplication.hasWrittenReview && (
         <div className="-mx-4 -mb-4 flex justify-between rounded-br-[12px] rounded-bl-[12px] border border-b border-[#F2E4C4] bg-[#FFF7E8] px-3 py-2 text-[13px] font-medium">
           <p className="text-[#8A6D2B]">받은 리뷰가 도착했습니다.</p>
           <button

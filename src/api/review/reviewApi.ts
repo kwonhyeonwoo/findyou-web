@@ -10,7 +10,10 @@ export const reviewApi = {
     data: ReviewCreateRequest;
     errandApplicationId: string;
   }): Promise<IResponse> => {
-    const response = await client.post<IResponse>(`/review/${errandApplicationId}`, data);
+    const response = await client.post<IResponse>(
+      `/review/${errandApplicationId}`,
+      data,
+    );
     return response;
   },
 
@@ -28,6 +31,4 @@ export const reviewApi = {
     console.log('response', response);
     return response;
   },
-
-
 };

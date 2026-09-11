@@ -76,7 +76,7 @@ function ApplicationHistoryTemplate() {
               }
             />
           ))}
-      {/* <Drawer open={isBottomOpen} onOpenChange={() => setIsBottomOpen(false)}>
+      <Drawer open={isBottomOpen} onOpenChange={() => setIsBottomOpen(false)}>
         <DrawerContent className="m-auto max-w-120 gap-4 p-4">
           {review && (
             <ReviewDropCard
@@ -86,7 +86,7 @@ function ApplicationHistoryTemplate() {
             />
           )}
         </DrawerContent>
-      </Drawer> */}
+      </Drawer>
       <AlertModal
         title="지원을 취소하시겠습니까?"
         description={`이 작업은 다시 되돌릴 수 없습니다.`}

@@ -18,7 +18,6 @@ export interface IHelperCardType {
   category: string;
 }
 
-
 export interface IBestHeleper {
   nickName: string;
   level: string;
@@ -38,7 +37,6 @@ export interface HelperPostResponse {
   address_dong: string;
 
   movement: MOVEMENT_ENUM;
-
 
   lat: number;
 

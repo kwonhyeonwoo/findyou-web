@@ -5,13 +5,19 @@ interface Props {
   rating: number;
   tags: ReviewTag[];
   content: string;
+  title?: string;
 }
 
-function ReviewDropCard({ rating, tags, content }: Props) {
+function ReviewDropCard({
+  rating,
+  tags,
+  content,
+  title = '내가 남긴 리뷰',
+}: Props) {
   return (
     <div className="flex flex-col gap-5 px-5 py-4">
       <div className="border-b-basic-border flex flex-col items-center gap-3 border-b pb-3">
-        <p className="font-bold">내가 남긴 리뷰</p>
+        <p className="font-bold">{title}</p>
         <div className="flex gap-2">
           {[1, 2, 3, 4, 5].map((star) => (
             <span
