@@ -32,7 +32,6 @@ export const helperApplicationApi = {
     const response = await client.get<HelperApplicationResponse[]>(
       `/helper-application/received/${helperPostId}`,
     );
-    console.log('apply', response);
     return response;
   },
 
@@ -56,14 +55,6 @@ export const helperApplicationApi = {
   ): Promise<HelperApplicationResponse> {
     const response = await client.get<HelperApplicationResponse>(
       `/helper-application/${appliId}`,
-    );
-    return response;
-  },
-
-  // 완료요청
-  async postCompletedRequested(appliId: string): Promise<IResponse> {
-    const response = await client.post<IResponse>(
-      `/helper-application/${appliId}/completed-request`,
     );
     return response;
   },

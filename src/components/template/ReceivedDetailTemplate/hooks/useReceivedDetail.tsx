@@ -12,7 +12,7 @@ export default function useReceivedDetail() {
   const [currAppliId, setCurrAppliId] = useState<string>('');
   const [isCompleteOpen, setIsCompleteOpen] = useState<boolean>(false);
   const { data, isLoading } = useGetReceivedApplicationQuery(String(id) ?? '');
-  const { mutate } = useAcceptedMutation(currAppliId);
+  const { mutate } = useAcceptedMutation(String(id));
   const { mutate: rejectedMutate } = useRejectedMutation();
 
   const handleCompleteOpen = (type: 'ACCEPTED' | 'REJECT', appliId: string) => {

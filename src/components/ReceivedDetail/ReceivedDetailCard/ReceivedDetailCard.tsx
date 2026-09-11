@@ -23,7 +23,7 @@ export default function ReceivedDetailCard({ data, handleActive }: Props) {
     },
   ];
   return (
-    <div className="border-basic-primary flex flex-col justify-center gap-4 rounded-[8px] border p-4">
+    <div className="border-basic-primary flex flex-col justify-center gap-4 rounded-[8px] border bg-white p-4">
       <ReceivedDetailProfile
         profile={data.client.profile}
         nickName={data.client.nickName}

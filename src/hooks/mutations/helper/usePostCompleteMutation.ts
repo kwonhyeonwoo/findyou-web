@@ -1,22 +1,21 @@
-import { helperApplicationApi } from '@/api/helper-application/helperApplicationApi';
+import { helperPostApi } from '@/api/helper-post/helperPostApi';
 import { HELPER_APPLICATION_KEYS } from '@/api/helper-application/helperApplicationKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
-export const useHelperAppliCreateMutation = () => {
+export default function usePostCompleteMutation(id: string) {
   const router = useRouter();
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: helperApplicationApi.postCreate,
+    mutationFn: helperPostApi.postComplete,
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: HELPER_APPLICATION_KEYS.all });
-      toast.success('헬퍼에게 심부름 신청이 완료되었습니다.');
-      router.push('/history/application-history?type=helper');
+      toast.success(data.message);
+      router.push(`/helper/${id}/review`);
     },
     onError: (error) => {
-      console.log('error', error.message);
       toast.error(error.message);
     },
   });
-};
+}

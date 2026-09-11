@@ -9,7 +9,7 @@ interface Props {
   userId: string | null;
   completedApplication?: HelperApplicationResponse;
   acceptedApplication?: HelperApplicationResponse;
-  handleAcceptedActive: (appliId: string) => void;
+  handleAcceptedActive: (helperPostId: string) => void;
   handleSelectedReview: (
     completedApplication: HelperApplicationResponse,
   ) => void;
@@ -68,7 +68,14 @@ function ReceivedCard({
           <div>
             {acceptedApplication ? (
               <button
-                onClick={() => handleAcceptedActive(acceptedApplication.id)}
+                onClick={() => {
+                  const accepted = data.applications.find(
+                    (item) => item.status === CustomStatus.ACCEPTED,
+                  );
+                  if (accepted) {
+                    handleAcceptedActive(accepted.id);
+                  }
+                }}
                 className="text-[13px] text-[#4E5968]"
               >{`${acceptedApplication.client.nickName}님과 진행중`}</button>
             ) : completedApplication ? (
@@ -115,24 +122,26 @@ function ReceivedCard({
         </div>
       </div>
       {/* 받은리뷰가있고 내가 아직 리뷰를 안 적었을 때 */}
-      {completedApplication && receivedReview && !completedApplication.hasWrittenReview && (
-        <div className="-mx-4 -mb-4 flex justify-between rounded-br-[12px] rounded-bl-[12px] border border-b border-[#F2E4C4] bg-[#FFF7E8] px-3 py-2 text-[13px] font-medium">
-          <p className="text-[#8A6D2B]">받은 리뷰가 도착했습니다.</p>
-          <button
-            onClick={() => handleSelectedReview(completedApplication)}
-            className="flex items-center gap-1"
-          >
-            <p className="text-[#8A6D2B]">보기</p>
-            <Image
-              src={'/common/right-arrow-amber.svg'}
-              width={15}
-              height={15}
-              className="h-[15px] w-[15px]"
-              alt="arrow"
-            />
-          </button>
-        </div>
-      )}
+      {completedApplication &&
+        receivedReview &&
+        !completedApplication.hasWrittenReview && (
+          <div className="-mx-4 -mb-4 flex justify-between rounded-br-[12px] rounded-bl-[12px] border border-b border-[#F2E4C4] bg-[#FFF7E8] px-3 py-2 text-[13px] font-medium">
+            <p className="text-[#8A6D2B]">받은 리뷰가 도착했습니다.</p>
+            <button
+              onClick={() => handleSelectedReview(completedApplication)}
+              className="flex items-center gap-1"
+            >
+              <p className="text-[#8A6D2B]">보기</p>
+              <Image
+                src={'/common/right-arrow-amber.svg'}
+                width={15}
+                height={15}
+                className="h-[15px] w-[15px]"
+                alt="arrow"
+              />
+            </button>
+          </div>
+        )}
     </div>
   );
 }

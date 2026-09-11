@@ -55,7 +55,7 @@ export interface HelperPostResponse {
   updatedAt: Date;
 
   helper: UserResponse;
-
+  completionRequestedBy?: string;
   applications: HelperApplicationResponse[];
 }
 export interface ReceivedHistoryResponse {

@@ -16,7 +16,6 @@ function ApplicationHistoryTemplate() {
     handleHelperStatusActive,
     handleHelperDetailActive,
   } = useHelperApplication();
-
   const {
     errandApplications,
     isModalOpen,
@@ -64,7 +63,11 @@ function ApplicationHistoryTemplate() {
               createdAt={item.createdAt}
               type="apply"
               handleErrandDetailActive={() =>
-                handleHelperDetailActive(item.helperPosts.id)
+                handleHelperDetailActive({
+                  type: item.status,
+                  applicationId: item.id,
+                  helperPostId: item.helperPosts.id,
+                })
               }
               handleStatusActive={() =>
                 handleHelperStatusActive({
