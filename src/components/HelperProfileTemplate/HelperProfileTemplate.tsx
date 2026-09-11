@@ -6,7 +6,7 @@ import ReceivedReviews from '@/components/HelperProfile/ReceivedReviews';
 import { useHelperProfileTemplate } from './hooks/useHelperProfileTemplate';
 import Empty from '@/components/common/Empty/Empty';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
-import ErrandMessageModal from '@/components/ErrandDetail/ErrandMessageModal/ErrandMessageModal';
+import ErrandMessageModal from '@/components/ErrandDetail/ApplicationMessageModal/ApplicationMessageModal';
 import HelperMessage from '@/components/HelperProfile/HelperMessage';
 
 function HelperProfileTemplate() {
@@ -60,10 +60,10 @@ function HelperProfileTemplate() {
       <ErrandMessageModal
         isOpen={isOpen}
         title="헬퍼에게 어필할 수 있는 간단한 소개를 남겨주세요!"
-        message={message}
+        // message={message}
         handleIsOpen={handleModalOpen}
-        handleChangeMessage={handleChangeMessage}
-        handleSubmit={() => handleApplicationSubmit(data?.helper.id || '')}
+        // handleChangeMessage={handleChangeMessage}
+        // handleSubmit={() => handleApplicationSubmit(data?.helper.id || '')}
       />
     </div>
   );

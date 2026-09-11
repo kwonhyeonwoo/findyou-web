@@ -11,6 +11,8 @@ export const helperApplicationApi = {
       `/helper-application/${data.helperId}`,
       {
         message: data.message,
+        openLink: data.openLink,
+        saveAsDefault: data.saveAsDefault,
       },
     );
     return response;

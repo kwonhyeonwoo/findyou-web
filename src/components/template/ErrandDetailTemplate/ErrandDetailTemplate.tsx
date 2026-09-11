@@ -4,7 +4,7 @@ import ErrandContent from '@/components/ErrandDetail/ErrandContent/ErrandContent
 import AddressCard from '@/components/Errand/AddressCard';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
 import { useSliderImg } from './hooks/useSliderImg';
-import ErrandMessageModal from '@/components/ErrandDetail/ErrandMessageModal/ErrandMessageModal';
+import ErrandMessageModal from '@/components/ErrandDetail/ApplicationMessageModal/ApplicationMessageModal';
 import ErrandImage from '@/components/ErrandDetail/ErrandImage/ErrandImage';
 import ErrandDetailProfile from '@/components/ErrandDetail/ErrandDetailProfile/ErrandDetailProfile';
 import ErrandCategoryStatus from '@/components/ErrandDetail/ErrandCategoryStatus/ErrandCategoryStatus';

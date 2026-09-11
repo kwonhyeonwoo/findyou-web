@@ -41,7 +41,7 @@ function ReceivedDetailTemplate() {
           actionText="수락하기"
           isOpen={isCompleteOpen}
           setState={setIsCompleteOpen}
-          handleActive={handleAccepted}
+          onActive={handleAccepted}
         />
       ) : (
         <AlertModal
@@ -51,7 +51,7 @@ function ReceivedDetailTemplate() {
           actionText="거절하기"
           isOpen={isCompleteOpen}
           setState={setIsCompleteOpen}
-          handleActive={handleRejected}
+          onActive={handleRejected}
         />
       )}
     </div>

@@ -53,7 +53,7 @@ function ApplyProgressTemplate() {
         isOpen={isModalOpen}
         actionText="완료 승인"
         setState={setIsModalOpen}
-        handleActive={() => handleApplicationComplete(data.id)}
+        onActive={() => handleApplicationComplete(data.id)}
       />
     </div>
   );
