@@ -20,6 +20,7 @@ export default function HelperProgressTemplate() {
     handleCompletedRequest,
     handleAcceptCompleted,
   } = useHelperProgress();
+  console.log('data', data);
   if (!data) return null;
   const isCompletedRequest =
     data.helperPosts.status === CustomStatus.COMPLETED_REQUEST;

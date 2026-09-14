@@ -47,7 +47,6 @@ function PostHistoryTemplate() {
       toast.error('지원자가 없습니다.');
     }
   }, [isBottomOpen, hasApplicants]);
-  console.log('helperPostData', helperPostData);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {dataType === 'errand'
@@ -71,9 +70,7 @@ function PostHistoryTemplate() {
                 createdAt={item.createdAt}
                 key={item.id}
                 applications={item?.applications}
-                handleErrandDetailActive={() =>
-                  handleErrandDetailActive(item.id)
-                }
+                onDetailActive={() => handleErrandDetailActive(item.id)}
                 handleStatusActive={() =>
                   handleStatusActive({
                     idx,
@@ -95,6 +92,7 @@ function PostHistoryTemplate() {
             const completedApplication = item.applications.find(
               (completed) => completed.status === CustomStatus.COMPLETED,
             );
+            console.log('tq', completedApplication);
             return (
               <ReceivedCard
                 data={item}

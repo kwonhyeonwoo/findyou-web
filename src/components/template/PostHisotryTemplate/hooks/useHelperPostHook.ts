@@ -33,6 +33,7 @@ export const useHelperPostHook = () => {
   const handleSelectedReview = (
     completedApplication: HelperApplicationResponse,
   ) => {
+    console.log('completedApplication', completedApplication);
     openReceivedReview(completedApplication.reviews, userId);
   };
 

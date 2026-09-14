@@ -11,9 +11,11 @@ export const useReviewViewer = () => {
     reviews: ReviewResponse[] | undefined,
     userId: string | null,
   ) => {
+    // reviewee -> 대상자,,,
     const receivedReview = reviews?.find(
       (review) => review.reviewee.id === userId,
     );
+    console.log('review...', receivedReview);
     if (!receivedReview) {
       return;
     }

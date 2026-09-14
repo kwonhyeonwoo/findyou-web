@@ -16,9 +16,8 @@ export const useHelperReview = () => {
   const handleReviewSubmit = () => {
     mutate({
       data: { rating, tags, content: reviewContent },
-      helperApplicationId: String(id),
+      helperApplicationId: id as string,
     });
-    console.log('ratgind', rating, tags, reviewContent)
   };
 
   return { handleReviewSubmit };
