@@ -25,7 +25,15 @@ export const helperApplicationApi = {
     return response;
   },
 
-  // 내가 받은 지원내역
+  getDetailApplication: async (
+    id: string,
+  ): Promise<HelperApplicationResponse> => {
+    const response = await client.get<HelperApplicationResponse>(
+      `/helper-application/${id}`,
+    );
+    return response;
+  },
+
   async getReceivedApplications(
     helperPostId: string,
   ): Promise<HelperApplicationResponse[]> {
