@@ -14,7 +14,7 @@ interface Props {
   createdAt: Date;
   hasWrittenReview: boolean;
   type: 'apply' | 'request';
-  handleErrandDetailActive: () => void;
+  onDetailActive: () => void;
   handleStatusActive: () => void;
 }
 
@@ -28,12 +28,12 @@ function CustomHistoryCard({
   createdAt,
   type,
   hasWrittenReview,
-  handleErrandDetailActive,
+  onDetailActive,
   handleStatusActive,
 }: Props) {
   return (
     <div
-      onClick={handleErrandDetailActive}
+      onClick={onDetailActive}
       className="border-basic-border flex w-full cursor-pointer flex-col justify-center gap-3 rounded-[12px] border bg-white p-4"
     >
       <CustomHistoryHeader status={status} />

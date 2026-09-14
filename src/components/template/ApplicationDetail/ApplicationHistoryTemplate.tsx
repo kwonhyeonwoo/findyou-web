@@ -42,9 +42,7 @@ function ApplicationHistoryTemplate() {
               hasWrittenReview={item.hasWrittenReview}
               createdAt={item.createdAt}
               type="apply"
-              handleErrandDetailActive={() =>
-                handleErrandDetailActive(item.errand.id)
-              }
+              onDetailActive={() => handleErrandDetailActive(item.errand.id)}
               handleStatusActive={() =>
                 handleStatusActive({
                   status: item.status,
@@ -64,19 +62,14 @@ function ApplicationHistoryTemplate() {
               hasWrittenReview={item.hasWrittenReview}
               createdAt={item.createdAt}
               type="apply"
-              handleErrandDetailActive={() =>
-                handleHelperDetailActive({
-                  type: item.status,
-                  applicationId: item.id,
-                  helperPostId: item.helperPosts.id,
-                })
+              onDetailActive={() =>
+                handleHelperDetailActive(item.helperPosts.id)
               }
               handleStatusActive={() =>
                 handleHelperStatusActive({
                   status: item.status,
                   id: item.id,
                   hasWrittenReview: item.hasWrittenReview,
-                  helperId: item.helperPosts.id,
                 })
               }
             />
