@@ -41,20 +41,21 @@ export const useHelperApplication = () => {
         router.push(`/helper/${id}/review`);
       }
     } else if (status === CustomStatus.PENDING) {
-      setIsModalOpen(true);
       setCurrAppliId(id);
-      console.log('id', id);
+      setIsModalOpen(true);
+      console.log('status', status);
+
       // 대기 -> 모달창 띄어서 거절하기 할건지 물어보기,
     } else if (status === CustomStatus.ACCEPTED) {
       // 수락 -> 진행상황 페이지로 이동
-      router.push(`/helper/${id}/progress`);
+      router.push(`/helper/${helperId}/progress`);
     } else if (status === CustomStatus.COMPLETED_REQUEST) {
       router.push(`/apply/${id}/progress`);
     } else if (status === CustomStatus.REJECTED) {
       setIsModalOpen(true);
     }
   };
-
+  console.log('isModalOpen', isModalOpen)
   const handleDeleteApplication = () => {
     deleteApplication(currAppliId);
   };
@@ -85,6 +86,7 @@ export const useHelperApplication = () => {
     currAppliId,
     review,
     isBottomOpen,
+    helperDeleteModal: isModalOpen,
     setIsBottomOpen,
     handleHelperDetailActive,
     handleDeleteApplication,

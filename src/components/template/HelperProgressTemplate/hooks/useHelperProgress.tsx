@@ -24,6 +24,7 @@ export default function useHelperProgress() {
     setIsOpen(true);
   };
 
+  //. 완료 요청하기
   const handleCompletedRequest = () => {
     if (data && data.helperPosts) {
       mutate(data.helperPosts.id);

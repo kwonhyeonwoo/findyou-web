@@ -18,6 +18,7 @@ export const useHelperReview = () => {
       data: { rating, tags, content: reviewContent },
       helperApplicationId: String(id),
     });
+    console.log('ratgind', rating, tags, reviewContent)
   };
 
   return { handleReviewSubmit };

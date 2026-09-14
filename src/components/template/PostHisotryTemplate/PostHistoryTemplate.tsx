@@ -47,7 +47,6 @@ function PostHistoryTemplate() {
       toast.error('지원자가 없습니다.');
     }
   }, [isBottomOpen, hasApplicants]);
-
   console.log('helperPostData', helperPostData);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
@@ -102,10 +101,12 @@ function PostHistoryTemplate() {
                 userId={userId}
                 acceptedApplication={acceptedApplication}
                 key={item.id}
+                // helperPostId={item.id}
+                createdAt={item.createdAt}
                 completedApplication={completedApplication}
                 handleSelectedReview={handleSelectedReview}
                 handleCompletedActive={handleCompletedActive}
-                handleAcceptedActive={handleAcceptedActive}
+                handleAcceptedActive={() => handleAcceptedActive(item.id)}
                 handleReceivedHistory={handleReceivedHistory}
               />
             );

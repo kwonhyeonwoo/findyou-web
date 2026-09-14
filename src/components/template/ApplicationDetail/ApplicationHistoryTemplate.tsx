@@ -12,7 +12,10 @@ function ApplicationHistoryTemplate() {
     currAppliId,
     review,
     isBottomOpen,
+    helperDeleteModal,
     setIsBottomOpen,
+    setIsModalOpen: setHelperDeleteModal,
+    handleDeleteApplication: handleHelperDeleteApplication,
     handleHelperStatusActive,
     handleHelperDetailActive,
   } = useHelperApplication();
@@ -54,7 +57,6 @@ function ApplicationHistoryTemplate() {
         : helperApplications?.map((item) => (
             <CustomHistoryCard
               key={item.id}
-              // images={item.helperPosts}
               title={item.helperPosts.title}
               address_dong={item.helperPosts.address_dong}
               price={String(item.helperPosts.price)}
@@ -90,6 +92,14 @@ function ApplicationHistoryTemplate() {
           )}
         </DrawerContent>
       </Drawer>
+      <AlertModal
+        title="지원을 취소하시겠습니까?"
+        description={`이 작업은 다시 되돌릴 수 없습니다.`}
+        isOpen={helperDeleteModal}
+        actionText="지원 취소"
+        setState={setHelperDeleteModal}
+        onActive={handleHelperDeleteApplication}
+      />
       <AlertModal
         title="지원을 취소하시겠습니까?"
         description={`이 작업은 다시 되돌릴 수 없습니다.`}
