@@ -1,7 +1,7 @@
 import usePostCompletedRequestMutation from '@/hooks/mutations/helper/usePostCompletedRequestMutation';
 import usePostCompleteMutation from '@/hooks/mutations/helper/usePostCompleteMutation';
 import { useGetDetailHelperApplication } from '@/hooks/quires/helper-application/useGetDetailHelperApplication';
-import useGetReceivedApplicationQuery from '@/hooks/quires/helper/useGetReceivedApplicationQuery';
+import useGetReceivedApplicationQuery from '@/hooks/quires/helper/useReceivedHelperApplications';
 import { CustomStatus } from '@/interfaces/common.interface';
 import { useUser } from '@/store/useUserStore';
 import { useParams, useRouter } from 'next/navigation';
@@ -31,7 +31,7 @@ export default function useHelperProgress() {
       mutate(application.helperPosts.id);
     }
   };
-
+  console.log('tq', application);
   const handleAcceptCompleted = () => {
     if (application && application.helperPosts) {
       acceptMutate(application.helperPosts.id);

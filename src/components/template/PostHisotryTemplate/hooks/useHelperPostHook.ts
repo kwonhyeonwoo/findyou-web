@@ -16,8 +16,8 @@ export const useHelperPostHook = () => {
   const handleReceivedHistory = (helperPostId: string) => {
     router.push(`/history/received/${helperPostId}`);
   };
-  const handleAcceptedActive = (helperPostId: string) => {
-    router.push(`/helper/${helperPostId}/progress`);
+  const handleAcceptedActive = (appliId: string) => {
+    router.push(`/helper/${appliId}/progress`);
   };
 
   const handleCompletedActive = (

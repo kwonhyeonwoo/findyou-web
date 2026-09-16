@@ -104,7 +104,11 @@ function PostHistoryTemplate() {
                 completedApplication={completedApplication}
                 handleSelectedReview={handleSelectedReview}
                 handleCompletedActive={handleCompletedActive}
-                handleAcceptedActive={() => handleAcceptedActive(item.id)}
+                handleAcceptedActive={() => {
+                  if (acceptedApplication) {
+                    handleAcceptedActive(acceptedApplication.id);
+                  }
+                }}
                 handleReceivedHistory={handleReceivedHistory}
               />
             );
