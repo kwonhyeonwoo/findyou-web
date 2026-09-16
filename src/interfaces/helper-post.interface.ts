@@ -18,7 +18,6 @@ export interface IHelperCardType {
   category: string;
 }
 
-
 export interface IBestHeleper {
   nickName: string;
   level: string;
@@ -39,7 +38,6 @@ export interface HelperPostResponse {
 
   movement: MOVEMENT_ENUM;
 
-
   lat: number;
 
   lng: number;
@@ -57,7 +55,7 @@ export interface HelperPostResponse {
   updatedAt: Date;
 
   helper: UserResponse;
-
+  completionRequestedBy?: string;
   applications: HelperApplicationResponse[];
 }
 export interface ReceivedHistoryResponse {

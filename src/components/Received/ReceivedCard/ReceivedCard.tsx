@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { HelperPostResponse } from '@/interfaces/helper-post.interface';
 import { CATEGORY_BG_STYLE } from '@/constants/category-constants';
-import { fillterCategory } from '@/lib/lib';
+import { fillterCategory, formatRelativeTime } from '@/lib/lib';
 import { HelperApplicationResponse } from '@/interfaces/helper-application.interface';
 import { CustomStatus } from '@/interfaces/common.interface';
 interface Props {
@@ -9,7 +9,8 @@ interface Props {
   userId: string | null;
   completedApplication?: HelperApplicationResponse;
   acceptedApplication?: HelperApplicationResponse;
-  handleAcceptedActive: (appliId: string) => void;
+  createdAt: Date;
+  handleAcceptedActive: () => void;
   handleSelectedReview: (
     completedApplication: HelperApplicationResponse,
   ) => void;
@@ -21,6 +22,7 @@ interface Props {
 function ReceivedCard({
   data,
   userId,
+  createdAt,
   completedApplication,
   acceptedApplication,
   handleSelectedReview,
@@ -34,12 +36,18 @@ function ReceivedCard({
       item.status !== CustomStatus.COMPLETED,
   );
 
-  // completedApplication.review => 내가 받은 리뷰
-  const receivedReview = completedApplication?.reviews?.some(
+  // completedApplication.reviews 중 reviewee가 나인 리뷰 => 내가 받은 리뷰
+  const receivedReview = completedApplication?.reviews?.find(
     (review) => review.reviewee.id === userId,
   );
+  console.log('data', data);
   return (
-    <div className="border-basic-border flex cursor-pointer flex-col gap-4 rounded-[16px] border bg-white px-4 py-5 pb-4">
+    <div
+      onClick={() => {
+        // const application = data.applications.find((item)=>item.)
+      }}
+      className="border-basic-border flex cursor-pointer flex-col gap-4 rounded-[16px] border bg-white px-4 py-5 pb-4"
+    >
       {/* 카테고리이미지, 제목, 카테고리, 시간 */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -58,7 +66,7 @@ function ReceivedCard({
             <p className="font-bold">{data.title}</p>
             <div className="flex items-center gap-1 text-[13px] text-[#4E5968]">
               <p>{fillterCategory(data.category)}</p>
-              <p>2일전</p>
+              <p>{formatRelativeTime(String(createdAt))}</p>
             </div>
           </div>
         </div>
@@ -68,7 +76,7 @@ function ReceivedCard({
           <div>
             {acceptedApplication ? (
               <button
-                onClick={() => handleAcceptedActive(acceptedApplication.id)}
+                onClick={handleAcceptedActive}
                 className="text-[13px] text-[#4E5968]"
               >{`${acceptedApplication.client.nickName}님과 진행중`}</button>
             ) : completedApplication ? (
@@ -115,24 +123,26 @@ function ReceivedCard({
         </div>
       </div>
       {/* 받은리뷰가있고 내가 아직 리뷰를 안 적었을 때 */}
-      {completedApplication?.review && !receivedReview && (
-        <div className="-mx-4 -mb-4 flex justify-between rounded-br-[12px] rounded-bl-[12px] border border-b border-[#F2E4C4] bg-[#FFF7E8] px-3 py-2 text-[13px] font-medium">
-          <p className="text-[#8A6D2B]">받은 리뷰가 도착했습니다.</p>
-          <button
-            onClick={() => handleSelectedReview(completedApplication)}
-            className="flex items-center gap-1"
-          >
-            <p className="text-[#8A6D2B]">보기</p>
-            <Image
-              src={'/common/right-arrow-amber.svg'}
-              width={15}
-              height={15}
-              className="h-[15px] w-[15px]"
-              alt="arrow"
-            />
-          </button>
-        </div>
-      )}
+      {completedApplication &&
+        receivedReview &&
+        !completedApplication.hasWrittenReview && (
+          <div className="-mx-4 -mb-4 flex justify-between rounded-br-[12px] rounded-bl-[12px] border border-b border-[#F2E4C4] bg-[#FFF7E8] px-3 py-2 text-[13px] font-medium">
+            <p className="text-[#8A6D2B]">받은 리뷰가 도착했습니다.</p>
+            <button
+              onClick={() => handleSelectedReview(completedApplication)}
+              className="flex items-center gap-1"
+            >
+              <p className="text-[#8A6D2B]">보기</p>
+              <Image
+                src={'/common/right-arrow-amber.svg'}
+                width={15}
+                height={15}
+                className="h-[15px] w-[15px]"
+                alt="arrow"
+              />
+            </button>
+          </div>
+        )}
     </div>
   );
 }

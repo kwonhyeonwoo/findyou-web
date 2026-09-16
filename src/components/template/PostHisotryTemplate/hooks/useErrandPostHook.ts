@@ -4,6 +4,7 @@ import { CustomStatus } from '@/interfaces/common.interface';
 import { useGetMyErrandsQuery } from '@/hooks/quires/errand/useGetMyErrandsQuery';
 import { useUser } from '@/store/useUserStore';
 import { useAccepteErrandApplication } from '@/hooks/mutations/errand-application/useAccepteErrandApplication';
+import { useReviewViewer } from '@/hooks/common/useReviewViewer';
 
 export interface SelectedApplication {
   applicationId: string;
@@ -21,6 +22,8 @@ export const useErrandPostHook = () => {
     useState<SelectedApplication | null>(null);
   const [isBottomOpen, setIsBottomOpen] = useState<boolean>(false);
   const { data: errandData } = useGetMyErrandsQuery();
+  const { selectedReview, isReviewOpen, openReceivedReview, closeReview } =
+    useReviewViewer();
 
   const handleStatusActive = ({
     idx,
@@ -39,7 +42,14 @@ export const useErrandPostHook = () => {
     } else if (status === CustomStatus.IN_PROGRESS) {
       router.push(`/errand/progress/${id}`);
     } else if (status === CustomStatus.COMPLETED) {
-      router.push(`/errand/${applicationId}/review`);
+      const completedApplication = errandData?.[idx ?? 0]?.applications?.find(
+        (application) => application.status === CustomStatus.COMPLETED,
+      );
+      if (completedApplication?.hasWrittenReview) {
+        openReceivedReview(completedApplication.reviews, userId);
+      } else {
+        router.push(`/errand/${applicationId}/review`);
+      }
     } else if (status === CustomStatus.COMPLETED_REQUEST) {
       router.push(`/errand/progress/${id}`);
     }
@@ -80,6 +90,8 @@ export const useErrandPostHook = () => {
     currentIdx,
     selectedApplicant,
     userId,
+    selectedReview,
+    isReviewOpen,
     dataType: searchParams.get('type'),
     handleErrandDetailActive,
     setSelectedApplicant,
@@ -88,5 +100,6 @@ export const useErrandPostHook = () => {
     handleHelperProfile,
     handleErrandAccepted,
     handleStatusActive,
+    closeReview,
   };
 };

@@ -2,8 +2,6 @@
 import HelperPostDetailProfile from '@/components/HelperPostDetail/HelperPostDetailProfile/HelperPostDetailProfile';
 import { useHelperPostDetail } from './hook/useHelperPostDetail';
 import HelperPostDetailCategory from '@/components/HelperPostDetail/HelperPostDetailCategory/HelperPostDetailCategory';
-import { CATEGORIES_ENUM } from '@/interfaces/category.enum';
-import { MOVEMENT_ENUM } from '@/interfaces/helper-post.interface';
 import HelperPostDetailTitle from '@/components/HelperPostDetail/HelperPostDetailTitle/HelperPostDetailTitle';
 import HelperPostDetailAddress from '@/components/HelperPostDetail/HelperPostDetailAddress/HelperPostDetailAddress';
 import HelperPostDetailContent from '@/components/HelperPostDetail/HelperPostDetailContent/HelperPostDetailContent';
@@ -12,6 +10,7 @@ import Image from 'next/image';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
 import ApplicationMessageModal from '@/components/ErrandDetail/ApplicationMessageModal/ApplicationMessageModal';
 import { useCustomApplication } from '@/hooks/common/useCustomApplication';
+import { CustomStatus } from '@/interfaces/common.interface';
 
 export default function HelperPostDetailTemplate() {
   const { data, uid, handleSubmit } = useHelperPostDetail();
@@ -26,6 +25,13 @@ export default function HelperPostDetailTemplate() {
     handleIsOpen,
   } = useCustomApplication();
   if (!data) return null;
+  const myApplication = data.applications.find(
+    (item) => item.client.id === uid,
+  ); // 내가 신청한 내역
+  const isDisabled =
+    myApplication?.status === CustomStatus.ACCEPTED ||
+    myApplication?.client.id === uid ||
+    data.status === CustomStatus.IN_PROGRESS;
   return (
     <div className="flex flex-col gap-5 pb-15">
       {/* 프로필  */}
@@ -70,7 +76,7 @@ export default function HelperPostDetailTemplate() {
           <SubmitButton
             text="신청하기"
             isPending={false}
-            isDisabled={data.helper.id === uid}
+            isDisabled={isDisabled}
             bgColor="bg-teal-primary"
             textColor="text-white"
             onClick={handleIsOpen}

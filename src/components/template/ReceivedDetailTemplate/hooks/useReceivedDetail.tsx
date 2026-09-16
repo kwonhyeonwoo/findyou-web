@@ -1,6 +1,6 @@
 import useAcceptedMutation from '@/hooks/mutations/helper-application/useAcceptedMutation';
 import useRejectedMutation from '@/hooks/mutations/helper-application/useRejectedMutation';
-import useGetReceivedApplicationQuery from '@/hooks/quires/helper/useGetReceivedApplicationQuery';
+import useReceivedHelperApplications from '@/hooks/quires/helper/useReceivedHelperApplications';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
@@ -11,7 +11,7 @@ export default function useReceivedDetail() {
   >(undefined);
   const [currAppliId, setCurrAppliId] = useState<string>('');
   const [isCompleteOpen, setIsCompleteOpen] = useState<boolean>(false);
-  const { data, isLoading } = useGetReceivedApplicationQuery(String(id) ?? '');
+  const { data, isLoading } = useReceivedHelperApplications(String(id) ?? '');
   const { mutate } = useAcceptedMutation(currAppliId);
   const { mutate: rejectedMutate } = useRejectedMutation();
 
@@ -20,7 +20,6 @@ export default function useReceivedDetail() {
     setCurrAppliId(appliId);
     setIsCompleteOpen((prev) => !prev);
   };
-  console.log('setCurrAppliId', currAppliId);
   const handleAccepted = () => {
     if (currAppliId) {
       mutate(currAppliId);

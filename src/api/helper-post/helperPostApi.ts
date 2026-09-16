@@ -25,4 +25,18 @@ export const helperPostApi = {
     const response = await client.get<HelperPostResponse[]>('/helper-post/my');
     return response;
   },
+
+  async postCompletedRequest(id: string): Promise<IResponse> {
+    const response = await client.patch<IResponse>(
+      `/helper-post/${id}/complete-request`,
+    );
+    return response;
+  },
+
+  async postComplete(id: string): Promise<IResponse> {
+    const response = await client.patch<IResponse>(
+      `/helper-post/${id}/complete`,
+    );
+    return response;
+  },
 };

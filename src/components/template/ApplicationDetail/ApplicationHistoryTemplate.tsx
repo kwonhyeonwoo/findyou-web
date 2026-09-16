@@ -12,11 +12,13 @@ function ApplicationHistoryTemplate() {
     currAppliId,
     review,
     isBottomOpen,
+    helperDeleteModal,
     setIsBottomOpen,
+    setIsModalOpen: setHelperDeleteModal,
+    handleDeleteApplication: handleHelperDeleteApplication,
     handleHelperStatusActive,
     handleHelperDetailActive,
   } = useHelperApplication();
-
   const {
     errandApplications,
     isModalOpen,
@@ -40,9 +42,7 @@ function ApplicationHistoryTemplate() {
               hasWrittenReview={item.hasWrittenReview}
               createdAt={item.createdAt}
               type="apply"
-              handleErrandDetailActive={() =>
-                handleErrandDetailActive(item.errand.id)
-              }
+              onDetailActive={() => handleErrandDetailActive(item.errand.id)}
               handleStatusActive={() =>
                 handleStatusActive({
                   status: item.status,
@@ -55,7 +55,6 @@ function ApplicationHistoryTemplate() {
         : helperApplications?.map((item) => (
             <CustomHistoryCard
               key={item.id}
-              // images={item.helperPosts}
               title={item.helperPosts.title}
               address_dong={item.helperPosts.address_dong}
               price={String(item.helperPosts.price)}
@@ -63,7 +62,7 @@ function ApplicationHistoryTemplate() {
               hasWrittenReview={item.hasWrittenReview}
               createdAt={item.createdAt}
               type="apply"
-              handleErrandDetailActive={() =>
+              onDetailActive={() =>
                 handleHelperDetailActive(item.helperPosts.id)
               }
               handleStatusActive={() =>
@@ -71,12 +70,11 @@ function ApplicationHistoryTemplate() {
                   status: item.status,
                   id: item.id,
                   hasWrittenReview: item.hasWrittenReview,
-                  helperId: item.helperPosts.id,
                 })
               }
             />
           ))}
-      {/* <Drawer open={isBottomOpen} onOpenChange={() => setIsBottomOpen(false)}>
+      <Drawer open={isBottomOpen} onOpenChange={() => setIsBottomOpen(false)}>
         <DrawerContent className="m-auto max-w-120 gap-4 p-4">
           {review && (
             <ReviewDropCard
@@ -86,7 +84,15 @@ function ApplicationHistoryTemplate() {
             />
           )}
         </DrawerContent>
-      </Drawer> */}
+      </Drawer>
+      <AlertModal
+        title="지원을 취소하시겠습니까?"
+        description={`이 작업은 다시 되돌릴 수 없습니다.`}
+        isOpen={helperDeleteModal}
+        actionText="지원 취소"
+        setState={setHelperDeleteModal}
+        onActive={handleHelperDeleteApplication}
+      />
       <AlertModal
         title="지원을 취소하시겠습니까?"
         description={`이 작업은 다시 되돌릴 수 없습니다.`}

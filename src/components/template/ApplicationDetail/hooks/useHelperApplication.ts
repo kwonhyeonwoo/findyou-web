@@ -1,6 +1,7 @@
 import useDeleteHelperAppliMutation from '@/hooks/mutations/helper-application/useDeleteHelperAppliMutation';
 import { useGetApplicationsQuery } from '@/hooks/quires/helper-application/useGetApplicationsQuery';
 import { CustomStatus } from '@/interfaces/common.interface';
+import { ReviewRole } from '@/interfaces/review.interface';
 import { useUser } from '@/store/useUserStore';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -17,12 +18,10 @@ export const useHelperApplication = () => {
   const handleHelperStatusActive = ({
     id,
     status,
-    helperId,
     hasWrittenReview,
     nickName,
   }: {
     id: string;
-    helperId: string;
     status: CustomStatus;
     hasWrittenReview?: boolean;
     nickName?: string;
@@ -40,39 +39,40 @@ export const useHelperApplication = () => {
         router.push(`/helper/${id}/review`);
       }
     } else if (status === CustomStatus.PENDING) {
-      setIsModalOpen(true);
       setCurrAppliId(id);
+      setIsModalOpen(true);
+
       // 대기 -> 모달창 띄어서 거절하기 할건지 물어보기,
     } else if (status === CustomStatus.ACCEPTED) {
       // 수락 -> 진행상황 페이지로 이동
-      router.push(`/apply/${id}/progress`);
+      router.push(`/helper/${id}/progress`);
     } else if (status === CustomStatus.COMPLETED_REQUEST) {
       router.push(`/apply/${id}/progress`);
     } else if (status === CustomStatus.REJECTED) {
       setIsModalOpen(true);
     }
   };
-
   const handleDeleteApplication = () => {
     deleteApplication(currAppliId);
   };
+
+  const handleHelperDetailActive = (helperPostId: string) => {
+    return router.push(`/helper/${helperPostId}/post`);
+  };
+
   const currApplication = helperApplications?.find(
     (item) => item.id === currAppliId,
   );
   const review = currApplication?.reviews.find(
-    (item) => item.reviewer.id === userId,
+    (item) => item.role === ReviewRole.USER,
   );
-
-  const handleHelperDetailActive = (postId: string) => {
-    router.push(`/helper/${postId}`);
-  };
-
   return {
     helperApplications,
     isModalOpen,
     currAppliId,
     review,
     isBottomOpen,
+    helperDeleteModal: isModalOpen,
     setIsBottomOpen,
     handleHelperDetailActive,
     handleDeleteApplication,

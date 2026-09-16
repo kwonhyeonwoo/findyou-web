@@ -17,6 +17,7 @@ export default function ReceivedHistoryTemplate() {
     handleAcceptedActive,
     handleCompletedActive,
   } = useReceivedHistory();
+  console.log('dpd?');
   return (
     <div className="flex flex-col gap-5 pt-5 pb-10">
       <p className="text-[13px] text-[#464554]">
@@ -36,13 +37,14 @@ export default function ReceivedHistoryTemplate() {
           return (
             <ReceivedCard
               data={item}
+              createdAt={item.createdAt}
               userId={userId}
               acceptedApplication={acceptedApplication}
               key={item.id}
               completedApplication={completedApplication}
               handleSelectedReview={handleSelectedReview}
               handleCompletedActive={handleCompletedActive}
-              handleAcceptedActive={handleAcceptedActive}
+              handleAcceptedActive={() => handleAcceptedActive(item.id)}
               handleReceivedHistory={handleReceivedHistory}
             />
           );

@@ -25,14 +25,21 @@ export const helperApplicationApi = {
     return response;
   },
 
-  // 내가 받은 지원내역
+  getDetailApplication: async (
+    id: string,
+  ): Promise<HelperApplicationResponse> => {
+    const response = await client.get<HelperApplicationResponse>(
+      `/helper-application/${id}`,
+    );
+    return response;
+  },
+
   async getReceivedApplications(
     helperPostId: string,
   ): Promise<HelperApplicationResponse[]> {
     const response = await client.get<HelperApplicationResponse[]>(
       `/helper-application/received/${helperPostId}`,
     );
-    console.log('apply', response);
     return response;
   },
 
@@ -56,14 +63,6 @@ export const helperApplicationApi = {
   ): Promise<HelperApplicationResponse> {
     const response = await client.get<HelperApplicationResponse>(
       `/helper-application/${appliId}`,
-    );
-    return response;
-  },
-
-  // 완료요청
-  async postCompletedRequested(appliId: string): Promise<IResponse> {
-    const response = await client.post<IResponse>(
-      `/helper-application/${appliId}/completed-request`,
     );
     return response;
   },
