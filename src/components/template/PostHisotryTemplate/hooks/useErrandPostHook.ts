@@ -27,12 +27,10 @@ export const useErrandPostHook = () => {
 
   const handleStatusActive = ({
     idx,
-    id,
     status,
     applicationId,
   }: {
     idx: number | null;
-    id?: string;
     status: CustomStatus;
     applicationId?: string;
   }) => {
@@ -40,7 +38,7 @@ export const useErrandPostHook = () => {
       setCurrentIdx(idx);
       setIsBottomOpen((prev) => !prev);
     } else if (status === CustomStatus.IN_PROGRESS) {
-      router.push(`/errand/progress/${id}`);
+      router.push(`/errand/progress/${applicationId}`);
     } else if (status === CustomStatus.COMPLETED) {
       const completedApplication = errandData?.[idx ?? 0]?.applications?.find(
         (application) => application.status === CustomStatus.COMPLETED,
@@ -51,7 +49,7 @@ export const useErrandPostHook = () => {
         router.push(`/errand/${applicationId}/review`);
       }
     } else if (status === CustomStatus.COMPLETED_REQUEST) {
-      router.push(`/errand/progress/${id}`);
+      router.push(`/errand/progress/${applicationId}`);
     }
   };
   const handleModalOpen = ({

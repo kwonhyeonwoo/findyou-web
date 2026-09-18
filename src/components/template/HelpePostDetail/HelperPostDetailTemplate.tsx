@@ -8,7 +8,7 @@ import HelperPostDetailContent from '@/components/HelperPostDetail/HelperPostDet
 import HelperPostDetailPrice from '@/components/HelperPostDetail/HelperPostDetailPrice/HelperPostDetailPrice';
 import Image from 'next/image';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
-import ApplicationMessageModal from '@/components/ErrandDetail/ApplicationMessageModal/ApplicationMessageModal';
+import ApplicationMessageModal from '@/components/common/ApplicationMessageModal/ApplicationMessageModal';
 import { useCustomApplication } from '@/hooks/common/useCustomApplication';
 import { CustomStatus } from '@/interfaces/common.interface';
 

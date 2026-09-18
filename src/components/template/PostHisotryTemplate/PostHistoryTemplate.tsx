@@ -74,7 +74,6 @@ function PostHistoryTemplate() {
                 handleStatusActive={() =>
                   handleStatusActive({
                     idx,
-                    id: item.id,
                     status: item.status,
                     applicationId: item.application?.id,
                   })

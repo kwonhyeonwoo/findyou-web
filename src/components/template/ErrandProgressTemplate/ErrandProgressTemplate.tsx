@@ -19,6 +19,7 @@ const ErrandProgressTemplate = () => {
     handleProfileDetail,
   } = useErrandProgress();
   if (!data) return null;
+  console.log('errnad', data);
   return (
     <div className="flex flex-1 flex-col gap-6">
       <ErrandStatusTitle
@@ -28,8 +29,8 @@ const ErrandProgressTemplate = () => {
         date={new Date()}
       />
       <ErrandHelper
-        nickName={data.application.helper.nickName}
-        profile={data.application.helper.profile}
+        nickName={data.application?.helper?.nickName}
+        profile={data.application?.helper?.profile}
         onProfileDetail={() => handleProfileDetail(data.helper.id)}
       />
       <ErrandStatusInfo
@@ -43,7 +44,7 @@ const ErrandProgressTemplate = () => {
         <div className="flex-1">
           <ErrandHelperKaKao
             onKaKaoOpenLink={() =>
-              handleKaKaoOpenLink(data.application.openLink)
+              handleKaKaoOpenLink(data.application?.openLink)
             }
           />
         </div>

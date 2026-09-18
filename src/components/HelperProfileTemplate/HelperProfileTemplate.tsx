@@ -6,7 +6,7 @@ import ReceivedReviews from '@/components/HelperProfile/ReceivedReviews';
 import { useHelperProfileTemplate } from './hooks/useHelperProfileTemplate';
 import Empty from '@/components/common/Empty/Empty';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
-import ErrandMessageModal from '@/components/ErrandDetail/ApplicationMessageModal/ApplicationMessageModal';
+import ErrandMessageModal from '@/components/common/ApplicationMessageModal/ApplicationMessageModal';
 import HelperMessage from '@/components/HelperProfile/HelperMessage';
 
 function HelperProfileTemplate() {

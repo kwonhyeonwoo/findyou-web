@@ -27,6 +27,15 @@ export const errandApplicationApi = {
     return response;
   },
 
+  getProgressApplication: async (
+    id: string,
+  ): Promise<ErrandApplicationResponse> => {
+    const response = await client.get<ErrandApplicationResponse>(
+      `/errand-application/${id}/progress`,
+    );
+    return response;
+  },
+
   // 수락
   accepted: async ({ applicationId }: { applicationId: string }) => {
     const response = await client.post<IResponse>(

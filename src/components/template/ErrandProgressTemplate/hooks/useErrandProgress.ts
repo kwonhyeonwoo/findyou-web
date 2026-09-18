@@ -6,6 +6,7 @@ import { useUser } from '@/store/useUserStore';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+// params id는 현재 errand의 id
 export const useErrandProgress = () => {
   const { id } = useParams();
   const router = useRouter();
@@ -34,7 +35,7 @@ export const useErrandProgress = () => {
 
   // 수락하기 버튼 클릭 시 심부름 완료 처리
   const handleCompleted = () => {
-    completeMutate(String(id));
+    completeMutate(id as string);
   };
 
   // 완료요청 보내기

@@ -5,8 +5,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import ErrandMsgTextarea from '../ErrandMsgTextarea/ErrandMsgTextarea';
-import ErrandMsgOpenLink from '../ErrandMsgOpenLink/ErrandMsgOpenLink';
+import ErrandMsgTextarea from '../../ErrandDetail/ErrandMsgTextarea/ErrandMsgTextarea';
+import ErrandMsgOpenLink from '../../ErrandDetail/ErrandMsgOpenLink/ErrandMsgOpenLink';
 
 interface Props {
   title: string;

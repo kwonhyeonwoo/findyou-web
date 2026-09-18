@@ -4,13 +4,25 @@ import ErrandContent from '@/components/ErrandDetail/ErrandContent/ErrandContent
 import AddressCard from '@/components/Errand/AddressCard';
 import SubmitButton from '@/components/common/SubmitButton/SubmitButton';
 import { useSliderImg } from './hooks/useSliderImg';
-import ErrandMessageModal from '@/components/ErrandDetail/ApplicationMessageModal/ApplicationMessageModal';
 import ErrandImage from '@/components/ErrandDetail/ErrandImage/ErrandImage';
 import ErrandDetailProfile from '@/components/ErrandDetail/ErrandDetailProfile/ErrandDetailProfile';
 import ErrandCategoryStatus from '@/components/ErrandDetail/ErrandCategoryStatus/ErrandCategoryStatus';
+import ApplicationMessageModal from '@/components/common/ApplicationMessageModal/ApplicationMessageModal';
+import { useCustomApplication } from '@/hooks/common/useCustomApplication';
 
 export default function ErrandDetailTemplate() {
-  const { data, uid, isPending, isOpen, handleIsOpen } = useErrandDetail();
+  const {
+    message,
+    saveAsDefault,
+    openLink,
+    isModalOpen,
+    handleIsOpen,
+    onMessageChange,
+    onLinkChange,
+
+    onSelectedSaveDefault,
+  } = useCustomApplication();
+  const { data, uid, isPending, handleErrandSubmit } = useErrandDetail();
   const { currentIndex, goToSlide, handleSlide } = useSliderImg(
     data?.images || [],
   );
@@ -54,9 +66,16 @@ export default function ErrandDetailTemplate() {
           isDisabled={data?.user?.id === uid ? true : false}
         />
       </div>
-      <ErrandMessageModal
-        isOpen={isOpen}
+      <ApplicationMessageModal
+        isOpen={isModalOpen}
         title="의뢰자에게 어필할 수 있는 간단한 소개를 남겨주세요!"
+        message={message}
+        openLink={openLink}
+        saveAsDefault={saveAsDefault}
+        onMessageChange={onMessageChange}
+        onLinkChange={onLinkChange}
+        onSelectedSaveDefault={onSelectedSaveDefault}
+        onSubmit={handleErrandSubmit}
         handleIsOpen={handleIsOpen}
       />
     </div>

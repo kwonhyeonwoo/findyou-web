@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
-export const useApplicationCreateMutation = () => {
+export const useCreateErrandApplication = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
 
@@ -18,7 +18,6 @@ export const useApplicationCreateMutation = () => {
       router.push('/history/application-history?type=errand');
     },
     onError: (error) => {
-      console.log('first');
       toast.error(error.message);
     },
   });
