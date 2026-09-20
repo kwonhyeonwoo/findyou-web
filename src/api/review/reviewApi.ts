@@ -11,7 +11,7 @@ export const reviewApi = {
     errandApplicationId: string;
   }): Promise<IResponse> => {
     const response = await client.post<IResponse>(
-      `/review/${errandApplicationId}`,
+      `/review/${errandApplicationId}/errand`,
       data,
     );
     return response;

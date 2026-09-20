@@ -2,11 +2,9 @@ import { errandApplicationApi } from '@/api/errand-application/errandApplication
 import { ERRAND_APPLICAION_KEYS } from '@/api/errand-application/errandApplicationKeys';
 import { ERRAND_KEYS } from '@/api/errand/errandKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 export const useAccepteErrandApplication = () => {
-  const router = useRouter();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: errandApplicationApi.accepted,
@@ -15,7 +13,6 @@ export const useAccepteErrandApplication = () => {
         queryKey: [...ERRAND_APPLICAION_KEYS.lists(), ...ERRAND_KEYS.lists()],
       });
       toast.success(data.message);
-      // router.push(`/errand/errandId/review`)
     },
     onError: (error: any) => {
       console.log('error', error);

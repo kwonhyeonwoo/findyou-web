@@ -1,18 +1,16 @@
 import { useCompleteRequestErrand } from '@/hooks/mutations/errand-application/useCompleteRequestErrand';
 import { usePostErrandApplicationComplete } from '@/hooks/mutations/errand/usePostErrandApplicationComplete';
-import { useGetErrandProgressQuery } from '@/hooks/quires/errand/useGetErrandProgressQuery';
+import { useProgressErrand } from '@/hooks/quires/errand/useProgressErrand';
 import { CustomStatus } from '@/interfaces/common.interface';
 import { useUser } from '@/store/useUserStore';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-// params id는 현재 errand의 id
 export const useErrandProgress = () => {
   const { id } = useParams();
   const router = useRouter();
-  const params = useParams();
   const { userId } = useUser();
-  const { data } = useGetErrandProgressQuery(String(id));
+  const { data } = useProgressErrand(String(id));
   const { mutate: completeMutate } = usePostErrandApplicationComplete(
     String(id),
     String(data?.helper?.nickName),
@@ -23,24 +21,24 @@ export const useErrandProgress = () => {
     router.push(`/helper/${id}`);
   };
 
-  // 카카오 오픈링크 이동
   const handleKaKaoOpenLink = (link: string) => {
     router.push(link);
   };
 
-  // 심부름 완료 모달 열기
   const handleOpenCompleteModal = () => {
     setIsCompleteOpen(true);
   };
 
-  // 수락하기 버튼 클릭 시 심부름 완료 처리
+  //** 심부름완료 */
   const handleCompleted = () => {
-    completeMutate(id as string);
+    if (data) completeMutate(data.id);
   };
 
-  // 완료요청 보내기
+  //** 심부름 완료요청 */
   const handleCompletedRequest = () => {
-    completeRequestMutate(String(params.id));
+    if (data) {
+      completeRequestMutate(data.id);
+    }
   };
 
   const BUTTON_STATUS_TEXT: Partial<
@@ -54,7 +52,7 @@ export const useErrandProgress = () => {
           : '완료 수락하기',
       onClick: handleOpenCompleteModal,
     },
-    COMPLETED: { label: '리뷰쓰기', onClick: () => {} },
+    COMPLETED: { label: '리뷰쓰기', onClick: () => { } },
   };
 
   const BUTTOM_SUBMIT: Partial<Record<CustomStatus, () => void>> = {

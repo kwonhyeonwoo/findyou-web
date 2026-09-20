@@ -18,7 +18,7 @@ export default function HelperProgressTemplate() {
     handleIsOpen,
     handleProfileActive,
     handleCompletedRequest,
-    handleAcceptCompleted,
+    handleCompleted,
   } = useHelperProgress();
   if (!data) return null;
   const isCompletedRequest =
@@ -37,7 +37,7 @@ export default function HelperProgressTemplate() {
         title: '완료를 수락하시겠습니까?',
         description: '수락 시 심부름이 완료 처리되며 되돌릴 수 없습니다.',
         actionText: '완료 수락',
-        onActive: handleAcceptCompleted,
+        onActive: handleCompleted,
       }
     : {
         title: '심부름 진행을 완료 하시겠습니까?',

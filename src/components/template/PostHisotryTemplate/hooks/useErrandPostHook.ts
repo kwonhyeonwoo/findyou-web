@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { CustomStatus } from '@/interfaces/common.interface';
-import { useGetMyErrandsQuery } from '@/hooks/quires/errand/useGetMyErrandsQuery';
+import { useMyErrands } from '@/hooks/quires/errand/useMyErrands';
 import { useUser } from '@/store/useUserStore';
 import { useAccepteErrandApplication } from '@/hooks/mutations/errand-application/useAccepteErrandApplication';
 import { useReviewViewer } from '@/hooks/common/useReviewViewer';
@@ -21,7 +21,7 @@ export const useErrandPostHook = () => {
   const [selectedApplicant, setSelectedApplicant] =
     useState<SelectedApplication | null>(null);
   const [isBottomOpen, setIsBottomOpen] = useState<boolean>(false);
-  const { data: errandData } = useGetMyErrandsQuery();
+  const { data: errandData } = useMyErrands();
   const { selectedReview, isReviewOpen, openReceivedReview, closeReview } =
     useReviewViewer();
 

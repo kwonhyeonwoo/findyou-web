@@ -47,7 +47,6 @@ function ApplicationHistoryTemplate() {
                 handleStatusActive({
                   status: item.status,
                   currApplicationId: item.id,
-                  errandId: item.errand.id,
                 })
               }
             />

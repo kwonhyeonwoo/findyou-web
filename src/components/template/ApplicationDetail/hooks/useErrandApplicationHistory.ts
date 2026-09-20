@@ -21,11 +21,9 @@ export const useErrandApplicationHistory = () => {
   const handleStatusActive = ({
     status,
     currApplicationId,
-    errandId,
   }: {
     status: CustomStatus;
     currApplicationId: string;
-    errandId: string;
   }) => {
     if (status === CustomStatus.PENDING) {
       // 대기 중
@@ -33,7 +31,7 @@ export const useErrandApplicationHistory = () => {
       setIsModalOpen(true);
     } else if (status === CustomStatus.ACCEPTED) {
       // 수락
-      router.push(`/errand/progress/${errandId}`);
+      router.push(`/errand/progress/${currApplicationId}`);
     } else if (status === CustomStatus.COMPLETED) {
       router.push(`/errand/${currApplicationId}/review`);
     }

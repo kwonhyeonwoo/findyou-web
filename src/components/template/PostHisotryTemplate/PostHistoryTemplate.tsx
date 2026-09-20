@@ -91,7 +91,6 @@ function PostHistoryTemplate() {
             const completedApplication = item.applications.find(
               (completed) => completed.status === CustomStatus.COMPLETED,
             );
-            console.log('tq', completedApplication);
             return (
               <ReceivedCard
                 data={item}

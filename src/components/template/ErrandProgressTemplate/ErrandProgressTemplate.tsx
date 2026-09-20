@@ -19,7 +19,6 @@ const ErrandProgressTemplate = () => {
     handleProfileDetail,
   } = useErrandProgress();
   if (!data) return null;
-  console.log('errnad', data);
   return (
     <div className="flex flex-1 flex-col gap-6">
       <ErrandStatusTitle

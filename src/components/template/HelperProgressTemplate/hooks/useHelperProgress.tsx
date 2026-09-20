@@ -1,8 +1,6 @@
 import usePostCompletedRequestMutation from '@/hooks/mutations/helper/usePostCompletedRequestMutation';
 import usePostCompleteMutation from '@/hooks/mutations/helper/usePostCompleteMutation';
 import { useGetDetailHelperApplication } from '@/hooks/quires/helper-application/useGetDetailHelperApplication';
-import useGetReceivedApplicationQuery from '@/hooks/quires/helper/useReceivedHelperApplications';
-import { CustomStatus } from '@/interfaces/common.interface';
 import { useUser } from '@/store/useUserStore';
 import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -14,7 +12,7 @@ export default function useHelperProgress() {
   const { userId } = useUser();
   const { data: application } = useGetDetailHelperApplication(id as string);
   const { mutate, isPending } = usePostCompletedRequestMutation(String(id));
-  const { mutate: acceptMutate, isPending: isAcceptPending } =
+  const { mutate: completedMutate, isPending: isAcceptPending } =
     usePostCompleteMutation(String(id));
 
   const handleProfileActive = (clientId: string) => {
@@ -25,16 +23,17 @@ export default function useHelperProgress() {
     setIsOpen(true);
   };
 
-  //. 완료 요청하기
+  /** 완료요청 함수 */
   const handleCompletedRequest = () => {
     if (application && application.helperPosts) {
       mutate(application.helperPosts.id);
     }
   };
-  console.log('tq', application);
-  const handleAcceptCompleted = () => {
+
+  //** 완료 함수 */
+  const handleCompleted = () => {
     if (application && application.helperPosts) {
-      acceptMutate(application.helperPosts.id);
+      completedMutate(application.helperPosts.id);
     }
   };
 
@@ -44,7 +43,7 @@ export default function useHelperProgress() {
     isPending: isPending || isAcceptPending,
     userId,
     handleCompletedRequest,
-    handleAcceptCompleted,
+    handleCompleted,
     setIsOpen,
     handleIsOpen,
     handleProfileActive,
