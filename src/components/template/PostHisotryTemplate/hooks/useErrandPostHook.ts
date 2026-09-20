@@ -52,6 +52,11 @@ export const useErrandPostHook = () => {
       router.push(`/errand/progress/${applicationId}`);
     }
   };
+  const handleReviewOpen = () => {
+    const review = errandData?.find((item) => item.user.id === userId);
+    console.log('revuew', review?.application.reviews);
+    openReceivedReview(review?.application.reviews, userId);
+  }
   const handleModalOpen = ({
     applicationId,
     nickName,
@@ -91,6 +96,7 @@ export const useErrandPostHook = () => {
     selectedReview,
     isReviewOpen,
     dataType: searchParams.get('type'),
+    handleReviewOpen,
     handleErrandDetailActive,
     setSelectedApplicant,
     handleModalOpen,

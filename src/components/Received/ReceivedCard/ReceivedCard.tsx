@@ -40,14 +40,8 @@ function ReceivedCard({
   const receivedReview = completedApplication?.reviews?.find(
     (review) => review.reviewee.id === userId,
   );
-  console.log('data', data);
   return (
-    <div
-      onClick={() => {
-        // const application = data.applications.find((item)=>item.)
-      }}
-      className="border-basic-border flex cursor-pointer flex-col gap-4 rounded-[16px] border bg-white px-4 py-5 pb-4"
-    >
+    <div className="border-basic-border flex cursor-pointer flex-col gap-4 rounded-[16px] border bg-white px-4 py-5 pb-4">
       {/* 카테고리이미지, 제목, 카테고리, 시간 */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">

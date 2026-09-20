@@ -64,7 +64,7 @@ export const useHelperApplication = () => {
     (item) => item.id === currAppliId,
   );
   const review = currApplication?.reviews.find(
-    (item) => item.role === ReviewRole.USER,
+    (item) => item.role === ReviewRole.CLIENT,
   );
   return {
     helperApplications,

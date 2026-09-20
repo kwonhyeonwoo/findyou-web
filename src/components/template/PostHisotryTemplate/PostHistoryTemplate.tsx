@@ -10,6 +10,7 @@ import { CustomStatus } from '@/interfaces/common.interface';
 import ReceivedCard from '@/components/Received/ReceivedCard/ReceivedCard';
 import ReviewDropCard from '@/components/ReviewDropCard/ReviewDropCard';
 import { useHelperPostHook } from './hooks/useHelperPostHook';
+import { ReviewRole } from '@/interfaces/review.interface';
 
 function PostHistoryTemplate() {
   const {
@@ -25,6 +26,7 @@ function PostHistoryTemplate() {
     handleModalOpen,
     setIsBottomOpen,
     handleHelperProfile,
+    handleReviewOpen,
     handleStatusActive,
     handleErrandAccepted,
     handleErrandDetailActive,
@@ -47,6 +49,7 @@ function PostHistoryTemplate() {
       toast.error('지원자가 없습니다.');
     }
   }, [isBottomOpen, hasApplicants]);
+  console.log('errandData', errandData);
   return (
     <div className="mt-6 flex flex-col gap-4 pb-10">
       {dataType === 'errand'
@@ -58,6 +61,11 @@ function PostHistoryTemplate() {
                 (item) => item.hasWrittenReview,
               );
             }
+            const isReceivedReview = item.application.reviews.some(
+              (review) => review.role === ReviewRole.CLIENT,
+            );
+
+            console.log('item', item);
             return (
               <CustomHistoryCard
                 images={item.images}
@@ -71,6 +79,8 @@ function PostHistoryTemplate() {
                 key={item.id}
                 applications={item?.applications}
                 onDetailActive={() => handleErrandDetailActive(item.id)}
+                isReceivedReview={isReceivedReview}
+                handleReviewOpen={handleReviewOpen}
                 handleStatusActive={() =>
                   handleStatusActive({
                     idx,
@@ -97,7 +107,6 @@ function PostHistoryTemplate() {
                 userId={userId}
                 acceptedApplication={acceptedApplication}
                 key={item.id}
-                // helperPostId={item.id}
                 createdAt={item.createdAt}
                 completedApplication={completedApplication}
                 handleSelectedReview={handleSelectedReview}
